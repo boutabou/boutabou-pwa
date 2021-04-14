@@ -1,0 +1,6 @@
+.home {
+  &--disable {
+    @apply hidden;
+    display: none;
+  }
+}

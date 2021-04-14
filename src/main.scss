@@ -36,7 +36,12 @@
 @import
 'styles/themes/default';
 
-// 8. Tailwind
+
+// 8. Partials
+@import
+'styles/partials/home';
+
+// 9. Tailwind
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
