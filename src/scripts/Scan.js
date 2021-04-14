@@ -1,10 +1,10 @@
-import jsQR from 'jsqr'
+// import jsQR from 'jsqr'
 
 export default class Scan {
     constructor() {
-        this.initEls()
-        this.bindMethods()
-        this.initEvents()
+        // this.initEls()
+        // this.bindMethods()
+        // this.initEvents()
         console.log('et tu la ?')
     }
 

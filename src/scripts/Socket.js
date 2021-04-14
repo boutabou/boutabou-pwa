@@ -31,10 +31,12 @@ export default class Socket {
     }
 
     initEvents() {
-        this.$els.loginButton.addEventListener('click', this.createProfile);
-        this.$els.form.addEventListener('submit', this.sendMessage);
-        this.socket.on('user-login', this.addProfile);
-        this.socket.on('chat-message', this.createMessage);
+        if(this.$els.loginButton) {
+            this.$els.loginButton.addEventListener('click', this.createProfile);
+            this.$els.form.addEventListener('submit', this.sendMessage);
+            this.socket.on('user-login', this.addProfile);
+            this.socket.on('chat-message', this.createMessage);
+        }
     }
 
     createProfile() {
