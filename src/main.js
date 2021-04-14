@@ -5,7 +5,6 @@ class App {
     constructor () {
         this.initApp()
         this.initServiceWorker()
-        console.log("hello")
     }
 
     initApp () {

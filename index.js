@@ -1,7 +1,7 @@
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const port = process.env.PORT || 3003; 
+const port = process.env.PORT || 3000;
 
 
 app.set('view engine', 'ejs');
@@ -24,7 +24,6 @@ app.get('/views/pages/scan.ejs', function(req, res) {
 
 app.all("*", function (req, resp, next) {
   if (req.params[0].substr(-5,5) === '.html') return
-  if (req.params[0].substr(-4,4) === '.css') return
 
   resp.sendFile(__dirname + req.params[0]); // router
 });
