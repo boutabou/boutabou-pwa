@@ -35,3 +35,8 @@
 // 7. Themes
 @import
 'styles/themes/default';
+
+// 8. Tailwind
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
