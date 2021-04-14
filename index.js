@@ -5,6 +5,8 @@ const port = process.env.PORT || 3003;
 
 
 app.set('view engine', 'ejs');
+app.use(require('express').static(__dirname + '/public'));
+
 
 /*
 * Redirect to https
@@ -23,6 +25,7 @@ app.get('/views/pages/scan.ejs', function(req, res) {
 
 app.all("*", function (req, resp, next) {
   if (req.params[0].substr(-5,5) === '.html') return
+  if (req.params[0].substr(-4,4) === '.css') return
 
   resp.sendFile(__dirname + req.params[0]); // router
 });
