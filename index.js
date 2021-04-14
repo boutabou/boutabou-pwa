@@ -5,7 +5,6 @@ const port = process.env.PORT || 3003;
 
 
 app.set('view engine', 'ejs');
-app.use(require('express').static(__dirname + '/public'));
 
 
 /*
