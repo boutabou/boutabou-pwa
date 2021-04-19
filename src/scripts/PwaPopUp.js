@@ -1,23 +1,36 @@
 export default class PwaPopUp {
     constructor() {
         this.initEls()
-        this.initPopUp()
+        this.initEvents()
     }
 
     initEls() {
-        // Detects if device is on iOS 
-        this.isIos = () => {
-            const userAgent = window.navigator.userAgent.toLowerCase()
-            return /iphone|ipad|ipod/.test( userAgent )
-        }
-        // Detects if device is in standalone mode
-        this.isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone)
+         this._beforeInstallPrompt
     }
 
-    initPopUp() {
-        // Checks if should display install popup notification:
-        if (this.isIos() && this.isInStandaloneMode) {
-            document.body.innerHTML = "<div id='popup'><div class='popup-close-icon'>&times;</div><h4>Add Our App?</h4><p>Tap below to add an icon to your home screen for quick access!</p></div>"
-        }
+    initEvents() {
+        if ( "onbeforeinstallprompt" in window ) { 
+            window.addEventListener( "beforeinstallprompt", this.beforeInstallPrompt )
+        } 
     }
+
+    beforeInstallPrompt( evt ) { 
+        evt.preventDefault()
+        this._beforeInstallPrompt = evt
+        return  this._beforeInstallPrompt.prompt() 
+        .then( function ( evt ) { 
+            // Wait for the user to respond to the prompt 
+            return  this._beforeInstallPrompt.userChoice; 
+        })
+        .then( function ( choiceResult ) {}) 
+        .catch( function ( err ) {
+            if ( err.message.indexOf( "user gesture" ) > -1 ) {
+            } 
+            else if ( err.message.indexOf( "The app is already installed" ) > -1 ) {
+            } else { 
+                return err 
+            } 
+        }); 
+    }
+
 }
