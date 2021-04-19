@@ -13,7 +13,8 @@ class App {
     }
 
     initServiceWorker () {
-        if ("serviceWorker" in navigator) {
+        // désactiver le cache avec && false
+        if ("serviceWorker" in navigator && false) {
             navigator.serviceWorker.register("./serviceWorker.js")
         }
     }
