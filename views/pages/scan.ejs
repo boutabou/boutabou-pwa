@@ -39,13 +39,16 @@
                         // QR Code scanning is stopped.
                     }).catch(err => {
                         // Stop failed, handle it.
+                        console.log('stop error : ', err)
                     });
                 },
                 errorMessage => {
                     // parse error, ignore it.
+                    console.log('errorMessage : ', errorMessage)
                 })
                 .catch(err => {
                     // Start failed, handle it.
+                    console.log('error : ', err)
                 });
         }
     }).catch(err => {
