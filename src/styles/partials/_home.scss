@@ -1,6 +1,7 @@
 .home {
+  position: relative;
+
   &--disable {
-    @apply hidden;
     display: none;
   }
 }
