@@ -3,8 +3,8 @@ import PwaPopUp from './scripts/PwaPopUp'
 
 class App {
     constructor () {
-        this.initApp()
         this.initServiceWorker()
+        this.initApp()
     }
 
     initApp () {
