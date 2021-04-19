@@ -3,8 +3,8 @@ import PwaPopUp from './scripts/PwaPopUp'
 
 class App {
     constructor () {
-        this.initApp()
         this.initServiceWorker()
+        this.initApp()
     }
 
     initApp () {
@@ -14,7 +14,7 @@ class App {
 
     initServiceWorker () {
         // désactiver le cache avec && false
-        if ("serviceWorker" in navigator && false) {
+        if ("serviceWorker" in navigator) {
             navigator.serviceWorker.register("./serviceWorker.js")
         }
     }
