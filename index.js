@@ -23,6 +23,7 @@ app.get('/views/pages/scan.ejs', function(req, res) {
 });
 
 app.all("*", function (req, resp, next) {
+  if (req.params[0].substr(-5,5) === '.html') return
   if (req.params[0].substr(0,7) === '/views/') return
 
   resp.sendFile(__dirname + req.params[0]); // router
