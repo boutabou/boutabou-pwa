@@ -21,6 +21,7 @@ export default class PwaPopUp {
         .then( function ( evt ) { 
             // Wait for the user to respond to the prompt 
             return  this._beforeInstallPrompt.userChoice; 
+            console.log('test')
         })
         .then( function ( choiceResult ) {}) 
         .catch( function ( err ) {
