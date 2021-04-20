@@ -5,14 +5,34 @@ const port = process.env.PORT || 3003;
 
 
 app.set('view engine', 'ejs');
+app.set("trust proxy", 1);
+
+
+const theme = [
+    {
+      "title" : "L'épilation",
+      "img" : "../../assets/images/themes/epilation.jpg"
+    },
+    {
+      "title" : "Les régles",
+      "img" : "../../assets/images/themes/regles.jpg"
+    }
+  ]
 
 
 /*
 * Redirect to https
 */
-/*app.get('/', function(req, res) {
-  res.redirect('https://' + req.headers.host + req.url);
-})*/
+
+app.use (function (req, res, next) {
+  if (req.secure) {
+          // request was via https, so do no special handling
+          next();
+  } else {
+          // request was via http, so redirect to https
+          res.redirect('https://' + req.headers.host + req.url);
+  }
+});
 
 app.get('/', function(req, res) {
   res.render('pages/index');
@@ -21,6 +41,15 @@ app.get('/', function(req, res) {
 app.get('/views/pages/scan.ejs', function(req, res) {
   res.render('pages/scan');
 });
+
+app.get('/views/pages/theme.ejs', function(req, res, next) {
+  res.render('pages/theme', {
+    query : req.query,
+    theme
+  });
+});
+
+
 
 app.all("*", function (req, resp, next) {
   if (req.params[0].substr(-5,5) === '.html') return
