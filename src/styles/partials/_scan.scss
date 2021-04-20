@@ -1,0 +1,18 @@
+.scan {
+  overflow: hidden;
+
+  video {
+    width: auto !important;
+    height: 100vh !important;
+    min-width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #qr-shaded-region {
+    border-width: calc(50vh - 128px) calc(50vw - 128px)!important;
+  }
+}
