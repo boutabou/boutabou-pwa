@@ -14,7 +14,9 @@
     "socket.io-client": "^4.0.1"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js",
+    "build": "webpack -w",
+    "dev": "concurrently 'npm:build' 'npm:start'"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
