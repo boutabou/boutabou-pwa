@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+
+<h1>Vous avez fait votre choix !</h1>
+<p>le théme <b><%= theme && theme[query.id] && theme[query.id].title ? theme[query.id].title : '' %></b></p>
+
+<img src="<%= theme && theme[query.id] && theme[query.id].img ? theme[query.id].img : '' %>" style="width: 100%; height: 200px; object-fit: cover"/>
+
+<script src="../../public/main.js"></script>
+</body>
+</html>
