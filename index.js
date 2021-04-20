@@ -5,8 +5,7 @@ const port = process.env.PORT || 3003;
 
 
 app.set('view engine', 'ejs');
-
-
+app.set("trust proxy", 1);
 
 /*
 * Redirect to https
@@ -26,8 +25,13 @@ app.get('/', function(req, res) {
   res.render('pages/index');
 });
 
+app.get('/views/pages/scan.ejs', function(req, res) {
+  res.render('pages/scan');
+});
+
 app.all("*", function (req, resp, next) {
   if (req.params[0].substr(-5,5) === '.html') return
+  if (req.params[0].substr(0,7) === '/views/') return
 
   resp.sendFile(__dirname + req.params[0]); // router
 });
