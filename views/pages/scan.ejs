@@ -12,13 +12,12 @@
     <script src="../../public/main.js"></script>
 
 <script>
-    const qrCodeSuccessCallback = message => { console.log('camera message : ', message) }
+    const qrCodeSuccessCallback = message => { window.location = './theme.ejs?id=' + message }
     const config = { fps: 10, qrbox: 250 };
     const html5QrCode = new Html5Qrcode("qr-reader");
 
     // back camera
     html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
-
 </script>
 </body>
 </html>
