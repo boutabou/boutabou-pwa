@@ -5,7 +5,7 @@ const port = process.env.PORT || 3003;
 
 
 app.set('view engine', 'ejs');
-
+app.set("trust proxy", 1);
 
 /*
 * Redirect to https
