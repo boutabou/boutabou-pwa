@@ -44,6 +44,8 @@ export default class Socket {
             this.user.name = this.$els.username.value
 
             this.socket.emit('user-login', this.user)
+            window.location = './room.ejs'
+            // window.location = './room.ejs?id=' + this.user.name
             this.$els.login.classList.add('login--disable')
             this.$els.home.classList.remove('home--disable')
             this.$els.input.focus()
@@ -53,7 +55,8 @@ export default class Socket {
     addProfile(loggedUser) {
         const item = document.createElement('li')
         item.innerHTML = '<span>' + loggedUser.name + '</span> join the room !!!'
-        this.$els.messages.appendChild(item)
+        console.log(loggedUser)
+        document.querySelector('.js-list-users').appendChild(item)
         window.scrollTo(0, document.body.scrollHeight)
     }
 

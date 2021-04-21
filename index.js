@@ -7,6 +7,8 @@ const port = process.env.PORT || 3003;
 app.set('view engine', 'ejs');
 app.set("trust proxy", 1);
 
+const users = []
+
 
 const theme = [
     {
@@ -25,10 +27,10 @@ const theme = [
 */
 
 app.use (function (req, res, next) {
-  if (req.secure || req.rawHeaders[1] == "localhost:3003") {
+  if (req.secure || req.rawHeaders[1] == "localhost:3003" || req.rawHeaders[1] == "127.0.0.1:3003" || req.rawHeaders[1] == "10.0.2.2:3003") {
           // request was via https, so do no special handling
           next();
-  } else if (!req.secure && req.rawHeaders[1] !== "localhost:3003") {
+  } else if (!req.secure && req.rawHeaders[1] !== "localhost:3003" || req.rawHeaders[1] !== "127.0.0.1:3003" || req.rawHeaders[1] !== "10.0.2.2:3003") {
           // request was via http, so redirect to https
           res.redirect('https://' + req.headers.host + req.url);
   }
@@ -40,6 +42,17 @@ app.get('/', function(req, res) {
 
 app.get('/views/pages/scan.ejs', function(req, res) {
   res.render('pages/scan');
+});
+
+app.get('/views/pages/login.ejs', function(req, res) {
+  res.render('pages/login');
+});
+
+app.get('/views/pages/room.ejs', function(req, res) {
+  res.render('pages/room', {
+    query : req.query,
+    users
+  });
 });
 
 app.get('/views/pages/theme.ejs', function(req, res, next) {
@@ -55,6 +68,7 @@ app.all("*", function (req, resp, next) {
   if (req.params[0].substr(-5,5) === '.html') return
   if (req.params[0].substr(0,7) === '/views/') return
 
+  console.log("wolilo", req.params[0])
   resp.sendFile(__dirname + req.params[0]); // router
 });
 
@@ -74,6 +88,8 @@ io.on('connection', (socket) => {
   socket.on('user-login', user => {
     // Sauvegarde de l'utilisateur et ajout à la liste des connectés
     loggedUser = user;
+
+    users.push(user)
 
     // Envoi et sauvegarde des messages de service
     var userServiceMessage = {
