@@ -5,6 +5,7 @@
   "dependencies": {
     "-": "0.0.1",
     "concurrently": "^6.0.0",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "g": "^2.0.1",
