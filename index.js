@@ -1,7 +1,13 @@
-const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-const port = process.env.PORT || 3003;
+const dotenv = require('dotenv')
+dotenv.config()
+const app = require('express')()
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
+const port = process.env.PORT || 3003
+const domain = process.env.DOMAIN_HOST || "localhost"
+const ip = process.env.IP || "127.0.0.1"
+var environment = process.env.NODE_ENV || 'development';
+
 
 
 app.set('view engine', 'ejs');
@@ -25,10 +31,10 @@ const theme = [
 */
 
 app.use (function (req, res, next) {
-  if (req.secure || req.rawHeaders[1] == "localhost:3003") {
+  if (req.secure || req.rawHeaders[1] == `${domain}:${port}` ||  req.rawHeaders[1] == `${ip}:${port}` ) {
           // request was via https, so do no special handling
           next();
-  } else if (!req.secure && req.rawHeaders[1] !== "localhost:3003") {
+  } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] == `${domain}:${port}`) {
           // request was via http, so redirect to https
           res.redirect('https://' + req.headers.host + req.url);
   }
