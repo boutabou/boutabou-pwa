@@ -49,10 +49,7 @@ app.get('/views/pages/login.ejs', function(req, res) {
 });
 
 app.get('/views/pages/room.ejs', function(req, res) {
-  res.render('pages/room', {
-    query : req.query,
-    users
-  });
+  res.render('pages/room');
 });
 
 app.get('/views/pages/theme.ejs', function(req, res, next) {
@@ -85,25 +82,56 @@ io.on('connection', (socket) => {
     io.emit('chat-message', msg, loggedUser);
   });
 
+  socket.on('disconnect', function () {
+    if (loggedUser !== undefined) {
+      // Broadcast d'un 'service-message'
+      var serviceMessage = {
+        text: 'User "' + loggedUser.name + '" disconnected',
+        type: 'logout'
+      };
+      socket.broadcast.emit('service-message', serviceMessage);
+      // Suppression de la liste des connectés
+      var userIndex = users.indexOf(loggedUser);
+      if (userIndex !== -1) {
+        users.splice(userIndex, 1);
+      }
+      // Emission d'un 'user-logout' contenant le user
+      io.emit('user-logout', loggedUser);
+    }
+  });
+
   socket.on('user-login', user => {
     // Sauvegarde de l'utilisateur et ajout à la liste des connectés
     loggedUser = user;
 
-    users.push(user)
-
     // Envoi et sauvegarde des messages de service
     var userServiceMessage = {
-      text: 'You logged in as "' + loggedUser.username + '"',
+      text: 'You logged in as "' + loggedUser.name + '"',
+      type: 'login'
+    };
+
+    var listUsers = ''
+    users.forEach((user) => {
+      listUsers.concat(', ', user.name)
+      console.log('yoooo', user.name)
+    })
+
+    console.log(listUsers)
+
+    var userServiceMessageMemo = {
+      text:  users,
       type: 'login'
     };
     var broadcastedServiceMessage = {
-      text: 'User "' + loggedUser.username + '" logged in',
+      text: 'User "' + loggedUser.name + '" logged in',
       type: 'login'
     };
+    socket.emit('service', userServiceMessageMemo);
+    users.push(user)
     socket.emit('service-message', userServiceMessage);
     socket.broadcast.emit('service-message', broadcastedServiceMessage);
     // Emission de 'user-login' et appel du callback
-    io.emit('user-login', loggedUser);
+    io.emit('user-login', loggedUser, users);
   });
 });
 

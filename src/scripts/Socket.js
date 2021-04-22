@@ -1,7 +1,6 @@
-import { io } from 'socket.io-client'
-
 export default class Socket {
-    constructor() {
+    constructor(socket) {
+        this.socket = socket
         this.initEls()
         this.bindMethods()
         this.initEvents()
@@ -17,7 +16,6 @@ export default class Socket {
             username: document.querySelector('.js-username'),
             home: document.querySelector('.js-home')
         };
-        this.socket = io()
         this.user = {
             name: ''
         }
@@ -25,55 +23,27 @@ export default class Socket {
 
     bindMethods() {
         this.createProfile = this.createProfile.bind(this)
-        this.sendMessage = this.sendMessage.bind(this)
-        this.createMessage = this.createMessage.bind(this)
-        this.addProfile = this.addProfile.bind(this)
     }
 
     initEvents() {
-        if(this.$els.loginButton) {
+        if (this.$els.loginButton) {
             this.$els.loginButton.addEventListener('click', this.createProfile);
-            this.$els.form.addEventListener('submit', this.sendMessage);
-            this.socket.on('user-login', this.addProfile);
-            this.socket.on('chat-message', this.createMessage);
         }
+
+        // this.socket.on('user-login', this.addProfile);
+        // this.socket.on('chat-message', this.createMessage);
     }
 
     createProfile() {
         if (this.$els.username.value) {
             this.user.name = this.$els.username.value
 
-            this.socket.emit('user-login', this.user)
-            window.location = './room.ejs'
+            setTimeout(() => this.socket.emit('user-login', this.user), 1000)
+
             // window.location = './room.ejs?id=' + this.user.name
-            this.$els.login.classList.add('login--disable')
-            this.$els.home.classList.remove('home--disable')
-            this.$els.input.focus()
-        }
-    }
-
-    addProfile(loggedUser) {
-        const item = document.createElement('li')
-        item.innerHTML = '<span>' + loggedUser.name + '</span> join the room !!!'
-        console.log(loggedUser)
-        document.querySelector('.js-list-users').appendChild(item)
-        window.scrollTo(0, document.body.scrollHeight)
-    }
-
-    sendMessage(e) {
-        e.preventDefault()
-        if (this.$els.input.value) {
-            this.socket.emit('chat-message', this.$els.input.value)
-            this.$els.input.value = ''
-        }
-    }
-
-    createMessage(msg, loggedUser) {
-        {
-            const item = document.createElement('li')
-            item.innerHTML = '<b>' + loggedUser.name + '</b> : ' + msg
-            this.$els.messages.appendChild(item)
-            window.scrollTo(0, document.body.scrollHeight)
+            // this.$els.login.classList.add('login--disable')
+            // this.$els.home.classList.remove('home--disable')
+            // this.$els.input.focus()
         }
     }
 }
