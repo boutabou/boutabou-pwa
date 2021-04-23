@@ -13,7 +13,7 @@ export default class Theme extends Block {
     }
 
     initEvents() {
-        this.socket.on('theme-choice', this.displayTheme)
+        this.socket.on('theme-selected', this.displayTheme)
     }
 
     displayTheme(message) {

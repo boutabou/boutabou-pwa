@@ -4,7 +4,6 @@ export default class ScanQrCode extends Block {
 
     vars() {
         this.qrCodeSuccessCallback = message => {
-            this.html5QrCode.stop()
             this.socket.emit('theme-choice', message)
         }
         this.config = { fps: 10, qrbox: 250 }

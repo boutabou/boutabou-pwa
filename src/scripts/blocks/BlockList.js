@@ -5,9 +5,9 @@ import Theme from './Theme'
 
 export default class BlockList {
     constructor(socket, swup) {
-        new ScanQrCode(document.querySelector('.js-scan'), socket, swup)
-        new Login(document.querySelector('.js-login'), socket, swup)
-        new Room(document.querySelector('.js-list-users'), socket, swup)
-        new Theme(document.querySelector('.js-theme'), socket, swup)
+        new ScanQrCode('.js-scan', socket, swup)
+        new Login('.js-login', socket, swup)
+        new Room('.js-list-users', socket, swup)
+        new Theme('.js-theme', socket, swup)
     }
 }

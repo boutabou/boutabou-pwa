@@ -21,6 +21,7 @@ const theme = [
     }
   ]
 
+let themeSelected = {}
 
 /*
 * Redirect to https
@@ -52,16 +53,9 @@ app.get('/views/pages/room.ejs', function(req, res) {
   res.render('pages/room');
 });
 
-app.get('/views/pages/theme.ejs', function(req, res, next) {
-  console.log(req.query)
-  console.log(req.xhr)
-  res.render('pages/theme', {
-    query : req.query,
-    theme
-  });
+app.get('/views/pages/theme.ejs', function(req, res) {
+  res.render('pages/theme');
 });
-
-
 
 app.all("*", function (req, resp, next) {
   if (req.params[0].substr(-5,5) === '.html') return
@@ -137,9 +131,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('theme-choice', message => {
+    themeSelected = theme[message]
+    socket.emit('direction',  '/views/pages/theme.ejs', theme[message])
     socket.broadcast.emit('direction',  '/views/pages/theme.ejs', theme[message])
-    // socket.broadcast.emit('theme-choice', theme[message])
-    // io.emit('theme-choice', theme[message])
+  })
+
+  socket.on('theme-load', message => {
+    socket.emit('theme-selected', themeSelected)
   })
 });
 
