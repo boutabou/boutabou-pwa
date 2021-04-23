@@ -6,20 +6,9 @@
 
 <body>
     <main id="swup" class="transition-fade">
-        <div class="scan" id="qr-reader" style="min-width: 100vw; min-height: 100vh; position: relative;"></div>
-
-        <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
-
-        <script>
-            const qrCodeSuccessCallback = message => { window.location = './theme.ejs?id=' + message }
-            const config = { fps: 10, qrbox: 250 };
-            const html5QrCode = new Html5Qrcode("qr-reader");
-
-            // back camera
-            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
-        </script>
+        <%- include('../components/scan'); %>
     </main>
 
-    <script src="../../public/main.js"></script>
+    <%- include('../partials/import-js'); %>
 </body>
 </html>

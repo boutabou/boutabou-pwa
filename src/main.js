@@ -1,14 +1,12 @@
-import Socket from './scripts/Socket'
-import PwaPopUp from './scripts/PwaPopUp'
+import PwaPopUp from './scripts/utils/PwaPopUp'
 import Swup from 'swup';
-import SocketReceive from './scripts/SocketReceive'
+import BlockList from './scripts/blocks/BlockList'
 import { io } from 'socket.io-client'
 
 class App {
     constructor () {
         this.socket = io()
         document.addEventListener('swup:contentReplaced', (event) => {
-            // do something when content is replaced
             this.init()
         });
         this.initApp()
@@ -17,22 +15,18 @@ class App {
 
     initApp () {
         new Swup()
-        new Socket(this.socket)
-        new SocketReceive(this.socket)
         new PwaPopUp()
-        console.log('from init app')
+        new BlockList(this.socket)
     }
 
     initServiceWorker () {
-
         if ("serviceWorker" in navigator && false) {
             navigator.serviceWorker.register("./serviceWorker.js")
         }
     }
 
     init() {
-        console.log('from init')
-        new Socket(this.socket)
+        new BlockList(this.socket)
     }
 }
 
