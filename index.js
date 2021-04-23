@@ -9,7 +9,6 @@ app.set("trust proxy", 1);
 
 const users = []
 
-
 const theme = [
     {
       "title" : "L'épilation",
@@ -71,7 +70,9 @@ io.on('connection', (socket) => {
   /**
    * Utilisateur connecté à la socket
    */
-  var loggedUser;
+  let loggedUser = {
+    name : ''
+  }
 
 
   socket.on('chat-message', msg => {
@@ -96,38 +97,39 @@ io.on('connection', (socket) => {
     }
   });
 
-  socket.on('user-login', user => {
-    // Sauvegarde de l'utilisateur et ajout à la liste des connectés
-    loggedUser = user;
+  socket.on('user-login', user => { loggedUser = user; })
+
+  socket.on('room-load', () => {
 
     // Envoi et sauvegarde des messages de service
-    var userServiceMessage = {
+    const userServiceMessage = {
       text: 'You logged in as "' + loggedUser.name + '"',
       type: 'login'
     };
 
-    var listUsers = ''
+    let listUsers = ''
     users.forEach((user) => {
-      listUsers.concat(', ', user.name)
-      console.log('yoooo', user.name)
+      if(user) {
+        listUsers.concat(', ', user.name)
+      }
     })
 
-    console.log(listUsers)
-
-    var userServiceMessageMemo = {
+    const userServiceMessageMemo = {
       text:  users,
       type: 'login'
     };
-    var broadcastedServiceMessage = {
+
+    const broadcastedServiceMessage = {
       text: 'User "' + loggedUser.name + '" logged in',
       type: 'login'
     };
+
     socket.emit('service', userServiceMessageMemo);
-    users.push(user)
+    users.push(loggedUser)
     socket.emit('service-message', userServiceMessage);
     socket.broadcast.emit('service-message', broadcastedServiceMessage);
     // Emission de 'user-login' et appel du callback
-    io.emit('user-login', loggedUser, users);
+    io.emit('user-login', loggedUser);
   });
 
   socket.on('theme-choice', message => {
@@ -136,7 +138,7 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('direction',  '/views/pages/theme.ejs', theme[message])
   })
 
-  socket.on('theme-load', message => {
+  socket.on('theme-load', () => {
     socket.emit('theme-selected', themeSelected)
   })
 });

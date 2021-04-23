@@ -22,8 +22,7 @@ export default class Login extends Block {
     createProfile() {
         if (this.$els.username.value) {
             this.user.name = this.$els.username.value
-
-            setTimeout(() => this.socket.emit('user-login', this.user), 1000)
+            this.socket.emit('user-login', this.user)
         }
     }
 
