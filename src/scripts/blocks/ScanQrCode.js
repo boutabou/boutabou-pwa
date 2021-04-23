@@ -1,18 +1,18 @@
 import Block from './Block'
 
 export default class ScanQrCode extends Block {
-    constructor(el) {
-        super(el)
-
-        if (el) {
-            this.startScan()
-        }
-    }
 
     vars() {
-        this.qrCodeSuccessCallback = message => { window.location = './theme.ejs?id=' + message }
+        this.qrCodeSuccessCallback = message => {
+            this.html5QrCode.stop()
+            this.socket.emit('theme-choice', message)
+        }
         this.config = { fps: 10, qrbox: 250 }
         this.html5QrCode = new Html5Qrcode("qr-reader")
+    }
+
+    initEvents() {
+        this.startScan()
     }
 
     startScan() {
@@ -20,6 +20,8 @@ export default class ScanQrCode extends Block {
     }
 
     destroy() {
-        this.html5QrCode.stop()
+        if(this.html5QrCode) {
+            this.html5QrCode.stop()
+        }
     }
 }

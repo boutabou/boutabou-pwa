@@ -5,15 +5,11 @@
 </head>
 
 <body>
-<main id="swup" class="transition-fade">
-    <div class="room js-room">
+    <main id="swup" class="transition-fade">
+        <%- include('../blocks/room'); %>
+        <%- include('../components/button-scan'); %>
+    </main>
 
-        <div class="js-list-users"></div>
-    </div>
-
-    <%- include('../components/button_scan'); %>
-</main>
-
-<%- include('../partials/import-js'); %>
+    <%- include('../partials/import-js'); %>
 </body>
 </html>

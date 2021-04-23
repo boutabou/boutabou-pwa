@@ -53,6 +53,8 @@ app.get('/views/pages/room.ejs', function(req, res) {
 });
 
 app.get('/views/pages/theme.ejs', function(req, res, next) {
+  console.log(req.query)
+  console.log(req.xhr)
   res.render('pages/theme', {
     query : req.query,
     theme
@@ -133,6 +135,12 @@ io.on('connection', (socket) => {
     // Emission de 'user-login' et appel du callback
     io.emit('user-login', loggedUser, users);
   });
+
+  socket.on('theme-choice', message => {
+    socket.broadcast.emit('direction',  '/views/pages/theme.ejs', theme[message])
+    // socket.broadcast.emit('theme-choice', theme[message])
+    // io.emit('theme-choice', theme[message])
+  })
 });
 
 http.listen(port, () => {

@@ -1,7 +1,8 @@
 export default class Block {
-    constructor(el, socket) {
+    constructor(el, socket, swup) {
         if(el) {
             this.socket = socket
+            this.swup = swup
 
             this.vars()
             this.bindMethods()
