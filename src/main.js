@@ -1,6 +1,6 @@
 import PwaPopUp from './scripts/utils/PwaPopUp'
-import Swup from 'swup';
-import BlockList from './scripts/blocks/BlockList'
+import Swup from 'swup'
+import BlockManager from './scripts/blocks/BlockManager'
 import Direction from './scripts/utils/Direction'
 
 class App {
@@ -25,12 +25,12 @@ class App {
     initApp () {
         this.swup = new Swup()
         new PwaPopUp()
-        this.blocks = new BlockList(this.socket, this.swup)
+        this.blocks = new BlockManager(this.socket, this.swup)
         this.direction = new Direction(this.socket, this.swup)
     }
 
     init() {
-        this.blocks = new BlockList(this.socket, this.swup)
+        this.blocks = new BlockManager(this.socket, this.swup)
     }
 
     initServiceWorker () {

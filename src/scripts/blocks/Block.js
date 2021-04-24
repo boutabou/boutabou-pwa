@@ -5,8 +5,6 @@ export default class Block {
             this.swup = swup
             this.el = el.replace('.js-', '')
 
-            console.log('you are on : ' + this.el)
-
             if(this.socket) {
                 this.socket.emit(this.el + '-load')
             } else if (this.el !== 'login') {

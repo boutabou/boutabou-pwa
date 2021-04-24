@@ -1,14 +1,14 @@
-const staticCacheName = "cache-v1";
-const assets = ["/", "/index.html"];
+const staticCacheName = "cache-v1"
+const assets = ["/", "/index.html"]
 
 // ajout des fichiers en cache
 self.addEventListener("install", (e) => {
     e.waitUntil(
         caches.open(staticCacheName).then((cache) => {
-            cache.addAll(assets);
+            cache.addAll(assets)
         })
-    );
-});
+    )
+})
 
 self.addEventListener("fetch", (event) => {
     if (event.request.url.indexOf('http') === 0) {
@@ -16,7 +16,7 @@ self.addEventListener("fetch", (event) => {
             caches.match(event.request).then(function (response) {
                 // Cache hit - return response
                 if (response) {
-                    return response;
+                    return response
                 }
 
                 // IMPORTANT: Cloner la requête.
@@ -26,22 +26,22 @@ self.addEventListener("fetch", (event) => {
 
                 return fetch(fetchRequest).then(function (response) {
                     if (!response || response.status !== 200 || response.type !== "basic") {
-                        return response;
+                        return response
                     }
 
                     // IMPORTANT: Même constat qu'au dessus, mais pour la mettre en cache
-                    var responseToCache = response.clone();
+                    var responseToCache = response.clone()
 
                     caches.open(staticCacheName).then(function (cache) {
-                        cache.put(event.request, responseToCache);
-                    });
+                        cache.put(event.request, responseToCache)
+                    })
 
-                    return response;
-                });
+                    return response
+                })
             })
-        );
+        )
     }
-});
+})
 
 // supprimer les caches
 self.addEventListener("activate", (e) => {
@@ -51,7 +51,7 @@ self.addEventListener("activate", (e) => {
                 keys
                     .filter((key) => key !== staticCacheName)
                     .map((key) => caches.delete(key))
-            );
-        })
-    );
-});
+            )
+        }
+    ))
+})

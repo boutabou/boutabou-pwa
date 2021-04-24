@@ -26,17 +26,17 @@ function initSocket(io) {
                 var serviceMessage = {
                     text: 'User "' + loggedUser.name + '" disconnected',
                     type: 'logout'
-                };
-                socket.broadcast.emit('service-message', serviceMessage);
+                }
+                socket.broadcast.emit('service-message', serviceMessage)
 
                 // Suppression de la liste des connectés
-                const userIndex = users.indexOf(loggedUser);
+                const userIndex = users.indexOf(loggedUser)
 
                 if (userIndex !== -1) {
-                    users.splice(userIndex, 1);
+                    users.splice(userIndex, 1)
                 }
                 // Emission d'un 'user-logout' contenant le user
-                io.emit('user-logout', loggedUser);
+                io.emit('user-logout', loggedUser)
             }
         });
 
