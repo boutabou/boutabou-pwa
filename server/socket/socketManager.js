@@ -1,5 +1,6 @@
 const { initTheme, getThemeSelected } = require('./theme')
 const { initRoom, getLoggedUser } = require('./room')
+const { initScan } = require('./scan')
 
 function initSocket(io) {
     io.on('connection', (socket) => {
@@ -22,7 +23,8 @@ function initSocket(io) {
         let themeSelected = {}
 
         socket.on('disconnect', () => {
-            if (loggedUser !== undefined || loggedUser.name === '') {
+            loggedUser = getLoggedUser()
+            if (loggedUser.name !== '') {
                 var serviceMessage = {
                     text: 'User "' + loggedUser.name + '" disconnected',
                     type: 'logout'
@@ -38,12 +40,13 @@ function initSocket(io) {
                 // Emission d'un 'user-logout' contenant le user
                 io.emit('user-logout', loggedUser)
             }
-        });
+        })
 
         initRoom(socket, io)
-
+        initScan(socket)
         initTheme(socket)
-    });
+
+    })
 }
 
 module.exports = {
