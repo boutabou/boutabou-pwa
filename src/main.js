@@ -2,16 +2,22 @@ import PwaPopUp from './scripts/utils/PwaPopUp'
 import Swup from 'swup';
 import BlockList from './scripts/blocks/BlockList'
 import Direction from './scripts/utils/Direction'
-import { io } from 'socket.io-client'
-import Login from "./scripts/blocks/Login";
 
 class App {
     constructor () {
-        // this.socket = io()
-        this.socket = {}
+        this.socket = null
         document.addEventListener('swup:contentReplaced', (event) => {
             this.init()
         })
+
+        document.addEventListener('swup:willReplaceContent', (event) => {
+            if(!this.socket) {
+                this.socket = this.blocks.getSocket()
+                this.direction.updateSocket(this.socket)
+                this.direction.init()
+            }
+        })
+
         this.initApp()
         this.initServiceWorker()
     }
@@ -19,16 +25,16 @@ class App {
     initApp () {
         this.swup = new Swup()
         new PwaPopUp()
-        new BlockList(this.socket, this.swup)
-        new Direction(this.socket, this.swup)
+        this.blocks = new BlockList(this.socket, this.swup)
+        this.direction = new Direction(this.socket, this.swup)
     }
 
     init() {
-        new BlockList(this.socket, this.swup)
+        this.blocks = new BlockList(this.socket, this.swup)
     }
 
     initServiceWorker () {
-        if ("serviceWorker" in navigator) {
+        if ("serviceWorker" in navigator && false) {
             navigator.serviceWorker.register("./serviceWorker.js")
         }
     }

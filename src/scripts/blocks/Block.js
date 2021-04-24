@@ -3,7 +3,20 @@ export default class Block {
         if(document.querySelector(el)) {
             this.socket = socket
             this.swup = swup
-            this.socket.emit(el.replace('.js-', '') + '-load')
+            this.el = el.replace('.js-', '')
+
+            console.log('you are on : ' + this.el)
+
+            if(this.socket) {
+                this.socket.emit(this.el + '-load')
+            } else if (this.el !== 'login') {
+                this.swup.loadPage({
+                    url: '/views/pages/login.ejs',
+                    method: 'GET'
+                })
+
+                return
+            }
 
             this.vars()
             this.bindMethods()

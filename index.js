@@ -134,8 +134,8 @@ io.on('connection', (socket) => {
 
   socket.on('theme-choice', message => {
     themeSelected = theme[message]
-    socket.emit('direction',  '/views/pages/theme.ejs', theme[message])
-    socket.broadcast.emit('direction',  '/views/pages/theme.ejs', theme[message])
+    socket.emit('direction',  '/views/pages/theme.ejs')
+    socket.broadcast.emit('direction',  '/views/pages/theme.ejs')
   })
 
   socket.on('theme-load', () => {

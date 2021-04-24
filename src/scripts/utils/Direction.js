@@ -12,14 +12,19 @@ export default class Direction {
     }
 
     init() {
-        this.socket.on('direction', this.direction)
+        if(this.socket) {
+            this.socket.on('direction', this.direction)
+        }
     }
 
-    direction(url, data) {
+    direction(url) {
         this.swup.loadPage({
             url: url,
-            method: 'GET',
-            data: data
+            method: 'GET'
         })
+    }
+
+    updateSocket(socket) {
+        this.socket = socket
     }
 }
