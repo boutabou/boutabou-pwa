@@ -79,7 +79,7 @@ io.on('connection', (socket) => {
     io.emit('chat-message', msg, loggedUser);
   });
 
-  socket.on('disconnect', function () {
+  socket.on('disconnect', () => {
     if (loggedUser !== undefined) {
       // Broadcast d'un 'service-message'
       var serviceMessage = {

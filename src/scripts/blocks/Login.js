@@ -1,4 +1,5 @@
 import Block from './Block'
+import { io } from 'socket.io-client'
 
 export default class Login extends Block {
     initEls() {
@@ -21,9 +22,14 @@ export default class Login extends Block {
 
     createProfile() {
         if (this.$els.username.value) {
+            this.socketNew = io()
             this.user.name = this.$els.username.value
-            this.socket.emit('user-login', this.user)
+            this.socketNew.emit('user-login', this.user)
         }
+    }
+
+    getSocket() {
+        return this.socketNew
     }
 
     destroy() {

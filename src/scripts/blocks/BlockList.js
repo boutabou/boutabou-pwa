@@ -9,5 +9,13 @@ export default class BlockList {
         new Login('.js-login', socket, swup)
         new Room('.js-room', socket, swup)
         new Theme('.js-theme', socket, swup)
+
+        document.addEventListener('swup:willReplaceContent', (event) => {
+            console.log(socket)
+            if(socket === {}) {
+                socket = login.getSocket()
+                console.log(socket)
+            }
+        })
     }
 }

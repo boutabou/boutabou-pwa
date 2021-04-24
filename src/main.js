@@ -3,10 +3,12 @@ import Swup from 'swup';
 import BlockList from './scripts/blocks/BlockList'
 import Direction from './scripts/utils/Direction'
 import { io } from 'socket.io-client'
+import Login from "./scripts/blocks/Login";
 
 class App {
     constructor () {
-        this.socket = io()
+        // this.socket = io()
+        this.socket = {}
         document.addEventListener('swup:contentReplaced', (event) => {
             this.init()
         })
