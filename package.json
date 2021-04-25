@@ -1,7 +1,7 @@
 {
-  "name": "socket-chat-example",
+  "name": "boutabou",
   "version": "0.0.1",
-  "description": "my first socket.io app",
+  "description": "Boutabou is a PWA made to play with friends",
   "dependencies": {
     "-": "0.0.1",
     "concurrently": "^6.0.0",
