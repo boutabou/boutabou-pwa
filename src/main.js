@@ -34,7 +34,7 @@ class App {
     }
 
     initServiceWorker () {
-        if ("serviceWorker" in navigator && false) {
+        if ("serviceWorker" in navigator) {
             navigator.serviceWorker.register("./serviceWorker.js")
         }
     }
