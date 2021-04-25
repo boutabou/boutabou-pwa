@@ -9,25 +9,26 @@ export default class Room extends Block {
 
     bindMethods() {
         this.displayRoom = this.displayRoom.bind(this)
-        this.displayRoomBis = this.displayRoomBis.bind(this)
     }
 
     initEvents() {
-        this.socket.on('service-message', this.displayRoom)
-        this.socket.on('service', this.displayRoomBis)
+        this.socket.on('display-users', this.displayRoom) 
     }
 
-    displayRoom(message) {
-        const item = document.createElement('li')
-        item.innerHTML = message.text
-        this.$els.listUser.appendChild(item)
-    }
+    displayRoom(users) {
 
-    displayRoomBis(users) {
-        users.text.forEach((user) => {
-            const item = document.createElement('li')
-            item.innerHTML = user.name + ' is already logged in'
-            this.$els.listUser.appendChild(item)
+        users.forEach(user => {
+            const userCell = document.createElement('div')
+            const userName = document.createElement('p')
+            const avatar = document.createElement('img')
+
+            userCell.classList.add("user-"+ user.id)  
+            userName.innerHTML = user.name
+            avatar.src = user.avatar
+    
+            this.$els.listUser.appendChild(userCell)
+            userCell.appendChild(userName)
+            userCell.appendChild(avatar)
         })
     }
 }

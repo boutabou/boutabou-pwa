@@ -1,0 +1,27 @@
+[
+    {
+      "src" : "../../assets/images/avatars/avatar-0.png",
+      "taken" : false
+    },
+    {
+        "src" : "../../assets/images/avatars/avatar-1.png",
+        "taken" : false
+    },
+    {
+        "src" : "../../assets/images/avatars/avatar-2.png",
+        "taken" : false
+    },
+    {
+        "src" : "../../assets/images/avatars/avatar-3.png",
+        "taken" : false
+    },
+    {
+        "src" : "../../assets/images/avatars/avatar-4.png",
+        "taken" : false
+    },
+    {
+        "src" : "../../assets/images/avatars/avatar-5.png",
+        "taken" : false
+    }
+  ]
+  
