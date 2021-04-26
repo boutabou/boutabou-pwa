@@ -14,7 +14,7 @@ export default class Room extends Block {
 
     initEvents() {
         this.socket.on('display-users', this.displayRoom)
-        this.socket.on('user-disconnection', this.deleteUser) 
+        this.socket.on('user-disconnection', this.deleteUser)
     }
 
     displayRoom(users) {
@@ -24,17 +24,17 @@ export default class Room extends Block {
             const userName = document.createElement('p')
             const avatar = document.createElement('img')
 
-            userCell.setAttribute("id", "user-"+ user.id)  
+            userCell.setAttribute("id", "user-"+ user.id)
             userName.innerHTML = user.name
             avatar.src = user.avatar
-    
+
             this.$els.listUser.appendChild(userCell)
             userCell.appendChild(userName)
             userCell.appendChild(avatar)
         })
     }
 
-    deleteUser(datas){ 
+    deleteUser(datas){
         const userCell = document.getElementById("user-"+ datas.id)
         userCell.parentNode.removeChild(userCell);
     }

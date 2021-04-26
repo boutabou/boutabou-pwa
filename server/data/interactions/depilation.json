@@ -1,0 +1,43 @@
+{
+  "bool" : [
+    {
+      "title" : "Chewbacca"
+    },
+    {
+      "title" : "Mode poilu"
+    },
+    {
+      "title" : "Monosourcil"
+    }
+  ],
+  "simple-list" : [
+    {
+      "title" : "Poils",
+      "param" : "Assumer"
+    }
+  ],
+  "complex-list" : [
+    {
+      "title" : "Maillot",
+      "param" : ["Touffu", "Déboiser", "Demi-poillu"]
+    }
+  ],
+  "simple-cursor" : [
+    {
+      "title" : "Température de la cir",
+      "step" : [0, 10, 20]
+    }
+  ],
+  "complex-cursor" : [
+    {
+      "title" : "Température de la cir",
+      "step" : [0, 10, 20, 30]
+    }
+  ],
+  "rotate" : [
+    {
+      "title" : "Température de la cir",
+      "step" : [0, 10, 20, 30, 40]
+    }
+  ]
+}

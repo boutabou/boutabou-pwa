@@ -1,7 +1,8 @@
 [
   {
     "title" : "L'épilation",
-    "img" : "../../assets/images/themes/epilation.jpg"
+    "img" : "../../assets/images/themes/epilation.jpg",
+    "pathInteractions" : "data/interactions/depilation.json"
   },
   {
     "title" : "Les régles",

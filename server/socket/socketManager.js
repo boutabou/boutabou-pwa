@@ -1,41 +1,62 @@
-const { initTheme, getThemeSelected } = require('./theme')
-const { initRoom, getLoggedUser, updateRoom } = require('./room')
+const { initTheme, themeLoad } = require('./theme')
+const { initRoom, updateRoom, roomLoad } = require('./room')
 const { initScan } = require('./scan')
+const { dashboardLoad, initDashboard } = require('./dashboard')
 
 function initSocket(io) {
+
+    /**
+     * Les utilisateurs connecté à la room
+     */
+    let users = []
+
+    /**
+     * Le théme séléctionné
+     */
+    let currentTheme = {}
+
     io.on('connection', (socket) => {
-
-
-        /**
-         * Les utilisateurs connecté à la room
-         */
-         let users = []
 
         /**
          * Utilisateur connecté à la socket
          */
-
-         let loggedUser
-
-        /* TO DO : Trouver une solution plus propre pour que la fonction s'execute avant la suite : promesse.. */ 
-        setTimeout(() => {
-            loggedUser = getLoggedUser() 
-        }, 100);
-
-
-        /**
-         * Le théme séléctionné
-         */
-        let themeSelected = {}
+         let loggedUser = {}
 
         socket.on('disconnect', () => {
-            updateRoom(socket, io)            
+
+            users.forEach(user => {
+                if(user.id == loggedUser.id){
+                    users.pop(user)
+                }
+            })
+
+            updateRoom(socket, loggedUser)
         })
 
-        initRoom(socket, io)
         initScan(socket)
-        initTheme(socket)
+        themeLoad(socket)
 
+        async function userCreated() {
+            loggedUser = await initRoom(socket)
+            roomLoad(socket, users, loggedUser)
+            users.push(loggedUser)
+        }
+
+        userCreated()
+
+        async function themeOnChoice() {
+            currentTheme = await initTheme(socket)
+
+            users = initDashboard(users, currentTheme)
+
+            setTimeout(() => { io.emit('direction',  '/views/pages/game.ejs') }, 1000)
+        }
+
+        socket.on('dashboard-load', () => {
+            dashboardLoad(socket, loggedUser)
+        })
+
+        themeOnChoice()
     })
 }
 
