@@ -1,3 +1,5 @@
+const avatars = require('../data/avatars.json')
+
 let loggedUser = {
     name : '',
 }
@@ -6,19 +8,18 @@ let users = []
 
 let currentUserId = 0
 
-const avatars = require('../data/avatars.json')
 
 
-function initRoom(socket, io) {
+function initRoom(socket, io) { 
     socket.on('user-login', name => { 
         const user = {}
 
         user.name    = name
         user.id      = currentUserId
         user.avatar  = avatars[Math.floor((Math.random() * avatars.length))].src
+        loggedUser   = user
 
         users.push(user)
-        loggedUser = user
         currentUserId ++ 
     })
 
@@ -30,11 +31,28 @@ function initRoom(socket, io) {
     });
 }
 
+function updateRoom(socket, io){
+
+    users.forEach(item => {
+        if(item.id == loggedUser.id){
+            users.pop(item) 
+        } 
+    })
+
+    socket.broadcast.emit('user-disconnection', loggedUser)  
+}
+
 function getLoggedUser() {
     return loggedUser
 }
 
+function getUsers(){
+    return users
+}
+
 module.exports = {
     initRoom,
-    getLoggedUser
+    getLoggedUser,
+    getUsers,
+    updateRoom
 }
