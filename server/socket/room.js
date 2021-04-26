@@ -33,9 +33,9 @@ function initRoom(socket, io) {
 
 function updateRoom(socket, io){
 
-    users.forEach(item => {
-        if(item.id == loggedUser.id){
-            users.pop(item) 
+    users.forEach(user => {
+        if(user.id == loggedUser.id){
+            users.pop(user) 
         } 
     })
 
@@ -46,13 +46,8 @@ function getLoggedUser() {
     return loggedUser
 }
 
-function getUsers(){
-    return users
-}
-
 module.exports = {
     initRoom,
     getLoggedUser,
-    getUsers,
     updateRoom
 }

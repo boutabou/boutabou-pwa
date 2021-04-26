@@ -1,5 +1,5 @@
 const { initTheme, getThemeSelected } = require('./theme')
-const { initRoom, getLoggedUser, getUsers, updateRoom } = require('./room')
+const { initRoom, getLoggedUser, updateRoom } = require('./room')
 const { initScan } = require('./scan')
 
 function initSocket(io) {
