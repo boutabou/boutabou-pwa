@@ -5,4 +5,56 @@
   gap: 0px 0px;
   width: 300px;
   height: 300px;
+
+  .container-cursor {
+    outline: 1px solid gray;
+    height: 80%;
+    width: 100%;
+    margin: auto;
+    position: relative;
+
+    .progress-bar {
+      width: 3px;
+      margin: auto;
+      height: 100%;
+      background-color: aqua;
+    }
+
+    .box {
+      height: 30px;
+      width: 30px;    
+      position: absolute;
+      background: rgb(255, 5, 5);
+      border-radius: 50px;
+      left: -15px;
+      z-index: 1;
+      left: 0;
+      font-size: bold; 
+      right: 0;
+      margin: auto;
+    }
+
+    .steps {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        div{
+          height: calc( 100% / 3);
+          width: 44%;
+          color: black;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 16px;
+        }
+
+        
+    }
+  }
 }
+
+
+
+
