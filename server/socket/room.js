@@ -1,18 +1,15 @@
-const avatars = require('../data/avatars.json')
-
-let currentUserId = 0
+let avatars = []
 
 function initRoom(socket) {
     const promise  = new Promise((resolve, reject) => {
         socket.on('user-login', name => {
+
             const user = {}
 
             user.name    = name
-            user.id      = currentUserId
-            user.avatar  = avatars[Math.floor((Math.random() * avatars.length))].src
-
-            currentUserId ++
-
+            user.id      = socket.id
+            user.avatar  = feedAvatars()
+            
             if (user) {
                 resolve(user)
             } else {
@@ -22,6 +19,20 @@ function initRoom(socket) {
     })
 
     return promise
+}
+
+function feedAvatars(){
+
+    if(avatars.length == 0){
+        delete require.cache[require.resolve('../data/avatars.json')];
+        avatars = require('../data/avatars.json')
+    }
+
+    const avatarUserKey = Math.floor((Math.random() * avatars.length)) 
+    const userAvatar    = avatars[avatarUserKey].src
+    avatars.splice(avatarUserKey, 1)
+
+    return userAvatar
 }
 
 function roomLoad(socket, users, loggedUser) {
