@@ -23,13 +23,7 @@ function initSocket(io) {
          let loggedUser = {}
 
         socket.on('disconnect', () => {
-
-            users.forEach(user => {
-                if(user.id == loggedUser.id){
-                    users.pop(user)
-                }
-            })
-
+            users = users.filter((user) => { return user !== loggedUser})
             updateRoom(socket, loggedUser)
         })
 

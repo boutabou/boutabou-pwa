@@ -13,12 +13,13 @@ export default class Dashboard extends Block {
     }
 
     initEvents() {
-        // this.socket.on('dashboard-info', this.displayDashboard)
-        this.displayBool()
+        this.socket.on('dashboard-info', this.displayDashboard)
     }
 
     displayDashboard(currentUser) {
         currentUser.dashboard.forEach((interaction) => {
+            console.log(interaction)
+
             const divInteraction = document.createElement('div')
             divInteraction.classList.add(interaction.type)
             divInteraction.style.gridArea = interaction.position
@@ -29,21 +30,27 @@ export default class Dashboard extends Block {
 
             this.$els.grid.appendChild(divInteraction)
             divInteraction.appendChild(titleInteraction)
+
+            switch (interaction.type) {
+                case 'bool':
+                    this.displayBool(divInteraction)
+                    break
+                case 'simple-list':
+                case 'complex-list':
+                    this.displayList(divInteraction, interaction.data.param)
+                    break
+            }
         })
     }
 
-    displayBool() {
-        const bools = this.$els.grid.querySelectorAll('.bool')
+    displayBool(bool) {
+        const btn = document.createElement('span')
+        btn.classList.add('grid-container__btn')
+        btn.innerHTML = "ON"
 
-        bools.forEach((bool) => {
-            const btn = document.createElement('span')
-            btn.classList.add('bool__btn')
-            btn.innerHTML = "ON"
+        bool.appendChild(btn)
 
-            bool.appendChild(btn)
-
-            btn.addEventListener('click', this.toogleBool)
-        })
+        btn.addEventListener('click', this.toogleBool)
     }
 
     toogleBool(e) {
@@ -52,5 +59,18 @@ export default class Dashboard extends Block {
         } else {
             e.currentTarget.innerHTML = "ON"
         }
+    }
+
+    displayList(list, parameters) {
+        if(typeof parameters === 'string') {
+            parameters = [parameters]
+        }
+
+        parameters.forEach((parameter) => {
+            const param = document.createElement('span')
+            param.classList.add('grid-container__btn')
+            param.innerHTML = parameter
+            list.appendChild(param)
+        })
     }
 }

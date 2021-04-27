@@ -9,7 +9,7 @@ function initRoom(socket) {
             user.name    = name
             user.id      = socket.id
             user.avatar  = feedAvatars()
-            
+
             if (user) {
                 resolve(user)
             } else {
@@ -28,7 +28,7 @@ function feedAvatars(){
         avatars = require('../data/avatars.json')
     }
 
-    const avatarUserKey = Math.floor((Math.random() * avatars.length)) 
+    const avatarUserKey = Math.floor((Math.random() * avatars.length))
     const userAvatar    = avatars[avatarUserKey].src
     avatars.splice(avatarUserKey, 1)
 
@@ -46,13 +46,8 @@ function updateRoom(socket, loggedUser){
     socket.broadcast.emit('user-disconnection', loggedUser)
 }
 
-function getLoggedUser() {
-    return loggedUser
-}
-
 module.exports = {
     initRoom,
-    getLoggedUser,
     updateRoom,
     roomLoad
 }
