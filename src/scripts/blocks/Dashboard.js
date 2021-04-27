@@ -9,10 +9,12 @@ export default class Dashboard extends Block {
 
     bindMethods() {
         this.displayDashboard = this.displayDashboard.bind(this)
+        this.toogleBool = this.toogleBool.bind(this)
     }
 
     initEvents() {
-        this.socket.on('dashboard-info', this.displayDashboard)
+        // this.socket.on('dashboard-info', this.displayDashboard)
+        this.displayBool()
     }
 
     displayDashboard(currentUser) {
@@ -28,5 +30,27 @@ export default class Dashboard extends Block {
             this.$els.grid.appendChild(divInteraction)
             divInteraction.appendChild(titleInteraction)
         })
+    }
+
+    displayBool() {
+        const bools = this.$els.grid.querySelectorAll('.bool')
+
+        bools.forEach((bool) => {
+            const btn = document.createElement('span')
+            btn.classList.add('bool__btn')
+            btn.innerHTML = "ON"
+
+            bool.appendChild(btn)
+
+            btn.addEventListener('click', this.toogleBool)
+        })
+    }
+
+    toogleBool(e) {
+        if(e.currentTarget.innerHTML === "ON") {
+            e.currentTarget.innerHTML = "OFF"
+        } else {
+            e.currentTarget.innerHTML = "ON"
+        }
     }
 }
