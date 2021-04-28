@@ -1,6 +1,6 @@
 import Block from './Block'
 import { gsap } from "gsap";
-import { Draggable} from "gsap/Draggable";
+import { Draggable} from "gsap/Draggable"; 
 
 
 export default class Dashboard extends Block {
@@ -9,18 +9,16 @@ export default class Dashboard extends Block {
             grid: document.querySelector('.js-grid-container'),
             cursor: document.querySelector('.js-simple-cursor'),
             cptCursors: 0
-        }
+        } 
     }
 
     bindMethods() {
         this.displayDashboard = this.displayDashboard.bind(this)
         this.createCursorStructure = this.createCursorStructure.bind(this)
-
     }
 
     initEvents() {
         this.socket.on('dashboard-info', this.displayDashboard)
-        //this.createCursorStructure() 
     }
 
     displayDashboard(currentUser) {
@@ -47,7 +45,6 @@ export default class Dashboard extends Block {
                     break
             }
 
-            console.log(this.$els.cptCursors)
         })
     }
 
@@ -55,14 +52,13 @@ export default class Dashboard extends Block {
 
         gsap.registerPlugin(Draggable);
         let cursorType = ""
-        //let currentCursor = document.getElementsByClassName("cursor");
         const cursorContainer = document.createElement('div')
         const handleEl = document.createElement("div")
         const progressBar = document.createElement("div")
         const stepsContainer = document.createElement("div")
-        let stepsEl = []
-        
-
+        let stepsEl = []   
+          
+ 
         steps.forEach((step, index) => {
             const step_index = document.createElement("div")
             step_index.classList.add("step-"+index)
@@ -71,14 +67,18 @@ export default class Dashboard extends Block {
             stepsContainer.appendChild(step_index)
         })
 
-        stepsEl.forEach((step, index) => {
-            step.style.height = "calc( 100% /" + stepsEl.length + ")";
-        })
+        
 
         if(orientation == "vertical"){
             cursorType = "y"
+            stepsEl.forEach((step, index) => {
+                step.style.height = "calc( 100% /" + stepsEl.length + ")";
+            })
         } else if (orientation == "horizontal") {
             cursorType = "x"
+            stepsEl.forEach((step, index) => {
+                step.style.width = "calc( 100% /" + stepsEl.length + ")";
+            })
         }
 
         cursorContainer.classList.add("container-cursor-"+index)
@@ -111,7 +111,7 @@ export default class Dashboard extends Block {
 
                     gsap.set(currentCursor, { 
                         x: this.x
-                    })
+                    }) 
                 }
             },
             onThrowUpdate() {

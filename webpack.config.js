@@ -3,8 +3,9 @@ const MinifyPlugin = require('babel-minify-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
-    mode: 'development',
-    devtool: 'source-map',
+    "mode": process.env.NODE_ENV === "production" ? "production" : "development",
+
+    devtool: false,
     context: path.resolve(__dirname, 'src'),
     entry: ['./main.js', './main.scss'],
     output: {
@@ -19,7 +20,7 @@ module.exports = {
         {
             test: /\.(scss|css)$/,
             exclude: /node_modules/,
-            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+            use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
         }
     ]
     },
