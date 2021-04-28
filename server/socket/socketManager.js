@@ -1,7 +1,7 @@
 const { initTheme, themeLoad } = require('./theme')
 const { initRoom, updateRoom, roomLoad } = require('./room')
 const { initScan } = require('./scan')
-const { dashboardLoad, initDashboard } = require('./dashboard')
+const { gameInit, gameTaskInit } = require('./game/gameManager')
 
 function initSocket(io) {
 
@@ -40,17 +40,29 @@ function initSocket(io) {
 
         async function themeOnChoice() {
             currentTheme = await initTheme(socket)
-
-            users = initDashboard(users, currentTheme)
-
-            setTimeout(() => { io.emit('direction',  '/views/pages/game.ejs') }, 1000)
+            gameInit(io, users, currentTheme)
         }
 
-        socket.on('dashboard-load', () => {
-            dashboardLoad(socket, loggedUser)
+        // themeOnChoice()
+
+        // redirect automatic on epilation theme
+        socket.on('scan-load', () => {
+            goToTheme()
         })
 
-        themeOnChoice()
+        socket.on('dashboard-load', () => {
+            gameTaskInit(socket, loggedUser)
+        })
+
+        function goToTheme() {
+            currentTheme = {
+                "title" : "L'épilation",
+                "img" : "../../assets/images/themes/epilation.jpg",
+                "pathInteractions" : "data/interactions/depilation.json"
+            }
+
+            gameInit(io, users, currentTheme)
+        }
     })
 }
 

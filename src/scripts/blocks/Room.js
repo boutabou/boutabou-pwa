@@ -38,4 +38,9 @@ export default class Room extends Block {
         const userCell = document.getElementById("user-"+ datas.id)
         userCell.parentNode.removeChild(userCell);
     }
+
+    destroy() {
+        this.socket.removeListener('display-users')
+        this.socket.removeListener('user-disconnection')
+    }
 }

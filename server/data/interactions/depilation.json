@@ -8,11 +8,27 @@
     },
     {
       "title" : "Monosourcil"
+    },
+    {
+      "title" : "Pedi poils"
+    },
+    {
+      "title" : "tresse"
+    },
+    {
+      "title" : "jambe poilu"
+    },
+    {
+      "title" : "hibernation"
     }
   ],
   "simple-list" : [
     {
       "title" : "Poils",
+      "param" : "Assumer"
+    },
+    {
+      "title" : "Hyper pilosité",
       "param" : "Assumer"
     }
   ],
@@ -20,6 +36,18 @@
     {
       "title" : "Maillot",
       "param" : ["Touffu", "Déboiser", "Demi-poillu"]
+    },
+    {
+      "title" : "Jambe",
+      "param" : ["Touffu", "Déboiser", "Demi-poillu"]
+    },
+    {
+      "title" : "aisselles",
+      "param" : ["Touffues", "Déboisée", "Demi-poillu"]
+    },
+    {
+      "title" : "rasoir",
+      "param" : ["à l'attaque", "au repos", "en vacance"]
     }
   ],
   "simple-cursor" : [
@@ -30,7 +58,7 @@
   ],
   "complex-cursor" : [
     {
-      "title" : "Température de la cir",
+      "title" : "Eguisation des lames",
       "step" : [0, 10, 20, 30]
     }
   ],

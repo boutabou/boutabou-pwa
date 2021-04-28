@@ -21,7 +21,7 @@ export default class Block {
             this.initEls()
             this.initEvents()
 
-            document.addEventListener('swup:contentReplaced', () => {
+            document.addEventListener('swup:willReplaceContent', () => {
                 this.destroy()
                 // this.socket.removeAllListeners()
             })
