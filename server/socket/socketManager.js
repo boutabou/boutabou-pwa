@@ -10,12 +10,21 @@ function initSocket(io) {
      */
     let users = []
 
+    /*
+     * Les tâches
+     */
+
+    let tasks = []
+
+
     /**
      * Le théme séléctionné
      */
     let currentTheme = {}
 
     io.on('connection', (socket) => {
+
+        
 
         /**
          * Utilisateur connecté à la socket
@@ -56,7 +65,29 @@ function initSocket(io) {
             dashboardLoad(socket, loggedUser)
         })
 
-        themeOnChoice()
+        //themeOnChoice()
+
+        function goToTheme() {
+            currentTheme = {
+                "title" : "L'épilation",
+                "img" : "../../assets/images/themes/epilation.jpg",
+                "pathInteractions" : "data/interactions/depilation.json"
+            }
+            users = initDashboard(users, currentTheme)
+
+            setTimeout(() => { io.emit('direction',  '/views/pages/game.ejs') }, 1000)
+
+            users.forEach((user) => {
+                user.dashboard.forEach((interaction) => {
+                    tasks.push(interaction)
+                })
+            })
+        }
+
+        socket.on('scan-load', () => {
+            goToTheme()
+        })
+
     })
 }
 

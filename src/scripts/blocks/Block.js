@@ -8,12 +8,12 @@ export default class Block {
             if(this.socket) {
                 this.socket.emit(this.el + '-load')
             } else if (this.el !== 'login') {
-                /*this.swup.loadPage({
+                this.swup.loadPage({
                     url: '/views/pages/login.ejs',
                     method: 'GET'
                 })
 
-                return*/
+                return
             }
 
             this.vars()
@@ -21,10 +21,10 @@ export default class Block {
             this.initEls()
             this.initEvents()
 
-            document.addEventListener('swup:contentReplaced', () => {
+            document.addEventListener('swup:willReplaceContent', () => {
                 this.destroy()
                 // this.socket.removeAllListeners()
-            })
+            }) 
         }
     }
 
