@@ -17,8 +17,8 @@
     "swup": "^2.0.14"
   },
   "scripts": {
-    "start": "node index.js",
-    "build": "webpack --watch --mode=development",
+    "start": "nodemon index.js",
+    "build": "webpack -w --mode=development",
     "dev": "concurrently 'npm:build' 'npm:start'"
   },
   "devDependencies": {
