@@ -2,6 +2,7 @@ import Login from './Login'
 import ScanQrCode from './ScanQrCode'
 import Room from './Room'
 import Theme from './Theme'
+import Dashboard from './Dashboard'
 
 export default class BlockManager {
     constructor(socket, swup) {
@@ -10,6 +11,7 @@ export default class BlockManager {
         new ScanQrCode('.js-scan', socket, swup)
         new Room('.js-room', socket, swup)
         new Theme('.js-theme', socket, swup)
+        new Dashboard('.js-dashboard', socket, swup)
 
         this.socket = socket
 

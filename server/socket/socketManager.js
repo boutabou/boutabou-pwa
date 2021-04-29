@@ -1,51 +1,64 @@
-const { initTheme, getThemeSelected } = require('./theme')
-const { initRoom, getLoggedUser } = require('./room')
-const { initScan } = require('./scan')
+const { createOwnRoom, updateRoomsOnCreateUser, updateRoomsOnDeleteUser } = require('./room')
+const { createUser } = require('./userCreator')
+const { getThemeSelected } = require('./theme')
+const { initGameVars, initGame } = require('./game/gameManager')
 
 function initSocket(io) {
+
+    /**
+     * Les utilisateurs connecté à la room
+     */
+    let users = []
+
+    /**
+     * Les utilisateurs connecté à la room
+     */
+    let currentTheme = {}
+
     io.on('connection', (socket) => {
 
         /**
          * Utilisateur connecté à la socket
          */
-        let loggedUser = {
-            name : ''
+         let loggedUser = {}
+
+        socket.on('disconnect', disconnection)
+        socket.on('scan-load', () => { socket.broadcast.emit('direction',  '/views/pages/wait-scan.ejs') })
+        socket.on('theme-load', () => { socket.emit('theme-selected', currentTheme) })
+        socket.on('dashboard-load', () => { initGame(io, socket, loggedUser) })
+
+        /**
+         * Déconnecte loggedUser et l'enlever de la liste des utilisateurs
+         */
+        function disconnection() {
+            users = users.filter((user) => { return user !== loggedUser})
+            updateRoomsOnDeleteUser(socket, loggedUser)
         }
 
         /**
-         * Les utilisateurs connecté à la room
+         * Création d'un utilisateur et ajout à la liste des utilisateurs
          */
-        let users = []
+        async function userCreated() {
+            loggedUser = await createUser(socket)
+
+            socket.on('room-load', () => { createOwnRoom(socket, users) })
+
+            updateRoomsOnCreateUser(socket, loggedUser)
+            users.push(loggedUser)
+        }
+
+        userCreated()
 
         /**
-         * Le théme séléctionné
+         * Récupère le théme un fois scanné
          */
-        let themeSelected = {}
+        async function themeOnChoice() {
+            currentTheme = await getThemeSelected(socket)
+            io.emit('direction',  '/views/pages/theme.ejs')
+            initGameVars(io, socket, currentTheme, users)
+        }
 
-        socket.on('disconnect', () => {
-            loggedUser = getLoggedUser()
-            if (loggedUser.name !== '') {
-                var serviceMessage = {
-                    text: 'User "' + loggedUser.name + '" disconnected',
-                    type: 'logout'
-                }
-                socket.broadcast.emit('service-message', serviceMessage)
-
-                // Suppression de la liste des connectés
-                const userIndex = users.indexOf(loggedUser)
-
-                if (userIndex !== -1) {
-                    users.splice(userIndex, 1)
-                }
-                // Emission d'un 'user-logout' contenant le user
-                io.emit('user-logout', loggedUser)
-            }
-        })
-
-        initRoom(socket, io)
-        initScan(socket)
-        initTheme(socket)
-
+        themeOnChoice()
     })
 }
 

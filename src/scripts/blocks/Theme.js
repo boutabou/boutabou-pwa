@@ -20,4 +20,8 @@ export default class Theme extends Block {
         this.$els.title.innerHTML = 'Vous avez choisi le theme de ' + message.title
         this.$els.img.src = message.img
     }
+
+    destroy() {
+        this.socket.removeListener('theme-selected')
+    }
 }

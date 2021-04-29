@@ -7,9 +7,7 @@ export default class Login extends Block {
             loginButton: document.querySelector('.js-login-button'),
             username: document.querySelector('.js-username'),
         }
-        this.user = {
-            name: ''
-        }
+        this.currentName = ''
     }
 
     bindMethods() {
@@ -23,8 +21,8 @@ export default class Login extends Block {
     createProfile() {
         if (this.$els.username.value) {
             this.socketNew = io()
-            this.user.name = this.$els.username.value
-            this.socketNew.emit('user-login', this.user)
+            this.currentName = this.$els.username.value
+            this.socketNew.emit('user-login', this.currentName)
         }
     }
 
