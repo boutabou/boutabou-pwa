@@ -7,6 +7,15 @@
       "title" : "Mode poilu"
     },
     {
+      "title" : "Turbo épilateur"
+    },
+    {
+      "title" : "pousse des poils"
+    },
+    {
+      "title" : "mousse à raser"
+    },
+    {
       "title" : "Monosourcil"
     },
     {
@@ -28,6 +37,14 @@
       "param" : "Assumer"
     },
     {
+      "title" : "Poils",
+      "param" : "Coiffer"
+    },
+    {
+      "title" : "Poils",
+      "param" : "teinté"
+    },
+    {
       "title" : "Hyper pilosité",
       "param" : "Assumer"
     }
@@ -36,6 +53,10 @@
     {
       "title" : "Maillot",
       "param" : ["Touffu", "Déboiser", "Demi-poillu"]
+    },
+    {
+      "title" : "Poils",
+      "param" : ["Blond", "Roux", "Brun"]
     },
     {
       "title" : "Jambe",

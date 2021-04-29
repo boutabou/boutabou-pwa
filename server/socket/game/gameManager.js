@@ -1,5 +1,5 @@
-const { dashboardLoad, initDashboard } = require('./dashboard')
-const { initTask } = require('./tasks')
+const { getUsersWithDashboard } = require('./dashboard')
+const { initTask, resetTask } = require('./tasks')
 
 /**
  * La liste de toutes les tâches de tous les tableaux de bord
@@ -7,31 +7,46 @@ const { initTask } = require('./tasks')
 let tasks = []
 
 /**
- * Les utilisateurs connectés à la room
+ * Les utilisateurs connectés à la room avec son dashboard
  */
 let users = []
 
-function gameInit(io, users, currentTheme) {
 
+/**
+ * Lancé une fois par game
+ */
+function initGameVars(io, socket, currentTheme, allUsers) {
     tasks = []
 
-    users = initDashboard(users, currentTheme) // return object users with dashboard with datas
+    users = getUsersWithDashboard(allUsers, currentTheme) // return object users with dashboard with datas
+
+    tasks = getTasks()
+    resetTask(tasks)
+
     setTimeout(() => { io.emit('direction',  '/views/pages/game.ejs') }, 1000)
+}
+
+/**
+ * Lancé une fois par joeur
+ */
+function initGame(io, socket, loggedUser) {
+    socket.emit('dashboard-info', loggedUser)
+    initTask(socket, io)
+}
+
+function getTasks() {
+    const allTasks = []
 
     users.forEach((user) => {
         user.dashboard.forEach((interaction) => {
-            tasks.push(interaction)
+            allTasks.push(interaction)
         })
     })
-}
 
-function gameTaskInit(socket, loggedUser) {
-    dashboardLoad(socket, loggedUser)
-
-    initTask(tasks, loggedUser, socket)
+    return allTasks
 }
 
 module.exports = {
-    gameInit,
-    gameTaskInit
+    initGame,
+    initGameVars
 }

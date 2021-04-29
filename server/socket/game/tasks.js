@@ -1,25 +1,26 @@
-let allTasks = []
+let tasks = []
 let currentTasksAsk = []
 let score = 0
-let user = {}
+let io
 
-function initTask(tasks, loggerUser, socket) {
-    allTasks = tasks
+function resetTask(allTask) {
+    tasks = allTask
     currentTasksAsk = []
-    user = loggerUser
+    score = 0
+}
 
+function initTask(socket, getIo) {
     giveTask(socket)
-    listenTask(socket)
+    io = getIo
+    listenTasks(socket)
+    listenTaskCompleted(socket)
 }
 
 function giveTask(socket) {
-    const task = allTasks[Math.floor((Math.random() * allTasks.length))]
-
-    console.log('all task ask ', currentTasksAsk, ' from ', user.name)
-    console.log('new task ask ', task, ' from ', user.name)
-
+    const task = tasks[Math.floor((Math.random() * tasks.length))]
     let finalTask = ''
     let request = ''
+
     switch (task.type) {
         case 'bool':
             if (task.data.currentValue && task.data.currentValue === "OFF") {
@@ -36,6 +37,7 @@ function giveTask(socket) {
             const paramSimple = task.data.param
             finalTask = "Enclencher le " + task.data.title + " " + paramSimple
             request = paramSimple
+            break
         case 'complex-list':
             const param = task.data.param[Math.floor((Math.random() * task.data.param.length))]
             finalTask = "Enclencher le " + task.data.title + " " + param
@@ -51,36 +53,37 @@ function giveTask(socket) {
 
     }
 
-    if(user !== {}) {
-        console.log('request : ', request)
+    currentTasksAsk.push({
+        'idPlayer' : socket.id,
+        'name' : task.data.title.replace(/\W/g,'_').toLowerCase(),
+        'request' : request.toString().replace(/\W/g,'_').toLowerCase()
+    })
 
-        currentTasksAsk.push({
-            user,
-            'name' : task.data.title.replace(/\W/g,'_').toLowerCase(),
-            'request' : request.toString().replace(/\W/g,'_').toLowerCase()
-        })
-    }
-
-    listenTask(socket)
     socket.emit('give-task', finalTask)
+
+    socket.broadcast.emit('add-task-global', finalTask)
 }
 
-function listenTask(socket) {
+function listenTasks(socket) {
     socket.on('interaction-activated', (interaction) => {
-        console.log('tache ask ', currentTasksAsk)
         currentTasksAsk.forEach((currentTaskAsk) => {
-            //console.log('current ask : ', currentTaskAsk.name, currentTaskAsk.request)
-            //console.log('touch : ', interaction.element.name, interaction.actionMake)
             if(interaction.element.name === currentTaskAsk.name && interaction.actionMake === currentTaskAsk.request ) {
-                currentTasksAsk = currentTasksAsk.filter((taskAsk) => {return taskAsk !== currentTasksAsk[0]})
-                score++
-                console.log(score)
-                giveTask(socket, user)
+                io.to(currentTaskAsk.idPlayer).emit('task-completed', currentTaskAsk)
             }
         })
     })
 }
 
+function listenTaskCompleted(socket) {
+    socket.on('task-completed-send', (task) => {
+        currentTasksAsk = currentTasksAsk.filter((taskAsk) => { return taskAsk.idPlayer !== task.idPlayer })
+        score++
+
+        giveTask(socket)
+    })
+}
+
 module.exports = {
+    resetTask,
     initTask
 }

@@ -15,11 +15,13 @@ export default class Dashboard extends Block {
     bindMethods() {
         this.displayDashboard = this.displayDashboard.bind(this)
         this.displayTask = this.displayTask.bind(this)
+        this.sendTaskCompleted = this.sendTaskCompleted.bind(this)
     }
 
     initEvents() {
         this.socket.on('dashboard-info', this.displayDashboard)
         this.socket.on('give-task', this.displayTask)
+        this.socket.on('task-completed', this.sendTaskCompleted)
     }
 
     displayDashboard(currentUser) {
@@ -49,8 +51,13 @@ export default class Dashboard extends Block {
         this.$els.task.innerHTML = currentTask
     }
 
+    sendTaskCompleted(task) {
+        this.socket.emit('task-completed-send', task)
+    }
+
     destroy() {
         this.socket.removeListener('dashboard-info')
         this.socket.removeListener('give-task')
+        this.socket.removeListener('task-completed')
     }
 }

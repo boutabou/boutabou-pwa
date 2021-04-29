@@ -1,7 +1,7 @@
-const { initTheme, themeLoad } = require('./theme')
-const { initRoom, updateRoom, roomLoad } = require('./room')
-const { initScan } = require('./scan')
-const { gameInit, gameTaskInit } = require('./game/gameManager')
+const { createOwnRoom, updateRoomsOnCreateUser, updateRoomsOnDeleteUser } = require('./room')
+const { createUser } = require('./userCreator')
+const { getThemeSelected } = require('./theme')
+const { initGameVars, initGame } = require('./game/gameManager')
 
 function initSocket(io) {
 
@@ -11,7 +11,7 @@ function initSocket(io) {
     let users = []
 
     /**
-     * Le théme séléctionné
+     * Les utilisateurs connecté à la room
      */
     let currentTheme = {}
 
@@ -22,46 +22,54 @@ function initSocket(io) {
          */
          let loggedUser = {}
 
-        socket.on('disconnect', () => {
+        socket.on('disconnect', disconnection)
+        socket.on('scan-load', goToTheme) // skip scan step
+        socket.on('scan-load', () => { socket.broadcast.emit('direction',  '/views/pages/wait-scan.ejs') })
+        socket.on('theme-load', () => { socket.emit('theme-selected', currentTheme) })
+        socket.on('dashboard-load', () => { initGame(io, socket, loggedUser) })
+
+        /**
+         * Déconnecte loggedUser et l'enlever de la liste des utilisateurs
+         */
+        function disconnection() {
             users = users.filter((user) => { return user !== loggedUser})
-            updateRoom(socket, loggedUser)
-        })
+            updateRoomsOnDeleteUser(socket, loggedUser)
+        }
 
-        initScan(socket)
-        themeLoad(socket)
-
+        /**
+         * Création d'un utilisateur et ajout à la liste des utilisateurs
+         */
         async function userCreated() {
-            loggedUser = await initRoom(socket)
-            roomLoad(socket, users, loggedUser)
+            loggedUser = await createUser(socket)
+
+            socket.on('room-load', () => { createOwnRoom(socket, users) })
+
+            updateRoomsOnCreateUser(socket, loggedUser)
             users.push(loggedUser)
         }
 
         userCreated()
 
+        /**
+         * Récupère le théme un fois scanné
+         */
         async function themeOnChoice() {
-            currentTheme = await initTheme(socket)
-            gameInit(io, users, currentTheme)
+            currentTheme = await getThemeSelected(socket)
+            io.emit('direction',  '/views/pages/theme.ejs')
+            initGameVars(io, socket, currentTheme, users)
         }
 
         // themeOnChoice()
 
-        // redirect automatic on epilation theme
-        socket.on('scan-load', () => {
-            goToTheme()
-        })
-
-        socket.on('dashboard-load', () => {
-            gameTaskInit(socket, loggedUser)
-        })
-
+        // skip scan step
         function goToTheme() {
             currentTheme = {
                 "title" : "L'épilation",
                 "img" : "../../assets/images/themes/epilation.jpg",
                 "pathInteractions" : "data/interactions/depilation.json"
             }
-
-            gameInit(io, users, currentTheme)
+            io.emit('direction',  '/views/pages/theme.ejs')
+            initGameVars(io, socket, currentTheme, users)
         }
     })
 }

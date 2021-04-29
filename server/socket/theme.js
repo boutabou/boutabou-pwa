@@ -1,31 +1,18 @@
 const theme = require('../data/themes.json')
-let themeSelected = null
 
-function initTheme(socket) {
+function getThemeSelected(socket) {
     const promise = new Promise((resolve, reject) => {
         socket.on('theme-choice', message => {
-            themeSelected = theme[message]
-            socket.emit('direction',  '/views/pages/theme.ejs')
-            socket.broadcast.emit('direction',  '/views/pages/theme.ejs')
-
-            if (themeSelected) {
-                resolve(themeSelected)
+            if (theme[message]) {
+                resolve(theme[message])
             } else {
-                reject(themeSelected)
+                reject(theme[message])
             }
         })
     })
-
     return promise
 }
 
-function themeLoad(socket) {
-    socket.on('theme-load', () => {
-        socket.emit('theme-selected', themeSelected)
-    })
-}
-
 module.exports = {
-    initTheme,
-    themeLoad
+    getThemeSelected
 }

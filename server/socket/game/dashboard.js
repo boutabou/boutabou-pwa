@@ -1,10 +1,11 @@
-const tables = require('../../data/tables.json')
-
-
-function initDashboard(users, currentTheme) {
+function getUsersWithDashboard(users, currentTheme) {
     const interaction = require('../../' + currentTheme.pathInteractions)
-    const dashboard = tables
+
     users.forEach((user) => {
+
+        delete require.cache[require.resolve('../../data/tables.json')];
+        const dashboard = require('../../data/tables.json')
+
         user.dashboard = dashboard[Math.floor((Math.random() * dashboard.length))]
 
         user.dashboard.forEach((interactionBoard) => {
@@ -16,11 +17,6 @@ function initDashboard(users, currentTheme) {
     return users
 }
 
-function dashboardLoad(socket, loggedUser) {
-    socket.emit('dashboard-info', loggedUser)
-}
-
 module.exports = {
-    dashboardLoad,
-    initDashboard
+    getUsersWithDashboard
 }
