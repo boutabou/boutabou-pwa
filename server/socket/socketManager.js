@@ -23,7 +23,6 @@ function initSocket(io) {
          let loggedUser = {}
 
         socket.on('disconnect', disconnection)
-        socket.on('scan-load', goToTheme) // skip scan step
         socket.on('scan-load', () => { socket.broadcast.emit('direction',  '/views/pages/wait-scan.ejs') })
         socket.on('theme-load', () => { socket.emit('theme-selected', currentTheme) })
         socket.on('dashboard-load', () => { initGame(io, socket, loggedUser) })
@@ -59,18 +58,7 @@ function initSocket(io) {
             initGameVars(io, socket, currentTheme, users)
         }
 
-        // themeOnChoice()
-
-        // skip scan step
-        function goToTheme() {
-            currentTheme = {
-                "title" : "L'épilation",
-                "img" : "../../assets/images/themes/epilation.jpg",
-                "pathInteractions" : "data/interactions/depilation.json"
-            }
-            io.emit('direction',  '/views/pages/theme.ejs')
-            initGameVars(io, socket, currentTheme, users)
-        }
+        themeOnChoice()
     })
 }
 

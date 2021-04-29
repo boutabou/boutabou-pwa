@@ -23,7 +23,7 @@ function initGameVars(io, socket, currentTheme, allUsers) {
     tasks = getTasks()
     resetTask(tasks)
 
-    setTimeout(() => { io.emit('direction',  '/views/pages/game.ejs') }, 1000)
+    setTimeout(() => { io.emit('direction',  '/views/pages/game.ejs') }, 3000)
 }
 
 /**
