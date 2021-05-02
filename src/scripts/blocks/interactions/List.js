@@ -29,7 +29,7 @@ export default class List extends Interaction {
 
     clickListBtn(e) {
         const name = e.currentTarget.parentElement.dataset
-        this.socket.emit('interaction-activated', { 'element' : name, 'actionMake' : e.currentTarget.dataset.btnName })
+        this.socket.emit('interaction:activated', { 'element' : name, 'actionMake' : e.currentTarget.dataset.btnName })
     }
 
     destroy() {
