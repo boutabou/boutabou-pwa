@@ -7,10 +7,8 @@ dotenv.config()
 
 const port = process.env.PORT || 3003
 
-
 const { initRouter } = require('./server/router')
 const { initSocket } = require('./server/socket/socketManager')
-
 
 initRouter(app, __dirname, port)
 initSocket(io)

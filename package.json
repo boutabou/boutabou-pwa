@@ -13,7 +13,9 @@
     "html5-qrcode": "^2.0.0",
     "socket.io": "^3.0.3",
     "socket.io-client": "^4.0.1",
-    "swup": "^2.0.14"
+    "swup": "^2.0.14",
+    "xhr": "^2.6.0",
+    "xmlhttprequest": "^1.8.0"
   },
   "scripts": {
     "start": "nodemon index.js",

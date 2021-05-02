@@ -1,3 +1,4 @@
+
 export default class Direction {
     constructor(socket, swup) {
         this.socket = socket
@@ -17,10 +18,11 @@ export default class Direction {
         }
     }
 
-    direction(url) {
+    direction(url, datas) {
+        
         this.swup.loadPage({
             url: url,
-            method: 'GET'
+            method: 'POST'
         })
     }
 

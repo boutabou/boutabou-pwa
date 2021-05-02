@@ -5,7 +5,6 @@ function initDashboard(users, currentTheme) {
     const dashboard = tables
     users.forEach((user) => {
         user.dashboard = dashboard[Math.floor((Math.random() * dashboard.length))]
-
         user.dashboard.forEach((interactionBoard) => {
             const allDataByType = interaction[interactionBoard.type]
             interactionBoard.data = allDataByType[Math.floor((Math.random() * allDataByType.length))]

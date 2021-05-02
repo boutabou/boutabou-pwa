@@ -45,11 +45,11 @@ function initSocket(io) {
         userCreated()
 
         async function themeOnChoice() {
-            currentTheme = await initTheme(socket)
+            currentTheme = await initTheme(socket, io)
 
             users = initDashboard(users, currentTheme)
 
-            setTimeout(() => { io.emit('direction',  '/views/pages/game.ejs') }, 1000)
+            //setTimeout(() => { io.emit('direction',  '/views/pages/game.ejs') }, 1000)
         }
 
         socket.on('dashboard-load', () => {

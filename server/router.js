@@ -24,6 +24,8 @@ function initRouter(app, path, port) {
     })
 
     app.all("*", function (req, res, next) {
+
+        console.log(req.body)
         if (req.params[0].substr(-5,5) === '.html') return
 
         // render file in views folder
@@ -33,6 +35,8 @@ function initRouter(app, path, port) {
 
             return
         }
+
+        
 
         res.sendFile(path + req.params[0]) // router other file
     })
