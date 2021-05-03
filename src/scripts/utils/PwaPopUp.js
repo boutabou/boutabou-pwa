@@ -1,20 +1,26 @@
 export default class PwaPopUp {
     constructor() {
-        this.initEls()
+        this.vars()
+        this.bindMethods()
         this.initEvents()
     }
 
-    initEls() {
-         this._beforeInstallPrompt
+    vars() {
+        this._beforeInstallPrompt
+    }
+
+    bindMethods() {
+         this.beforeInstallPrompt =  this.beforeInstallPrompt.bind(this)
     }
 
     initEvents() {
         if ( "onbeforeinstallprompt" in window ) {
-            window.addEventListener( "beforeinstallprompt", this.beforeInstallPrompt )
+            window.addEventListener( "beforeinstallprompt", this.beforeInstallPrompt ); 
         }
     }
 
     beforeInstallPrompt( evt ) {
+        console.log("salut")
         evt.preventDefault()
         this._beforeInstallPrompt = evt
         return  this._beforeInstallPrompt.prompt()
