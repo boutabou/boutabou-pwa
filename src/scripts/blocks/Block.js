@@ -23,7 +23,6 @@ export default class Block {
 
             document.addEventListener('swup:willReplaceContent', () => {
                 this.destroy()
-                // this.socket.removeAllListeners()
             })
         }
     }

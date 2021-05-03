@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  img {
+    bottom: 220px;
+    min-height: calc(100vh - 220px);
+    object-fit: cover;
+    width: 100vw;
+    position: absolute;
+  }
+
+  p {
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 10px;
+  }
+}
