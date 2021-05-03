@@ -1,6 +1,6 @@
 [
     {
-      "src" : "../../assets/images/avatars/avatar-0.png"
+        "src" : "../../assets/images/avatars/avatar-0.png"
     },
     {
         "src" : "../../assets/images/avatars/avatar-1.png"
@@ -17,5 +17,4 @@
     {
         "src" : "../../assets/images/avatars/avatar-5.png"
     }
-  ]
-  
+]

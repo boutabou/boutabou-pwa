@@ -1,27 +1,7 @@
-<div>
-    <h1>Bienvenue !</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis euismod mattis. Nunc interdum, lacus a egestas sodales, nunc mauris fermentum turpis, a malesuada dui justo at libero.</p>
-    
-    <%- include('../components/button', { buttonLink : '/views/pages/login.ejs', buttonText : "C'est partie !" }); %>
-
-    <div class="js-dashboard">
-        <div class="grid-container js-grid-container">
-            <div class="simple-cursor js-simple-cursor" style="grid-area: 1 / 1 / 3 / 2; background-color: rgb(255, 255, 255);">
-
-                <!--<div class="container-cursor">
-
-                    
-                    <div class="cursor"></div>  
-                    <div class="progress-bar"></div>
-
-                    <div class="steps"> 
-                        <div>3</div>
-                        <div>2</div>
-                        <div>1</div>
-                    </div>
-                </div>-->
-
-                <p>Température de la cir</p>
-            </div><div class="complex-list" style="grid-area: 1 / 2 / 3 / 4; background-color: rgb(47, 67, 47);"><p>Maillot</p></div><div class="bool" style="grid-area: 3 / 1 / 4 / 2; background-color: rgb(147, 133, 14);"><p>Monosourcil</p></div><div class="simple-list" style="grid-area: 3 / 2 / 4 / 4; background-color: rgb(203, 244, 6);"><p>Poils</p></div></div>
+<div class="welcome">
+    <img src="../../assets/images/cover.jpg"/>
+    <div class="container container--ultra container--end">
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ...</p>
+        <%- include('../components/button', { buttonLink : '/views/pages/login.ejs', buttonText : "COMMENCER", buttonClass : "" }); %>
     </div>
 </div>

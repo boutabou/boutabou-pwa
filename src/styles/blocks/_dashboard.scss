@@ -1,0 +1,126 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .task {
+    height: calc(100vh - 350px);
+  }
+
+  .grid-container {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0px 0px;
+    width: 100%;
+    height: 350px;
+    font-size: 14px;
+
+    &__btn {
+      background-color: white;
+      width: 80%;
+      display: flex;
+      padding: 10px;
+      justify-content: center;
+      font-size: 16px;
+      margin-top: 4px;
+      cursor: pointer;
+      color: $color-dark-blue;
+
+      &:hover {
+        background-color: #d6d6d6;
+      }
+    }
+
+    .bool, .list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        margin-top: 0;
+      }
+    }
+
+    .container-cursor {
+      height: 65%;
+      width: 80%;
+      margin: auto;
+      position: relative;
+  
+      .progress-bar {
+        margin: auto;
+        background-color: $color-purple;
+        border-radius: 10px;
+  
+        &.progress-horizontal{
+          width: calc( 100% - 25px);
+          height: 8px;
+          transform: translateY(12.5px);
+        }
+  
+        &.progress-vertical{
+          height: calc(100% - 25px);
+          transform: translateY(10px);
+          width: 8px;
+        }
+      }
+  
+      .cursor {
+        height: 28px;
+        width: 28px;   
+        border: 2px solid white; 
+        position: absolute;
+        background: $color-purple;
+        border-radius: 50px;
+        z-index: 1;
+        left: 0;
+        font-size: bold; 
+        right: 0;
+        transition: transform ease-in-out .2s;
+  
+        &.cursor-vertical {
+          left: calc( 50% - 14px);
+        }
+      }
+  
+      .steps {
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          z-index: 0;
+          top: 0;
+  
+          &.steps-vertical{
+            height: calc( 100% + 34px );
+            top: -19.5px;
+            div{
+              width: 44%;
+              color: black;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 16px;
+            }
+          }
+  
+          &.steps-horizontal {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: calc( 100% + 50px );
+            position: absolute;
+            z-index: 0;
+            top: 0;
+          }
+          
+          div {
+            display: flex;
+            align-items: center;
+          }
+      }
+    }
+  }
+}

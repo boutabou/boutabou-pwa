@@ -9,11 +9,11 @@ const port = process.env.PORT || 3003
 
 
 const { initRouter } = require('./server/router')
-const { initSocket } = require('./server/socket/socketManager')
+const { Room } = require('./server/Room')
 
 
 initRouter(app, __dirname, port)
-initSocket(io)
+const room = new Room(io)
 
 http.listen(port, () => {
   console.log(`Socket.IO server running at http://localhost:${port}/`)

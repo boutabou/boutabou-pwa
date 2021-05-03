@@ -30,7 +30,7 @@
 
 // 6. Page-specific styles
 @import
-'styles/pages/home';
+'styles/pages/index';
 
 // 7. Themes
 @import
@@ -43,5 +43,6 @@
 
 // 8. blocks
 @import
-'styles/blocks/dashboard';
+'styles/blocks/dashboard',
+'styles/blocks/room';
 
