@@ -2,6 +2,16 @@ const { User } = require('./User')
 const { Task } = require('./Task')
 const theme = require('./data/themes.json')
 
+
+function checkTime(task) {
+    const promise  = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(this.timer)
+            }, this.timer)
+    })
+    return promise 
+}
+
 function getUser(socket) {
     const promise  = new Promise((resolve, reject) => {
         socket.on('room:user-login', (name) => {

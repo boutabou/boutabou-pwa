@@ -1,4 +1,5 @@
 const { getUsersWithDashboard, getInteractions, getLoggedTable, getTask } = require('./utils')
+const { checkTime } = require('./Task')
 
 class Game {
     constructor(io, socket, users, theme, sockets) {
@@ -34,7 +35,10 @@ class Game {
     newTask(loggedUser, socket) {
         const task = getTask(this.intaractions, loggedUser)
         this.tasks.push(task)
+        
         socket.emit('dashboard:give-task', task.sentence)
+        socket.emit('dashboard:reset-timer', task.timer)
+        this.checkTime(task, socket)
     }
 
     listenTask(socket) {
@@ -48,6 +52,17 @@ class Game {
             })
         })
     }
+
+    checkTime(task) {
+        let index = this.tasks.indexOf(task)
+        setTimeout(() =>  {
+            if(this.tasks.includes(task)) {
+                this.tasks.splice(index, 1)
+                this.newTask(getLoggedTable(task.idUser, this.users), getLoggedTable(task.idUser, this.sockets))
+            }
+        }, task.timer)
+    }
+
 }
 
 module.exports = {
