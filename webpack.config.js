@@ -10,9 +10,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'public')
     },
-    devServer: {
-        historyApiFallback: true
-    },
     module: {
         rules: [{
             test: /\.(js|jsx)$/,
