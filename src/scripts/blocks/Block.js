@@ -6,7 +6,7 @@ export default class Block {
             this.el = el.replace('.js-', '')
 
             if(this.socket) {
-                this.socket.emit(this.el + '-load')
+                this.socket.emit('load:' + this.el)
             } else if (this.el !== 'login') {
                 this.swup.loadPage({
                     url: '/views/pages/login.ejs',
@@ -23,7 +23,6 @@ export default class Block {
 
             document.addEventListener('swup:willReplaceContent', () => {
                 this.destroy()
-                // this.socket.removeAllListeners()
             })
         }
     }
