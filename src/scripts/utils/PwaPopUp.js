@@ -1,11 +1,16 @@
 export default class PwaPopUp {
     constructor() {
-        this.initEls()
+        this.vars()
+        this.bindMethods()
         this.initEvents()
     }
 
-    initEls() {
-         this._beforeInstallPrompt
+    vars() {
+        this._beforeInstallPrompt
+    }
+
+    bindMethods() {
+        this.beforeInstallPrompt =  this.beforeInstallPrompt.bind(this)
     }
 
     initEvents() {
@@ -18,19 +23,19 @@ export default class PwaPopUp {
         evt.preventDefault()
         this._beforeInstallPrompt = evt
         return  this._beforeInstallPrompt.prompt()
-        .then( function ( evt ) {
-            // Wait for the user to respond to the prompt
-            return  this._beforeInstallPrompt.userChoice;
-        })
-        .then( function ( choiceResult ) {})
-        .catch( function ( err ) {
-            if ( err.message.indexOf( "user gesture" ) > -1 ) {
-            }
-            else if ( err.message.indexOf( "The app is already installed" ) > -1 ) {
-            } else {
-                return err
-            }
-        });
+            .then( function ( evt ) {
+                // Wait for the user to respond to the prompt
+                return  this._beforeInstallPrompt.userChoice;
+            })
+            .then( function ( choiceResult ) {})
+            .catch( function ( err ) {
+                if ( err.message.indexOf( "user gesture" ) > -1 ) {
+                }
+                else if ( err.message.indexOf( "The app is already installed" ) > -1 ) {
+                } else {
+                    return err
+                }
+            })
     }
 
 }
