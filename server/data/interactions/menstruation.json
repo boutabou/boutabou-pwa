@@ -1,0 +1,93 @@
+{
+    "bool" : [
+      {
+        "title" : "Chewbacca"
+      },
+      {
+        "title" : "Mode poilu"
+      },
+      {
+        "title" : "Turbo épilateur"
+      },
+      {
+        "title" : "pousse des poils"
+      },
+      {
+        "title" : "mousse à raser"
+      },
+      {
+        "title" : "Monosourcil"
+      },
+      {
+        "title" : "Pedi poils"
+      },
+      {
+        "title" : "tresse"
+      },
+      {
+        "title" : "jambe poilu"
+      },
+      {
+        "title" : "hibernation"
+      }
+    ],
+    "simple-list" : [
+      {
+        "title" : "Poils",
+        "param" : "Assumer"
+      },
+      {
+        "title" : "Poils",
+        "param" : "Coiffer"
+      },
+      {
+        "title" : "Poils",
+        "param" : "teinté"
+      },
+      {
+        "title" : "Hyper pilosité",
+        "param" : "Assumer"
+      }
+    ],
+    "complex-list" : [
+      {
+        "title" : "Maillot",
+        "param" : ["Touffu", "Déboiser", "Demi-poillu"]
+      },
+      {
+        "title" : "Poils",
+        "param" : ["Blond", "Roux", "Brun"]
+      },
+      {
+        "title" : "Jambe",
+        "param" : ["Touffu", "Déboiser", "Demi-poillu"]
+      },
+      {
+        "title" : "aisselles",
+        "param" : ["Touffues", "Déboisée", "Demi-poillu"]
+      },
+      {
+        "title" : "rasoir",
+        "param" : ["à l'attaque", "au repos", "en vacance"]
+      }
+    ],
+    "simple-cursor" : [
+      {
+        "title" : "Température de la cir",
+        "param" : ["0", "10", "20"]
+      }
+    ],
+    "complex-cursor" : [
+      {
+        "title" : "Eguisation des lames",
+        "param" : ["0", "10", "20", "30"]
+      }
+    ],
+    "rotate" : [
+      {
+        "title" : "Température de la cir",
+        "param" : ["0", "10", "20", "30", "40", "60"]
+      }
+    ]
+  }
+  
