@@ -37,12 +37,13 @@ export default class Rotate extends Interaction {
         gsap.registerPlugin(Draggable);
 
         Draggable.create("#knob", {
-            type:"rotation", //instead of "x,y" or "top,left", we can simply do "rotation" to make the object spinnable! ,
+            type:"rotation", 
             liveSnap: true,
             snap(value) {
-                    let rotation = Math.round(value % 360, 10)
-                    indexStep = Math.round(rotation / 360 * (ctx.params.length - 1))
-                    return Math.round((360/ctx.params.length - 1 ) * indexStep) 
+                    let rotation = Math.round(value, 10)
+                    indexStep = Math.round(rotation / 360 * (ctx.params.length))
+                    console.log(indexStep)
+                    return Math.round((360/ctx.params.length) * indexStep) 
             }
         });
     }

@@ -76,9 +76,6 @@ export default class Cursor extends Interaction {
                 })
                 this.displayHorizontalCursor(currentCursor, stepsEl, index)
                 break
-            case "rotate":
-                this.displayRotateCursor(currentCursor, stepsEl, index)
-                break
         }
     }
 
