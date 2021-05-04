@@ -3,6 +3,7 @@ const { getUsersWithDashboard, getInteractions, getLoggedTable, getTask } = requ
 class Game {
     constructor(io, socket, users, theme, sockets) {
         this.vars(io, socket, users, theme, sockets)
+        this.bindMethods()
         this.startGame()
     }
 
@@ -15,6 +16,10 @@ class Game {
         this.intaractions = getInteractions(this.users)
         this.score = 0
         this.tasks = []
+    }
+
+    bindMethods() {
+        this.resultAction = this.resultAction.bind(this)
     }
 
     startGame() {
@@ -38,15 +43,47 @@ class Game {
     }
 
     listenTask(socket) {
-        socket.on('interaction:activated', (userAction) => {
-            this.tasks.forEach((task, index) => {
-                if(userAction.element.name === task.name && userAction.actionMake === task.request ) {
-                    this.tasks.splice(index, 1)
-                    this.score ++
-                    this.newTask(getLoggedTable(task.idUser, this.users), getLoggedTable(task.idUser, this.sockets))
-                }
-            })
+        socket.on('interaction:activated', this.resultAction)
+    }
+
+    resultAction(userAction) {
+        let valide = false
+
+        // check if userAction is a task ask
+        this.tasks.forEach((task, index) => {
+            if(userAction.element.name === task.name && userAction.actionMake === task.request ) {
+                this.tasks.splice(index, 1)
+                this.newTask(getLoggedTable(task.idUser, this.users), getLoggedTable(task.idUser, this.sockets))
+                valide = true
+            }
         })
+
+        // update status interaction
+        this.intaractions.forEach((interaction) => {
+            if(interaction.data.title.replace(/\W/g,'_').toLowerCase() === userAction.element.name) {
+                switch (interaction.type) {
+                    case 'bool':
+                        if (interaction.status === 'on') {
+                            interaction.status = 'off'
+                        } else {
+                            interaction.status = 'on'
+                        }
+                        break
+                }
+            }
+        })
+
+        this.updateScore(valide)
+    }
+
+    updateScore(valide) {
+        if (!valide) {
+            this.score --
+        } else {
+            this.score ++
+        }
+
+        this.io.emit('dashboard:update-score', this.score)
     }
 }
 

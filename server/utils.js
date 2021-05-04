@@ -34,18 +34,42 @@ function getTheme(socket) {
 }
 
 function getUsersWithDashboard(users, currentTheme) {
-    const interaction = require('./' + currentTheme.pathInteractions)
+    const interactions = require('./' + currentTheme.pathInteractions)
+
+    const types = ['bool', 'simple-list', 'complex-list', 'simple-cursor', 'complex-cursor', 'rotate']
+
+    types.forEach((type) => {
+        interactions[type].forEach((interaction) => {
+            interaction.useInDashboard = 0
+        })
+    })
 
     users.forEach((user) => {
-
-        delete require.cache[require.resolve('./data/tables.json')];
+        delete require.cache[require.resolve('./data/tables.json')]
         const dashboard = require('./data/tables.json')
 
         user.dashboard = dashboard[Math.floor((Math.random() * dashboard.length))]
 
         user.dashboard.forEach((interactionBoard) => {
-            const allDataByType = interaction[interactionBoard.type]
-            interactionBoard.data = allDataByType[Math.floor((Math.random() * allDataByType.length))]
+            const allDataByType = interactions[interactionBoard.type]
+
+            let seuil = 1
+            const tabUseInDashboard = []
+
+            allDataByType.forEach((interaction) => {
+                tabUseInDashboard.push(interaction.useInDashboard || 0)
+            })
+
+            seuil = Math.min(...tabUseInDashboard) + 1
+
+            let alea = Math.floor((Math.random() * allDataByType.length))
+
+            while (allDataByType[alea].useInDashboard >= seuil) {
+                alea = Math.floor((Math.random() * allDataByType.length))
+            }
+
+            interactionBoard.data = allDataByType[alea]
+            allDataByType[alea].useInDashboard ++
 
             if(interactionBoard.data.type === 'bool') {
                 interactionBoard.data.status = 'on'
@@ -91,7 +115,7 @@ function getTask(interactions, user) {
 
     switch (task.type) {
         case 'bool':
-            if (task.data.status && task.data.status === "off") {
+            if (task.status && task.status === "off") {
                 sentence = "Désactiver la " + task.data.title
                 request = "off"
             } else {

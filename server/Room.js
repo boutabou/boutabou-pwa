@@ -46,14 +46,13 @@ class Room {
     }
 
     async initGame(io, socket) {
-        socket.on('load:scan', () => {
+        socket.on('load:scan', async () => {
             socket.broadcast.emit('direction',  '/views/pages/wait-scan.ejs')
 
-            // const theme = await getTheme(socket)
-            // this.io.emit('direction',  '/views/pages/theme.ejs')
-            // this.io.emit('theme:selected', this.theme) // attention le theme doit etre load
+            /*const theme = await getTheme(socket)
+            this.io.emit('direction',  '/views/pages/theme.ejs')*/
 
-            const theme = {
+             const theme = {
                 "title" : "L'épilation",
                 "img" : "../../assets/images/themes/epilation.jpg",
                 "pathInteractions" : "data/interactions/depilation.json"
