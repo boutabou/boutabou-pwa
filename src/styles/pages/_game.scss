@@ -1,0 +1,21 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .container {
+    height: calc(100vh - 350px);
+    padding-top: $container-padding-vertical;
+    padding-bottom: $container-padding-vertical;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+
+    .score {
+      font-weight: 800;
+      font-size: 30px;
+    }
+  }
+}

@@ -91,7 +91,7 @@ function getTask(interactions, user) {
 
     switch (task.type) {
         case 'bool':
-            if (task.data.status && task.data.status === "off") {
+            if (task.status && task.status === "off") {
                 sentence = "Désactiver la " + task.data.title
                 request = "off"
             } else {

@@ -49,11 +49,10 @@ class Room {
         socket.on('load:scan', async () => {
             socket.broadcast.emit('direction',  '/views/pages/wait-scan.ejs')
 
-            const theme = await getTheme(socket)
-            this.io.emit('direction',  '/views/pages/theme.ejs')
-            // this.io.emit('theme:selected', this.theme) // attention le theme doit etre load
+            /*const theme = await getTheme(socket)
+            this.io.emit('direction',  '/views/pages/theme.ejs')*/
 
-            /* const theme = {
+             const theme = {
                 "title" : "L'épilation",
                 "img" : "../../assets/images/themes/epilation.jpg",
                 "pathInteractions" : "data/interactions/depilation.json"
@@ -61,7 +60,7 @@ class Room {
 
             setTimeout(() => {
                 this.io.emit('direction',  '/views/pages/theme.ejs')
-            }, 1000) */
+            }, 1000)
 
             socket.on('load:theme', () => { this.io.emit('theme:selected', theme) })
 

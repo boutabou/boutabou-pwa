@@ -27,8 +27,8 @@
 
   &--ultra {
     height: 100vh;
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: $container-padding-vertical;
+    padding-bottom: $container-padding-vertical;
     z-index: 1;
   }
 
