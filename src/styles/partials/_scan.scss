@@ -3,9 +3,9 @@
 
   video {
     width: auto !important;
-    height: 100vh !important;
+    height: 100% !important;
     min-width: 100vw;
-    min-height: 100vh;
+    min-height: 100%;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -13,6 +13,6 @@
   }
 
   #qr-shaded-region {
-    border-width: calc(50vh - 128px) calc(50vw - 128px)!important;
+    border-width: calc(40vh - 128px) calc(50vw - 128px)!important;
   }
 }

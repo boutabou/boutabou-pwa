@@ -1,0 +1,22 @@
+.scan-page {
+  position: relative;
+  height: 100vh;
+
+  &__info {
+    position: absolute;
+    bottom: 0;
+    min-height: calc(20vh + 20px);
+    padding: 20px $container-padding;
+    background-color: $color-dark-blue;
+    border-radius: 30px;
+
+    p {
+      text-align: center;
+
+      span {
+        font-weight: 800;
+        color: $color-cyan;
+      }
+    }
+  }
+}
