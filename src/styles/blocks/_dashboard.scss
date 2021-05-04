@@ -1,37 +1,47 @@
-.grid-container {
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
-  gap: 0px 0px;
-  width: 100%;
-  height: 350px;
-  font-size: 14px;
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
-  &__btn {
-    background-color: white;
-    width: 80%;
-    display: flex;
-    padding: 10px;
-    justify-content: center;
-    font-size: 16px;
-    margin-top: 4px;
-    cursor: pointer;
-    color: $color-dark-blue;
-
-    &:hover {
-      background-color: #d6d6d6;
-    }
+  .task {
+    height: calc(100vh - 350px);
   }
 
-  .bool, .list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  .grid-container {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0px 0px;
+    width: 100%;
+    height: 350px;
+    font-size: 14px;
 
-    p {
-      margin-top: 0;
+    &__btn {
+      background-color: white;
+      width: 80%;
+      display: flex;
+      padding: 10px;
+      justify-content: center;
+      font-size: 16px;
+      margin-top: 4px;
+      cursor: pointer;
+      color: $color-dark-blue;
+
+      &:hover {
+        background-color: #d6d6d6;
+      }
+    }
+
+    .bool, .list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        margin-top: 0;
+      }
     }
 
     .container-cursor {
@@ -45,13 +55,13 @@
         background-color: $color-purple;
         border-radius: 10px;
 
-        &.progress-horizontal{
-          width: calc( 100% - 25px);
+        &.progress-horizontal {
+          width: calc(100% - 25px);
           height: 8px;
           transform: translateY(12.5px);
         }
 
-        &.progress-vertical{
+        &.progress-vertical {
           height: calc(100% - 25px);
           transform: translateY(10px);
           width: 8px;
@@ -72,44 +82,45 @@
         transition: transform ease-in-out .2s;
 
         &.cursor-vertical {
-          left: calc( 50% - 14px);
+          left: calc(50% - 14px);
         }
       }
 
       .steps {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+
+        &.steps-vertical {
+          height: calc(100% + 34px);
+          top: -19.5px;
+
+          div {
+            width: 44%;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+          }
+        }
+
+        &.steps-horizontal {
+          display: flex;
+          flex-direction: row;
           height: 100%;
-          width: 100%;
+          width: calc(100% + 50px);
           position: absolute;
           z-index: 0;
           top: 0;
+        }
 
-          &.steps-vertical{
-            height: calc( 100% + 34px );
-            top: -19.5px;
-            div{
-              width: 44%;
-              color: black;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              font-size: 16px;
-            }
-          }
-
-          &.steps-horizontal {
-            display: flex;
-            flex-direction: row;
-            height: 100%;
-            width: calc( 100% + 50px );
-            position: absolute;
-            z-index: 0;
-            top: 0;
-          }
-
-          div {
-            display: flex;
-            align-items: center;
-          }
+        div {
+          display: flex;
+          align-items: center;
+        }
       }
     }
   }
@@ -118,6 +129,7 @@
     p {
       margin-bottom: 40px;
     }
+
     .container-rotate {
       position: absolute;
       background-color: #6500ff;
@@ -130,6 +142,7 @@
 
       .ticks {
         transform: rotate(-90deg) translate(-55px, 0px);
+
         .tick {
           width: auto;
           height: 10px;
@@ -143,24 +156,28 @@
           &:nth-child(1) {
             transform: rotate(0deg) translate(80px) rotate(90deg);
           }
+
           &:nth-child(2) {
             transform: rotate(60deg) translate(80px) rotate((60 * -1deg) + 90deg);
           }
+
           &:nth-child(3) {
             transform: rotate(120deg) translate(80px) rotate((120 * -1deg) + 90deg);
           }
+
           &:nth-child(4) {
             transform: rotate(180deg) translate(80px) rotate((180 * -1deg) + 90);
           }
+
           &:nth-child(5) {
             transform: rotate(240deg) translate(80px) rotate((240 * -1deg) + 90deg);
           }
+
           &:nth-child(6) {
             transform: rotate(300deg) translate(80px) rotate((300 * -1deg)+ 90deg);
           }
         }
       }
-
 
 
       #knob {

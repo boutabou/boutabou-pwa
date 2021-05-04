@@ -49,15 +49,6 @@ class Game {
     resultAction(userAction) {
         let valide = false
 
-        // check if userAction is a task ask
-        this.tasks.forEach((task, index) => {
-            if(userAction.element.name === task.name && userAction.actionMake === task.request ) {
-                this.tasks.splice(index, 1)
-                this.newTask(getLoggedTable(task.idUser, this.users), getLoggedTable(task.idUser, this.sockets))
-                valide = true
-            }
-        })
-
         // update status interaction
         this.intaractions.forEach((interaction) => {
             if(interaction.data.title.replace(/\W/g,'_').toLowerCase() === userAction.element.name) {
@@ -69,7 +60,20 @@ class Game {
                             interaction.status = 'on'
                         }
                         break
+                    case 'simple-cursor':
+                    case 'complex-cursor':
+                    case 'rotate':
+                        interaction.status = userAction.actionMake
                 }
+            }
+        })
+
+        // check if userAction is a task ask
+        this.tasks.forEach((task, index) => {
+            if(userAction.element.name === task.name && userAction.actionMake === task.request ) {
+                this.tasks.splice(index, 1)
+                this.newTask(getLoggedTable(task.idUser, this.users), getLoggedTable(task.idUser, this.sockets))
+                valide = true
             }
         })
 

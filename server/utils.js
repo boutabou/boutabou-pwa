@@ -85,8 +85,15 @@ function getInteractions(users) {
 
     users.forEach((user) => {
         user.dashboard.forEach((interaction) => {
-            if (interaction.type === 'bool') {
-                interaction.status = 'on'
+            switch (interaction.type) {
+                case 'bool':
+                    interaction.status = 'on'
+                    break
+                case 'simple-cursor':
+                case 'complex-cursor':
+                case 'rotate':
+                    interaction.status = interaction.data.param[0]
+                    break
             }
 
             interactions.push(interaction)
@@ -136,9 +143,14 @@ function getTask(interactions, user) {
         case 'simple-cursor':
         case 'complex-cursor':
         case 'rotate':
-            const step = task.data.param[Math.floor((Math.random() * task.data.param.length))]
+            let step = task.data.param[Math.floor((Math.random() * task.data.param.length))]
+
+            while (task.status === step) {
+                step = task.data.param[Math.floor((Math.random() * task.data.param.length))]
+            }
+
             sentence = "Mettre le " + task.data.title + " sur " + step
-            request = step
+            request = step.toString()
             break
     }
 
