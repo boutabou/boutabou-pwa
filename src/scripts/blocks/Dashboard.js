@@ -35,17 +35,15 @@ export default class Dashboard extends Block {
                     new List(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
                     break
                 case 'simple-cursor':
-                    console.log(interaction.data.param)
-
                     this.$els.cptCursors ++ 
                     new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.$els.cptCursors)
                     break
                 case 'complex-cursor':
                     this.$els.cptCursors ++ 
-                    console.log(interaction)
                     new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.$els.cptCursors)
                     break
                 case 'rotate':
+                    console.log(interaction)
                     new Rotate(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
                     break
             }

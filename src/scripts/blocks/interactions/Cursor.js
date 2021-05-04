@@ -101,7 +101,7 @@ export default class Cursor extends Interaction {
                     }) 
             },
             liveSnap: true,
-            snap(value){
+            snap(value) {
                     indexStep = Math.round(value / this.maxY * (stepsEl.length - 1))
                     
                     if (indexStep === 0) return 0
