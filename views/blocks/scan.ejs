@@ -1,1 +1,9 @@
-<div class="block scan js-scan" id="qr-reader" style="min-width: 100vw; min-height: 80vh; position: relative;"></div>
+<div class="block scan js-scan">
+    <div id="qr-reader" style="min-width: 100vw; min-height: 80vh; position: relative;"></div>
+
+    <div class="scan-page__info">
+        <p><span>Scannez</span> une carte thématique pour commencer la partie</p>
+        <input class="js-id" type="text" id="name" name="name" placeholder="entrer l'ID à la main" required autofocus>
+        <%- include('../components/button', { buttonLink : '#', buttonText : "GO", buttonClass : "js-id-button" }); %>
+    </div>
+</div>

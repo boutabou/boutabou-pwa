@@ -149,7 +149,6 @@ export default class Cursor extends Interaction {
         const name = e.path[2].dataset
         this.socket.emit('interaction:activated', { 'element' : name, 'actionMake' : this.params[indexStep] })
     }
-
 }
 
 

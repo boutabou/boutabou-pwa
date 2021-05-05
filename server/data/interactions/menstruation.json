@@ -1,131 +1,126 @@
 {
-    "bool" : [
-      {
-        "title" : "Fuite"
-      },
-      {
-        "title" : "Flux instinctif"
-      },
-      {
-        "title" : "Serviette de nuit"
-      },
-      {
-        "title" : "Tampon coincé"
-      },
-      {
-        "title" : "Chutes du Niagara"
-      },
-      {
-        "title" : "Cycle irrégulier"
-      },
-      {
-        "title" : "Alerte éternuement"
-      },
-      {
-        "title" : "Culotte de règle"
-      },
-      {
-        "title" : "Serviette désaxée"
-      },
-      {
-        "title" : "SPM"
-      },
-      {
-        "title" : "Technique du PQ"
-      },
-      {
-        "title" : "Effet ventouse"
-      }
-    ],
-    "simple-list" : [
-      {
-        "title" : "Serviette",
-        "param" : "Changer"
-      },
-      {
-        "title" : "Cup",
-        "param" : "Vider"
-      },
-      {
-        "title" : "Fil du tampon",
-        "param" : "Tirer"
-      },
-      {
-        "title" : "Cup",
-        "param" : "Stériliser"
-      },
-      {
-        "title" : "Tampon",
-        "param" : "Appliquer"
-      }
-    ],
-    "complex-list" : [
-      {
-        "title" : "Cup",
-        "param" : ["Petite", "Moyenne", "Grande"]
-      },
-      {
-        "title" : "Tâche",
-        "param" : ["Petite", "Moyenne", "Grande"]
-      },
-      {
-        "title" : "Tampon",
-        "param" : ["Sec", "Humide", "Détrempé"]
-      },
-      {
-        "title" : "Règles",
-        "param" : ["Ruisseau", "Fleuve", "Raz de marée"]
-      },
-      {
-        "title" : "Règles",
-        "param" : ["Roses", "Rouges", "Marrons"]
-      }
-    ],
-    "simple-cursor" : [
-      {
-        "title" : "Fuite",
-        "param" : ["1", "2", "3"]
-      },
-      {
-        "title" : "Ballonnements",
-        "param" : ["1", "2", "3"]
-      },
-      {
-        "title" : "Maux de tête",
-        "param" : ["1", "2", "3"]
-      },
-      {
-        "title" : "Enlimination endomètre",
-        "param" : ["1", "2", "3"]
-      }
-    ],
-    "complex-cursor" : [
-      {
-        "title" : "Crampes",
-        "param" : ["0", "1", "2", "3"]
-      },
-      {
-        "title" : "Flux",
-        "param" : ["0", "1", "2", "3"]
-      },
-      {
-        "title" : "Remplissage cup",
-        "param" : ["0", "1", "2", "3"]
-      },
-      {
-        "title" : "Eguisation des lames",
-        "param" : ["0", "10", "20", "30"]
-      }
-    ],
-    "rotate" : [
-      {
-        "title" : "Température de bouillote",
-        "param" : ["0", "20", "40", "50", "70", "90"]
-      },
-      {
-        "title" : "Durée règle",
-        "param" : ["0", "2", "5", "7", "10", "14"]
-      }
-    ]
-  }
-  
+  "bool" : [
+    {
+      "title" : "Fuite"
+    },
+    {
+      "title" : "Flux instinctif"
+    },
+    {
+      "title" : "Serviette de nuit"
+    },
+    {
+      "title" : "Tampon coincé"
+    },
+    {
+      "title" : "Chutes du Niagara"
+    },
+    {
+      "title" : "Cycle irrégulier"
+    },
+    {
+      "title" : "Alerte éternuement"
+    },
+    {
+      "title" : "Culotte de règle"
+    },
+    {
+      "title" : "Serviette désaxée"
+    },
+    {
+      "title" : "SPM"
+    },
+    {
+      "title" : "Technique du PQ"
+    },
+    {
+      "title" : "Effet ventouse"
+    }
+  ],
+  "simple-list" : [
+    {
+      "title" : "Serviette",
+      "param" : "Changer"
+    },
+    {
+      "title" : "Cup",
+      "param" : "Vider"
+    },
+    {
+      "title" : "Fil du tampon",
+      "param" : "Tirer"
+    },
+    {
+      "title" : "Cup",
+      "param" : "Stériliser"
+    },
+    {
+      "title" : "Tampon",
+      "param" : "Appliquer"
+    }
+  ],
+  "complex-list" : [
+    {
+      "title" : "Cup",
+      "param" : ["Petite", "Moyenne", "Grande"]
+    },
+    {
+      "title" : "Tâche",
+      "param" : ["Petite", "Moyenne", "Grande"]
+    },
+    {
+      "title" : "Tampon",
+      "param" : ["Sec", "Humide", "Détrempé"]
+    },
+    {
+      "title" : "Règles",
+      "param" : ["Ruisseau", "Fleuve", "Raz de marée"]
+    },
+    {
+      "title" : "Règles",
+      "param" : ["Roses", "Rouges", "Marrons"]
+    }
+  ],
+  "simple-cursor" : [
+    {
+      "title" : "Fuite",
+      "param" : ["1", "2", "3"]
+    },
+    {
+      "title" : "Ballonnements",
+      "param" : ["1", "2", "3"]
+    },
+    {
+      "title" : "Maux de tête",
+      "param" : ["1", "2", "3"]
+    },
+    {
+      "title" : "Enlimination endomètre",
+      "param" : ["1", "2", "3"]
+    }
+  ],
+  "complex-cursor" : [
+    {
+      "title" : "Crampes",
+      "param" : ["0", "1", "2", "3"]
+    },
+    {
+      "title" : "Flux",
+      "param" : ["0", "1", "2", "3"]
+    },
+    {
+      "title" : "Remplissage cup",
+      "param" : ["0", "1", "2", "3"]
+    }
+  ],
+  "rotate" : [
+    {
+      "title" : "Température de bouillote",
+      "param" : ["0", "20", "40", "50", "70", "90"]
+    },
+    {
+      "title" : "Durée règle",
+      "param" : ["0", "2", "5", "7", "10", "14"]
+    }
+  ]
+}

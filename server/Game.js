@@ -23,8 +23,6 @@ class Game {
     }
 
     startGame() {
-        setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 3000)
-
         this.sockets.forEach((socket) => {
             socket.on('load:dashboard', () => {
                 const loggedUser = getLoggedTable(socket.id, this.users)
@@ -36,6 +34,7 @@ class Game {
 
             socket.on('load:result-theme', () => {
                 socket.emit('result-theme:win', this.theme)
+
             })
         })
     }
@@ -91,16 +90,21 @@ class Game {
             this.score ++
         }
 
+        this.io.emit('dashboard:update-score', this.score)
+
+        console.log(this.score)
+
         if(this.score >= 6) {
             setTimeout(() => { this.io.emit('direction',  '/views/pages/result-theme.ejs') }, 1000)
         }
 
         if(this.score <= 0) {
-            this.io.emit()
-            this.io.emit()
+            setTimeout(() => { this.io.emit('direction',  '/views/pages/defeat.ejs') }, 1000)
         }
+    }
 
-        this.io.emit('dashboard:update-score', this.score)
+    changeTheme(theme) {
+        this.theme = theme
     }
 }
 
