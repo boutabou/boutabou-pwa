@@ -24,7 +24,7 @@ class App {
 
     initApp () {
         this.swup = new Swup()
-        new PwaPopUp()
+        //new PwaPopUp()
         this.blocks = new BlockManager(this.socket, this.swup)
         this.direction = new Direction(this.socket, this.swup)
     }
