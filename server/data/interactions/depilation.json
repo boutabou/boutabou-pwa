@@ -10,10 +10,10 @@
       "title" : "Turbo épilateur"
     },
     {
-      "title" : "pousse des poils"
+      "title" : "Pousse des poils"
     },
     {
-      "title" : "mousse à raser"
+      "title" : "Mousse à raser"
     },
     {
       "title" : "Monosourcil"
@@ -22,13 +22,13 @@
       "title" : "Pedi poils"
     },
     {
-      "title" : "tresse"
+      "title" : "Tresse"
     },
     {
-      "title" : "jambe poilu"
+      "title" : "Jambe poilue"
     },
     {
-      "title" : "hibernation"
+      "title" : "Hibernation"
     }
   ],
   "simple-list" : [
@@ -38,11 +38,11 @@
     },
     {
       "title" : "Poils",
-      "param" : "Coiffer"
+      "param" : "Coiffés"
     },
     {
       "title" : "Poils",
-      "param" : "teinté"
+      "param" : "Teintés"
     },
     {
       "title" : "Hyper pilosité",
@@ -52,28 +52,28 @@
   "complex-list" : [
     {
       "title" : "Maillot",
-      "param" : ["Touffu", "Déboiser", "Demi-poillu"]
+      "param" : ["Touffu", "Déboisé", "Demi-poillu"]
     },
     {
       "title" : "Poils",
-      "param" : ["Blond", "Roux", "Brun"]
+      "param" : ["Blonds", "Roux", "Bruns"]
     },
     {
       "title" : "Jambe",
-      "param" : ["Touffu", "Déboiser", "Demi-poillu"]
+      "param" : ["Touffues", "Déboisées", "Demi-poillues"]
     },
     {
       "title" : "aisselles",
-      "param" : ["Touffues", "Déboisée", "Demi-poillu"]
+      "param" : ["Touffues", "Déboisées", "Demi-poillues"]
     },
     {
-      "title" : "rasoir",
-      "param" : ["à l'attaque", "au repos", "en vacance"]
+      "title" : "Rasoir",
+      "param" : ["à l'attaque", "au repos", "en vacances"]
     }
   ],
   "simple-cursor" : [
     {
-      "title" : "Température de la cir",
+      "title" : "Température de la cire",
       "param" : ["0", "10", "20"]
     }
   ],
@@ -85,7 +85,7 @@
   ],
   "rotate" : [
     {
-      "title" : "Température de la cir",
+      "title" : "Température de la cire",
       "param" : ["0", "10", "20", "30", "40", "60"]
     }
   ]
