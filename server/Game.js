@@ -56,6 +56,7 @@ class Game {
     checkTime(task) {
         let index = this.tasks.indexOf(task)
         setTimeout(() =>  {
+            //console.log(task.idUser)
             if(this.tasks.includes(task)) {
                 this.tasks.splice(index, 1)
                 this.newTask(getLoggedTable(task.idUser, this.users), getLoggedTable(task.idUser, this.sockets))

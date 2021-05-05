@@ -13,7 +13,6 @@ export default class Bool extends Interaction {
         const btn = document.createElement('span')
         btn.classList.add('grid-container__btn')
         btn.innerHTML = "ON"
-
         container.appendChild(btn)
         btn.addEventListener('click', this.toogleBool)
 

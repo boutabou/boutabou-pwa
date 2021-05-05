@@ -2,16 +2,6 @@ const { User } = require('./User')
 const { Task } = require('./Task')
 const theme = require('./data/themes.json')
 
-
-function checkTime(task) {
-    const promise  = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(this.timer)
-            }, this.timer)
-    })
-    return promise 
-}
-
 function getUser(socket) {
     const promise  = new Promise((resolve, reject) => {
         socket.on('room:user-login', (name) => {
@@ -122,11 +112,10 @@ function getTask(interactions, user) {
         case 'simple-cursor':
         case 'complex-cursor':
         case 'rotate':
-            const step = task.data.step[Math.floor((Math.random() * task.data.step.length))]
+            const step = task.data.param[Math.floor((Math.random() * task.data.param.length))]
             sentence = "Mettre le " + task.data.title + " sur " + step
             request = step
             break
-
     }
 
     return new Task(user.id, task.data.title.replace(/\W/g,'_').toLowerCase(), task.type, task.status, sentence, request.replace(/\W/g,'_').toLowerCase())

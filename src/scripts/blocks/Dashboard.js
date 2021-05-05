@@ -24,7 +24,8 @@ export default class Dashboard extends Block {
                 "last" : document.querySelector('.last'),
             }  */
             timer:  document.querySelector('.js-timer')
-        }
+        },
+        this.cptCursors= 0
     }
 
     bindMethods() {
@@ -42,7 +43,6 @@ export default class Dashboard extends Block {
     displayDashboard(currentUser) {
 
         currentUser.dashboard.forEach((interaction) => {
-
             switch (interaction.type) {
                 case 'bool':
                     new Bool(interaction.data.title, this.$els.grid, interaction.position, null, this.socket)
@@ -52,10 +52,15 @@ export default class Dashboard extends Block {
                     new List(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
                     break
                 case 'simple-cursor':
-                case 'complex-list':
-                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
+                    this.$els.cptCursors ++ 
+                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.$els.cptCursors)
+                    break
+                case 'complex-cursor':
+                    this.$els.cptCursors ++ 
+                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.$els.cptCursors)
                     break
                 case 'rotate':
+                    console.log(interaction)
                     new Rotate(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
                     break
             }
@@ -95,14 +100,10 @@ export default class Dashboard extends Block {
             this.$els.timer.classList.add('active') 
         }, 100)*/
 
-        var shapes = "rect, circle, ellipse, polyline",
-        tl = gsap.timeline({repeat:1, yoyo:true});
+        var shapes = "rect",
+		tl = gsap.timeline({repeat:0, yoyo:false});
 
-        tl.fromTo(shapes, {drawSVG:"100%"}, {duration: 1, drawSVG:"50% 50%", stagger: 0.1})
-        .fromTo(shapes, {drawSVG:"0%"}, {duration: 0.1, drawSVG:"10%", immediateRender:false}, "+=0.1")
-        .to(shapes, {duration: 1, drawSVG:"90% 100%", stagger: 0.5})
-        .to(shapes, {duration: 1, rotation:360, scale:0.5, drawSVG:"100%", stroke:"white", strokeWidth:6, transformOrigin:"50% 50%"})
-        .to(shapes, {duration: 0.5, stroke:"red", scale:1.5, opacity:0, stagger: 0.2})
+        tl.from(shapes, timer/1000, { drawSVG:"0% 0%"}) 
         
     } 
 

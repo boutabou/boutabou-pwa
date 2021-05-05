@@ -74,19 +74,19 @@
   "simple-cursor" : [
     {
       "title" : "Température de la cir",
-      "step" : [0, 10, 20]
+      "param" : ["0", "10", "20"]
     }
   ],
   "complex-cursor" : [
     {
       "title" : "Eguisation des lames",
-      "step" : [0, 10, 20, 30]
+      "param" : ["0", "10", "20", "30"]
     }
   ],
   "rotate" : [
     {
       "title" : "Température de la cir",
-      "step" : [0, 10, 20, 30, 40]
+      "param" : ["0", "10", "20", "30", "40", "60"]
     }
   ]
 }
