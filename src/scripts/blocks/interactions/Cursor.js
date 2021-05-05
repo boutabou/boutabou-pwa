@@ -146,11 +146,7 @@ export default class Cursor extends Interaction {
     }
 
     onDragEnd(e, indexStep) {
-        const name = e.path[2].dataset
-        this.socket.emit('interaction:activated', { 'element' : name, 'actionMake' : this.params[indexStep] })
+        this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : this.params[indexStep] })
     }
 }
-
-
-
 

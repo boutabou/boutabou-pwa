@@ -20,13 +20,12 @@ export default class Bool extends Interaction {
     }
 
     toogleBool(e) {
-        const name = e.currentTarget.parentElement.dataset
         if(e.currentTarget.innerHTML === "ON") {
             e.currentTarget.innerHTML = "OFF"
-            this.socket.emit('interaction:activated', { 'element' : name, 'actionMake' : "on" })
+            this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : "on" })
         } else {
             e.currentTarget.innerHTML = "ON"
-            this.socket.emit('interaction:activated', { 'element' : name, 'actionMake' : "off" })
+            this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : "off" })
         }
     }
 
