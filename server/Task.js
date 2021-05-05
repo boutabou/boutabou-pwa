@@ -1,6 +1,6 @@
 class Task {
     constructor(idUser, name, type, status, sentence, request) {
-        this.vars(idUser, name, type, status, sentence, request) 
+        this.vars(idUser, name, type, status, sentence, request)
     }
 
     vars(idUser, name, type, status, sentence, request) {
@@ -10,9 +10,9 @@ class Task {
         this.type = type
         this.sentence = sentence
         this.status = status
-        this.timer = 5000
-    } 
-    
+        this.timer = 12000
+    }
+
 }
 
 module.exports = {

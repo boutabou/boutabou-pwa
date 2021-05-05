@@ -17,10 +17,11 @@ export default class Dashboard extends Block {
             task: document.querySelector('.js-task'),
             score: document.querySelector('.js-score'),
             scoreEnd: document.querySelector('.js-score-end'),
-            timer:  document.querySelector('.js-timer')
+            timer:  document.querySelector('.js-timer'),
+            name:  document.querySelector('.js-name')
         }
         this.cptCursors= 0
-		this.tl 
+		this.tl
     }
 
     bindMethods() {
@@ -39,7 +40,8 @@ export default class Dashboard extends Block {
         this.socket.on('dashboard:kill-timer', this.killTimer)
     }
 
-    displayDashboard(currentUser) {
+    displayDashboard(currentUser, theme) {
+        this.$els.name.innerHTML = theme.title
 
         currentUser.dashboard.forEach((interaction) => {
             switch (interaction.type) {
@@ -84,12 +86,16 @@ export default class Dashboard extends Block {
         let shapes = "rect"
 
         this.tl = gsap.timeline({repeat:0})
-        this.tl.from(shapes, { drawSVG:"0% 0%", duration: timer/1000,}) 
-    } 
+        this.tl.from(shapes, { drawSVG:"0% 0%", duration: timer/1000,})
+    }
 
     destroy() {
         this.socket.removeListener('dashboard:display')
         this.socket.removeListener('dashboard:give-task')
         this.socket.removeListener('dashboard:update-score')
+        this.socket.removeListener('dashboard:reset-timer')
+        this.socket.removeListener('dashboard:kill-timer')
+        this.$els.timer.style.strokeDashoffset = 0
+        this.tl.kill()
     }
 }

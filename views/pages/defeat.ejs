@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body>
+<main id="swup" class="transition-fade">
+    <div class="container">
+        <h1>Vous avez Perdu !</h1>
+        <%- include('../components/button', { buttonLink : '/views/pages/room.ejs', buttonText : "REJOUER", buttonClass : "" }); %>
+    </div>
+</main>
+
+<%- include('../partials/import-js'); %>
+</body>
+</html>
