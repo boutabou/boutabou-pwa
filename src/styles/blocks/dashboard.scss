@@ -5,8 +5,9 @@
 
 
   .task-container {
-    width: 80vw;
-    height: 60px;
+    //width: 80vw;
+    width: 319px;
+    height: 84px;
     border-radius: 10px;
     position: relative;
     margin: auto;
@@ -14,7 +15,7 @@
     -moz-box-shadow: 10px 10px 29px -9px rgba(0,0,0,0.57);
     box-shadow: 10px 10px 29px -9px rgba(0,0,0,0.57);
     overflow: hidden;
-    border-radius: 25px;
+    border-radius: 30px;
     background-color: #6500FF;
 
     &.active {
@@ -137,6 +138,8 @@
         color: white;
       }
     }
+
+    
 
   }
 
