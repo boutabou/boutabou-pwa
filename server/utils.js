@@ -1,5 +1,5 @@
 const { User } = require('./User')
-const { Task } = require('./Task')
+const { Interactions } = require('./Interactions')
 const theme = require('./data/themes.json')
 const avatars = require('./data/avatars.json')
 
@@ -74,35 +74,16 @@ function getUsersWithDashboard(users, currentTheme) {
     return users
 }
 
-function getInteractions(users) {
-    const interactions = []
+function getInteractions(users, sockets) {
+    const interactions = new Interactions(sockets)
 
     users.forEach((user) => {
         user.dashboard.forEach((interaction) => {
-            initStatusInteraction(interaction)
-            interactions.push(interaction)
+            interactions.addNew(interaction)
         })
     })
 
     return interactions
-}
-
-function initStatusInteraction(interaction) {
-    switch (interaction.type) {
-        case 'bool':
-            interaction.status = 'on'
-            break
-        case 'simple-cursor':
-        case 'complex-cursor':
-        case 'rotate':
-            interaction.status = interaction.data.param[0]
-            break
-    }
-}
-
-function getTask(interactions, user) {
-    const task = interactions[getRandomIndex(interactions)]
-    return new Task(user.id, task.data.title, task.type, task.status, task.data.param)
 }
 
 /**
@@ -156,12 +137,21 @@ function getRandomIndex(tab) {
     return Math.floor((Math.random() * tab.length))
 }
 
+/**
+ * Return random item of an array
+ * @param tab Array
+ * return Array
+ */
+function getRandom(tab) {
+    return tab[Math.floor((Math.random() * tab.length))]
+}
+
 module.exports = {
     getUser,
     getTheme,
     getUsersWithDashboard,
     getInteractions,
     getLoggedTable,
-    getTask,
-    getRandomIndex
+    getRandomIndex,
+    getRandom
 }

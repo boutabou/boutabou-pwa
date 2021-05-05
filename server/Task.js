@@ -1,15 +1,15 @@
 class Task {
-    constructor(idUser, name, type, status, param) {
-        this.vars(idUser, name, type, status, param)
+    constructor(idUser, interaction) {
+        this.vars(idUser, interaction)
         this.initTask()
     }
 
-    vars(idUser, name, type, status, param) {
+    vars(idUser, interaction) {
         this.idUser = idUser
-        this.name = name
-        this.type = type
-        this.status = status
-        this.param = param
+        this.name = interaction.data.title
+        this.type = interaction.type
+        this.status = interaction.status
+        this.param = interaction.data.param
         this.request = ''
         this.sentence = ''
         this.timer = 12000

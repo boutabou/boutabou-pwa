@@ -1,4 +1,5 @@
-const { getUsersWithDashboard, getInteractions, getLoggedTable, getTask } = require('./utils')
+const { getUsersWithDashboard, getInteractions, getLoggedTable, getRandom } = require('./utils')
+const { Task } = require('./Task')
 
 class Game {
     constructor(io, socket, users, theme, sockets) {
@@ -13,7 +14,7 @@ class Game {
         this.sockets = sockets
         this.theme = theme
         this.users = getUsersWithDashboard(users, this.theme)
-        this.intaractions = getInteractions(this.users)
+        this.interactions = getInteractions(this.users, this.sockets)
         this.score = 5
         this.tasks = []
         this.status = true
@@ -31,7 +32,7 @@ class Game {
                     socket.emit('dashboard:display', loggedUser, this.theme)
 
                     this.newTask(loggedUser, socket)
-                    this.listenTask(socket)
+                    this.listenTasks(socket)
                 }
             })
 
@@ -43,39 +44,18 @@ class Game {
     }
 
     newTask(loggedUser, socket) {
-        const task = getTask(this.intaractions, loggedUser)
+        const task = new Task(loggedUser.id, getRandom(this.interactions.all))
         this.tasks.push(task)
-
-        socket.emit('dashboard:give-task', task.sentence)
         this.checkTime(task, socket)
-        socket.emit('dashboard:reset-timer', task.timer)
+        socket.emit('dashboard:display-task', task.sentence, task.timer)
     }
 
-    listenTask(socket) {
+    listenTasks(socket) {
         socket.on('interaction:activated', this.resultAction)
     }
 
     resultAction(userAction) {
         let valide = false
-
-        // update status interaction
-        this.intaractions.forEach((interaction) => {
-            if(interaction.data.title.replace(/\W/g,'_').toLowerCase() === userAction.element.name) {
-                switch (interaction.type) {
-                    case 'bool':
-                        if (interaction.status === 'on') {
-                            interaction.status = 'off'
-                        } else {
-                            interaction.status = 'on'
-                        }
-                        break
-                    case 'simple-cursor':
-                    case 'complex-cursor':
-                    case 'rotate':
-                        interaction.status = userAction.actionMake
-                }
-            }
-        })
 
         // check if userAction is a task ask
         this.tasks.forEach((task, index) => {
@@ -137,7 +117,7 @@ class Game {
         this.socket = null
         this.sockets = null
         this.users = null
-        this.intaractions = null
+        this.interactions = null
         this.status = false
     }
 }

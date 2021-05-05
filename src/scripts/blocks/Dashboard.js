@@ -28,15 +28,13 @@ export default class Dashboard extends Block {
         this.displayDashboard = this.displayDashboard.bind(this)
         this.displayTask = this.displayTask.bind(this)
         this.displayScore = this.displayScore.bind(this)
-        this.resetTimer = this.resetTimer.bind(this)
         this.killTimer = this.killTimer.bind(this)
     }
 
     initEvents() {
         this.socket.on('dashboard:display', this.displayDashboard)
-        this.socket.on('dashboard:give-task', this.displayTask)
+        this.socket.on('dashboard:display-task', this.displayTask)
         this.socket.on('dashboard:update-score', this.displayScore)
-        this.socket.on('dashboard:reset-timer', this.resetTimer)
         this.socket.on('dashboard:kill-timer', this.killTimer)
     }
 
@@ -67,8 +65,16 @@ export default class Dashboard extends Block {
         })
     }
 
-    displayTask(currentTask) {
+    displayTask(currentTask, timer) {
         this.$els.task.innerHTML = currentTask
+        this.resetTimer(timer)
+    }
+
+    resetTimer(timer) {
+        let shapes = "rect"
+
+        this.tl = gsap.timeline({repeat:0})
+        this.tl.from(shapes, { drawSVG:"0% 0%", duration: timer/1000})
     }
 
     displayScore(score) {
@@ -81,19 +87,10 @@ export default class Dashboard extends Block {
         this.tl.kill()
     }
 
-    resetTimer(timer) {
-
-        let shapes = "rect"
-
-        this.tl = gsap.timeline({repeat:0})
-        this.tl.from(shapes, { drawSVG:"0% 0%", duration: timer/1000,})
-    }
-
     destroy() {
         this.socket.removeListener('dashboard:display')
-        this.socket.removeListener('dashboard:give-task')
+        this.socket.removeListener('dashboard:display-task')
         this.socket.removeListener('dashboard:update-score')
-        this.socket.removeListener('dashboard:reset-timer')
         this.socket.removeListener('dashboard:kill-timer')
         this.$els.timer.style.strokeDashoffset = 0
         this.tl.kill()
