@@ -9,7 +9,8 @@ export default class Dashboard extends Block {
         this.$els = {
             grid: document.querySelector('.js-grid-container'),
             task: document.querySelector('.js-task'),
-            score: document.querySelector('.js-score')
+            score: document.querySelector('.js-score'),
+            scoreEnd: document.querySelector('.js-score-end')
         }
         this.cptCursors = 0
     }
@@ -46,7 +47,6 @@ export default class Dashboard extends Block {
                     new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.cptCursors)
                     break
                 case 'rotate':
-                    console.log(interaction)
                     new Rotate(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
                     break
             }
@@ -58,7 +58,8 @@ export default class Dashboard extends Block {
     }
 
     displayScore(score) {
-        this.$els.score.innerHTML = score
+        this.$els.score.style.transform = 'scaleX(' + score * 0.1 + ')'
+        this.$els.scoreEnd.style.width = score * 10 + '%'
     }
 
     destroy() {

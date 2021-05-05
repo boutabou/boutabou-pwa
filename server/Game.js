@@ -14,7 +14,7 @@ class Game {
         this.theme = theme
         this.users = getUsersWithDashboard(users, this.theme)
         this.intaractions = getInteractions(this.users)
-        this.score = 0
+        this.score = 5
         this.tasks = []
     }
 
@@ -32,6 +32,10 @@ class Game {
 
                 this.newTask(loggedUser, socket)
                 this.listenTask(socket)
+            })
+
+            socket.on('load:result-theme', () => {
+                socket.emit('result-theme:win', this.theme)
             })
         })
     }
@@ -85,6 +89,15 @@ class Game {
             this.score --
         } else {
             this.score ++
+        }
+
+        if(this.score >= 6) {
+            setTimeout(() => { this.io.emit('direction',  '/views/pages/result-theme.ejs') }, 1000)
+        }
+
+        if(this.score <= 0) {
+            this.io.emit()
+            this.io.emit()
         }
 
         this.io.emit('dashboard:update-score', this.score)

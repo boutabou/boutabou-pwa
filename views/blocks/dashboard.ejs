@@ -1,7 +1,19 @@
 <div class="dashboard js-dashboard">
     <div class="container">
         <div class="task js-task"></div>
-        <div class="score js-score">0</div>
+        <div class="score">
+            <span class="score__total">
+                <span class="score__cursor js-score">
+                </span>
+            </span>
+            <div class="score__end">
+                <div class="end js-score-end">
+                    <div class="img">
+                        <%- include('../../assets/images/game/score.svg'); %>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="grid-container js-grid-container"></div>
 </div>

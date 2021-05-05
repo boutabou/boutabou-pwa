@@ -33,6 +33,11 @@
       }
     }
 
+    p {
+      width: 100%;
+      text-align: center;
+    }
+
     .bool, .list {
       display: flex;
       flex-direction: column;
