@@ -9,18 +9,22 @@ export default class Dashboard extends Block {
         this.$els = {
             grid: document.querySelector('.js-grid-container'),
             task: document.querySelector('.js-task'),
-            cptCursors: 0
+            score: document.querySelector('.js-score'),
+            scoreEnd: document.querySelector('.js-score-end')
         }
+        this.cptCursors = 0
     }
 
     bindMethods() {
         this.displayDashboard = this.displayDashboard.bind(this)
         this.displayTask = this.displayTask.bind(this)
+        this.displayScore = this.displayScore.bind(this)
     }
 
     initEvents() {
         this.socket.on('dashboard:display', this.displayDashboard)
         this.socket.on('dashboard:give-task', this.displayTask)
+        this.socket.on('dashboard:update-score', this.displayScore)
     }
 
     displayDashboard(currentUser) {
@@ -35,15 +39,14 @@ export default class Dashboard extends Block {
                     new List(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
                     break
                 case 'simple-cursor':
-                    this.$els.cptCursors ++ 
-                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.$els.cptCursors)
+                    this.cptCursors ++
+                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.cptCursors)
                     break
                 case 'complex-cursor':
-                    this.$els.cptCursors ++ 
-                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.$els.cptCursors)
+                    this.cptCursors ++
+                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.cptCursors)
                     break
                 case 'rotate':
-                    console.log(interaction)
                     new Rotate(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
                     break
             }
@@ -54,8 +57,14 @@ export default class Dashboard extends Block {
         this.$els.task.innerHTML = currentTask
     }
 
+    displayScore(score) {
+        this.$els.score.style.transform = 'scaleX(' + score * 0.1 + ')'
+        this.$els.scoreEnd.style.width = score * 10 + '%'
+    }
+
     destroy() {
         this.socket.removeListener('dashboard:display')
         this.socket.removeListener('dashboard:give-task')
+        this.socket.removeListener('dashboard:update-score')
     }
 }

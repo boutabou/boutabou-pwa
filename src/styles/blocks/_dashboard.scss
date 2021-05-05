@@ -33,6 +33,11 @@
       }
     }
 
+    p {
+      width: 100%;
+      text-align: center;
+    }
+
     .bool, .list {
       display: flex;
       flex-direction: column;
@@ -49,77 +54,78 @@
       width: 80%;
       margin: auto;
       position: relative;
-  
+
       .progress-bar {
         margin: auto;
         background-color: $color-purple;
         border-radius: 10px;
-  
-        &.progress-horizontal{
-          width: calc( 100% - 25px);
+
+        &.progress-horizontal {
+          width: calc(100% - 25px);
           height: 8px;
           transform: translateY(12.5px);
         }
-  
-        &.progress-vertical{
+
+        &.progress-vertical {
           height: calc(100% - 25px);
           transform: translateY(10px);
           width: 8px;
         }
       }
-  
+
       .cursor {
         height: 28px;
-        width: 28px;   
-        border: 2px solid white; 
+        width: 28px;
+        border: 2px solid white;
         position: absolute;
         background: $color-purple;
         border-radius: 50px;
         z-index: 1;
         left: 0;
-        font-size: bold; 
+        font-size: bold;
         right: 0;
         transition: transform ease-in-out .2s;
-  
+
         &.cursor-vertical {
-          left: calc( 50% - 14px);
+          left: calc(50% - 14px);
         }
       }
-  
+
       .steps {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+
+        &.steps-vertical {
+          height: calc(100% + 34px);
+          top: -19.5px;
+
+          div {
+            width: 44%;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+          }
+        }
+
+        &.steps-horizontal {
+          display: flex;
+          flex-direction: row;
           height: 100%;
-          width: 100%;
+          width: calc(100% + 50px);
           position: absolute;
           z-index: 0;
           top: 0;
-  
-          &.steps-vertical{
-            height: calc( 100% + 34px );
-            top: -19.5px;
-            div{
-              width: 44%;
-              color: black;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              font-size: 16px;
-            }
-          }
-  
-          &.steps-horizontal {
-            display: flex;
-            flex-direction: row;
-            height: 100%;
-            width: calc( 100% + 50px );
-            position: absolute;
-            z-index: 0;
-            top: 0;
-          }
-          
-          div {
-            display: flex;
-            align-items: center;
-          }
+        }
+
+        div {
+          display: flex;
+          align-items: center;
+        }
       }
     }
   }
@@ -127,7 +133,8 @@
   .rotate {
     p {
       margin-bottom: 40px;
-    } 
+    }
+
     .container-rotate {
       position: absolute;
       background-color: #6500ff;
@@ -137,9 +144,10 @@
       border-radius: 50%;
       margin: auto;
       position: relative;
-      
+
       .ticks {
         transform: rotate(-90deg) translate(-55px, 0px);
+
         .tick {
           width: auto;
           height: 10px;
@@ -149,30 +157,34 @@
           top: 50%;
           margin-left: -5px;
           margin-top: -5px;
-  
+
           &:nth-child(1) {
             transform: rotate(0deg) translate(80px) rotate(90deg);
           }
+
           &:nth-child(2) {
             transform: rotate(60deg) translate(80px) rotate((60 * -1deg) + 90deg);
           }
+
           &:nth-child(3) {
             transform: rotate(120deg) translate(80px) rotate((120 * -1deg) + 90deg);
           }
+
           &:nth-child(4) {
             transform: rotate(180deg) translate(80px) rotate((180 * -1deg) + 90);
           }
+
           &:nth-child(5) {
             transform: rotate(240deg) translate(80px) rotate((240 * -1deg) + 90deg);
           }
+
           &:nth-child(6) {
             transform: rotate(300deg) translate(80px) rotate((300 * -1deg)+ 90deg);
           }
         }
       }
-      
 
-  
+
       #knob {
         position: absolute;
         width: 80%;
@@ -203,10 +215,4 @@
       }
     }
   }
-
-
-  
-
-  
-
 }

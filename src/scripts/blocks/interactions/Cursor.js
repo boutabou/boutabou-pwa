@@ -21,7 +21,7 @@ export default class Cursor extends Interaction {
 
     addClassContainer() {
         this.containerInteraction.classList.add('cursor-'+this.index)
-    } 
+    }
 
     bindMethods() {
         this.displayCursor = this.displayCursor.bind(this)
@@ -36,7 +36,7 @@ export default class Cursor extends Interaction {
         const handleEl = document.createElement("div")
         const progressBar = document.createElement("div")
         const stepsContainer = document.createElement("div")
-        let stepsEl = []  
+        let stepsEl = []
 
         cursorContainer.classList.add("container-cursor-"+index, "container-cursor")
         handleEl.classList.add("cursor", "cursor-"+orientation)
@@ -48,7 +48,7 @@ export default class Cursor extends Interaction {
         cursorContainer.appendChild(handleEl)
         cursorContainer.appendChild(progressBar)
         cursorContainer.appendChild(stepsContainer)
- 
+
         steps.forEach((step, index) => {
             const step_index = document.createElement("div")
             step_index.classList.add("step-"+index)
@@ -88,19 +88,19 @@ export default class Cursor extends Interaction {
             type: "y",
             bounds: ".container-cursor-"+index,
             onDrag() {
-                gsap.set(currentCursor, { 
+                gsap.set(currentCursor, {
                     y: this.y
                 })
             },
-            onThrowUpdate() { 
-                    gsap.set(currentCursor, { 
+            onThrowUpdate() {
+                    gsap.set(currentCursor, {
                         y: this.y
-                    }) 
+                    })
             },
             liveSnap: true,
             snap(value) {
                     indexStep = Math.round(value / this.maxY * (stepsEl.length - 1))
-                    
+
                     if (indexStep === 0) return 0
                     if (indexStep === stepsEl.length - 1) return this.maxY
 
@@ -121,12 +121,12 @@ export default class Cursor extends Interaction {
             type: "x",
             bounds: ".container-cursor-"+index,
             onDrag() {
-                    gsap.set(currentCursor, { 
+                    gsap.set(currentCursor, {
                         x: this.x
-                    }) 
+                    })
             },
             onThrowUpdate() {
-                    gsap.set(currentCursor, { 
+                    gsap.set(currentCursor, {
                         x: 0
                     })
             },
@@ -147,11 +147,11 @@ export default class Cursor extends Interaction {
 
     onDragEnd(e, indexStep) {
         const name = e.path[2].dataset
-        this.socket.emit('interaction-activated', { 'element' : name, 'actionMake' : this.params[indexStep] })
+        this.socket.emit('interaction:activated', { 'element' : name, 'actionMake' : this.params[indexStep] })
     }
 
 }
 
-    
+
 
 

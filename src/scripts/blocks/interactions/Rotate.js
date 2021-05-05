@@ -37,15 +37,24 @@ export default class Rotate extends Interaction {
         gsap.registerPlugin(Draggable);
 
         Draggable.create("#knob", {
-            type:"rotation", 
+            type:"rotation",
             liveSnap: true,
             snap(value) {
                     let rotation = Math.round(value, 10)
                     indexStep = Math.round(rotation / 360 * (ctx.params.length))
                     console.log(indexStep)
-                    return Math.round((360/ctx.params.length) * indexStep) 
+                    return Math.round((360/ctx.params.length) * indexStep)
+            },
+            onDragEnd() {
+                let index = indexStep % ctx.params.length
+
+                if (index<0) {
+                    index = ctx.params.length + index
+                }
+
+                ctx.socket.emit('interaction:activated', { 'element' : { name : ctx.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : ctx.params[index] })
             }
-        });
+        })
     }
 
     destroy() {}

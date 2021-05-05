@@ -6,7 +6,14 @@
 
 <body>
     <main id="swup" class="transition-fade">
-        <%- include('../blocks/scan'); %>
+        <div class="scan-page">
+            <%- include('../blocks/scan'); %>
+
+            <div class="scan-page__info">
+                <p><span>Scannez</span> une carte thématique pour commencer la partie</p>
+                <input class="js-username" type="text" id="name" name="name" placeholder="entrer l'ID à la main" required autofocus>
+            </div>
+        </div>
     </main>
 
     <%- include('../partials/import-js'); %>
