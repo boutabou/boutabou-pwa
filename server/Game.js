@@ -16,6 +16,7 @@ class Game {
         this.intaractions = getInteractions(this.users)
         this.score = 5
         this.tasks = []
+        this.status = true
     }
 
     bindMethods() {
@@ -25,11 +26,13 @@ class Game {
     startGame() {
         this.sockets.forEach((socket) => {
             socket.on('load:dashboard', () => {
-                const loggedUser = getLoggedTable(socket.id, this.users)
-                socket.emit('dashboard:display', loggedUser, this.theme)
+                if(this.status) {
+                    const loggedUser = getLoggedTable(socket.id, this.users)
+                    socket.emit('dashboard:display', loggedUser, this.theme)
 
-                this.newTask(loggedUser, socket)
-                this.listenTask(socket)
+                    this.newTask(loggedUser, socket)
+                    this.listenTask(socket)
+                }
             })
 
             socket.on('load:result-theme', () => {
@@ -119,8 +122,6 @@ class Game {
     }
 
     endGame() {
-        this.tasks = []
-
         this.sockets.forEach((socket) => {
             socket.off('interaction:activated', this.resultAction)
             socket.off('load:dashboard', () => {
@@ -131,8 +132,14 @@ class Game {
                 this.listenTask(socket)
             })
         })
-    }
 
+        this.tasks = []
+        this.socket = null
+        this.sockets = null
+        this.users = null
+        this.intaractions = null
+        this.status = false
+    }
 }
 
 module.exports = {

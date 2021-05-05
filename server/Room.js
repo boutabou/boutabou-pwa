@@ -55,13 +55,11 @@ class Room {
 
             socket.on('load:theme', () => { this.io.emit('theme:selected', theme) })
 
-            if(this.game === null) {
-                this.game = new Game(io, socket, this.users, theme, this.sockets)
-            } else {
-                this.game.vars(io, socket, this.users, theme, this.sockets)
-            }
+            this.game = null
+            delete this.game
+            this.game = new Game(io, socket, this.users, theme, this.sockets)
 
-            this.games.push(theme)
+            this.games.push(this.game)
 
             setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 3000)
         })
