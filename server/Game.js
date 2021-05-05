@@ -1,4 +1,5 @@
 const { getUsersWithDashboard, getInteractions, getLoggedTable, getTask } = require('./utils')
+const { checkTime } = require('./Task')
 
 class Game {
     constructor(io, socket, users, theme, sockets) {
@@ -43,7 +44,10 @@ class Game {
     newTask(loggedUser, socket) {
         const task = getTask(this.intaractions, loggedUser)
         this.tasks.push(task)
+        
         socket.emit('dashboard:give-task', task.sentence)
+        this.checkTime(task, socket)
+        socket.emit('dashboard:reset-timer', task.timer)
     }
 
     listenTask(socket) {
@@ -76,7 +80,9 @@ class Game {
         this.tasks.forEach((task, index) => {
             if(userAction.element.name === task.name && userAction.actionMake === task.request ) {
                 this.tasks.splice(index, 1)
-                this.newTask(getLoggedTable(task.idUser, this.users), getLoggedTable(task.idUser, this.sockets))
+                let currentSocketTask = getLoggedTable(task.idUser, this.sockets)
+                currentSocketTask.emit('dashboard:kill-timer')
+                this.newTask(getLoggedTable(task.idUser, this.users), currentSocketTask)
                 valide = true
             }
         })
@@ -102,6 +108,16 @@ class Game {
 
         this.io.emit('dashboard:update-score', this.score)
     }
+
+    checkTime(task) {
+        setTimeout(() =>  {
+            if(this.tasks.includes(task)) {
+                this.tasks = this.tasks.filter((currentTask) => { return currentTask.idUser !== task.idUser })
+                this.newTask(getLoggedTable(task.idUser, this.users), getLoggedTable(task.idUser, this.sockets))
+            }
+        }, task.timer)
+    }
+
 }
 
 module.exports = {

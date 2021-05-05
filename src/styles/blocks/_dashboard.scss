@@ -3,9 +3,52 @@
   flex-direction: column;
   height: 100vh;
 
-  .task {
-    height: calc(100vh - 350px);
+  
+
+  .task-container {
+    //width: 80vw;
+    width: 290px;
+    height: 75px;
+    border-radius: 10px;
+    position: relative;
+    margin: auto;
+    -webkit-box-shadow: 10px 10px 29px -9px rgba(0,0,0,0.57);
+    -moz-box-shadow: 10px 10px 29px -9px rgba(0,0,0,0.57);
+    box-shadow: 10px 10px 29px -9px rgba(0,0,0,0.57);
+    overflow: hidden;
+    border-radius: 25px;
+    background-color: #6500FF;
+
+    svg {
+      position: absolute;
+      right: 0;
+      z-index: 3;
+      top: 0;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .task-content {
+      position: absolute;
+      top: 10px;
+      width: calc( 100% - 20px);
+      height: calc(100% - 20px);
+      left: 10px;
+      background: #6500FF;
+      border-radius: 16px;
+      display: flex;
+      z-index: 1;
+      justify-content: center;
+      align-items: center;
+
+      .task {
+        text-align: center;
+        color: white;
+      }
+    }
   }
+
+  
 
   .grid-container {
     overflow: hidden;
