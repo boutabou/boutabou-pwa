@@ -13,6 +13,7 @@ class Room {
         this.users = []
         this.sockets = []
         this.games = []
+        this.game = null
     }
 
     bindMethods() {
@@ -46,26 +47,23 @@ class Room {
     }
 
     async initGame(io, socket) {
-        socket.on('load:scan', () => {
+        socket.on('load:scan', async () => {
             socket.broadcast.emit('direction',  '/views/pages/wait-scan.ejs')
 
-            // const theme = await getTheme(socket)
-            // this.io.emit('direction',  '/views/pages/theme.ejs')
-            // this.io.emit('theme:selected', this.theme) // attention le theme doit etre load
-
-            const theme = {
-                "title" : "L'épilation",
-                "img" : "../../assets/images/themes/epilation.jpg",
-                "pathInteractions" : "data/interactions/depilation.json"
-            }
-
-            setTimeout(() => {
-                this.io.emit('direction',  '/views/pages/theme.ejs')
-            }, 1000)
+            const theme = await getTheme(socket)
+            this.io.emit('direction',  '/views/pages/theme.ejs')
 
             socket.on('load:theme', () => { this.io.emit('theme:selected', theme) })
 
-            this.games.push(new Game(io, socket, this.users, theme, this.sockets))
+            if(this.game === null) {
+                this.game = new Game(io, socket, this.users, theme, this.sockets)
+            } else {
+                this.game.vars(io, socket, this.users, theme, this.sockets)
+            }
+
+            this.games.push(theme)
+
+            setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 3000)
         })
     }
 }

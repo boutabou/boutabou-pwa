@@ -6,6 +6,7 @@
   },
   {
     "title" : "Les régles",
-    "img" : "../../assets/images/themes/regles.jpg"
+    "img" : "../../assets/images/themes/regles.jpg",
+    "pathInteractions" : "data/interactions/menstruation.json"
   }
 ]

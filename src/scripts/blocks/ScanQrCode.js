@@ -1,4 +1,5 @@
 import Block from './Block'
+import {io} from "socket.io-client";
 
 export default class ScanQrCode extends Block {
 
@@ -11,8 +12,30 @@ export default class ScanQrCode extends Block {
         this.html5QrCode = new Html5Qrcode("qr-reader")
     }
 
+    initEls() {
+        this.$els = {
+            idButton: document.querySelector('.js-id-button'),
+            id: document.querySelector('.js-id'),
+        }
+        this.currentId
+    }
+
+    bindMethods() {
+        this.getId = this.getId.bind(this)
+    }
+
     initEvents() {
         this.startScan()
+        this.$els.idButton.addEventListener('click', this.getId)
+    }
+
+    getId() {
+        if (this.$els.id.value && this.$els.id.value >= 0 && this.$els.id.value <= 1) {
+            this.currentId = this.$els.id.value
+            this.socket.emit('theme-choice', this.currentId)
+        } else {
+            alert('Entrez un id correct')
+        }
     }
 
     startScan() {
@@ -37,5 +60,7 @@ export default class ScanQrCode extends Block {
                 console.log('scan stop faild ', err)
             })
         }
+
+        this.$els.idButton.removeEventListener('click', this.getId)
     }
 }

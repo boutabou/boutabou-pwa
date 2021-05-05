@@ -1,5 +1,7 @@
 <div class="welcome">
-    <img src="../../assets/images/cover.jpg"/>
+    <div class="welcome__img">
+        <%- include('../../assets/images/cover.svg'); %>
+    </div>
     <div class="container container--ultra container--end">
         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ...</p>
         <%- include('../components/button', { buttonLink : '/views/pages/login.ejs', buttonText : "COMMENCER", buttonClass : "" }); %>

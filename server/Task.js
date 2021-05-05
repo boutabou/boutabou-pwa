@@ -10,9 +10,11 @@ class Task {
         this.type = type
         this.sentence = sentence
         this.status = status
+        this.timer = 12000
     }
+
 }
 
 module.exports = {
-    Task
+    Task,
 }
