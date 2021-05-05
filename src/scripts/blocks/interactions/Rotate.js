@@ -42,7 +42,6 @@ export default class Rotate extends Interaction {
             snap(value) {
                     let rotation = Math.round(value, 10)
                     indexStep = Math.round(rotation / 360 * (ctx.params.length))
-                    console.log(indexStep)
                     return Math.round((360/ctx.params.length) * indexStep) 
             }
         });

@@ -15,29 +15,24 @@ export default class Dashboard extends Block {
         this.$els = {
             grid: document.querySelector('.js-grid-container'),
             task: document.querySelector('.js-task'),
-            /*timer: {
-                "container" : document.querySelector('.js-timer'),
-                "first" : document.querySelector('.first'),
-                "second" : document.querySelector('.second'),
-                "third" : document.querySelector('.third'),
-                "fourth" : document.querySelector('.fourth'),
-                "last" : document.querySelector('.last'),
-            }  */
             timer:  document.querySelector('.js-timer')
         },
         this.cptCursors= 0
+		this.tl 
     }
 
     bindMethods() {
         this.displayDashboard = this.displayDashboard.bind(this)
         this.displayTask = this.displayTask.bind(this)
         this.resetTimer = this.resetTimer.bind(this)
+        this.killTimer = this.killTimer.bind(this)
     }
 
     initEvents() {
         this.socket.on('dashboard:display', this.displayDashboard)
         this.socket.on('dashboard:give-task', this.displayTask)
         this.socket.on('dashboard:reset-timer', this.resetTimer)
+        this.socket.on('dashboard:kill-timer', this.killTimer)
     }
 
     displayDashboard(currentUser) {
@@ -60,7 +55,6 @@ export default class Dashboard extends Block {
                     new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.$els.cptCursors)
                     break
                 case 'rotate':
-                    console.log(interaction)
                     new Rotate(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
                     break
             }
@@ -71,40 +65,17 @@ export default class Dashboard extends Block {
         this.$els.task.innerHTML = currentTask
     }
 
+    killTimer() {
+        this.$els.timer.style.strokeDashoffset = 0
+        this.tl.kill()
+    }
+
     resetTimer(timer) {
-        /*timer = timer + 1000
-        console.log(timer)
-        console.log()
-        this.$els.timer["container"].classList.remove('active')
 
-        this.$els.timer["first"].style.animationDuration = timer*0.2177+"ms"
+        let shapes = "rect"
 
-        this.$els.timer["second"].style.animationDuration = timer*0.0645+"ms"
-        this.$els.timer["second"].style.animationDelay = timer*0.2177 - 400+"ms"
-
-        this.$els.timer["third"].style.animationDuration = timer*0.43+"ms"
-        this.$els.timer["third"].style.animationDelay = (timer*0.2177) + (timer*0.0645) - 600 + "ms"
-
-        this.$els.timer["fourth"].style.animationDuration = timer*0.0645+"ms"
-        this.$els.timer["fourth"].style.animationDelay = (timer*0.0645) +(timer*0.2177) + (timer*0.43) - 800 + "ms"
-
-        this.$els.timer["last"].style.animationDuration = timer*0.2177+"ms"
-        this.$els.timer["last"].style.animationDelay = (timer*0.2177) + ((timer*0.0645)*2)  + (timer*0.43) - 1000 + "ms"
-        setTimeout(()=> {
-            this.$els.timer["container"].classList.add('active') 
-        }, 100)*/
-
-        //this.$els.timer.classList.remove('active')
-
-        /*setTimeout(()=> {
-            this.$els.timer.classList.add('active') 
-        }, 100)*/
-
-        var shapes = "rect",
-		tl = gsap.timeline({repeat:0, yoyo:false});
-
-        tl.from(shapes, timer/1000, { drawSVG:"0% 0%"}) 
-        
+        this.tl = gsap.timeline({repeat:0})
+        this.tl.from(shapes, { drawSVG:"0% 0%", duration: timer/1000,}) 
     } 
 
     destroy() {

@@ -37,8 +37,8 @@ class Game {
         this.tasks.push(task)
         
         socket.emit('dashboard:give-task', task.sentence)
-        socket.emit('dashboard:reset-timer', task.timer)
         this.checkTime(task, socket)
+        socket.emit('dashboard:reset-timer', task.timer)
     }
 
     listenTask(socket) {
@@ -47,18 +47,18 @@ class Game {
                 if(userAction.element.name === task.name && userAction.actionMake === task.request ) {
                     this.tasks.splice(index, 1)
                     this.score ++
-                    this.newTask(getLoggedTable(task.idUser, this.users), getLoggedTable(task.idUser, this.sockets))
+                    let currentSocketTask = getLoggedTable(task.idUser, this.sockets)
+                    currentSocketTask.emit('dashboard:kill-timer')
+                    this.newTask(getLoggedTable(task.idUser, this.users), currentSocketTask)
                 }
             })
         })
     }
 
     checkTime(task) {
-        let index = this.tasks.indexOf(task)
         setTimeout(() =>  {
-            //console.log(task.idUser)
             if(this.tasks.includes(task)) {
-                this.tasks.splice(index, 1)
+                this.tasks = this.tasks.filter((currentTask) => { return currentTask.idUser !== task.idUser })
                 this.newTask(getLoggedTable(task.idUser, this.users), getLoggedTable(task.idUser, this.sockets))
             }
         }, task.timer)
