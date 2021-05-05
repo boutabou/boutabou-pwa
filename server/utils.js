@@ -74,6 +74,11 @@ function getUsersWithDashboard(users, currentTheme) {
     return users
 }
 
+/**
+ * Return item of tad with the same id of socketId
+ * @param users Array(User), sockets Array(Socket)
+ * return Array(Interaction)
+ */
 function getInteractions(users, sockets) {
     const interactions = new Interactions(sockets)
 

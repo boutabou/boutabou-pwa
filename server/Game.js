@@ -109,11 +109,11 @@ class Game {
                 socket.emit('dashboard:display', loggedUser, this.theme)
 
                 this.newTask(loggedUser, socket)
-                this.listenTask(socket)
+                this.listenTasks(socket)
             })
         })
 
-        this.tasks = []
+        this.tasks = null
         this.socket = null
         this.sockets = null
         this.users = null
