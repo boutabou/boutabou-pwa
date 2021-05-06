@@ -4,16 +4,48 @@ export default class Room extends Block {
     initEls() {
         this.$els = {
             listUsers: document.querySelector('.js-list-users'),
+            scanButton : document.querySelector('.js-scan-button'),
+            popup: document.querySelector('.js-popup'),
+            popupTitle: document.querySelector('.js-popup-title'),
         }
     }
 
     bindMethods() {
         this.displayUsers = this.displayUsers.bind(this)
+        this.clickScan = this.clickScan.bind(this)
+        this.waitRoom = this.waitRoom.bind(this)
+        this.waitScan = this.waitScan.bind(this)
+        this.endScan = this.endScan.bind(this)
     }
 
     initEvents() {
-        window.history.pushState({}, '')
         this.socket.on('room:display-users', this.displayUsers)
+        this.socket.on('room:popup-wait-room', this.waitRoom)
+        this.socket.on('popup-wait-scan', this.waitScan)
+        this.socket.on('remove-popup-wait-scan', this.endScan)
+        this.$els.scanButton.addEventListener('click', this.clickScan)
+    }
+
+    clickScan() {
+        this.socket.emit('room:scan-button-clicked', this.socket.id)
+    }
+
+    waitRoom() {
+        this.socket.off()
+        this.socket.disconnect()
+        this.socket = null
+        this.$els.popup.classList.add('active')
+        this.$els.popupTitle.innerHTML = "Désolée, une partie est déjà en cour"
+    }
+
+    waitScan() {
+        this.$els.popup.classList.add('active')
+        this.$els.popupTitle.innerHTML = "Un joueur est en train de choisir le théme"
+    }
+
+    endScan() {
+        this.$els.popup.classList.remove('active')
+        this.$els.popupTitle.innerHTML = ""
     }
 
     displayUsers(users) {
@@ -35,6 +67,10 @@ export default class Room extends Block {
     }
 
     destroy() {
-        this.socket.removeListener('room:display-users')
+        this.socket.off('room:display-users', this.displayUsers)
+        this.socket.off('room:popup-wait-room', this.waitRoom)
+        this.socket.off('popup-wait-scan', this.waitScan)
+        this.socket.off('remove-popup-wait-scan', this.endScan)
+        this.$els.scanButton.removeEventListener('click', this.clickScan)
     }
 }

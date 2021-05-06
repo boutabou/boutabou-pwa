@@ -8,6 +8,12 @@ class App {
         this.socket = null
         document.addEventListener('swup:contentReplaced', (event) => {
             this.init()
+
+            if (this.socket && document.querySelector('.js-login')) {
+                this.socket.off()
+                this.socket.disconnect()
+                this.socket = null
+            }
         })
 
         document.addEventListener('swup:willReplaceContent', (event) => {
