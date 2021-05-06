@@ -27,6 +27,8 @@ export default class Bool extends Interaction {
             e.currentTarget.innerHTML = "ON"
             this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : "off" })
         }
+
+        window.navigator.vibrate(200)
     }
 
     destroy() {

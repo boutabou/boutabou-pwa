@@ -23,11 +23,30 @@
   div {
     background-color: $color-purple;
     font-weight: 800;
-    font-size: 14px;
+    font-size: 15px;
     color: $color-white;
-    padding: 12px 30px 10px 30px;
-    border-radius: 25px;
+    padding: 12px 40px 10px 40px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
+
+    &:hover {
+      background-color: $color-dark-blue;
+    }
+  }
+
+  &:hover {
+    div {
+      background-color: #7e52ff;
+    }
+  }
+
+  &.inactive {
+    pointer-events: none;
+
+    div {
+      background-color: #4800ae;
+      color: #a9a6b1;
+    }
   }
 }

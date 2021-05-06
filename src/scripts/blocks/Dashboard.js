@@ -95,6 +95,7 @@ export default class Dashboard extends Block {
         this.socket.removeListener('dashboard:display-task')
         this.socket.removeListener('dashboard:update-score')
         this.socket.removeListener('dashboard:kill-timer')
+        this.socket.removeListener('dashboard:vibrate')
         this.$els.timer.style.strokeDashoffset = 0
         this.tl.kill()
     }

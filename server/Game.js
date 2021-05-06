@@ -26,7 +26,7 @@ class Game {
         this.sockets.forEach((socket) => {
             socket.on('load:dashboard', this.initUser)
             socket.on('load:result-theme', this.giveDataResultTheme)
-        })
+        }) 
     }
 
     initUser(id) {

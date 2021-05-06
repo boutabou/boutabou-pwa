@@ -8,6 +8,7 @@ export default class Cursor extends Interaction {
         this.orientation = orientation
         this.index = index
 
+        this.initEls()
         this.bindMethods()
         this.displayCursor(this.containerInteraction, this.orientation, this.params, this.index)
 
@@ -15,6 +16,14 @@ export default class Cursor extends Interaction {
             this.destroy()
         })
     }
+
+    initEls() {
+        this.$els = {
+            progressBar: document.querySelector(".js-progress-"+this.index),
+        }
+    }
+
+
 
 
     addClassContainer() {
@@ -27,6 +36,7 @@ export default class Cursor extends Interaction {
         this.displayHorizontalCursor = this.displayHorizontalCursor.bind(this)
         this.onDragEnd = this.onDragEnd.bind(this)
         this.displayRotateCursor = this.displayInteraction.bind(this)
+        this.initEls = this.initEls.bind(this)
     }
 
     displayCursor(container, orientation, steps, index){
@@ -39,7 +49,7 @@ export default class Cursor extends Interaction {
         cursorContainer.classList.add("container-cursor-"+index, "container-cursor", "container-cursor__"+orientation,  "container-cursor__"+orientation +"-"+steps.length)
         handleEl.classList.add("cursor", "cursor-"+orientation)
         handleEl.setAttribute("id", "cursor-"+index)
-        progressBar.classList.add("progress-bar", "progress-" + orientation)
+        progressBar.classList.add("progress-bar", "progress-" + orientation, "js-progress-"+index)
         stepsContainer.classList.add("steps", "steps-"+orientation)
 
         container.appendChild(cursorContainer)
@@ -81,6 +91,8 @@ export default class Cursor extends Interaction {
 
         const ctx = this
         let indexStep = 0
+        let progressBar = document.querySelector(".js-progress-"+index)
+
 
         Draggable.create(currentCursor, {
             type: "y",
@@ -97,6 +109,8 @@ export default class Cursor extends Interaction {
             },
             liveSnap: true,
             snap(value) {
+                    progressBar.style.backgroundColor = "#040f33"
+
                     indexStep = Math.round(value / this.maxY * (stepsEl.length - 1))
 
                     if (indexStep === 0) return 0
@@ -106,6 +120,7 @@ export default class Cursor extends Interaction {
             },
             onDragEnd(e){
                 ctx.onDragEnd(e, indexStep)
+                progressBar.style.backgroundColor = "#6500FF"
             }
         })
     }
@@ -114,6 +129,8 @@ export default class Cursor extends Interaction {
 
         const ctx = this
         let indexStep = 0
+        let progressBar = document.querySelector(".js-progress-"+index)
+
 
         Draggable.create(currentCursor, {
             type: "x",
@@ -130,20 +147,26 @@ export default class Cursor extends Interaction {
             },
             liveSnap: true,
             snap(value){
+
+                progressBar.style.backgroundColor = "#040f33"
+
                 indexStep =  Math.round(value / this.maxX * (stepsEl.length - 1))
 
                 if (indexStep === 0) return 0
                 if (indexStep === stepsEl.length - 1) return this.maxX
 
+
                 return indexStep * (stepsEl[0].offsetWidth) -14 + 12.5
             },
             onDragEnd(e){
                 ctx.onDragEnd(e, indexStep)
+                progressBar.style.backgroundColor = "#6500FF"
             }
         });
     }
 
     onDragEnd(e, indexStep) {
+        window.navigator.vibrate(200)
         this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : this.params[indexStep] })
     }
 }
