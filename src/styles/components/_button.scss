@@ -29,15 +29,27 @@
     border-radius: 10px;
     display: flex;
     justify-content: center;
-
-    &:hover {
-      background-color: $color-dark-blue;
-    }
+    width: fit-content;
+    margin: auto;
   }
 
   &:hover {
     div {
-      background-color: #7e52ff;
+      background-color: #8e6eff;
+      color: white;
+    }
+  }
+
+  &--blue {
+    div {
+      background-color: $color-dark-blue;
+    }
+
+    &:hover {
+      div {
+        background-color: #26356a;
+        color: white;
+      }
     }
   }
 
@@ -45,8 +57,8 @@
     pointer-events: none;
 
     div {
-      background-color: #4800ae;
-      color: #a9a6b1;
+      background-color: #43009b;
+      color: #827f91;
     }
   }
 }

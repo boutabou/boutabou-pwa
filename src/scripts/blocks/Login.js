@@ -50,7 +50,6 @@ export default class Login extends Block {
 
     enableButtonLogin() {
         setTimeout(() => {
-            console.log(this.$els.username.value, this.$els.username.value == '')
             if(this.$els.username.value == '') {
                 this.$els.loginButton.classList.add('inactive')
             } else {
