@@ -9,12 +9,12 @@ const avatars = require('./data/avatars.json')
  */
 function getUser(socket) {
     const promise  = new Promise((resolve, reject) => {
-        socket.on('room:user-login', (name) => {
-            const lessUsedAvatars = getLessUsed(avatars)
-            const randomAvatar = lessUsedAvatars[getRandomIndex(lessUsedAvatars)]
-            const user = new User(name, socket.id, randomAvatar)
+        socket.on('room:user-login', (name, avatar) => {
+            //const lessUsedAvatars = getLessUsed(avatars)
+            //const randomAvatar = lessUsedAvatars[getRandomIndex(lessUsedAvatars)]
+            const user = new User(name, socket.id, avatar)
 
-            randomAvatar.nbUsed ++
+            //randomAvatar.nbUsed ++
 
             if (user) {
                 resolve(user)

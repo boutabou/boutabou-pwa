@@ -21,8 +21,6 @@ export default class Direction {
         const block = url.replace('/views/pages/', '').replace('.ejs', '')
         const blockEls = document.querySelector(`.js-${block}`)
 
-        console.log(url)
-
         if(!blockEls) {
             this.swup.loadPage({
                 url: url,
