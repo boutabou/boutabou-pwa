@@ -20,6 +20,7 @@ export default class Bool extends Interaction {
     }
 
     toogleBool(e) {
+        window.navigator.vibrate(200)
         const name = e.currentTarget.parentElement.dataset
         if(e.currentTarget.innerHTML === "ON") {
             e.currentTarget.innerHTML = "OFF"

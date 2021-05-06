@@ -77,6 +77,8 @@ class Game {
             }
         })
 
+        
+
         // check if userAction is a task ask
         this.tasks.forEach((task, index) => {
             if(userAction.element.name === task.name && userAction.actionMake === task.request ) {
@@ -85,10 +87,9 @@ class Game {
                 currentSocketTask.emit('dashboard:kill-timer')
                 this.newTask(getLoggedTable(task.idUser, this.users), currentSocketTask)
                 valide = true
-            }
+            } 
         })
 
-        this.updateScore(valide)
     }
 
     updateScore(valide) {

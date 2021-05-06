@@ -81,6 +81,7 @@ export default class Dashboard extends Block {
         this.tl.kill()
     }
 
+
     resetTimer(timer) {
 
         let shapes = "rect"
@@ -89,12 +90,16 @@ export default class Dashboard extends Block {
         this.tl.from(shapes, { drawSVG:"0% 0%", duration: timer/1000,})
     }
 
+   
+
+
     destroy() {
         this.socket.removeListener('dashboard:display')
         this.socket.removeListener('dashboard:give-task')
         this.socket.removeListener('dashboard:update-score')
         this.socket.removeListener('dashboard:reset-timer')
         this.socket.removeListener('dashboard:kill-timer')
+        this.socket.removeListener('dashboard:vibrate')
         this.$els.timer.style.strokeDashoffset = 0
         this.tl.kill()
     }

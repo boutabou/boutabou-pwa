@@ -5,9 +5,7 @@ const theme = require('./data/themes.json')
 function getUser(socket) {
     const promise  = new Promise((resolve, reject) => {
         socket.on('room:user-login', (name) => {
-
             const user = new User(name, socket.id)
-
             if (user) {
                 resolve(user)
             } else {

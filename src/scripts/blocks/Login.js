@@ -23,6 +23,7 @@ export default class Login extends Block {
             this.socketNew = io()
             this.currentName = this.$els.username.value
             this.socketNew.emit('room:user-login', this.currentName)
+            console.log("end")
         }
     }
 

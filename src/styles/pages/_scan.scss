@@ -48,7 +48,7 @@
         }
 
         p {
-          width: 0;
+          max-width: 0;
         }
 
       }
@@ -56,13 +56,12 @@
       p {
         position: absolute;
         font-size: 14px;
-        background-color: transparent;
         left: 20px;
         opacity: 1;
         font-style: italic;
         margin: 0;
         top: calc(50% - 10px);
-        width: 200px;
+        max-width: 200px; 
         height: 16px;
         overflow: hidden;
         transition: all ease-in-out .4s;
@@ -81,6 +80,10 @@
         transition: all ease-in-out .1s;
         opacity: 0;
         transition: opacity .45s ease-out .3s;
+
+        &:focus {
+          background-color: transparent !important;
+        }
       }
 
       a {
