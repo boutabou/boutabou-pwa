@@ -22,11 +22,8 @@ export default class Login extends Block {
 
     checkKeyPressed(e){
         if((e.keyCode === 13 || e.key === 'Enter') && this.$els.username.value ){
-            this.createProfile()
-            this.swup.loadPage({
-                url: '/views/pages/room.ejs',
-                method: 'GET'
-            })
+            e.preventDefault()
+            this.$els.loginButton.click()
         }
     }
 
