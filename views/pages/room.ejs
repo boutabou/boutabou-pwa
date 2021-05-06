@@ -6,10 +6,11 @@
 
 <body>
     <main id="swup" class="transition-fade">
+        <%- include('../partials/popup'); %>
         <div class="room-page container container--ultra container--between">
             <p>Tout le monde est connecté ?</p>
             <%- include('../blocks/room'); %>
-            <%- include('../components/button', { buttonLink : '/views/pages/scan.ejs', buttonText : "SCANNER", buttonClass : "" }); %>
+            <%- include('../components/button', { buttonLink : '/views/pages/scan.ejs', buttonText : "SCANNER", buttonClass : "js-scan-button" }); %>
 
             <div class="room-page__img">
                 <%- include('../../assets/images/room/bg.svg'); %>

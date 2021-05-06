@@ -14,6 +14,8 @@ class Room {
         this.sockets = []
         this.games = []
         this.game = null
+        this.statusWaitUser = true
+        this.statusOnScan = false
     }
 
     bindMethods() {
@@ -32,11 +34,25 @@ class Room {
 
     async initUser(socket) {
         const loggedUser = await getUser(socket)
-        this.users.push(loggedUser)
-        this.sockets.push(socket)
 
-        socket.on('load:room', this.displayUser)
-        socket.on('disconnect', () => { this.disconnection(loggedUser) })
+        if (this.users.length === 0 ) {
+            this.statusWaitUser = true
+            this.statusOnScan = false
+        }
+
+        if(this.statusWaitUser) {
+            this.users.push(loggedUser)
+            this.sockets.push(socket)
+
+            socket.on('load:room', this.displayUser)
+            socket.on('disconnect', () => { this.disconnection(loggedUser) })
+
+            if(this.statusOnScan) {
+                socket.on('load:room', () => { socket.emit('popup-wait-scan') })
+            }
+        } else {
+            socket.on('load:room', () => { socket.emit('room:popup-wait-room') })
+        }
     }
 
     displayUser() {
@@ -54,16 +70,18 @@ class Room {
     }
 
     initGame(socket) {
-        socket.on('load:scan', this.themeOnChoice)
+        socket.on('room:scan-button-clicked', this.themeOnChoice)
+        socket.on('result-theme:scan-button-clicked', this.themeOnChoice)
     }
 
     async themeOnChoice(id) {
+        this.statusOnScan = true
         const lengthGames = this.games.length
 
         this.theme = undefined
         this.socketChoosenTheme = getLoggedTable(id, this.sockets)
 
-        this.socketChoosenTheme.broadcast.emit('direction',  '/views/pages/wait-scan.ejs')
+        this.socketChoosenTheme.broadcast.emit('popup-wait-scan')
         this.socketChoosenTheme.on('disconnect', this.redirect)
         this.socketChoosenTheme.on('load:room', this.redirect)
         this.socketChoosenTheme.on('load:result-theme', this.redirect)
@@ -71,6 +89,7 @@ class Room {
         this.theme = await getTheme(this.socketChoosenTheme)
 
         if(this.games.length < lengthGames + 1) {
+            this.statusWaitUser = false
             if (this.game) {
                 this.game.endGame()
             }
@@ -87,10 +106,11 @@ class Room {
 
     redirect() {
         if(!this.theme) {
-            this.socketChoosenTheme.broadcast.emit('direction',  '/views/pages/room.ejs')
+            this.socketChoosenTheme.broadcast.emit('remove-popup-wait-scan')
             this.socketChoosenTheme.off('disconnect', this.redirect)
             this.socketChoosenTheme.off('load:room', this.redirect)
             this.socketChoosenTheme.off('load:result-theme', this.redirect)
+            this.statusOnScan = false
         }
     }
 }
