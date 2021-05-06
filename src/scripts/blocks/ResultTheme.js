@@ -13,6 +13,7 @@ export default class ResultTheme extends Block {
     }
 
     initEvents() {
+        window.history.pushState({}, '')
         this.socket.on('result-theme:win', this.displayTheme)
     }
 

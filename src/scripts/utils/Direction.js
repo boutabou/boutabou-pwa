@@ -18,10 +18,15 @@ export default class Direction {
     }
 
     direction(url) {
-        this.swup.loadPage({
-            url: url,
-            method: 'GET'
-        })
+        const block = url.replace('/views/pages/', '').replace('.ejs', '')
+        const blockEls = document.querySelector(`.js-${block}`)
+
+        if(!blockEls) {
+            this.swup.loadPage({
+                url: url,
+                method: 'GET'
+            })
+        }
     }
 
     updateSocket(socket) {

@@ -32,6 +32,7 @@ export default class Dashboard extends Block {
     }
 
     initEvents() {
+        window.history.pushState({}, '')
         this.socket.on('dashboard:display', this.displayDashboard)
         this.socket.on('dashboard:display-task', this.displayTask)
         this.socket.on('dashboard:update-score', this.displayScore)
@@ -84,7 +85,9 @@ export default class Dashboard extends Block {
 
     killTimer() {
         this.$els.timer.style.strokeDashoffset = 0
-        this.tl.kill()
+        if(this.tl) {
+            this.tl.kill()
+        }
     }
 
     destroy() {

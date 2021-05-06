@@ -42,10 +42,12 @@ class Game {
     }
 
     endGame() {
-        this.sockets.forEach((socket) => {
-            socket.off('load:dashboard', this.initUser)
-            socket.off('load:result-theme', this.giveDataResultTheme)
-        })
+        if(this.sockets) {
+            this.sockets.forEach((socket) => {
+                socket.off('load:dashboard', this.initUser)
+                socket.off('load:result-theme', this.giveDataResultTheme)
+            })
+        }
 
         this.tasks.endGame()
         this.socket = null
