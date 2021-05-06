@@ -1,0 +1,86 @@
+.rotate {
+    p {
+      margin-bottom: 40px;
+    }
+
+    .container-rotate {
+      position: absolute;
+      background-color: #6500ff;
+      width: 90px;
+      height: 90px;
+      margin: 10px auto;
+      border-radius: 50%;
+      margin: 30px auto auto auto;
+      position: relative;
+
+      .ticks {
+        transform: rotate(-90deg) translate(-55px, 0px);
+
+        .tick {
+          width: auto;
+          height: 10px;
+          position: absolute;
+          border-radius: 50%;
+          left: 50%;
+          top: 50%;
+          margin-left: -5px;
+          margin-top: -5px;
+          color: $color-purple;
+
+          &:nth-child(1) {
+            transform: rotate(0deg) translate(70px) rotate(90deg);
+          }
+
+          &:nth-child(2) {
+            transform: rotate(60deg) translate(70px) rotate((60 * -1deg) + 90deg);
+          }
+
+          &:nth-child(3) {
+            transform: rotate(120deg) translate(70px) rotate((120 * -1deg) + 90deg);
+          }
+
+          &:nth-child(4) {
+            transform: rotate(180deg) translate(70px) rotate((180 * -1deg) + 90);
+          }
+
+          &:nth-child(5) {
+            transform: rotate(240deg) translate(70px) rotate((240 * -1deg) + 90deg);
+          }
+
+          &:nth-child(6) {
+            transform: rotate(300deg) translate(70px) rotate((300 * -1deg)+ 90deg);
+          }
+        }
+      }
+
+
+      #knob {
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        margin: auto;
+        z-index: 1;
+        margin-left: auto;
+        margin-right: auto;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        transition: transform .2s ease-in-out;
+
+        #marker {
+          cursor: pointer;
+          left: 50%;
+          position: absolute;
+          height: 18px;
+          background: #000;
+          width: 5px;
+          border-radius: 50px;
+          background-color: white;
+          cursor: pointer;
+          transform: rotate(2deg);
+        }
+      }
+    }
+  }

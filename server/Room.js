@@ -61,7 +61,7 @@ class Room {
 
             this.games.push(this.game)
 
-            setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 3000)
+            setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 5200)
         })
     }
 }

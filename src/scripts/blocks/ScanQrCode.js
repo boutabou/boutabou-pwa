@@ -30,7 +30,7 @@ export default class ScanQrCode extends Block {
     }
 
     getId() {
-        if (this.$els.id.value && this.$els.id.value >= 0 && this.$els.id.value <= 1) {
+        if (this.$els.id.value && this.$els.id.value >= 0 && this.$els.id.value <= 2) {
             this.currentId = this.$els.id.value
             this.socket.emit('theme-choice', this.currentId)
         } else {

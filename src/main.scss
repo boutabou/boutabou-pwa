@@ -26,7 +26,10 @@
 @import
 'styles/components/button',
 'styles/components/chat',
-'styles/components/login';
+'styles/components/login',
+'styles/components/bool',
+'styles/components/cursor',
+'styles/components/rotate';
 
 // 6. Page-specific styles
 @import
@@ -47,5 +50,6 @@
 // 8. blocks
 @import
 'styles/blocks/dashboard',
-'styles/blocks/room';
+'styles/blocks/room',
+'styles/blocks/theme';
 
