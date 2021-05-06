@@ -32,7 +32,9 @@
   }
 
   &:hover {
-    filter: brightness(1.30);
+    div {
+      background-color: #7e52ff;
+    }
   }
 
   &.inactive {
