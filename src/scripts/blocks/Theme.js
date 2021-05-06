@@ -16,6 +16,7 @@ export default class Theme extends Block {
     }
 
     initEvents() {
+        window.history.pushState({}, '')
         this.socket.on('theme:selected', this.displayTheme)
     }
 

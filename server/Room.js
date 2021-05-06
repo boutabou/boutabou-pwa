@@ -1,4 +1,4 @@
-const { getUser, getTheme } = require('./utils')
+const { getUser, getTheme, getLoggedTable } = require('./utils')
 const { Game } = require('./Game')
 
 class Room {
@@ -14,26 +14,49 @@ class Room {
         this.sockets = []
         this.games = []
         this.game = null
+        this.statusWaitUser = true
+        this.statusOnScan = false
     }
 
     bindMethods() {
         this.disconnection = this.disconnection.bind(this)
+        this.displayUser = this.displayUser.bind(this)
+        this.redirect = this.redirect.bind(this)
+        this.themeOnChoice = this.themeOnChoice.bind(this)
     }
 
     initRoom() {
         this.io.on('connection', (socket) => {
             this.initUser(socket)
-            this.initGame(this.io, socket, this.users)
+            this.initGame(socket)
         })
     }
 
     async initUser(socket) {
         const loggedUser = await getUser(socket)
-        this.users.push(loggedUser)
-        this.sockets.push(socket)
 
-        socket.on('load:room', () => {  this.io.emit('room:display-users', this.users) })
-        socket.on('disconnect', () => { this.disconnection(loggedUser) })
+        if (this.users.length === 0 ) {
+            this.statusWaitUser = true
+            this.statusOnScan = false
+        }
+
+        if(this.statusWaitUser) {
+            this.users.push(loggedUser)
+            this.sockets.push(socket)
+
+            socket.on('load:room', this.displayUser)
+            socket.on('disconnect', () => { this.disconnection(loggedUser) })
+
+            if(this.statusOnScan) {
+                socket.on('load:room', () => { socket.emit('popup-wait-scan') })
+            }
+        } else {
+            socket.on('load:room', () => { socket.emit('room:popup-wait-room') })
+        }
+    }
+
+    displayUser() {
+        this.io.emit('room:display-users', this.users)
     }
 
     disconnection(loggedUser) {
@@ -46,23 +69,49 @@ class Room {
         }
     }
 
-    async initGame(io, socket) {
-        socket.on('load:scan', async () => {
-            socket.broadcast.emit('direction',  '/views/pages/wait-scan.ejs')
+    initGame(socket) {
+        socket.on('room:scan-button-clicked', this.themeOnChoice)
+        socket.on('result-theme:scan-button-clicked', this.themeOnChoice)
+    }
 
-            const theme = await getTheme(socket)
+    async themeOnChoice(id) {
+        this.statusOnScan = true
+        const lengthGames = this.games.length
+
+        this.theme = undefined
+        this.socketChoosenTheme = getLoggedTable(id, this.sockets)
+
+        this.socketChoosenTheme.broadcast.emit('popup-wait-scan')
+        this.socketChoosenTheme.on('disconnect', this.redirect)
+        this.socketChoosenTheme.on('load:room', this.redirect)
+        this.socketChoosenTheme.on('load:result-theme', this.redirect)
+
+        this.theme = await getTheme(this.socketChoosenTheme)
+
+        if(this.games.length < lengthGames + 1) {
+            this.statusWaitUser = false
+            if (this.game) {
+                this.game.endGame()
+            }
+
             this.io.emit('direction',  '/views/pages/theme.ejs')
 
-            socket.on('load:theme', () => { this.io.emit('theme:selected', theme) })
-
-            this.game = null
-            delete this.game
-            this.game = new Game(io, socket, this.users, theme, this.sockets)
-
+            this.socketChoosenTheme.on('load:theme', () => { this.io.emit('theme:selected', this.theme) })
+            this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets)
             this.games.push(this.game)
 
             setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 5200)
-        })
+        }
+    }
+
+    redirect() {
+        if(!this.theme) {
+            this.socketChoosenTheme.broadcast.emit('remove-popup-wait-scan')
+            this.socketChoosenTheme.off('disconnect', this.redirect)
+            this.socketChoosenTheme.off('load:room', this.redirect)
+            this.socketChoosenTheme.off('load:result-theme', this.redirect)
+            this.statusOnScan = false
+        }
     }
 }
 

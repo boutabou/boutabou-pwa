@@ -1,11 +1,21 @@
 const { User } = require('./User')
-const { Task } = require('./Task')
+const { Interactions } = require('./Interactions')
 const theme = require('./data/themes.json')
+const avatars = require('./data/avatars.json')
 
+/**
+ * @param socket Socket
+ * return Promise(User)
+ */
 function getUser(socket) {
     const promise  = new Promise((resolve, reject) => {
         socket.on('room:user-login', (name) => {
-            const user = new User(name, socket.id)
+            const lessUsedAvatars = getLessUsed(avatars)
+            const randomAvatar = lessUsedAvatars[getRandomIndex(lessUsedAvatars)]
+            const user = new User(name, socket.id, randomAvatar)
+
+            randomAvatar.nbUsed ++
+
             if (user) {
                 resolve(user)
             } else {
@@ -17,6 +27,10 @@ function getUser(socket) {
     return promise
 }
 
+/**
+ * @param socket Socket
+ * return Promise(theme)
+ */
 function getTheme(socket) {
     const promise = new Promise((resolve, reject) => {
         socket.on('theme-choice', message => {
@@ -38,7 +52,7 @@ function getUsersWithDashboard(users, currentTheme) {
 
     types.forEach((type) => {
         interactions[type].forEach((interaction) => {
-            interaction.useInDashboard = 0
+            interaction.nbUsed = 0
         })
     })
 
@@ -46,65 +60,46 @@ function getUsersWithDashboard(users, currentTheme) {
         delete require.cache[require.resolve('./data/tables.json')]
         const dashboard = require('./data/tables.json')
 
-        user.dashboard = dashboard[Math.floor((Math.random() * dashboard.length))]
+        user.dashboard = dashboard[getRandomIndex(dashboard)]
 
         user.dashboard.forEach((interactionBoard) => {
-            const allDataByType = interactions[interactionBoard.type]
+            const dataByType = getLessUsed(interactions[interactionBoard.type])
+            const random = getRandomIndex(dataByType)
 
-            let seuil = 1
-            const tabUseInDashboard = []
-
-            allDataByType.forEach((interaction) => {
-                tabUseInDashboard.push(interaction.useInDashboard || 0)
-            })
-
-            seuil = Math.min(...tabUseInDashboard) + 1
-
-            let alea = Math.floor((Math.random() * allDataByType.length))
-
-            while (allDataByType[alea].useInDashboard >= seuil) {
-                alea = Math.floor((Math.random() * allDataByType.length))
-            }
-
-            interactionBoard.data = allDataByType[alea]
-            allDataByType[alea].useInDashboard ++
-
-            if(interactionBoard.data.type === 'bool') {
-                interactionBoard.data.status = 'on'
-            }
+            interactionBoard.data = dataByType[random]
+            dataByType[random].nbUsed ++
         })
     })
 
     return users
 }
 
-function getInteractions(users) {
-    const interactions = []
+/**
+ * Return item of tad with the same id of socketId
+ * @param users Array(User), sockets Array(Socket)
+ * return Array(Interaction)
+ */
+function getInteractions(users, sockets) {
+    const interactions = new Interactions(sockets)
 
     users.forEach((user) => {
         user.dashboard.forEach((interaction) => {
-            switch (interaction.type) {
-                case 'bool':
-                    interaction.status = 'on'
-                    break
-                case 'simple-cursor':
-                case 'complex-cursor':
-                case 'rotate':
-                    interaction.status = interaction.data.param[0]
-                    break
-            }
-
-            interactions.push(interaction)
+            interactions.addNew(interaction)
         })
     })
 
     return interactions
 }
 
-function getLoggedTable(socketId, table) {
+/**
+ * Return item of tad with the same id of socketId
+ * @param socketId ID, tab Array
+ * return item
+ */
+function getLoggedTable(socketId, tab) {
     let loggedTable
 
-    table.forEach((item) => {
+    tab.forEach((item) => {
         if(item.id === socketId) {
             loggedTable = item
         }
@@ -113,46 +108,47 @@ function getLoggedTable(socketId, table) {
     return loggedTable
 }
 
-function getTask(interactions, user) {
-    const task = interactions[Math.floor((Math.random() * interactions.length))]
-    let sentence = ''
-    let request = ''
+/**
+ * Return tab with item less use
+ * @param tab Array
+ * return Array
+ */
+function getLessUsed(tab) {
+    let limit = 1
+    const nbUsedItems = []
+    const tabLessUsed = []
 
-    switch (task.type) {
-        case 'bool':
-            if (task.status && task.status === "off") {
-                sentence = "Désactiver la " + task.data.title
-                request = "off"
-            } else {
-                sentence = "Activer la " + task.data.title
-                request = "on"
-            }
-            break
-        case 'simple-list':
-            const paramSimple = task.data.param
-            sentence = "Enclencher le " + task.data.title + " " + paramSimple
-            request = paramSimple
-            break
-        case 'complex-list':
-            const param = task.data.param[Math.floor((Math.random() * task.data.param.length))]
-            sentence = "Enclencher le " + task.data.title + " " + param
-            request = param
-            break
-        case 'simple-cursor':
-        case 'complex-cursor':
-        case 'rotate':
-            let step = task.data.param[Math.floor((Math.random() * task.data.param.length))]
+    tab.forEach((item) => {
+        nbUsedItems.push(item.nbUsed || 0)
+    })
 
-            while (task.status === step) {
-                step = task.data.param[Math.floor((Math.random() * task.data.param.length))]
-            }
+    limit = Math.min(...nbUsedItems) + 1
 
-            sentence = "Mettre le " + task.data.title + " sur " + step
-            request = step.toString()
-            break
-    }
+    tab.forEach((item) => {
+        if(item.nbUsed < limit) {
+            tabLessUsed.push(item)
+        }
+    })
 
-    return new Task(user.id, task.data.title.replace(/\W/g,'_').toLowerCase(), task.type, task.status, sentence, request.replace(/\W/g,'_').toLowerCase())
+    return tabLessUsed
+}
+
+/**
+ * Return random index of an array
+ * @param tab Array
+ * return Int
+ */
+function getRandomIndex(tab) {
+    return Math.floor((Math.random() * tab.length))
+}
+
+/**
+ * Return random item of an array
+ * @param tab Array
+ * return Array
+ */
+function getRandom(tab) {
+    return tab[Math.floor((Math.random() * tab.length))]
 }
 
 module.exports = {
@@ -161,5 +157,6 @@ module.exports = {
     getUsersWithDashboard,
     getInteractions,
     getLoggedTable,
-    getTask
+    getRandomIndex,
+    getRandom
 }
