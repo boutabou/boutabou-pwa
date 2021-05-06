@@ -54,7 +54,10 @@ $color-pink: #FCC5DD !default;
 $max-width: 1180px !default;
 
 
-
+/// Font sizes 
+/// @type Number
+$medium-size: 18px;
+$small-size: 14px;
 
 
 /// Breakpoints map
@@ -71,7 +74,7 @@ $breakpoints-medium : 420px !default;
 $breakpoints-small : 380px !default;
 
 $container-padding: 30px !default;
-$container-padding-vertical: 70px !default;
+$container-padding-vertical: 50px !default;
 
 
 

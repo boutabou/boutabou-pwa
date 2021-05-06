@@ -9,8 +9,6 @@ export default class Cursor extends Interaction {
         this.index = index
 
         this.bindMethods()
-        this.createContainerInteraction()
-        this.addClassContainer()
         this.displayCursor(this.containerInteraction, this.orientation, this.params, this.index)
 
         document.addEventListener('swup:willReplaceContent', () => {
@@ -38,7 +36,7 @@ export default class Cursor extends Interaction {
         const stepsContainer = document.createElement("div")
         let stepsEl = []
 
-        cursorContainer.classList.add("container-cursor-"+index, "container-cursor")
+        cursorContainer.classList.add("container-cursor-"+index, "container-cursor", "container-cursor__"+orientation,  "container-cursor__"+orientation +"-"+steps.length)
         handleEl.classList.add("cursor", "cursor-"+orientation)
         handleEl.setAttribute("id", "cursor-"+index)
         progressBar.classList.add("progress-bar", "progress-" + orientation)

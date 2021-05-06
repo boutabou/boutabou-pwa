@@ -2,11 +2,19 @@
   {
     "title" : "L'épilation",
     "img" : "../../assets/images/themes/epilation.jpg",
-    "pathInteractions" : "data/interactions/depilation.json"
+    "pathInteractions" : "data/interactions/depilation.json",
+    "intro":""
   },
   {
     "title" : "Les régles",
     "img" : "../../assets/images/themes/regles.jpg",
-    "pathInteractions" : "data/interactions/menstruation.json"
+    "pathInteractions" : "data/interactions/menstruation.json",
+    "intro":""
+  },
+  {
+    "title" : "La contraception",
+    "img" : "../../assets/images/themes/contraception.jpg",
+    "pathInteractions" : "data/interactions/menstruation.json",
+    "intro":"Defiez vos amis et vos connaisssance face a la contraception. Attention , qui sera le plus calé ? Nous verrons bien qui est le plus avanturier..."
   }
 ]

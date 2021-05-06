@@ -2,19 +2,17 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-
-  
+  position: relative;
 
   .task-container {
-    //width: 80vw;
     width: 290px;
     height: 75px;
     border-radius: 10px;
     position: relative;
     margin: auto;
-    -webkit-box-shadow: 10px 10px 29px -9px rgba(0,0,0,0.57);
-    -moz-box-shadow: 10px 10px 29px -9px rgba(0,0,0,0.57);
-    box-shadow: 10px 10px 29px -9px rgba(0,0,0,0.57);
+    -webkit-box-shadow: 10px 10px 29px -9px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 10px 10px 29px -9px rgba(0, 0, 0, 0.57);
+    box-shadow: 10px 10px 29px -9px rgba(0, 0, 0, 0.57);
     overflow: hidden;
     border-radius: 25px;
     background-color: #6500FF;
@@ -31,8 +29,8 @@
     .task-content {
       position: absolute;
       top: 10px;
-      width: calc( 100% - 20px);
-      height: calc(100% - 20px);
+      width: 255px;
+      height: 55px;
       left: 10px;
       background: #6500FF;
       border-radius: 16px;
@@ -48,214 +46,51 @@
     }
   }
 
-  
-
   .grid-container {
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: repeat(3, 1fr);
-    gap: 0px 0px;
+    gap: 20px;
     width: 100%;
-    height: 350px;
+    min-height: 400px;
     font-size: 14px;
+    padding: 0px 20px 20px 20px;
 
-    &__btn {
-      background-color: white;
-      width: 80%;
-      display: flex;
+    >div {
+      background-color: #fff;
+      border-radius: 15px;
+      -webkit-box-shadow: 0px 0px 15px -3px #000000;
+      box-shadow: 0px 0px 15px -3px #000000;
       padding: 10px;
-      justify-content: center;
-      font-size: 16px;
-      margin-top: 4px;
-      cursor: pointer;
-      color: $color-dark-blue;
 
-      &:hover {
-        background-color: #d6d6d6;
+      p {
+        color: $color-purple;
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0;
       }
+
     }
 
     p {
       width: 100%;
       text-align: center;
     }
-
-    .bool, .list {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      p {
-        margin-top: 0;
-      }
-    }
-
-    .container-cursor {
-      height: 65%;
-      width: 80%;
-      margin: auto;
-      position: relative;
-
-      .progress-bar {
-        margin: auto;
-        background-color: $color-purple;
-        border-radius: 10px;
-
-        &.progress-horizontal {
-          width: calc(100% - 25px);
-          height: 8px;
-          transform: translateY(12.5px);
-        }
-
-        &.progress-vertical {
-          height: calc(100% - 25px);
-          transform: translateY(10px);
-          width: 8px;
-        }
-      }
-
-      .cursor {
-        height: 28px;
-        width: 28px;
-        border: 2px solid white;
-        position: absolute;
-        background: $color-purple;
-        border-radius: 50px;
-        z-index: 1;
-        left: 0;
-        font-size: bold;
-        right: 0;
-        transition: transform ease-in-out .2s;
-
-        &.cursor-vertical {
-          left: calc(50% - 14px);
-        }
-      }
-
-      .steps {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        z-index: 0;
-        top: 0;
-
-        &.steps-vertical {
-          height: calc(100% + 34px);
-          top: -19.5px;
-
-          div {
-            width: 44%;
-            color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 16px;
-          }
-        }
-
-        &.steps-horizontal {
-          display: flex;
-          flex-direction: row;
-          height: 100%;
-          width: calc(100% + 50px);
-          position: absolute;
-          z-index: 0;
-          top: 0;
-        }
-
-        div {
-          display: flex;
-          align-items: center;
-        }
-      }
-    }
   }
 
-  .rotate {
-    p {
-      margin-bottom: 40px;
-    }
+  &__background-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    z-index: -1;
+    display: flex;
+    max-height: 500px;
 
-    .container-rotate {
-      position: absolute;
-      background-color: #6500ff;
-      width: 110px;
-      height: 110px;
-      margin: auto;
-      border-radius: 50%;
-      margin: auto;
-      position: relative;
-
-      .ticks {
-        transform: rotate(-90deg) translate(-55px, 0px);
-
-        .tick {
-          width: auto;
-          height: 10px;
-          position: absolute;
-          border-radius: 50%;
-          left: 50%;
-          top: 50%;
-          margin-left: -5px;
-          margin-top: -5px;
-
-          &:nth-child(1) {
-            transform: rotate(0deg) translate(80px) rotate(90deg);
-          }
-
-          &:nth-child(2) {
-            transform: rotate(60deg) translate(80px) rotate((60 * -1deg) + 90deg);
-          }
-
-          &:nth-child(3) {
-            transform: rotate(120deg) translate(80px) rotate((120 * -1deg) + 90deg);
-          }
-
-          &:nth-child(4) {
-            transform: rotate(180deg) translate(80px) rotate((180 * -1deg) + 90);
-          }
-
-          &:nth-child(5) {
-            transform: rotate(240deg) translate(80px) rotate((240 * -1deg) + 90deg);
-          }
-
-          &:nth-child(6) {
-            transform: rotate(300deg) translate(80px) rotate((300 * -1deg)+ 90deg);
-          }
-        }
-      }
-
-
-      #knob {
-        position: absolute;
-        width: 80%;
-        height: 80%;
-        margin: auto;
-        z-index: 1;
-        margin-left: auto;
-        margin-right: auto;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        text-align: center;
-        transition: transform .2s ease-in-out;
-
-        #marker {
-          cursor: pointer;
-          left: 50%;
-          position: absolute;
-          height: 18px;
-          background: #000;
-          width: 5px;
-          border-radius: 50px;
-          background-color: white;
-          cursor: pointer;
-          transform: rotate(2deg);
-        }
-      }
+    svg {
+      width: 100%;
+      height: 100%;
     }
   }
 }

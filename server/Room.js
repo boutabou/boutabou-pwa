@@ -81,7 +81,7 @@ class Room {
             this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets)
             this.games.push(this.game)
 
-            setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 3000)
+            setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 5200)
         }
     }
 
