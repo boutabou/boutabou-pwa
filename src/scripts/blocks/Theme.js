@@ -13,11 +13,13 @@ export default class Theme extends Block {
 
     bindMethods() {
         this.displayTheme = this.displayTheme.bind(this)
+        this.displayTimer = this.displayTimer.bind(this)
     }
 
     initEvents() {
         window.history.pushState({}, '')
         this.socket.on('theme:selected', this.displayTheme)
+        this.socket.on('theme:on-timer', this.displayTimer)
     }
 
     displayTheme(message) {
@@ -25,22 +27,25 @@ export default class Theme extends Block {
         this.$els.img.src = message.img
         this.$els.intro.innerHTML = message.intro
 
+    }
 
-        let timeoutHandle = setTimeout( () => {
-                let countdown = setInterval( () => {
-                    if(this.counter > 0){
-                        this.$els.countdown.innerHTML = this.counter
-                        this.counter --
-                    } else {
-                        clearInterval(countdown)
-                    }
-                }, 1000 )
-            
-        }, 1500 )
-
+    displayTimer(cpt) {
+        setTimeout( () => {
+            this.$els.countdown.innerHTML = cpt
+            cpt --
+            setTimeout( () => {
+                this.$els.countdown.innerHTML = cpt
+                cpt --
+            }, 1000)
+            setTimeout( () => {
+                this.$els.countdown.innerHTML = cpt
+                cpt --
+            }, 2000)
+        }, 500 )
     }
 
     destroy() {
-        this.socket.removeListener('theme:selected')
+        this.socket.off('theme:selected', this.displayTheme)
+        this.socket.off('theme:on-timer', this.displayTimer)
     }
 }
