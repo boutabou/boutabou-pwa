@@ -18,6 +18,7 @@ class Room {
 
     bindMethods() {
         this.disconnection = this.disconnection.bind(this)
+        this.displayUser = this.displayUser.bind(this)
     }
 
     initRoom() {
@@ -32,8 +33,12 @@ class Room {
         this.users.push(loggedUser)
         this.sockets.push(socket)
 
-        socket.on('load:room', () => {  this.io.emit('room:display-users', this.users) })
+        socket.on('load:room', this.displayUser)
         socket.on('disconnect', () => { this.disconnection(loggedUser) })
+    }
+
+    displayUser() {
+        this.io.emit('room:display-users', this.users)
     }
 
     disconnection(loggedUser) {
@@ -48,6 +53,10 @@ class Room {
 
     async initGame(io, socket) {
         socket.on('load:scan', async () => {
+            if (this.game) {
+                this.game.endGame()
+            }
+
             socket.broadcast.emit('direction',  '/views/pages/wait-scan.ejs')
 
             const theme = await getTheme(socket)
