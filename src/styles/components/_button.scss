@@ -29,5 +29,9 @@
     border-radius: 25px;
     display: flex;
     justify-content: center;
+
+    &:hover {
+      background-color: $color-dark-blue;
+    }
   }
 }
