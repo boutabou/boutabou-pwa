@@ -1,4 +1,4 @@
-const { getUser, getTheme } = require('./utils')
+const { getUser, getTheme, getLoggedTable } = require('./utils')
 const { Game } = require('./Game')
 
 class Room {
@@ -13,16 +13,20 @@ class Room {
         this.users = []
         this.sockets = []
         this.games = []
+        this.game = null
     }
 
     bindMethods() {
         this.disconnection = this.disconnection.bind(this)
+        this.displayUser = this.displayUser.bind(this)
+        this.redirect = this.redirect.bind(this)
+        this.themeOnChoice = this.themeOnChoice.bind(this)
     }
 
     initRoom() {
         this.io.on('connection', (socket) => {
             this.initUser(socket)
-            this.initGame(this.io, socket, this.users)
+            this.initGame(socket)
         })
     }
 
@@ -31,8 +35,12 @@ class Room {
         this.users.push(loggedUser)
         this.sockets.push(socket)
 
-        socket.on('load:room', () => {  this.io.emit('room:display-users', this.users) })
+        socket.on('load:room', this.displayUser)
         socket.on('disconnect', () => { this.disconnection(loggedUser) })
+    }
+
+    displayUser() {
+        this.io.emit('room:display-users', this.users)
     }
 
     disconnection(loggedUser) {
@@ -45,28 +53,45 @@ class Room {
         }
     }
 
-    async initGame(io, socket) {
-        socket.on('load:scan', () => {
-            socket.broadcast.emit('direction',  '/views/pages/wait-scan.ejs')
+    initGame(socket) {
+        socket.on('load:scan', this.themeOnChoice)
+    }
 
-            // const theme = await getTheme(socket)
-            // this.io.emit('direction',  '/views/pages/theme.ejs')
-            // this.io.emit('theme:selected', this.theme) // attention le theme doit etre load
+    async themeOnChoice(id) {
+        const lengthGames = this.games.length
 
-            const theme = {
-                "title" : "L'épilation",
-                "img" : "../../assets/images/themes/epilation.jpg",
-                "pathInteractions" : "data/interactions/depilation.json"
+        this.theme = undefined
+        this.socketChoosenTheme = getLoggedTable(id, this.sockets)
+
+        this.socketChoosenTheme.broadcast.emit('direction',  '/views/pages/wait-scan.ejs')
+        this.socketChoosenTheme.on('disconnect', this.redirect)
+        this.socketChoosenTheme.on('load:room', this.redirect)
+        this.socketChoosenTheme.on('load:result-theme', this.redirect)
+
+        this.theme = await getTheme(this.socketChoosenTheme)
+
+        if(this.games.length < lengthGames + 1) {
+            if (this.game) {
+                this.game.endGame()
             }
 
-            setTimeout(() => {
-                this.io.emit('direction',  '/views/pages/theme.ejs')
-            }, 1000)
+            this.io.emit('direction',  '/views/pages/theme.ejs')
 
-            socket.on('load:theme', () => { this.io.emit('theme:selected', theme) })
+            this.socketChoosenTheme.on('load:theme', () => { this.io.emit('theme:selected', this.theme) })
+            this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets)
+            this.games.push(this.game)
 
-            this.games.push(new Game(io, socket, this.users, theme, this.sockets))
-        })
+            setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 5200)
+        }
+    }
+
+    redirect() {
+        if(!this.theme) {
+            this.socketChoosenTheme.broadcast.emit('direction',  '/views/pages/room.ejs')
+            this.socketChoosenTheme.off('disconnect', this.redirect)
+            this.socketChoosenTheme.off('load:room', this.redirect)
+            this.socketChoosenTheme.off('load:result-theme', this.redirect)
+        }
     }
 }
 

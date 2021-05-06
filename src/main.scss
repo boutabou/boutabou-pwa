@@ -26,11 +26,17 @@
 @import
 'styles/components/button',
 'styles/components/chat',
-'styles/components/login';
+'styles/components/login',
+'styles/components/bool',
+'styles/components/cursor',
+'styles/components/rotate';
 
 // 6. Page-specific styles
 @import
-'styles/pages/index';
+'styles/pages/index',
+'styles/pages/room',
+'styles/pages/scan',
+'styles/pages/game';
 
 // 7. Themes
 @import
@@ -44,5 +50,6 @@
 // 8. blocks
 @import
 'styles/blocks/dashboard',
-'styles/blocks/room';
+'styles/blocks/room',
+'styles/blocks/theme';
 

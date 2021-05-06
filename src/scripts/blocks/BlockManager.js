@@ -3,6 +3,9 @@ import ScanQrCode from './ScanQrCode'
 import Room from './Room'
 import Theme from './Theme'
 import Dashboard from './Dashboard'
+import ResultTheme from './ResultTheme'
+import WaitScan from './WaitScan'
+import Defeat from './Defeat'
 
 export default class BlockManager {
     constructor(socket, swup) {
@@ -12,6 +15,9 @@ export default class BlockManager {
         new Room('.js-room', socket, swup)
         new Theme('.js-theme', socket, swup)
         new Dashboard('.js-dashboard', socket, swup)
+        new ResultTheme('.js-result-theme', socket, swup)
+        new WaitScan('.js-wait-scan', socket, swup)
+        new Defeat('.js-defeat', socket, swup)
 
         this.socket = socket
 

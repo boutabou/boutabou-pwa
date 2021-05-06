@@ -7,8 +7,13 @@
 <body>
     <main id="swup" class="transition-fade">
         <div class="room-page container container--ultra container--between">
+            <p>Tout le monde est connecté ?</p>
             <%- include('../blocks/room'); %>
             <%- include('../components/button', { buttonLink : '/views/pages/scan.ejs', buttonText : "SCANNER", buttonClass : "" }); %>
+
+            <div class="room-page__img">
+                <%- include('../../assets/images/room/bg.svg'); %>
+            </div>
         </div>
     </main>
 

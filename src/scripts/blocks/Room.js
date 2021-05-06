@@ -12,6 +12,7 @@ export default class Room extends Block {
     }
 
     initEvents() {
+        window.history.pushState({}, '')
         this.socket.on('room:display-users', this.displayUsers)
     }
 
