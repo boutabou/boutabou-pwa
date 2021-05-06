@@ -95,6 +95,7 @@ class Room {
             }
 
             this.io.emit('direction',  '/views/pages/theme.ejs')
+            setTimeout(() => { this.io.emit('theme:on-timer', 3) }, 2000)
 
             this.socketChoosenTheme.on('load:theme', () => { this.io.emit('theme:selected', this.theme) })
             this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets)

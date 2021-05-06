@@ -2,7 +2,7 @@
     width: 80%;
     margin: auto;
     position: relative;
-    margin: 10px auto auto auto;
+    margin: 0px auto auto auto;
 
     &__vertical {
         &-4{
@@ -31,6 +31,10 @@
             transform: translateY(10px);
             width: 8px;
         }
+
+        &:hover {
+            background-color: $color-dark-blue;
+        }
     }
 
     .cursor {
@@ -46,8 +50,12 @@
         right: 0;
         transition: transform ease-in-out .2s;
 
-        &.cursor-vertical {
+        &-vertical {
             left: calc(50% - 14px);
+        }
+
+        &:hover {
+            background-color: $color-dark-blue;
         }
     }
 

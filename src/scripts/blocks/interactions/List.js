@@ -29,6 +29,7 @@ export default class List extends Interaction {
 
     clickListBtn(e) {
         this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : e.currentTarget.dataset.btnName })
+        window.navigator.vibrate(200)
     }
 
     destroy() {
