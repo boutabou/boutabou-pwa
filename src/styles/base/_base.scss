@@ -16,6 +16,7 @@ p, span, img, a, div, span, * {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -25,7 +26,7 @@ body {
 #swup {
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
 }
 
