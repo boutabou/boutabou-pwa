@@ -45,9 +45,7 @@ export default class BlockManager {
     }
 
     initSocket() {
-        if(!this.socket) {
-            this.socket = this.login.getSocket()
-        }
+        this.socket = this.login.getSocket()
     }
 
     getSocket() {
