@@ -85,26 +85,10 @@ export default class Dashboard extends Block {
 
     killTimer() {
         this.$els.timer.style.strokeDashoffset = 0
-<<<<<<< HEAD
-        this.tl.kill()
-    }
-
-
-    resetTimer(timer) {
-
-        let shapes = "rect"
-
-        this.tl = gsap.timeline({repeat:0})
-        this.tl.from(shapes, { drawSVG:"0% 0%", duration: timer/1000,})
-=======
         if(this.tl) {
             this.tl.kill()
         }
->>>>>>> main
     }
-
-   
-
 
     destroy() {
         this.socket.removeListener('dashboard:display')

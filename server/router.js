@@ -10,10 +10,10 @@ function initRouter(app, path, port) {
     */
 
     app.use (function (req, res, next) {
-        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` ||  req.rawHeaders[1] == `${ip}:${port}` ) {
+        if (req.secure || req.rawHeaders[1] == `192.168.1.55:3003` ||  req.rawHeaders[1] == `${ip}:${port}` ) {
             // request was via https, so do no special handling
             next();
-        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] == `${domain}:${port}`) {
+        } else if (!req.secure && req.rawHeaders[1] !== `192.168.1.55:3003` || req.rawHeaders[1] == `${domain}:${port}`) {
             // request was via http, so redirect to https
             res.redirect('https://' + req.headers.host + req.url);
         }

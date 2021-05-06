@@ -12,10 +12,22 @@ export default class Login extends Block {
 
     bindMethods() {
         this.createProfile = this.createProfile.bind(this)
+        this.checkKeyPressed = this.checkKeyPressed.bind(this)
     }
 
     initEvents() {
         this.$els.loginButton.addEventListener('click', this.createProfile)
+        this.$els.username.addEventListener('keypress', this.checkKeyPressed)
+    }
+
+    checkKeyPressed(e){
+        if((e.keyCode === 13 || e.key === 'Enter') && this.$els.username.value ){
+            this.createProfile()
+            this.swup.loadPage({
+                url: '/views/pages/room.ejs',
+                method: 'GET'
+            })
+        }
     }
 
     createProfile() {
@@ -23,7 +35,6 @@ export default class Login extends Block {
             this.socketNew = io()
             this.currentName = this.$els.username.value
             this.socketNew.emit('room:user-login', this.currentName)
-            console.log("end")
         }
     }
 
@@ -33,5 +44,6 @@ export default class Login extends Block {
 
     destroy() {
         this.$els.loginButton.removeEventListener('click', this.createProfile)
+        this.$els.username.removeEventListener('keypress', this.checkKeyPressed)
     }
 }
