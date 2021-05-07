@@ -72,6 +72,7 @@ class Room {
     initGame(socket) {
         socket.on('room:scan-button-clicked', this.themeOnChoice)
         socket.on('result-theme:scan-button-clicked', this.themeOnChoice)
+        socket.on('load:defeat', () => {socket.emit("defeat:loose", this.games.length - 1)})
     }
 
     async themeOnChoice(id) {
@@ -111,6 +112,7 @@ class Room {
             this.socketChoosenTheme.off('disconnect', this.redirect)
             this.socketChoosenTheme.off('load:room', this.redirect)
             this.socketChoosenTheme.off('load:result-theme', this.redirect)
+            this.socketChoosenTheme.off('load:defeat', this.redirect)
             this.statusOnScan = false
         }
     }

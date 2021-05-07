@@ -48,6 +48,7 @@ class Game {
         socket.emit('result-theme:win', this.theme, this.winner)
     }
 
+
     endGame() {
         if(this.sockets) {
             this.sockets.forEach((socket) => {
