@@ -21,9 +21,9 @@
         border-radius: 10px;
 
         &.progress-horizontal {
-            width: calc(100% - 25px);
+            width: 98%;
             height: 8px;
-            transform: translate(-10.5px, 12.5px);
+            transform: translate(0, 10px);
         }
 
         &.progress-vertical {
@@ -46,7 +46,7 @@
         border-radius: 50px;
         z-index: 1;
         left: 0;
-        font-size: bold;
+        font-weight: bold;
         right: 0;
         transition: transform ease-in-out .2s;
 
@@ -92,12 +92,24 @@
         &-horizontal {
             flex-direction: row;
             height: 80%;
-            width: calc(100% + 65px);
+            transform: translateX(6px);
             position: absolute;
             z-index: 0;
             top: 45px;
             display: flex;
             align-items: flex-end;
-        }        
+        }
+    }
+}
+
+.complex-cursor {
+    .container-cursor .steps-horizontal {
+        width: calc(133% - 35px);
+    }
+}
+
+.simple-cursor {
+    .container-cursor .steps-horizontal {
+        width: calc(150% - 35px);
     }
 }

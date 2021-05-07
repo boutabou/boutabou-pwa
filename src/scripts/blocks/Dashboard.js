@@ -21,7 +21,7 @@ export default class Dashboard extends Block {
             name:  document.querySelector('.js-name')
         }
         this.cptCursors= 0
-		this.tl
+        this.tl
     }
 
     bindMethods() {
@@ -29,6 +29,7 @@ export default class Dashboard extends Block {
         this.displayTask = this.displayTask.bind(this)
         this.displayScore = this.displayScore.bind(this)
         this.killTimer = this.killTimer.bind(this)
+        this.vibrate = this.vibrate.bind(this)
     }
 
     initEvents() {
@@ -37,6 +38,7 @@ export default class Dashboard extends Block {
         this.socket.on('dashboard:display-task', this.displayTask)
         this.socket.on('dashboard:update-score', this.displayScore)
         this.socket.on('dashboard:kill-timer', this.killTimer)
+        this.socket.on('dashboard:vibrate', this.vibrate)
     }
 
     displayDashboard(currentUser, theme) {
@@ -52,12 +54,9 @@ export default class Dashboard extends Block {
                     new List(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
                     break
                 case 'simple-cursor':
-                    this.cptCursors ++
-                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.cptCursors)
-                    break
                 case 'complex-cursor':
                     this.cptCursors ++
-                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.cptCursors)
+                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.cptCursors, interaction.type)
                     break
                 case 'rotate':
                     new Rotate(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
@@ -81,6 +80,10 @@ export default class Dashboard extends Block {
     displayScore(score) {
         this.$els.score.style.transform = 'scaleX(' + score * 0.1 + ')'
         this.$els.scoreEnd.style.width = score * 10 + '%'
+    }
+
+    vibrate() {
+        window.navigator.vibrate(30)
     }
 
     killTimer() {

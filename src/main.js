@@ -5,7 +5,7 @@ import Direction from './scripts/utils/Direction'
 
 class App {
     constructor () {
-        this.socket = null
+
         document.addEventListener('swup:contentReplaced', (event) => {
             this.init()
 
@@ -19,6 +19,7 @@ class App {
         document.addEventListener('swup:willReplaceContent', (event) => {
             if(!this.socket) {
                 this.socket = this.blocks.getSocket()
+                this.socket.os = navigator.userAgent && /iPad|iPhone|iPod/.test(navigator.userAgent);
                 this.direction.updateSocket(this.socket)
                 this.direction.init()
             }

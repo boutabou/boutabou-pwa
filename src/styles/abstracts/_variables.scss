@@ -2,6 +2,15 @@
 // This file contains all application-wide Sass variables.
 // -----------------------------------------------------------------------------
 
+/// Regular font family
+/// @type List
+$text-font-stack: 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
+
+/// Code (monospace) font family
+/// @type List
+$code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
+
+
 /// Background color
 /// @type Color
 $color-dark-blue: #040f33 !default;
@@ -54,8 +63,8 @@ $breakpoints: (
 ) !default;
 
 $breakpoints-large : 520px !default;
-$breakpoints-medium : 420px !default;
-$breakpoints-small : 380px !default;
+$breakpoints-medium : 400px !default;
+$breakpoints-small : 340px !default;
 
 $container-padding: 30px !default;
 $container-padding-vertical: 50px !default;

@@ -10,10 +10,10 @@ function initRouter(app, path, port) {
     */
 
     app.use (function (req, res, next) {
-        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` ||  req.rawHeaders[1] == `${ip}:${port}` ) {
+        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` ||  req.rawHeaders[1] == `192.168.1.14:3003` ) {
             // request was via https, so do no special handling
             next();
-        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] == `${domain}:${port}`) {
+        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] == `192.168.1.14:3003`) {
             // request was via http, so redirect to https
             res.redirect('https://' + req.headers.host + req.url);
         }
@@ -24,6 +24,7 @@ function initRouter(app, path, port) {
     })
 
     app.all("*", function (req, res, next) {
+
         if (req.params[0].substr(-5,5) === '.html') return
 
         // render file in views folder
@@ -33,6 +34,8 @@ function initRouter(app, path, port) {
 
             return
         }
+
+        
 
         res.sendFile(path + req.params[0]) // router other file
     })

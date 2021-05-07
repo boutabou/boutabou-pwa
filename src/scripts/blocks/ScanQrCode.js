@@ -1,32 +1,48 @@
 import Block from './Block'
-import {io} from "socket.io-client";
 
 export default class ScanQrCode extends Block {
 
     vars() {
-        this.qrCodeSuccessCallback = idTheme => {
-            this.socket.emit('theme-choice', idTheme)
-            this.html5QrCode.clear()
+        if(!this.socket.os){
+            this.qrCodeSuccessCallback = idTheme => {
+                this.socket.emit('theme-choice', idTheme)
+                this.html5QrCode.clear()
+            }
+            this.config = { fps: 10, qrbox: 250 }
+            this.html5QrCode = new Html5Qrcode("qr-reader")
         }
-        this.config = { fps: 10, qrbox: 250 }
-        this.html5QrCode = new Html5Qrcode("qr-reader")
     }
 
     initEls() {
         this.$els = {
             idButton: document.querySelector('.js-id-button'),
             id: document.querySelector('.js-id'),
+            replacementContent: document.querySelector('.js-ios-content')
         }
         this.currentId
     }
 
     bindMethods() {
         this.getId = this.getId.bind(this)
+        this.checkKeyPressed = this.checkKeyPressed.bind(this)
+        this.displayReplacementContent = this.displayReplacementContent.bind(this)
     }
 
     initEvents() {
-        this.startScan()
+        if(!this.socket.os){
+            this.startScan()
+        } else {
+            this.displayReplacementContent() 
+        }
         this.$els.idButton.addEventListener('click', this.getId)
+        this.$els.id.addEventListener('keypress', this.checkKeyPressed)
+    }
+
+    checkKeyPressed(e){
+        if((e.keyCode === 13 || e.key === 'Enter') && this.$els.id.value){
+            e.preventDefault()
+            this.$els.idButton.click()
+        }
     }
 
     getId() {
@@ -52,6 +68,10 @@ export default class ScanQrCode extends Block {
         )
     }
 
+    displayReplacementContent() {
+        this.$els.replacementContent.innerHTML = "Le scan de QRCode n'est pas compatible avec votre appareil."
+    }
+
     destroy() {
         if(this.html5QrCode) {
             this.html5QrCode.stop().then(ignore => {
@@ -62,5 +82,6 @@ export default class ScanQrCode extends Block {
         }
 
         this.$els.idButton.removeEventListener('click', this.getId)
+        this.$els.id.removeEventListener('keypress', this.checkKeyPressed)
     }
 }
