@@ -4,6 +4,7 @@ export default class ResultTheme extends Block {
     initEls() {
         this.$els = {
             title: document.querySelector('.js-theme-title'),
+            text: document.querySelector('.js-theme-text'),
             winner: document.querySelector('.js-theme-winner'),
             img: document.querySelector('.js-theme-img'),
             scanButton : document.querySelector('.js-scan-button'),
@@ -28,8 +29,9 @@ export default class ResultTheme extends Block {
     }
 
     displayTheme(message, winner) {
-        this.$els.title.innerHTML = 'Vous avez reussi le theme de ' + message.title
-        this.$els.winner.innerHTML = winner.name + ' à été un expert sur ce thème'
+        this.$els.title.innerHTML = message.title
+        this.$els.text.innerHTML = message.end
+        this.$els.winner.innerHTML = message.winner.replace('{winner}', winner.name)
         this.$els.img.src = message.img
     }
 

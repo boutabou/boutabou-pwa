@@ -3,18 +3,20 @@
     "title" : "L'épilation",
     "img" : "../../assets/images/themes/epilation.jpg",
     "pathInteractions" : "data/interactions/depilation.json",
-    "intro":""
+    "intro" : ""
   },
   {
     "title" : "Les régles",
     "img" : "../../assets/images/themes/regles.jpg",
     "pathInteractions" : "data/interactions/menstruation.json",
-    "intro":""
+    "intro" : ""
   },
   {
     "title" : "La contraception",
     "img" : "../../assets/images/themes/contraception.jpg",
     "pathInteractions" : "data/interactions/menstruation.json",
-    "intro":"Defiez vos amis et vos connaisssance face a la contraception. Attention , qui sera le plus calé ? Nous verrons bien qui est le plus avanturier..."
+    "intro" : "Defiez vos amis et vos connaisssance face a la contraception. Attention , qui sera le plus calé ? Nous verrons bien qui est le plus avanturier...",
+    "end" : "Pour vous, plus de honte devant la caissière avec vos préservatifs XXL.",
+    "winner" : "{winner} a magnifiquement joué, les bébés il sait les éviter !"
   }
 ]
