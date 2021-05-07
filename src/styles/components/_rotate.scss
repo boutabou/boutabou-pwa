@@ -84,3 +84,57 @@
       }
     }
   }
+
+
+@media (max-width: $breakpoints-small) {
+
+  .rotate {
+    .container-rotate {
+      width: 70px;
+      height: 70px;
+      margin: 30px auto auto;
+
+      .ticks {
+        transform: rotate(-90deg) translate(-35px, 0px);
+
+        .tick {
+          width: auto;
+          height: 10px;
+          position: absolute;
+          border-radius: 50%;
+          left: 50%;
+          top: 50%;
+          margin-left: -5px;
+          margin-top: -5px;
+          color: $color-purple;
+
+          &:nth-child(1) {
+            transform: rotate(0deg) translate(50px) rotate(90deg);
+          }
+
+          &:nth-child(2) {
+            transform: rotate(60deg) translate(50px) rotate((60 * -1deg) + 90deg);
+          }
+
+          &:nth-child(3) {
+            transform: rotate(120deg) translate(50px) rotate((120 * -1deg) + 90deg);
+          }
+
+          &:nth-child(4) {
+            transform: rotate(180deg) translate(50px) rotate((180 * -1deg) + 90);
+          }
+
+          &:nth-child(5) {
+            transform: rotate(240deg) translate(50px) rotate((240 * -1deg) + 90deg);
+          }
+
+          &:nth-child(6) {
+            transform: rotate(300deg) translate(50px) rotate((300 * -1deg)+ 90deg);
+          }
+        }
+      }
+    }
+  }
+
+
+}

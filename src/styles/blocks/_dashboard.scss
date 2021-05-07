@@ -26,7 +26,7 @@
       max-height: 100%;
     }
 
-    .task-content {
+    &-content {
       position: absolute;
       top: 10px;
       width: 255px;
@@ -93,4 +93,39 @@
       height: 100%;
     }
   }
+}
+
+@media (max-width: $breakpoints-small) {
+
+  .dashboard {
+
+    .task-container {
+      width: 246px;
+      height: 63px;
+      font-size: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .task-content{
+        width: 80%;
+        top: 0;
+        left: 0;
+        margin: 10px auto;
+      }
+    }
+
+    .grid-container{
+      min-height: 250px;
+      position: absolute;
+      bottom: 0;
+
+      > div {
+        p {
+          font-size: 13px;
+        }
+      }
+    }
+  }  
+  
 }
