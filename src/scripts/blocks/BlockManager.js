@@ -8,7 +8,6 @@ import Defeat from './Defeat'
 
 export default class BlockManager {
     constructor(socket, swup) {
-
         this.login = new Login('.js-login', socket, swup)
         new ScanQrCode('.js-scan', socket, swup)
         new Room('.js-room', socket, swup)
@@ -18,6 +17,8 @@ export default class BlockManager {
         new Defeat('.js-defeat', socket, swup)
 
         this.socket = socket
+        console.log(this.socket)
+
 
         this.bindMethods()
         this.initEls()
