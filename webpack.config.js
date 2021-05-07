@@ -20,6 +20,15 @@ module.exports = {
             test: /\.(scss|css)$/,
             exclude: /node_modules/,
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
+        },
+        {
+            test: /\.woff(2)?$/,
+            use: [{
+                loader: 'url-loader',
+                options: {
+                    limit: 8192 // in bytes
+                }
+            }]
         }
     ]
     },

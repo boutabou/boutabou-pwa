@@ -1,6 +1,9 @@
-<div>
-    <h1>Bienvenue !</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis euismod mattis. Nunc interdum, lacus a egestas sodales, nunc mauris fermentum turpis, a malesuada dui justo at libero.</p>
-
-    <%- include('../components/button', { buttonLink : '/views/pages/login.ejs', buttonText : "C'est partie !" }); %>
+<div class="welcome">
+    <div class="welcome__img">
+        <%- include('../../assets/images/cover.svg'); %>
+    </div>
+    <div class="container container--ultra container--end">
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ...</p>
+        <%- include('../components/button', { buttonLink : '/views/pages/login.ejs', buttonText : "COMMENCER", buttonClass : "" }); %>
+    </div>
 </div>

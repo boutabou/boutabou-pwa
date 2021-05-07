@@ -2,10 +2,6 @@
 // This file contains all application-wide Sass variables.
 // -----------------------------------------------------------------------------
 
-
-
-
-
 /// Regular font family
 /// @type List
 $text-font-stack: 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;
@@ -15,29 +11,33 @@ $text-font-stack: 'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvet
 $code-font-stack: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Monaco', monospace !default;
 
 
-
-
-
-/// Copy text color
+/// Background color
 /// @type Color
-$text-color: rgb(34, 34, 34) !default;
+$color-dark-blue: #040f33 !default;
 
-/// Main brand color
+/// Text color
 /// @type Color
-$brand-color: rgb(229, 0, 80) !default;
+$color-white: #FFFDDF !default;
 
-/// Light grey
+/// Purple
 /// @type Color
-$light-grey: rgb(237, 237, 237) !default;
+$color-purple: #6500ff !default;
 
-/// Medium grey
+/// Red
 /// @type Color
-$mid-grey: rgb(153, 153, 153) !default;
+$color-red: #FE6A7A !default;
 
-/// Dark grey
+/// Yellow
 /// @type Color
-$dark-grey: rgb(68, 68, 68) !default;
+$color-yellow: #FFE202 !default;
 
+/// Cyan
+/// @type Color
+$color-cyan: #5FE7EF !default;
+
+/// Pink
+/// @type Color
+$color-pink: #FCC5DD !default;
 
 
 
@@ -47,7 +47,10 @@ $dark-grey: rgb(68, 68, 68) !default;
 $max-width: 1180px !default;
 
 
-
+/// Font sizes
+/// @type Number
+$medium-size: 18px;
+$small-size: 14px;
 
 
 /// Breakpoints map
@@ -59,7 +62,12 @@ $breakpoints: (
   'large': 1024px,
 ) !default;
 
+$breakpoints-large : 520px !default;
+$breakpoints-medium : 400px !default;
+$breakpoints-small : 340px !default;
 
+$container-padding: 30px !default;
+$container-padding-vertical: 50px !default;
 
 
 
@@ -69,3 +77,23 @@ $breakpoints: (
 /// @example scss - When using a CDN
 ///   $base-url: 'http://cdn.example.com/assets/';
 $base-url: '/assets/' !default;
+
+$font-text: 'Objective';
+
+@font-face {
+  font-family: $font-text;
+  font-weight: normal;
+  src: url('../assets/fonts/Objective/Objective-Regular.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: $font-text;
+  font-weight: bold;
+  src: url('../assets/fonts/Objective/Objective-Bold.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: $font-text;
+  font-weight: 800;
+  src: url('../assets/fonts/Objective/Objective-ExtraBold.woff2') format("woff2");
+}

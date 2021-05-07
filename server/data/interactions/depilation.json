@@ -7,37 +7,86 @@
       "title" : "Mode poilu"
     },
     {
+      "title" : "Turbo épilateur"
+    },
+    {
+      "title" : "Pousse des poils"
+    },
+    {
+      "title" : "Mousse à raser"
+    },
+    {
       "title" : "Monosourcil"
+    },
+    {
+      "title" : "Pedi poils"
+    },
+    {
+      "title" : "Tresse"
+    },
+    {
+      "title" : "Jambe poilue"
+    },
+    {
+      "title" : "Hibernation"
     }
   ],
   "simple-list" : [
     {
       "title" : "Poils",
       "param" : "Assumer"
+    },
+    {
+      "title" : "Poils",
+      "param" : "Coiffés"
+    },
+    {
+      "title" : "Poils",
+      "param" : "Teintés"
+    },
+    {
+      "title" : "Hyper pilosité",
+      "param" : "Assumer"
     }
   ],
   "complex-list" : [
     {
       "title" : "Maillot",
-      "param" : ["Touffu", "Déboiser", "Demi-poillu"]
+      "param" : ["Touffu", "Déboisé", "Demi-poillu"]
+    },
+    {
+      "title" : "Poils",
+      "param" : ["Blonds", "Roux", "Bruns"]
+    },
+    {
+      "title" : "Jambe",
+      "param" : ["Touffues", "Déboisées", "Demi-poillues"]
+    },
+    {
+      "title" : "aisselles",
+      "param" : ["Touffues", "Déboisées", "Demi-poillues"]
+    },
+    {
+      "title" : "Rasoir",
+      "param" : ["à l'attaque", "au repos", "en vacances"]
     }
   ],
   "simple-cursor" : [
     {
-      "title" : "Température de la cir",
-      "step" : [0, 10, 20]
+      "title" : "Température de la cire",
+      "param" : ["0", "10", "20"]
     }
   ],
   "complex-cursor" : [
     {
-      "title" : "Température de la cir",
-      "step" : [0, 10, 20, 30]
+      "title" : "Eguisation des lames",
+      "param" : ["0", "10", "20", "30"]
     }
   ],
   "rotate" : [
     {
-      "title" : "Température de la cir",
-      "step" : [0, 10, 20, 30, 40]
+      "title" : "Température de la cire",
+      "param" : ["0", "10", "20", "30", "40", "60"]
     }
   ]
 }

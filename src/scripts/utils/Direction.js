@@ -1,4 +1,3 @@
-
 export default class Direction {
     constructor(socket, swup) {
         this.socket = socket
@@ -18,12 +17,16 @@ export default class Direction {
         }
     }
 
-    direction(url, datas) {
-        
-        this.swup.loadPage({
-            url: url,
-            method: 'POST'
-        })
+    direction(url) {
+        const block = url.replace('/views/pages/', '').replace('.ejs', '')
+        const blockEls = document.querySelector(`.js-${block}`)
+
+        if(!blockEls) {
+            this.swup.loadPage({
+                url: url,
+                method: 'GET'
+            })
+        }
     }
 
     updateSocket(socket) {

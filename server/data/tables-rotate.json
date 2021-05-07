@@ -1,0 +1,59 @@
+[
+  [
+    {
+      "type" : "complex-cursor",
+      "position" : "1 / 1 / 4 / 2",
+      "orientation" : "vertical"
+    },
+    {
+      "type" : "bool",
+      "position" : "1 / 2 / 2 / 3"
+    },
+    {
+      "type" : "bool",
+      "position" : "1 / 3 / 2 / 4"
+    },
+    {
+      "type" : "rotate",
+      "position" : "2 / 2 / 4 / 4"
+    }
+  ],
+  [
+    {
+      "type" : "rotate",
+      "position" : "1 / 1 / 3 / 3"
+    },
+    {
+      "type" : "complex-cursor",
+      "position" : "1 / 3 / 4 / 4",
+      "orientation" : "vertical"
+    },
+    {
+      "type" : "bool",
+      "position" : "3 / 1 / 4 / 2"
+    },
+    {
+      "type" : "bool",
+      "position" : "3 / 2 / 4 / 3"
+    }
+  ],
+  [
+    {
+      "type" : "complex-cursor",
+      "position" : "1 / 1 / 2 / 4",
+      "orientation" : "horizontal"
+    },
+    {
+      "type" : "bool",
+      "position" : "2 / 1 / 3 / 2"
+    },
+    {
+      "type" : "rotate",
+      "position" : "2 / 2 / 4 / 4"
+    },
+    {
+      "type" : "bool",
+      "position" : "3 / 1 / 4 / 2"
+    }
+  ]
+]

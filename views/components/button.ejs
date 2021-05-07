@@ -1,3 +1,5 @@
-<a href="<%= buttonLink %>" class="button">
-    <%= buttonText %>
+<a href="<%= buttonLink %>" class="button <%= buttonClass ? buttonClass : '' %>">
+    <div>
+        <%= buttonText %>
+    </div>
 </a>
