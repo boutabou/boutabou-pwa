@@ -21,6 +21,17 @@
     }
   }
 
+  &__ios-info{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    top: 40vh;
+    text-align: center;
+  }
+
   &__id {
     position: absolute;
     padding: 40px $container-padding;

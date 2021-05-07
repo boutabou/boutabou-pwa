@@ -18,17 +18,21 @@ export default class ScanQrCode extends Block {
         this.$els = {
             idButton: document.querySelector('.js-id-button'),
             id: document.querySelector('.js-id'),
+            replacementContent: document.querySelector('.js-ios-content')
         }
         this.currentId
     }
 
     bindMethods() {
         this.getId = this.getId.bind(this)
+        this.displayReplacementContent = this.displayReplacementContent.bind(this)
     }
 
     initEvents() {
         if(!this.socket.os){
             this.startScan()
+        } else {
+            this.displayReplacementContent() 
         }
         this.$els.idButton.addEventListener('click', this.getId)
     }
@@ -54,6 +58,10 @@ export default class ScanQrCode extends Block {
                 console.log('error from scan start : ', err)
             }
         )
+    }
+
+    displayReplacementContent() {
+        this.$els.replacementContent.innerHTML = "Le scan de QRCode n'est pas compatible avec votre appareil."
     }
 
     destroy() {

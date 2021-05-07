@@ -6,7 +6,6 @@ import Direction from './scripts/utils/Direction'
 class App {
     constructor () {
 
-
         document.addEventListener('swup:contentReplaced', (event) => {
             this.init()
 
