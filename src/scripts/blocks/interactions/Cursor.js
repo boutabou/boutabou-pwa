@@ -166,8 +166,7 @@ export default class Cursor extends Interaction {
     }
 
     onDragEnd(e, indexStep) {
-        window.navigator.vibrate(200)
-        this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : this.params[indexStep] })
+        this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : this.params[indexStep]}, this.socket.id)
     }
 }
 

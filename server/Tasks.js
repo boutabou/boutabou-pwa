@@ -36,7 +36,7 @@ class Tasks {
         })
     }
 
-    resultAction(userAction) {
+    resultAction(userAction, socketId) {
         let valide = false
 
         // check if userAction is a task ask
@@ -47,7 +47,10 @@ class Tasks {
                 valide = true
             }
         })
-
+        if(!valide) { 
+            const socket = getLoggedTable(socketId, this.sockets)
+            socket.emit('dashboard:vibrate')
+        }
         this.updateScore(valide)
     }
 
