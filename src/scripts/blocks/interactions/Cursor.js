@@ -1,56 +1,23 @@
 import Interaction from './Interaction'
 
-
 export default class Cursor extends Interaction {
-    constructor(title, grid, position, params, socket, orientation, index) {
-        super(title, grid, position, params, socket);
-
-        this.orientation = orientation
-        this.index = index
-
-        this.initEls()
-        this.bindMethods()
-        this.displayCursor(this.containerInteraction, this.orientation, this.params, this.index)
-
-        document.addEventListener('swup:willReplaceContent', () => {
-            this.destroy()
-        })
-    }
-
-    initEls() {
-        this.$els = {
-            progressBar: document.querySelector(".js-progress-"+this.index),
-        }
-    }
-
-
-
-
     addClassContainer() {
-        this.containerInteraction.classList.add('cursor-'+this.index)
+        this.containerInteraction.classList.add('cursor-' + this.index)
+        this.containerInteraction.classList.add(this.type)
     }
 
-    bindMethods() {
-        this.displayCursor = this.displayCursor.bind(this)
-        this.displayVerticalCursor = this.displayVerticalCursor.bind(this)
-        this.displayHorizontalCursor = this.displayHorizontalCursor.bind(this)
-        this.onDragEnd = this.onDragEnd.bind(this)
-        this.displayRotateCursor = this.displayInteraction.bind(this)
-        this.initEls = this.initEls.bind(this)
-    }
-
-    displayCursor(container, orientation, steps, index){
+    displayCursor(container, orientation, steps, index) {
         const cursorContainer = document.createElement('div')
         const handleEl = document.createElement("div")
         const progressBar = document.createElement("div")
         const stepsContainer = document.createElement("div")
         let stepsEl = []
 
-        cursorContainer.classList.add("container-cursor-"+index, "container-cursor", "container-cursor__"+orientation,  "container-cursor__"+orientation +"-"+steps.length)
-        handleEl.classList.add("cursor", "cursor-"+orientation)
-        handleEl.setAttribute("id", "cursor-"+index)
-        progressBar.classList.add("progress-bar", "progress-" + orientation, "js-progress-"+index)
-        stepsContainer.classList.add("steps", "steps-"+orientation)
+        cursorContainer.classList.add("container-cursor-" + index, "container-cursor", "container-cursor__" + orientation,  "container-cursor__" + orientation +"-" + steps.length)
+        handleEl.classList.add("cursor", "cursor-" + orientation)
+        handleEl.setAttribute("id", "cursor-" + index)
+        progressBar.classList.add("progress-bar", "progress-" + orientation, "js-progress-" + index)
+        stepsContainer.classList.add("steps", "steps-" + orientation)
 
         container.appendChild(cursorContainer)
         cursorContainer.appendChild(handleEl)
@@ -58,18 +25,17 @@ export default class Cursor extends Interaction {
         cursorContainer.appendChild(stepsContainer)
 
         steps.forEach((step, index) => {
-            const step_index = document.createElement("div")
-            step_index.classList.add("step-"+index)
-            step_index.innerHTML = step
-            stepsEl.push(step_index)
-            stepsContainer.appendChild(step_index)
+            const stepIndex = document.createElement("div")
+            stepIndex.classList.add("step-" + index)
+            stepIndex.innerHTML = step
+            stepsEl.push(stepIndex)
+            stepsContainer.appendChild(stepIndex)
 
             this.interactions.push(step)
         })
 
-        const currentCursor = document.getElementById("cursor-"+index)
-        gsap.registerPlugin(Draggable);
-
+        const currentCursor = document.getElementById("cursor-" + index)
+        gsap.registerPlugin(Draggable)
 
         switch (orientation) {
             case "vertical":
@@ -91,7 +57,7 @@ export default class Cursor extends Interaction {
 
         const ctx = this
         let indexStep = 0
-        let progressBar = document.querySelector(".js-progress-"+index)
+        let progressBar = document.querySelector(".js-progress-" + index)
 
 
         Draggable.create(currentCursor, {
@@ -131,7 +97,6 @@ export default class Cursor extends Interaction {
         let indexStep = 0
         let progressBar = document.querySelector(".js-progress-"+index)
 
-
         Draggable.create(currentCursor, {
             type: "x",
             bounds: ".container-cursor-"+index,
@@ -162,7 +127,7 @@ export default class Cursor extends Interaction {
                 ctx.onDragEnd(e, indexStep)
                 progressBar.style.backgroundColor = "#6500FF"
             }
-        });
+        })
     }
 
     onDragEnd(e, indexStep) {

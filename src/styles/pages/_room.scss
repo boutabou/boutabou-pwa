@@ -21,16 +21,14 @@
     }
   }
 
-  .container-button {
+  .button {
     margin-top: 120px;
 
-    .button {
-      div {
-        background-color: $color-dark-blue;
-        width: fit-content;
-        margin: auto;
-        padding: 15px 60px;
-      }
+    div {
+      background-color: $color-dark-blue;
+      width: fit-content;
+      margin: auto;
+      padding: 15px 60px;
     }
   }
 }

@@ -21,7 +21,7 @@ export default class Dashboard extends Block {
             name:  document.querySelector('.js-name')
         }
         this.cptCursors= 0
-		this.tl
+        this.tl
     }
 
     bindMethods() {
@@ -54,12 +54,9 @@ export default class Dashboard extends Block {
                     new List(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
                     break
                 case 'simple-cursor':
-                    this.cptCursors ++
-                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.cptCursors)
-                    break
                 case 'complex-cursor':
                     this.cptCursors ++
-                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.cptCursors)
+                    new Cursor(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket, interaction.orientation, this.cptCursors, interaction.type)
                     break
                 case 'rotate':
                     new Rotate(interaction.data.title, this.$els.grid, interaction.position, interaction.data.param, this.socket)
