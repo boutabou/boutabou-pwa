@@ -31,3 +31,12 @@
         }
       }
 }
+
+@media (max-width: $breakpoints-small) {
+  .bool, .list {
+    .grid-container__btn { 
+      padding: 5px;
+      font-size: 14px;
+    }
+  }
+}
