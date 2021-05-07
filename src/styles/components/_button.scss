@@ -2,7 +2,7 @@
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
 
-.button-scan {
+/*.button-scan {
     position: absolute;
     top: 0;
     right: 0;
@@ -17,29 +17,32 @@
       height: 100%;
       padding: 12px;
     }
-}
+}*/
 
 .button {
-  div {
+  >div {
+    padding: 12px 40px 10px 40px;
+    border-radius: 10px;
     background-color: $color-purple;
     font-weight: 800;
     font-size: 15px;
     color: $color-white;
-    padding: 12px 40px 10px 40px;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
 
+    >div {
+  
+      &:hover {
+        background-color: $color-dark-blue;
+      }
+    }
     &:hover {
-      background-color: $color-dark-blue;
+      div {
+        background-color: #7e52ff;
+      }
     }
   }
 
-  &:hover {
-    div {
-      background-color: #7e52ff;
-    }
-  }
 
   &.inactive {
     pointer-events: none;
