@@ -1,5 +1,4 @@
 import Block from './Block'
-import {io} from "socket.io-client";
 
 export default class ScanQrCode extends Block {
 
@@ -22,11 +21,20 @@ export default class ScanQrCode extends Block {
 
     bindMethods() {
         this.getId = this.getId.bind(this)
+        this.checkKeyPressed = this.checkKeyPressed.bind(this)
     }
 
     initEvents() {
         this.startScan()
         this.$els.idButton.addEventListener('click', this.getId)
+        this.$els.id.addEventListener('keypress', this.checkKeyPressed)
+    }
+
+    checkKeyPressed(e){
+        if((e.keyCode === 13 || e.key === 'Enter') && this.$els.id.value){
+            e.preventDefault()
+            this.$els.idButton.click()
+        }
     }
 
     getId() {
@@ -62,5 +70,6 @@ export default class ScanQrCode extends Block {
         }
 
         this.$els.idButton.removeEventListener('click', this.getId)
+        this.$els.id.removeEventListener('keypress', this.checkKeyPressed)
     }
 }

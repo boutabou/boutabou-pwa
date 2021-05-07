@@ -50,7 +50,7 @@ class Tasks {
                 valide = true
             }
         })
-        if(!valide) { 
+        if(!valide) {
             const socket = getLoggedTable(socketId, this.sockets)
             socket.emit('dashboard:vibrate')
         }

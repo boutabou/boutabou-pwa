@@ -1,10 +1,13 @@
 export default class Interaction {
-    constructor(title, grid, position, params, socket) {
+    constructor(title, grid, position, params, socket, orientation, index, type) {
         this.title = title
         this.grid = grid
         this.position = position
         this.params = params
         this.socket = socket
+        this.orientation = orientation
+        this.index = index
+        this.type = type
         this.containerInteraction
         this.interactions = []
 
@@ -13,6 +16,7 @@ export default class Interaction {
         this.createContainerInteraction()
         this.addClassContainer()
         this.displayInteraction(this.containerInteraction)
+        this.displayCursor(this.containerInteraction, this.orientation, this.params, this.index)
 
         document.addEventListener('swup:willReplaceContent', () => {
             this.destroy()
@@ -39,6 +43,8 @@ export default class Interaction {
     addClassContainer() {}
 
     displayInteraction(container) {}
+
+    displayCursor(container, orientation, steps, index) {}
 
     destroy() {}
 }
