@@ -14,7 +14,7 @@ class Game {
         this.sockets = sockets
         this.theme = theme
         this.users = getUsersWithDashboard(users, this.theme)
-        this.tasks = new Tasks(this.users, this.sockets, this.io)
+        this.tasks = new Tasks(this.users, this.sockets, this.io, this.theme)
     }
 
     bindMethods() {
@@ -26,7 +26,7 @@ class Game {
         this.sockets.forEach((socket) => {
             socket.on('load:dashboard', this.initUser)
             socket.on('load:result-theme', this.giveDataResultTheme)
-        }) 
+        })
     }
 
     initUser(id) {
@@ -38,7 +38,14 @@ class Game {
 
     giveDataResultTheme(id) {
         const socket = getLoggedTable(id, this.sockets)
-        socket.emit('result-theme:win', this.theme)
+        const scoreMax =  Math.max.apply(Math, this.users.map((user) => { return user.score[this.theme.title] }))
+        this.users.forEach((user) => {
+            if(user.score[this.theme.title] === scoreMax) {
+                this.winner = user
+                return
+            }
+        })
+        socket.emit('result-theme:win', this.theme, this.winner)
     }
 
     endGame() {

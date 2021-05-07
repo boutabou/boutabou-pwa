@@ -7,6 +7,7 @@ class User {
         this.name = name
         this.id = id
         this.avatar = avatar.src
+        this.score = {}
     }
 }
 
