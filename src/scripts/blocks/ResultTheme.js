@@ -4,6 +4,7 @@ export default class ResultTheme extends Block {
     initEls() {
         this.$els = {
             title: document.querySelector('.js-theme-title'),
+            winner: document.querySelector('.js-theme-winner'),
             img: document.querySelector('.js-theme-img'),
             scanButton : document.querySelector('.js-scan-button'),
             popup: document.querySelector('.js-popup'),
@@ -26,8 +27,9 @@ export default class ResultTheme extends Block {
         this.$els.scanButton.addEventListener('click', this.clickScan)
     }
 
-    displayTheme(message) {
+    displayTheme(message, winner) {
         this.$els.title.innerHTML = 'Vous avez reussi le theme de ' + message.title
+        this.$els.winner.innerHTML = winner.name + ' à été un expert sur ce thème'
         this.$els.img.src = message.img
     }
 

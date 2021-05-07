@@ -2,19 +2,20 @@ const { getInteractions, getLoggedTable, getRandom } = require('./utils')
 const { Task } = require('./Task')
 
 class Tasks {
-    constructor(users, sockets, io) {
-        this.vars(users, sockets, io)
+    constructor(users, sockets, io, theme) {
+        this.vars(users, sockets, io, theme)
         this.bindMathods()
         this.listenTasks()
     }
 
-    vars(users, sockets, io) {
+    vars(users, sockets, io, theme) {
         this.all = []
         this.users = users
         this.sockets = sockets
         this.io = io
         this.interactions = getInteractions(this.users, this.sockets)
         this.score = 5
+        this.theme = theme
     }
 
     bindMathods() {
@@ -43,7 +44,9 @@ class Tasks {
         this.all.forEach((task, index) => {
             if(userAction.element.name === task.name && userAction.actionMake === task.request ) {
                 this.all.splice(index, 1)
-                this.newTask(getLoggedTable(task.idUser, this.users))
+                const userWin = getLoggedTable(task.idUser, this.users)
+                this.newTask(userWin)
+                this.addPoint(userWin)
                 valide = true
             }
         })
@@ -52,6 +55,13 @@ class Tasks {
             socket.emit('dashboard:vibrate')
         }
         this.updateScore(valide)
+    }
+
+    addPoint(user) {
+        if(!user.score[this.theme.title]) {
+            user.score[this.theme.title] = 0
+        }
+        user.score[this.theme.title] ++
     }
 
     checkTime(task) {
