@@ -1,12 +1,20 @@
 [
   {
-    "title" : "L'épilation",
+    "title" : "Les poils",
     "img" : "../../assets/images/themes/epilation.jpg",
-    "pathInteractions" : "data/interactions/depilation.json"
+    "pathInteractions" : "data/interactions/depilation.json",
+    "intro":"On se rapproche tous un peu de Chewbacca au fond... Alors pourquoi ne pas l'assumer?"
   },
   {
     "title" : "Les régles",
     "img" : "../../assets/images/themes/regles.jpg",
-    "pathInteractions" : "data/interactions/menstruation.json"
+    "pathInteractions" : "data/interactions/menstruation.json",
+    "intro":"Vous connaissez les chutes du Niagara? Vous allez les redécouvrir. Soyez prêt ça va saigner..."
+  },
+  {
+    "title" : "La contraception",
+    "img" : "../../assets/images/themes/contraception.jpg",
+    "pathInteractions" : "data/interactions/contraception.json",
+    "intro":"Defiez vos amis et vos connaissances face à la contraception. Attention , qui sera le plus calé ? Nous verrons bien qui est le plus avanturier..."
   }
 ]
