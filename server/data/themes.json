@@ -1,22 +1,26 @@
 [
   {
-    "title" : "L'épilation",
+    "title" : "Les poils",
     "img" : "../../assets/images/themes/epilation.jpg",
     "pathInteractions" : "data/interactions/depilation.json",
-    "intro" : ""
+    "intro" : "On se rapproche tous un peu de Chewbacca au fond... Alors pourquoi ne pas l'assumer?",
+    "end" : "Aucune gêne devant un maillot touffu à la piscine !",
+    "winner" : "<b>{winner}</b> a assuré, il maîtrise l’art du poil incarné"
   },
   {
     "title" : "Les régles",
     "img" : "../../assets/images/themes/regles.jpg",
     "pathInteractions" : "data/interactions/menstruation.json",
-    "intro" : ""
+    "intro" : "Vous connaissez les chutes du Niagara? Vous allez les redécouvrir. Soyez prêt ça va saigner...",
+    "end" : "Incroyable ! Vous avez passé ce niveau avec brio !\nPlus de rougissements à la vue d’une tâche de sang",
+    "winner" : "<b>{winner}</b> est le boss de la thématique, il manie la cup avec une dextérité inégalée"
   },
   {
     "title" : "La contraception",
     "img" : "../../assets/images/themes/contraception.jpg",
-    "pathInteractions" : "data/interactions/menstruation.json",
-    "intro" : "Defiez vos amis et vos connaisssance face a la contraception. Attention , qui sera le plus calé ? Nous verrons bien qui est le plus avanturier...",
+    "pathInteractions" : "data/interactions/contraception.json",
+    "intro" : "Defiez vos amis et vos connaissances face à la contraception. Attention , qui sera le plus calé ? Nous verrons bien qui est le plus avanturier...",
     "end" : "Pour vous, plus de honte devant la caissière avec vos préservatifs XXL.",
-    "winner" : "{winner} a magnifiquement joué, les bébés il sait les éviter !"
+    "winner" : "<b>{winner}</b> a magnifiquement joué, les bébés il sait les éviter !"
   }
 ]
