@@ -24,7 +24,7 @@ export default class Shape {
         this.heightAsk = height;
         this.rotate = rotate;
         this.color = color;
-        this.texture = texture;
+        // this.texture = texture;
         this.path = new Path();
         this.finalPath;
         this.turbulence = 1;
