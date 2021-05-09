@@ -22,13 +22,12 @@ export default class Bool extends Interaction {
     toogleBool(e) {
         if(e.currentTarget.innerHTML === "ON") {
             e.currentTarget.innerHTML = "OFF"
-            this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : "on" })
+            this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : "on" }, this.socket.id)
         } else {
             e.currentTarget.innerHTML = "ON"
-            this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : "off" })
+            this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : "off" }, this.socket.id)
         }
 
-        window.navigator.vibrate(200)
     }
 
     destroy() {

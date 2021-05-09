@@ -4,6 +4,8 @@
             <div class="avatar js-avatar"></div>
             <input class="js-username" type="text" id="name" name="name" placeholder="Pseudo" required>
         </div>
-        <%- include('../components/button', { buttonLink : '/views/pages/room.ejs', buttonText : "LET'S GO", buttonClass : "js-login-button" }); %>
+        <div class="container-button">
+            <%- include('../components/button', { buttonLink : '/views/pages/room.ejs', buttonText : "LET'S GO", buttonClass : "js-login-button" }); %>
+        </div>
     </form>
 </div>

@@ -6,7 +6,7 @@
 
   .task-container {
     width: 290px;
-    height: 75px;
+    height: 73px;
     border-radius: 10px;
     position: relative;
     margin: auto;
@@ -16,6 +16,9 @@
     overflow: hidden;
     border-radius: 25px;
     background-color: #6500FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     svg {
       position: absolute;
@@ -27,21 +30,13 @@
     }
 
     .task-content {
-      position: absolute;
-      top: 10px;
-      width: 255px;
-      height: 55px;
-      left: 10px;
-      background: #6500FF;
-      border-radius: 16px;
-      display: flex;
-      z-index: 1;
-      justify-content: center;
-      align-items: center;
+      width: 80%;
+
 
       .task {
         text-align: center;
         color: white;
+        font-size: 18px;
       }
     }
   }
@@ -93,4 +88,35 @@
       height: 100%;
     }
   }
+}
+
+@media (max-width: $breakpoints-small) {
+
+  .dashboard {
+
+    .task-container {
+      width: 246px;
+      height: 63px;
+      font-size: 15px;
+
+      .task-content{
+        top: 0;
+        left: 0;
+        margin: 10px auto;
+      }
+    }
+
+    .grid-container{
+      min-height: 250px;
+      position: absolute;
+      bottom: 0;
+
+      > div {
+        p {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
 }
