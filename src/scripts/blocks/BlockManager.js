@@ -17,8 +17,6 @@ export default class BlockManager {
         new Defeat('.js-defeat', socket, swup)
 
         this.socket = socket
-        console.log(this.socket)
-
 
         this.bindMethods()
         this.initEls()

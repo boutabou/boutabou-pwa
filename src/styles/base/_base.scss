@@ -9,6 +9,12 @@ html {
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow: hidden;
+  margin: 0;
+}
+
 p, span, img, a, div, span, * {
   -webkit-touch-callout: none;
   -webkit-user-select: none;

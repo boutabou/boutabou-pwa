@@ -29,6 +29,10 @@ module.exports = {
                     limit: 8192 // in bytes
                 }
             }]
+        },
+        {
+            test: /\.svg$/,
+            loader: 'svg-inline-loader'
         }
     ]
     },
