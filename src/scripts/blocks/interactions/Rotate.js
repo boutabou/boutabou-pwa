@@ -32,9 +32,9 @@ export default class Rotate extends Interaction {
             param.classList.add('tick')
             param.innerHTML = parameter
             ticks.appendChild(param)
-        });
+        })
 
-        gsap.registerPlugin(Draggable);
+        gsap.registerPlugin(Draggable)
 
         Draggable.create("#knob", {
             type:"rotation",
@@ -51,9 +51,9 @@ export default class Rotate extends Interaction {
                     index = ctx.params.length + index
                 }
                 window.navigator.vibrate(200)
-                ctx.socket.emit('interaction:activated', { 'element' : { name : ctx.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : ctx.params[index] }, ctx.socket.id ) 
-                return Math.round((360/ctx.params.length) * indexStep) 
-            
+                ctx.socket.emit('interaction:activated', { 'element' : { name : ctx.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : ctx.params[index] }, ctx.socket.id )
+                return Math.round((360/ctx.params.length) * indexStep)
+
             }
         })
     }
