@@ -33,7 +33,6 @@
     margin: auto;
   }
 
-<<<<<<< HEAD
   &:hover {
     div {
       background-color: #8e6eff;
@@ -53,21 +52,6 @@
       }
     }
   }
-=======
-    >div {
-  
-      &:hover {
-        background-color: $color-dark-blue;
-      }
-    }
-    &:hover {
-      div {
-        background-color: #7e52ff;
-      }
-    }
-  }
-
->>>>>>> front
 
   &.inactive {
     pointer-events: none;

@@ -10,6 +10,7 @@
         font-size: 1.3rem;
         text-align: center;
         margin: 0 3px;
+        display: flex !important;
         >div {
             &:nth-child(odd){
                 transform: rotate(8deg);

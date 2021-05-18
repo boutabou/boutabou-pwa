@@ -2,11 +2,8 @@ import PwaPopUp from './scripts/utils/PwaPopUp'
 import Swup from 'swup'
 import BlockManager from './scripts/blocks/BlockManager'
 import Direction from './scripts/utils/Direction'
-<<<<<<< HEAD
 import SplitContent from './scripts/utils/SplitContent'
-=======
 import Blobs from './scripts/blobs/Blobs'
->>>>>>> 933e76894902029df7fec112d7dc066bb87984f7
 
 class App {
     constructor () {
@@ -46,11 +43,8 @@ class App {
 
     init() {
         this.blocks = new BlockManager(this.socket, this.swup)
-<<<<<<< HEAD
         new SplitContent()
-=======
         new Blobs()
->>>>>>> 933e76894902029df7fec112d7dc066bb87984f7
     }
 
     initServiceWorker () {

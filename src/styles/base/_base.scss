@@ -9,17 +9,14 @@ html {
   box-sizing: border-box;
 }
 
-<<<<<<< HEAD
-p, span, img, a, div, span {
-=======
 html,
 body {
   overflow: hidden;
   margin: 0;
+  background-color: #040f33;
 }
 
 p, span, img, a, div, span, * {
->>>>>>> 933e76894902029df7fec112d7dc066bb87984f7
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -29,9 +26,6 @@ p, span, img, a, div, span, * {
   -webkit-tap-highlight-color: transparent;
 }
 
-body {
-  background-color: #040f33;
-}
 
 #swup {
   height: 100vh;
