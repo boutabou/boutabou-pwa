@@ -2,7 +2,6 @@ import PwaPopUp from './scripts/utils/PwaPopUp'
 import Swup from 'swup'
 import BlockManager from './scripts/blocks/BlockManager'
 import Direction from './scripts/utils/Direction'
-import SplitTitle from './scripts/utils/SplitContent'
 import SplitContent from './scripts/utils/SplitContent'
 
 class App {
