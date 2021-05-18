@@ -1,0 +1,23 @@
+.split-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    >div {
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 1.3rem;
+        text-align: center;
+        margin: 0 3px;
+        >div {
+            &:nth-child(odd){
+                transform: rotate(8deg);
+            }
+    
+            &:nth-child(even){
+                transform: rotate(-8deg);
+            } 
+        }
+    }
+}

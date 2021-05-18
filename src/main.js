@@ -2,6 +2,7 @@ import PwaPopUp from './scripts/utils/PwaPopUp'
 import Swup from 'swup'
 import BlockManager from './scripts/blocks/BlockManager'
 import Direction from './scripts/utils/Direction'
+import SplitContent from './scripts/utils/SplitContent'
 
 class App {
     constructor () {
@@ -31,13 +32,16 @@ class App {
 
     initApp () {
         this.swup = new Swup()
+        new SplitContent()
         new PwaPopUp()
+
         this.blocks = new BlockManager(this.socket, this.swup)
         this.direction = new Direction(this.socket, this.swup)
     }
 
     init() {
         this.blocks = new BlockManager(this.socket, this.swup)
+        new SplitContent()
     }
 
     initServiceWorker () {
