@@ -16,6 +16,9 @@
     overflow: hidden;
     border-radius: 25px;
     background-color: #6500FF;
+    display: flex;
+  justify-content: center;
+  align-items: center;
 
     svg {
       position: absolute;
@@ -54,6 +57,7 @@
     gap: 12px;
     width: 100%;
     min-height: 350px;
+    max-height: 350px;
     font-size: 14px;
     padding: 0px 20px 20px 20px;
 
