@@ -4,13 +4,13 @@ import Circle from './shapes/Circle'
 import Eight from './shapes/Eight'
 import OutGrowth from './shapes/OutGrowth'
 import Star from './shapes/Star'
+import {Path} from "paper";
 
 export default class Test {
   constructor() {
     if(document.getElementById('blobs')) {
       this.bindMethods()
       this.initEls()
-      this.initEvents()
       this.initDraw()
     }
   }
@@ -22,25 +22,20 @@ export default class Test {
     this.$els = {
       canvas: document.getElementById('blobs')
     }
+
+    paper.setup(this.$els.canvas)
+
     this.$els.canvas.width = document.body.clientWidth
     this.$els.canvas.height = document.body.clientHeight
     this.noise = new perlinNoise3d()
   }
 
-  initEvents() {
-    paper.setup(this.$els.canvas)
-
-    if (!this.$els.canvas) {
-      throw new Error('Could not find canvas named content in document!')
-    }
-  }
-
   initDraw() {
-    const shapes = []
-    const textureRed = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-red.svg')
-    const textureBlue = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-blue.svg')
-    const textureWhite = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-white.svg')
-
+    const shapes = [];
+    const textureRed = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-red.svg');
+    const textureBlue = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-blue.svg');
+    const textureWhite = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-white.svg');
+    
     shapes.push(
         // Top
         new Circle(1, 0.8, 2, 2, 0, '#FE6A7A'),
@@ -99,7 +94,7 @@ export default class Test {
 
     paper.view.onClick = function (e) {
       shapes.forEach((shape) => {
-        if (shape.centerX < e.point.x/2 + 30 && shape.centerX + shape.width > e.point.x/2 - 30 && shape.centerY < e.point.y/2 + 30 && shape.centerY + shape.height > e.point.y/2 - 30 & shape.turbulence <= 1) {
+        if (shape.centerX < e.point.x + 30 && shape.centerX + shape.width > e.point.x - 30 && shape.centerY < e.point.y + 30 && shape.centerY + shape.height > e.point.y - 30 & shape.turbulence <= 1) {
           shape.turbulence = 2
         }
       })
