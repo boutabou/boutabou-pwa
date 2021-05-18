@@ -13,6 +13,7 @@ html,
 body {
   overflow: hidden;
   margin: 0;
+  background-color: #040f33;
 }
 
 p, span, img, a, div, span, * {
@@ -25,9 +26,6 @@ p, span, img, a, div, span, * {
   -webkit-tap-highlight-color: transparent;
 }
 
-body {
-  background-color: #040f33;
-}
 
 #swup {
   height: 100vh;

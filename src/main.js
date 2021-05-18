@@ -2,6 +2,7 @@ import PwaPopUp from './scripts/utils/PwaPopUp'
 import Swup from 'swup'
 import BlockManager from './scripts/blocks/BlockManager'
 import Direction from './scripts/utils/Direction'
+import SplitContent from './scripts/utils/SplitContent'
 import Blobs from './scripts/blobs/Blobs'
 
 class App {
@@ -32,7 +33,9 @@ class App {
 
     initApp () {
         this.swup = new Swup()
+        new SplitContent()
         new PwaPopUp()
+
         this.blocks = new BlockManager(this.socket, this.swup)
         this.direction = new Direction(this.socket, this.swup)
         new Blobs()
@@ -40,6 +43,7 @@ class App {
 
     init() {
         this.blocks = new BlockManager(this.socket, this.swup)
+        new SplitContent()
         new Blobs()
     }
 
