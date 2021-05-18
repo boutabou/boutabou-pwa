@@ -17,11 +17,6 @@
 'styles/base/typography',
 'styles/base/helpers';
 
-// 4. Layout-related sections
-@import
-'styles/layout/header',
-'styles/layout/footer';
-
 // 5. Components
 @import
 'styles/components/button',
@@ -40,14 +35,11 @@
 'styles/pages/result-theme',
 'styles/pages/game';
 
-// 7. Themes
-@import
-'styles/themes/default';
-
 // 8. Partials
 @import
 'styles/partials/home',
 'styles/partials/scan',
+'styles/partials/blobs',
 'styles/partials/popup';
 
 // 8. blocks

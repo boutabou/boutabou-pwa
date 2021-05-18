@@ -9,7 +9,17 @@ html {
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 p, span, img, a, div, span {
+=======
+html,
+body {
+  overflow: hidden;
+  margin: 0;
+}
+
+p, span, img, a, div, span, * {
+>>>>>>> 933e76894902029df7fec112d7dc066bb87984f7
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;

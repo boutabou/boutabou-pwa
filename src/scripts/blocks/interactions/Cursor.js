@@ -40,13 +40,13 @@ export default class Cursor extends Interaction {
         switch (orientation) {
             case "vertical":
                 stepsEl.forEach((step, index) => {
-                    step.style.height = "calc( 100% /" + stepsEl.length + ")";
+                    step.style.height = "calc( 100% /" + stepsEl.length + ")"
                 })
                 this.displayVerticalCursor(currentCursor, stepsEl, index)
                 break
             case "horizontal":
                 stepsEl.forEach((step, index) => {
-                    step.style.width = "calc( 100% /" + stepsEl.length + ")";
+                    step.style.width = "calc( 100% /" + stepsEl.length + ")"
                 })
                 this.displayHorizontalCursor(currentCursor, stepsEl, index)
                 break
