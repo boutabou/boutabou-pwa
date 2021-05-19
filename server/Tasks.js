@@ -2,13 +2,13 @@ const { getInteractions, getLoggedTable, getRandom } = require('./utils')
 const { Task } = require('./Task')
 
 class Tasks {
-    constructor(users, sockets, io, theme) {
-        this.vars(users, sockets, io, theme)
+    constructor(users, sockets, io, theme, timer) {
+        this.vars(users, sockets, io, theme, timer)
         this.bindMathods()
         this.listenTasks()
     }
 
-    vars(users, sockets, io, theme) {
+    vars(users, sockets, io, theme, timer) {
         this.all = []
         this.users = users
         this.sockets = sockets
@@ -16,6 +16,7 @@ class Tasks {
         this.interactions = getInteractions(this.users, this.sockets)
         this.score = 5
         this.theme = theme
+        this.timer = timer
     }
 
     bindMathods() {
@@ -28,7 +29,7 @@ class Tasks {
         socket.emit('dashboard:kill-timer')
         this.all.push(task)
         this.checkTime(task, socket)
-        socket.emit('dashboard:display-task', task.sentence, task.timer)
+        socket.emit('dashboard:display-task', task.sentence, this.timer)
     }
 
     listenTasks() {
@@ -71,7 +72,7 @@ class Tasks {
                 this.newTask(getLoggedTable(task.idUser, this.users))
                 this.updateScore(false)
             }
-        }, task.timer)
+        }, this.timer)
     }
 
     updateScore(valide) {
