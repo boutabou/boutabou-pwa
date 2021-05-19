@@ -72,7 +72,6 @@ class Room {
     initGame(socket) {
         socket.on('room:scan-button-clicked', this.themeOnChoice)
         socket.on('result-theme:scan-button-clicked', this.themeOnChoice)
-        socket.on('load:defeat', () => {socket.emit("defeat:loose", this.games.length - 1)})
     }
 
     async themeOnChoice(id) {
@@ -104,6 +103,10 @@ class Room {
 
             setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 5200)
         }
+
+        this.socketChoosenTheme.on('load:defeat', () => { 
+            this.io.emit("defeat:loose", this.games.length - 1)
+        })
     }
 
     redirect() {

@@ -20,7 +20,7 @@ export default class PwaPopUp {
         return  this._beforeInstallPrompt.prompt()
         .then( function ( evt ) {
             // Wait for the user to respond to the prompt
-            return  this._beforeInstallPrompt.userChoice;
+            return  this._beforeInstallPrompt.userChoice
         })
         .then( function ( choiceResult ) {})
         .catch( function ( err ) {
@@ -30,7 +30,7 @@ export default class PwaPopUp {
             } else {
                 return err
             }
-        });
+        })
     }
 
 }

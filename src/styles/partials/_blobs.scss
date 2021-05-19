@@ -1,0 +1,18 @@
+.blobs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  img {
+    width: 100vw;
+    height: 100vh;
+  }
+}

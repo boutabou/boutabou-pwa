@@ -20,12 +20,14 @@ export default class Defeat extends Block {
     initEvents() {
         window.history.pushState({}, '')
         this.socket.on('defeat:loose', this.displayDefeat)
-        this.socket.off()
-        this.socket.disconnect()
+
+        setTimeout(() => {
+            this.socket.off()
+            this.socket.disconnect()
+        }, 100)
     }
 
     displayDefeat(level) {
-        console.log("recup")
         this.$els.team.innerHTML = levels[level].team
         this.$els.comment.innerHTML = levels[level].comment
     }
