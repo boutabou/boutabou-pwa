@@ -1,0 +1,47 @@
+.winner {
+    >* {
+        text-align: center;
+    }
+
+    &__avatar {
+        display: flex;
+        margin: auto;
+    }
+
+    &__desc {
+        b {
+            color: $color-yellow;
+        }
+    }
+
+    &__challenge {
+        position: relative;
+        border: 5px solid $color-cyan;
+        border-radius: 23px;
+        margin-top: 20px;
+        
+        &-title{
+            position: absolute;
+            top: -15px;
+            right: 0;
+            left: 0;
+            color: #5fe7ef;
+            background-color: #040f33;
+            padding: 2px 8px;
+            margin: auto;
+            width: fit-content;
+        }
+
+        &-content {
+            padding: 3px 8px;
+        }
+    }
+
+    &__to-scan-button {
+        position: absolute;
+        bottom: $container-padding-vertical;
+        left: 0;
+        right: 0;
+    }
+
+}

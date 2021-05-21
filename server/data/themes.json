@@ -5,7 +5,8 @@
     "pathInteractions" : "data/interactions/depilation.json",
     "intro" : "On se rapproche tous un peu de Chewbacca au fond... Alors pourquoi ne pas l'assumer?",
     "end" : "Aucune gêne devant un maillot touffu à la piscine !",
-    "winner" : "<b>{winner}</b> on peut dire que tu maîtrises l’art du poil incarné. Montres nous voir ça avec la bande de cire la plus proche."
+    "winner" : "<b>{winner}</b> on peut dire que tu maîtrises l’art du poil incarné.",
+    "challenge": "Montres nous voir ça avec la bande de cire la plus proche."
   },
   {
     "title" : "Les régles",
@@ -13,7 +14,8 @@
     "pathInteractions" : "data/interactions/menstruation.json",
     "intro" : "Vous connaissez les chutes du Niagara? Vous allez les redécouvrir. Soyez prêt ça va saigner...",
     "end" : "Incroyable ! Vous avez passé ce niveau avec brio !\nPlus de rougissements à la vue d’une tâche de sang",
-    "winner" : "<b>{winner}</b> t'est le boss de la thématique, tu manies la cup avec une dextérité inégalée. Saura-tu nous montrer comment l'insérer ?"
+    "winner" : "<b>{winner}</b> t'est le boss de la thématique, tu manies la cup avec une dextérité inégalée.",
+    "challenge" : "Saura-tu nous montrer comment l'insérer ?"
   },
   {
     "title" : "La contraception",
@@ -21,6 +23,7 @@
     "pathInteractions" : "data/interactions/contraception.json",
     "intro" : "Defiez vos amis et vos connaissances face à la contraception. Attention , qui sera le plus calé ? Nous verrons bien qui est le plus avanturier...",
     "end" : "Pour vous, plus de honte devant la caissière avec vos préservatifs XXL.",
-    "winner" : "<b>{winner}</b>, tu a magnifiquement joué, les bébés tu sais les éviter ! Mais sais-tu ce qu'est un slip chauffant?"
+    "winner" : "<b>{winner}</b>, tu a magnifiquement joué, les bébés tu sais les éviter !", 
+    "challenge" : "Mais sais-tu ce qu'est un slip chauffant?"
   }
 ]

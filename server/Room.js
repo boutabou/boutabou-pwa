@@ -118,6 +118,7 @@ class Room {
             this.socketChoosenTheme.off('load:room', this.redirect)
             this.socketChoosenTheme.off('load:result-theme', this.redirect)
             this.socketChoosenTheme.off('load:defeat', this.redirect)
+            this.socketChoosenTheme.off('load:winner', this.redirect)
             this.statusOnScan = false
         }
     }
