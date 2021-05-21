@@ -12,7 +12,6 @@ class Task {
         this.param = interaction.data.param
         this.request = ''
         this.sentence = ''
-        this.timer = 12000
     }
 
     initTask() {

@@ -98,11 +98,17 @@ class Room {
             setTimeout(() => { this.io.emit('theme:on-timer', 3) }, 2000)
 
             this.socketChoosenTheme.on('load:theme', () => { this.io.emit('theme:selected', this.theme) })
-            this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets)
+            
+            this.timer = (1000*this.users.length)/(this.games.length+1 * 0.6)
+            this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets, this.timer)
             this.games.push(this.game)
 
             setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 5200)
         }
+
+        this.socketChoosenTheme.on('load:defeat', () => { 
+            this.io.emit("defeat:loose", lengthGames - 1)
+        })
     }
 
     redirect() {
@@ -111,6 +117,7 @@ class Room {
             this.socketChoosenTheme.off('disconnect', this.redirect)
             this.socketChoosenTheme.off('load:room', this.redirect)
             this.socketChoosenTheme.off('load:result-theme', this.redirect)
+            this.socketChoosenTheme.off('load:defeat', this.redirect)
             this.statusOnScan = false
         }
     }

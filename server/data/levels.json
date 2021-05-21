@@ -1,0 +1,42 @@
+[
+    {
+        "team" : "La team silence",
+        "comment" : "Dites-nous tout ! Vous avez peur de brusquer vos ami(e)s? Un groupe avec une telle abstinence pour parler est-il vraiment un groupe d’ami(e)s…"
+    },
+    {
+        "team" : "La team embarras",
+        "comment" : "Bah alors ? Des difficultés à parler à vos ami(e)s ? Il va falloir gagner en assurance et communiquer plus facilement"
+    },
+    {
+        "team" : "La team pudique",
+        "comment" : "on y croit ! ne soyez pas si réservés ! Vous voulez vous protéger de qui ici ?"
+    },
+    {
+        "team" : "La team sécurité",
+        "comment" : "exposez -vous ! Vous avancez bien mais tout n’est pas joué, jouez le risque ! Votre équipe craint encore les tabous…"
+    },
+    {
+        "team" : "La team décrassage",
+        "comment" : "La moitié ! Vous commencez à parler plus librement, continuez de retirer ses barrières ! Sauf si votre équipe est faible et ne se contente que de la moyenne ? "
+    },
+    {
+        "team" : "La team d'affranchissement",
+        "comment" : "La team affranchissement : 6 thématiques ! félicitations les tabous tombent ! il en reste encore ne vous reposez pas. Votre groupe d’ami(e)s est-il capable de faire plus ?"
+    },
+    {
+        "team" : "La team pote à la compote",
+        "comment" : "Vous rayonnez ! de moins en moins de tabou entre vous, vous formez une jolie bande mais n'avez vous vraiment plus aucun malaise sur aucun sujet?"
+    },
+    {
+        "team" : "La Vrai team ",
+        "comment" : "Mamaaamaaaaah ! on monte encore ! bien joué, les tabous n’existent presque plus entre vous, continuez comme ça !"
+    },
+    {
+        "team" : "La team fraté (fraternelle) ",
+        "comment" : "Vraie vraie équipe ! Ne lâchez pas vous allez bientôt atteindre l’apogée, l’objectif de tout groupe d’ami(e)s qui se respecte !"
+    },
+    {
+        "team" : "La Famille",
+        "comment" : "Vous arrivez en haut de l'échelle en bombe ! Félicitation zéro gêne, continuez ainsi ! pouvoir parler à voix haute de tant de choses c’est très fort !"
+    }
+]
