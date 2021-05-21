@@ -23,6 +23,9 @@ export default class Test {
       canvas: document.getElementById('blobs')
     }
 
+    this.$els.canvas.width = document.body.clientWidth
+    this.$els.canvas.height = document.body.clientHeight
+
     paper.setup(this.$els.canvas)
 
     this.$els.canvas.width = document.body.clientWidth
@@ -35,7 +38,7 @@ export default class Test {
     const textureRed = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-red.svg');
     const textureBlue = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-blue.svg');
     const textureWhite = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-white.svg');
-    
+
     shapes.push(
         // Top
         new Circle(1, 0.8, 2, 2, 0, '#FE6A7A'),

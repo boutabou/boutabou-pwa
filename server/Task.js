@@ -10,6 +10,7 @@ class Task {
         this.type = interaction.type
         this.status = interaction.status
         this.param = interaction.data.param
+        this.sentences = interaction.data.sentences
         this.request = ''
         this.sentence = ''
     }
@@ -18,22 +19,21 @@ class Task {
         switch (this.type) {
             case 'bool':
                 if (this.status && this.status === "off") {
-                    this.sentence = "Désactiver la " + this.name
+                    this.sentence = this.sentences.off
                     this.request = "off"
                 } else {
-                    this.sentence = "Activer la " + this.name
+                    this.sentence = this.sentences.on
                     this.request = "on"
                 }
                 break
             case 'simple-list':
-                const paramSimple = this.param
-                this.sentence = "Enclencher le " + this.name + " " + paramSimple
-                this.request = paramSimple
+                this.sentence = this.sentences
+                this.request = this.param
                 break
             case 'complex-list':
-                const param = this.param[this.getRandomIndex(this.param)]
-                this.sentence = "Enclencher le " + this.name + " " + param
-                this.request = param
+                const index = this.getRandomIndex(this.param)
+                this.sentence = this.sentences[index]
+                this.request = this.param[index]
                 break
             case 'simple-cursor':
             case 'complex-cursor':
@@ -44,7 +44,7 @@ class Task {
                     step = this.param[this.getRandomIndex(this.param)]
                 }
 
-                this.sentence = "Mettre le " + this.name + " sur " + step
+                this.sentence = this.sentences.replace('{param}',  step.toString())
                 this.request = step.toString()
                 break
         }

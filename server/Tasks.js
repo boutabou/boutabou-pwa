@@ -17,6 +17,7 @@ class Tasks {
         this.score = 5
         this.theme = theme
         this.timer = timer
+        console.log(this.timer)
     }
 
     bindMathods() {
@@ -25,7 +26,23 @@ class Tasks {
 
     newTask(user) {
         const socket = getLoggedTable(user.id, this.sockets)
-        const task = new Task(user.id, getRandom(this.interactions.all))
+        let interaction = {}
+        let cpt = 1
+        let max = 0
+
+        while (cpt >= 1 && max < 20) {
+            cpt = 0
+            max++
+            interaction = getRandom(this.interactions.all)
+
+            this.all.forEach((task) => {
+                if (task.name === interaction.data.title.replace(/\W/g,'_').toLowerCase()) {
+                    cpt ++
+                }
+            })
+        }
+
+        const task = new Task(user.id, interaction)
         socket.emit('dashboard:kill-timer')
         this.all.push(task)
         this.checkTime(task, socket)

@@ -98,15 +98,15 @@ class Room {
             setTimeout(() => { this.io.emit('theme:on-timer', 3) }, 2000)
 
             this.socketChoosenTheme.on('load:theme', () => { this.io.emit('theme:selected', this.theme) })
-            
-            this.timer = (1000*this.users.length)/(this.games.length+1 * 0.6)
+
+            this.timer = 10000 + 2000 * this.users.length - (( 1 - Math.exp(-this.games.length / 4)) * 6000)
             this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets, this.timer)
             this.games.push(this.game)
 
             setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 5200)
         }
 
-        this.socketChoosenTheme.on('load:defeat', () => { 
+        this.socketChoosenTheme.on('load:defeat', () => {
             this.io.emit("defeat:loose", lengthGames - 1)
         })
     }
