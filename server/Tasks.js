@@ -17,7 +17,6 @@ class Tasks {
         this.score = 5
         this.theme = theme
         this.timer = timer
-        console.log(this.timer)
     }
 
     bindMathods() {
