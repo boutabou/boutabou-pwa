@@ -1,131 +1,218 @@
 {
-    "bool" : [
-      {
-        "title" : "Pose du stérilet"
-      },
-      {
-        "title" : "Pose implant"
-      },
-      {
-        "title" : "Préservatif percé"
-      },
-      {
-        "title" : "Retrait"
-      },
-      {
-        "title" : "Pilule du lendemain"
-      },
-      {
-        "title" : "Slip chauffant"
-      },
-      {
-        "title" : "Vasectomie"
-      },
-      {
-        "title" : "Ligature des trompes"
-      },
-      {
-        "title" : "Spermicide"
-      },
-      {
-        "title" : "Placement cape cervicale"
-      },
-      {
-        "title" : "Placement anneau vaginal"
-      },
-      {
-        "title" : "Progestatifs injectables"
+  "bool" : [
+    {
+      "title" : "Pose du stérilet",
+      "sentences" : {
+        "on" : "Activer la pose du stérilet",
+        "off" : "Désactiver la pose du stérilet"
       }
-    ],
-    "simple-list" : [
-      {
-        "title" : "Stérilet",
-        "param" : "Déployer"
-      },
-      {
-        "title" : "Patch",
-        "param" : "Coller"
-      },
-      {
-        "title" : "Préservatif féminin",
-        "param" : "Insérer"
-      },
-      {
-        "title" : "Pilule",
-        "param" : "Oublier"
-      },
-      {
-        "title" : "Préservatif",
-        "param" : "Pincer"
+    },
+    {
+      "title" : "Pose implant",
+      "sentences" : {
+        "on" : "Activer la pose d'implant",
+        "off" : "Désactiver la pose d'implant"
       }
-    ],
-    "complex-list" : [
-      {
-        "title" : "Règles",
-        "param" : ["Empêcher", "Modérer", "Fluidifier"]
-      },
-      {
-        "title" : "Préservatif",
-        "param" : ["Nervure", "Perlé", "Aromatisé"]
-      },
-      {
-        "title" : "Pilule",
-        "param" : ["Pause", "Continue", "Lendemain"]
-      },
-      {
-        "title" : "Préservatif",
-        "param" : ["Latex", "Sans latex", "Vegan"]
-      },
-      {
-        "title" : "Effets secondaires",
-        "param" : ["Prise de poids", "Emotivité", "Acné"]
+    },
+    {
+      "title" : "Préservatif percé",
+      "sentences" : {
+        "on" : "Activer le préservatif percé",
+        "off" : "Désactiver le préservatif percé"
       }
-    ],
-    "simple-cursor" : [
-      {
-        "title" : "Déroulement préservatif",
-        "param" : ["1", "2", "3"]
-      },
-      {
-        "title" : "Taille diaphragme",
-        "param" : ["1", "2", "3"]
-      },
-      {
-        "title" : "Taille préservatif",
-        "param" : ["S", "M", "XXL"]
-      },
-      {
-        "title" : "Dosage spermicide",
-        "param" : ["1", "2", "3"]
+    },
+    {
+      "title" : "Retrait",
+      "sentences" : {
+        "on" : "Activer le retrait",
+        "off" : "Désactiver le retrait"
       }
-    ],
-    "complex-cursor" : [
-      {
-        "title" : "Impact effets secondaires",
-        "param" : ["20", "40", "60", "80"]
-      },
-      {
-        "title" : "Effet contraception",
-        "param" : ["60", "70", "80", "90"]
-      },
-      {
-        "title" : "Fertilité",
-        "param" : ["0", "30", "60", "90"]
-      },
-      {
-        "title" : "Douleur pose stétilet",
-        "param" : ["0", "1", "2", "3", "4"]
+    },
+    {
+      "title" : "Pilule du lendemain",
+      "sentences" : {
+        "on" : "Enclencher la pilule du lendemain",
+        "off" : "Désenclencher la pilule du lendemain"
       }
-    ],
-    "rotate" : [
-      {
-        "title" : "Dosage pilule",
-        "param" : ["1", "2", "3", "4", "5", "6"]
-      }, 
-      {
-        "title" : "Heure pilule",
-        "param" : ["18", "19", "20", "21", "22", "23"]
+    },
+    {
+      "title" : "Slip chauffant",
+      "sentences" : {
+        "on" : "Enclencher le slip chauffant",
+        "off" : "Désenclencher le slip chauffant"
       }
-    ]
-  }
-  
+    },
+    {
+      "title" : "Vasectomie",
+      "sentences" : {
+        "on" : "Enclencher la vasectomie",
+        "off" : "Désenclencher la vasectomie"
+      }
+    },
+    {
+      "title" : "Ligature des trompes",
+      "sentences" : {
+        "on" : "Enclencher la ligature des trompes",
+        "off" : "Désenclencher la ligature des trompes"
+      }
+    },
+    {
+      "title" : "Spermicide",
+      "sentences" : {
+        "on" : "Enclencher le spermicide",
+        "off" : "Désenclencher le spermicide"
+      }
+    },
+    {
+      "title" : "Placement cape cervicale",
+      "sentences" : {
+        "on" : "Enclencher le placement d'un cape cervicale",
+        "off" : "Désenclencher le placement d'un cape cervicale"
+      }
+    },
+    {
+      "title" : "Placement anneau vaginal",
+      "sentences" : {
+        "on" : "Enclencher le placement d'un anneau vaginal",
+        "off" : "Désenclencher le placement d'un anneau vaginal"
+      }
+    },
+    {
+      "title" : "Progestatifs injectables",
+      "sentences" : {
+        "on" : "Activer le progestatifs injectables",
+        "off" : "Désactiver le progestatifs injectables"
+      }
+    }
+  ],
+  "simple-list" : [
+    {
+      "title" : "Stérilet",
+      "param" : "Déployer",
+      "sentences" : "Déployer le stérilet"
+    },
+    {
+      "title" : "Patch",
+      "param" : "Coller",
+      "sentences" : "Coller le patch"
+    },
+    {
+      "title" : "Préservatif féminin",
+      "param" : "Insérer",
+      "sentences" : "Insérer le préservatif féminin"
+    },
+    {
+      "title" : "Pilule",
+      "param" : "Oublier",
+      "sentences" : "Oublier la pilule"
+    },
+    {
+      "title" : "Préservatif",
+      "param" : "Pincer",
+      "sentences" : "Pincer le préservatif"
+    }
+  ],
+  "complex-list" : [
+    {
+      "title" : "Règles",
+      "param" : ["Empêcher", "Modérer", "Fluidifier"],
+      "sentences" : [
+        "Empêcher les règles",
+        "Modérer les règles",
+        "Fluidifier les règles"
+      ]
+    },
+    {
+      "title" : "Préservatif",
+      "param" : ["Nervure", "Perlé", "Aromatisé"],
+      "sentences" : [
+        "Préservatif en mode nervuré",
+        "Préservatif en mode perlé",
+        "Préservatif en mode aromatisé"
+      ]
+    },
+    {
+      "title" : "Pilule",
+      "param" : ["Pause", "Continue", "Lendemain"],
+      "sentences" : [
+        "Pilule en mode pause",
+        "Pilule en mode continue",
+        "Pilule en mode lendemain"
+      ]
+    },
+    {
+      "title" : "Préservatif",
+      "param" : ["Latex", "Sans latex", "Vegan"],
+      "sentences" : [
+        "Passer le préservatif en mode latex",
+        "Passer le préservatif en mode sans latex",
+        "Passer le préservatif en mode vegan"
+      ]
+    },
+    {
+      "title" : "Effets secondaires",
+      "param" : ["Prise de poids", "Emotivité", "Acné"],
+      "sentences" : [
+        "Mettre l'effets secondaires sur prise de poids",
+        "Mettre l'effets secondaires sur emotivité",
+        "Mettre l'effets secondaires sur acné"
+      ]
+    }
+  ],
+  "simple-cursor" : [
+    {
+      "title" : "Déroulement préservatif",
+      "param" : ["1", "2", "3"],
+      "sentences" : "Mettre le déroulement du préservatif sur {param}"
+    },
+    {
+      "title" : "Taille diaphragme",
+      "param" : ["1", "2", "3"],
+      "sentences" : "Passer la taille du diaphragme sur {param}"
+    },
+    {
+      "title" : "Taille préservatif",
+      "param" : ["S", "M", "XXL"],
+      "sentences" : "Mettre le taille du préservatif sur {param}"
+    },
+    {
+      "title" : "Dosage spermicide",
+      "param" : ["1", "2", "3"],
+      "sentences" : "Passer le dosage du spermicide sur {param}"
+    }
+  ],
+  "complex-cursor" : [
+    {
+      "title" : "Impact effets secondaires",
+      "param" : ["20", "40", "60", "80"],
+      "sentences" : "Mettre sur {param} l'impact des effets secondaires"
+    },
+    {
+      "title" : "Effet contraception",
+      "param" : ["60", "70", "80", "90"],
+      "sentences" : "Passer l'effet de la contraception sur {param}"
+    },
+    {
+      "title" : "Fertilité",
+      "param" : ["0", "30", "60", "90"],
+      "sentences" : "Mettre le taux de fertilité sur {param}"
+    },
+    {
+      "title" : "Douleur pose stétilet",
+      "param" : ["0", "1", "2", "3", "4"],
+      "sentences" : "Mettre sur {param} la douleur de la pose du stérilet"
+    }
+  ],
+  "rotate" : [
+    {
+      "title" : "Dosage pilule",
+      "param" : ["1", "2", "3", "4", "5", "6"],
+      "sentences" : "Mettre sur {param} le dosage de la pilule"
+    },
+    {
+      "title" : "Heure pilule",
+      "param" : ["18", "19", "20", "21", "22", "23"],
+      "sentences" : "Choisir {param} heure pour prendre la pilule"
+    }
+  ]
+}
