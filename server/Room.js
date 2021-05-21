@@ -99,7 +99,7 @@ class Room {
 
             this.socketChoosenTheme.on('load:theme', () => { this.io.emit('theme:selected', this.theme) })
             
-            this.timer = (1000*this.users.length)/(this.games.length+1 * 0.6)
+            this.timer = (3000*this.users.length)/(this.games.length+1 * 0.6)
             this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets, this.timer)
             this.games.push(this.game)
 
@@ -118,6 +118,7 @@ class Room {
             this.socketChoosenTheme.off('load:room', this.redirect)
             this.socketChoosenTheme.off('load:result-theme', this.redirect)
             this.socketChoosenTheme.off('load:defeat', this.redirect)
+            this.socketChoosenTheme.off('load:winner', this.redirect)
             this.statusOnScan = false
         }
     }

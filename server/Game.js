@@ -21,12 +21,14 @@ class Game {
     bindMethods() {
         this.initUser = this.initUser.bind(this)
         this.giveDataResultTheme = this.giveDataResultTheme.bind(this)
+        this.giveWinnerOfTheme = this.giveWinnerOfTheme.bind(this)
     }
 
     startGame() {
         this.sockets.forEach((socket) => {
             socket.on('load:dashboard', this.initUser)
             socket.on('load:result-theme', this.giveDataResultTheme)
+            socket.on('load:winner', this.giveWinnerOfTheme )
         })
     }
 
@@ -39,6 +41,12 @@ class Game {
 
     giveDataResultTheme(id) {
         const socket = getLoggedTable(id, this.sockets)
+        socket.emit('result-theme:win', this.theme)
+    }
+
+    giveWinnerOfTheme(id) {
+
+        const socket = getLoggedTable(id, this.sockets)
         const scoreMax =  Math.max.apply(Math, this.users.map((user) => { return user.score[this.theme.title] }))
         this.users.forEach((user) => {
             if(user.score[this.theme.title] === scoreMax) {
@@ -46,7 +54,8 @@ class Game {
                 return
             }
         })
-        socket.emit('result-theme:win', this.theme, this.winner)
+
+        socket.emit('winner:display-winner', this.theme, this.winner)
     }
 
 
@@ -55,6 +64,7 @@ class Game {
             this.sockets.forEach((socket) => {
                 socket.off('load:dashboard', this.initUser)
                 socket.off('load:result-theme', this.giveDataResultTheme)
+                socket.off('load:winner', this.giveWinnerOfTheme)
             })
         }
 

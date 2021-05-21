@@ -1,0 +1,11 @@
+<div class="block winner js-winner container">
+    <h1 class="js-theme-title js-split-text split-text"></h1>
+    <img class="js-winner-avatar winner__avatar" src="" alt="winner avatar">
+    <p class="js-theme-winner winner__desc"></p>
+    <div class="winner__challenge">
+        <p class="winner__challenge-title js-split-text split-text"> Défi </p>
+        <p class="js-theme-challenge winner__challenge-content"></p>
+    </div>
+
+    <%- include('../components/button', { buttonLink : '/views/pages/scan.ejs', buttonText : "SCANNER", buttonClass : "js-scan-button winner__to-scan-button" }); %>
+</div>
