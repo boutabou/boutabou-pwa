@@ -1,7 +1,7 @@
 {
-  "name": "boutabou",
+  "name": "tohubohu",
   "version": "0.0.1",
-  "description": "Boutabou is a PWA made to play with friends",
+  "description": "TohuBohu is a PWA made to play with friends",
   "dependencies": {
     "-": "0.0.1",
     "concurrently": "^6.0.0",
