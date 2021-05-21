@@ -22,23 +22,44 @@ $ npm run dev
 
 ```
 ├── Assets
+│   ├── Fonts
+│   ├── Icons
+│   ├── Images
 ├── Node_modules
-├── Public                   // Compiled file
+├── Public                 // Compiled file
 │   ├── Main.css
-│   ├── Main.js
-├── Server                   // Server file call by Index.js
-│   ├── Data
-│   ├── Socket
-│   │   ├── SocketManager.js
-│   ├── Router.js
+│   ├── Main.js            // File call by Index.js
+├── Server                 
+│   ├── Data               // Json data file
+│   ├── Utils              
+│   ├── Router.js  
+│   ├── Game.js  
+│   ├── Room.js  
+│   ├── Interaction.js  
+│   ├── Task.js   
+│   ├── Tasks.js          
+│   ├── User.js          
 ├── Src
-│   ├── Scritps
+│   ├── Scripts
+│   │   ├── Blobs
+│   │   │   ├── Blobs.js
 │   │   ├── Blocks          // Front-end js file
+│   │   │   ├── Block.js
+│   │   │   ├── BlockManager.js
 │   │   ├── Utils
 │   ├── Styles
+│   │   ├── Abstracts
+│   │   ├── Base
+│   │   ├── Blocks
+│   │   ├── Components
+│   │   ├── Pages
 │   ├── Main.js
 │   ├── Main.scss
 ├── View
+│   ├── Blocks
+│   ├── Components
+│   ├── Pages
+│   ├── Partials
 ├── Index.js               // Serveur nodeJS
 ├── Manifest.json          // PWA file
 ├── Package.json
