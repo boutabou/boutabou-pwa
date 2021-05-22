@@ -4,9 +4,8 @@ import List from './interactions/List'
 import Cursor from './interactions/Cursor'
 import Rotate from './interactions/Rotate'
 
-import { gsap } from "gsap"
-import { DrawSVGPlugin } from "gsap/DrawSVGPlugin"
-
+import { gsap } from 'gsap'
+import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 
 gsap.registerPlugin(DrawSVGPlugin)
 

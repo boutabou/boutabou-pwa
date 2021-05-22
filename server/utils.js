@@ -1,7 +1,6 @@
 const { User } = require('./User')
 const { Interactions } = require('./Interactions')
 const theme = require('./data/themes.json')
-const avatars = require('./data/avatars.json')
 
 /**
  * @param socket Socket
@@ -10,11 +9,7 @@ const avatars = require('./data/avatars.json')
 function getUser(socket) {
     const promise  = new Promise((resolve, reject) => {
         socket.on('room:user-login', (name, avatar) => {
-            //const lessUsedAvatars = getLessUsed(avatars)
-            //const randomAvatar = lessUsedAvatars[getRandomIndex(lessUsedAvatars)]
             const user = new User(name, socket.id, avatar)
-
-            //randomAvatar.nbUsed ++
 
             if (user) {
                 resolve(user)

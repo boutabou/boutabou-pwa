@@ -8,19 +8,18 @@ function initRouter(app, path, port) {
     /*
     * Redirect to https
     */
-
     app.use (function (req, res, next) {
-        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` ||  req.rawHeaders[1] == `192.168.1.14:3003` ) {
+        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` || req.rawHeaders[1] == `${ip}:${port}` ) {
             // request was via https, so do no special handling
-            next();
-        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] == `192.168.1.14:3003`) {
+            next()
+        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] !== `${ip}:${port}` ) {
             // request was via http, so redirect to https
-            res.redirect('https://' + req.headers.host + req.url);
+            res.redirect('https://' + req.headers.host + req.url)
         }
     });
 
     app.get('/', function(req, res) {
-        res.render('pages/index');
+        res.render('pages/index')
     })
 
     app.all("*", function (req, res, next) {
@@ -34,8 +33,6 @@ function initRouter(app, path, port) {
 
             return
         }
-
-        
 
         res.sendFile(path + req.params[0]) // router other file
     })

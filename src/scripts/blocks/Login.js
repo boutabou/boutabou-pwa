@@ -8,6 +8,7 @@ export default class Login extends Block {
             username: document.querySelector('.js-username'),
             avatar: document.querySelector('.js-avatar'),
         }
+
         this.currentName = ''
         this.$els.loginButton.classList.add('inactive')
         this.avatars = require('../../../server/data/avatars')

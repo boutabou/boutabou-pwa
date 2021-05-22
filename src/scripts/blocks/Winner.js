@@ -1,29 +1,41 @@
 import Block from './Block'
 
-export default class ResultTheme extends Block {
+export default class Winner extends Block {
     initEls() {
         this.$els = {
             title: document.querySelector('.js-theme-title'),
-            text: document.querySelector('.js-theme-text'),
+            avatar: document.querySelector('.js-winner-avatar'),
             winner: document.querySelector('.js-theme-winner'),
-            img: document.querySelector('.js-theme-img'),
-            winnerButton : document.querySelector('.js-to-winner-button'),
+            challenge: document.querySelector('.js-theme-challenge'),
+            scanButton : document.querySelector('.js-scan-button'),
             popup: document.querySelector('.js-popup'),
             popupTitle: document.querySelector('.js-popup-title'),
         }
     }
 
     bindMethods() {
-        this.displayTheme = this.displayTheme.bind(this)
+        this.displayWinner = this.displayWinner.bind(this)
         this.waitScan = this.waitScan.bind(this)
         this.endScan = this.endScan.bind(this)
+        this.clickScan = this.clickScan.bind(this)
     }
 
     initEvents() {
-        window.history.pushState({}, '')
-        this.socket.on('result-theme:win', this.displayTheme)
+        this.socket.on('winner:display-winner', this.displayWinner)
         this.socket.on('popup-wait-scan', this.waitScan)
         this.socket.on('remove-popup-wait-scan', this.endScan)
+        this.$els.scanButton.addEventListener('click', this.clickScan)
+    }
+
+    displayWinner(message, winner) {
+        this.$els.title.innerHTML = message.title
+        this.$els.avatar.setAttribute("src", winner.avatar )
+        this.$els.winner.innerHTML = message.winner.replace('{winner}', winner.name)
+        this.$els.challenge.innerHTML = message.challenge
+    }
+
+    clickScan() {
+        this.socket.emit('winner:scan-button-clicked', this.socket.id)
     }
 
     waitScan() {
@@ -36,15 +48,10 @@ export default class ResultTheme extends Block {
         this.$els.popupTitle.innerHTML = ""
     }
 
-    displayTheme(message) {
-        this.$els.title.innerHTML = message.title
-        this.$els.text.innerHTML = message.end
-        this.$els.img.src = message.img
-    }
-
     destroy() {
-        this.socket.removeListener('result-theme:win')
+        this.socket.off('winner:display-winner', this.displayWinner)
         this.socket.off('popup-wait-scan', this.waitScan)
         this.socket.off('remove-popup-wait-scan', this.endScan)
+        this.$els.scanButton.removeEventListener('click', this.clickScan)
     }
 }

@@ -1,92 +1,273 @@
 {
   "bool" : [
     {
-      "title" : "Chewbacca"
+      "title" : "Chewbacca",
+      "sentences" : {
+        "on" : "Activer le mode Chewbacca",
+        "off" : "Désactiver le mode Chewbacca"
+      }
     },
     {
-      "title" : "Mode poilu"
+      "title" : "Mode poilu",
+      "sentences" : {
+        "on" : "Allumer le mode poilu",
+        "off" : "Désactiver le mode poilu"
+      }
     },
     {
-      "title" : "Turbo épilateur"
+      "title" : "Turbo épilateur",
+      "sentences" : {
+        "on" : "Allumer le turbo épilateur",
+        "off" : "Eteindre le turbo épilateur"
+      }
     },
     {
-      "title" : "Pousse des poils"
+      "title" : "Pousse des poils",
+      "sentences" : {
+        "on" : "Stimuler la pousse des poils",
+        "off" : "Désactiver la pousse des poils"
+      }
     },
     {
-      "title" : "Mousse à raser"
+      "title" : "Mousse à raser",
+      "sentences" : {
+        "on" : "Passer la mousse à raser",
+        "off" : "Désactiver la mousse à raser"
+      }
     },
     {
-      "title" : "Monosourcil"
+      "title" : "Monosourcil",
+      "sentences" : {
+        "on" : "Activer le monosourcil",
+        "off" : "Désactiver le monosourcil"
+      }
     },
     {
-      "title" : "Pedi poils"
+      "title" : "Torse frisé",
+      "sentences" : {
+        "on" : "Activer le torse frisé",
+        "off" : "Désactiver le torse frisé"
+      }
     },
     {
-      "title" : "Tresse"
+      "title" : "Aspiro Poils",
+      "sentences" : {
+        "on" : "Brancher l'aspiro poils",
+        "off" : "Débrancher l'aspiro poils"
+      }
     },
     {
-      "title" : "Jambe poilue"
+      "title" : "Jambe poilue",
+      "sentences" : {
+        "on" : "Activer la jambue poilue",
+        "off" : "Désactiver la jambue poilue"
+      }
     },
     {
-      "title" : "Hibernation"
+      "title" : "Hibernation",
+      "sentences" : {
+        "on" : "Activer le mode hibernation",
+        "off" : "Désactiver le mode hibernation"
+      }
+    },
+    {
+      "title" : "Brulo laser",
+      "sentences" : {
+        "on" : "Allumer le brulo laser",
+        "off" : "Eteindre le brulo laser"
+      }
+    },
+    {
+      "title" : "Frida sourcil",
+      "sentences" : {
+        "on" : "Passer en mode Frida sourcil",
+        "off" : "Désactiver le mode Frida Sourcil"
+      }
+    },
+    {
+      "title" : "Imberbe",
+      "sentences" : {
+        "on" : "Passer en mode imberbe",
+        "off" : "Désactiver le mode imberbe"
+      }
+    },
+    {
+      "title" : "Tondeuse",
+      "sentences" : {
+        "on" : "Allumer la tondeuse",
+        "off" : "Eteindre la tondeuse"
+      }
     }
   ],
   "simple-list" : [
     {
       "title" : "Poils",
-      "param" : "Assumer"
+      "param" : "Assumer",
+      "sentences" : "Assumer les poils"
     },
     {
       "title" : "Poils",
-      "param" : "Coiffés"
+      "param" : "Coiffer",
+      "sentences" : "Coiffer les poils"
     },
     {
       "title" : "Poils",
-      "param" : "Teintés"
+      "param" : "Teintés",
+      "sentences" : "Activer les poils teintés"
     },
     {
       "title" : "Hyper pilosité",
-      "param" : "Assumer"
+      "param" : "Assumer",
+      "sentences" : "Assumer l'hyper-pilosité"
+    },
+    {
+      "title" : "Barbichette",
+      "param" : "Tondre",
+      "sentences" : "Tondre la barbichette"
+    },
+    {
+      "title" : "Morpions",
+      "param" : "Apprivoiser",
+      "sentences" : "Apprivoiser les morpions"
+    },
+    {
+      "title" : "Zgeg",
+      "param" : "Dégarnir",
+      "sentences" : "Dégarnir le zgeg"
+    },
+    {
+      "title" : "Jambes",
+      "param" : "Dépiler",
+      "sentences" : "Dépiler les jambes"
     }
   ],
   "complex-list" : [
     {
       "title" : "Maillot",
-      "param" : ["Touffu", "Déboisé", "Demi-poillu"]
+      "param" : ["Touffu", "Déboisé", "Demi-poillu"],
+      "sentences" : [
+        "Activer le maillot touffu",
+        "Activer le maillot déboisé",
+        "Activer le maillot demi-poillu"
+      ]
     },
     {
       "title" : "Poils",
-      "param" : ["Blonds", "Roux", "Bruns"]
+      "param" : ["Blonds", "Roux", "Bruns"],
+      "sentences" : [
+        "Activer les poils blonds",
+        "Activer les poils roux",
+        "Activer les poils bruns"
+      ]
     },
     {
-      "title" : "Jambe",
-      "param" : ["Touffues", "Déboisées", "Demi-poillues"]
+      "title" : "Jambes",
+      "param" : ["Touffues", "Déboisées", "Ebouriffées"],
+      "sentences" : [
+        "Passer en jambes touffues",
+        "Passer en jambes déboisées",
+        "Passer en jambes ébouriffées"
+      ]
     },
     {
       "title" : "aisselles",
-      "param" : ["Touffues", "Déboisées", "Demi-poillues"]
+      "param" : ["Touffues", "Déboisées", "Frisées"],
+      "sentences" : [
+        "Passer en aisselles touffues",
+        "Passer en aisselles déboisées",
+        "Passer en aisselles frisées"
+      ]
     },
     {
       "title" : "Rasoir",
-      "param" : ["à l'attaque", "au repos", "en vacances"]
+      "param" : ["à l'attaque", "au repos", "en vacances"],
+      "sentences" : [
+        "Mettre le rasoir à l'attaque",
+        "Mettre le rasoir au repos",
+        "Mettre le rasoir en vacances"
+      ]
+    },
+    {
+      "title" : "Bout de peau",
+      "param" : ["couper", "arracher", "tondre"],
+      "sentences" : [
+        "Couper un bout de peau",
+        "Arracher le bout de peau",
+        "Tondre le bout de peau"
+      ]
+    },
+    {
+      "title" : "Poils",
+      "param" : ["raccourcir", "exterminer", "brûler"],
+      "sentences" : [
+        "Raccourcir les poils",
+        "Exterminer les poils",
+        "Brûler les poils"
+      ]
+    },
+    {
+      "title" : "Moustache",
+      "param" : ["duveteuse", "piquante", "inexistante"],
+      "sentences" : [
+        "Mettre la moustache duveteuse",
+        "Activer la moustache piquante",
+        "Activer la moustache inexistante"
+      ]
+    },
+    {
+      "title" : "Anus",
+      "param" : ["velu", "touffu", "laineux"],
+      "sentences" : [
+        "Activer l'anus velu",
+        "Activer l'anus touffu",
+        "Activer l'anus laineux"
+      ]
     }
   ],
   "simple-cursor" : [
     {
       "title" : "Température de la cire",
-      "param" : ["0", "10", "20"]
+      "param" : ["0", "10", "20"],
+      "sentences" : "Passer la température de la cire à {param}"
+    },
+    {
+      "title" : "Turbo epilateur",
+      "param" : ["0", "1", "2"],
+      "sentences" : "Passer le turbo épilateur à {param}"
+    },
+    {
+      "title" : "Pilo tondeuse",
+      "param" : ["0", "1", "2"],
+      "sentences" : "Mettre la pilo tondeuse sur {param}"
+    },
+    {
+      "title" : "Laser",
+      "param" : ["0", "10", "20"],
+      "sentences" : "Mettre le laser sur {param}"
     }
   ],
   "complex-cursor" : [
     {
       "title" : "Eguisation des lames",
-      "param" : ["0", "10", "20", "30"]
+      "param" : ["0", "10", "20", "30"],
+      "sentences" : "Passer l'éguisation des lâmes à {param}"
+    },
+    {
+      "title" : "Taille de la broussaille",
+      "param" : ["0", "2", "4", "6"],
+      "sentences" : "Mettre la taille de la broussaille sur {param}"
     }
   ],
   "rotate" : [
     {
-      "title" : "Température de la cire",
-      "param" : ["0", "10", "20", "30", "40", "60"]
+      "title" : "Vitesse de débourrage",
+      "param" : ["0", "10", "20", "30", "40", "60"],
+      "sentences" : "Mettre la vitesse de débourrage sur {param}"
+    },
+    {
+      "title" : "Vitesse de pousse",
+      "param" : ["0", "10", "20", "30", "40", "60"],
+      "sentences" : "Mettre la vitesse de pousse sur {param}"
     }
   ]
 }

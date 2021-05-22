@@ -8,7 +8,6 @@ export default class Theme extends Block {
             intro: document.querySelector('.js-theme-intro'),
             countdown: document.querySelector('.js-theme-countdown'),
         }
-        this.counter = 3
     }
 
     bindMethods() {
@@ -26,21 +25,23 @@ export default class Theme extends Block {
         this.$els.title.innerHTML = message.title
         this.$els.img.src = message.img
         this.$els.intro.innerHTML = message.intro
-
     }
 
     displayTimer(cpt) {
         setTimeout( () => {
             this.$els.countdown.innerHTML = cpt
             cpt --
+
             setTimeout( () => {
                 this.$els.countdown.innerHTML = cpt
                 cpt --
             }, 1000)
+
             setTimeout( () => {
                 this.$els.countdown.innerHTML = cpt
                 cpt --
             }, 2000)
+
         }, 500 )
     }
 

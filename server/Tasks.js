@@ -2,13 +2,13 @@ const { getInteractions, getLoggedTable, getRandom } = require('./utils')
 const { Task } = require('./Task')
 
 class Tasks {
-    constructor(users, sockets, io, theme) {
-        this.vars(users, sockets, io, theme)
+    constructor(users, sockets, io, theme, timer) {
+        this.vars(users, sockets, io, theme, timer)
         this.bindMathods()
         this.listenTasks()
     }
 
-    vars(users, sockets, io, theme) {
+    vars(users, sockets, io, theme, timer) {
         this.all = []
         this.users = users
         this.sockets = sockets
@@ -16,6 +16,7 @@ class Tasks {
         this.interactions = getInteractions(this.users, this.sockets)
         this.score = 5
         this.theme = theme
+        this.timer = timer
     }
 
     bindMathods() {
@@ -24,11 +25,27 @@ class Tasks {
 
     newTask(user) {
         const socket = getLoggedTable(user.id, this.sockets)
-        const task = new Task(user.id, getRandom(this.interactions.all))
+        let interaction = {}
+        let cpt = 1
+        let max = 0
+
+        while (cpt >= 1 && max < 20) {
+            cpt = 0
+            max++
+            interaction = getRandom(this.interactions.all)
+
+            this.all.forEach((task) => {
+                if (task.name === interaction.data.title.replace(/\W/g,'_').toLowerCase()) {
+                    cpt ++
+                }
+            })
+        }
+
+        const task = new Task(user.id, interaction)
         socket.emit('dashboard:kill-timer')
         this.all.push(task)
         this.checkTime(task, socket)
-        socket.emit('dashboard:display-task', task.sentence, task.timer)
+        socket.emit('dashboard:display-task', task.sentence, this.timer)
     }
 
     listenTasks() {
@@ -38,7 +55,7 @@ class Tasks {
     }
 
     resultAction(userAction, socketId) {
-        let valide = false
+        let delta = -0.5
 
         // check if userAction is a task ask
         this.all.forEach((task, index) => {
@@ -47,14 +64,14 @@ class Tasks {
                 const userWin = getLoggedTable(task.idUser, this.users)
                 this.newTask(userWin)
                 this.addPoint(userWin)
-                valide = true
+                delta = 1
             }
         })
-        if(!valide) {
+        if(delta == -0.5) {
             const socket = getLoggedTable(socketId, this.sockets)
             socket.emit('dashboard:vibrate')
         }
-        this.updateScore(valide)
+        this.updateScore(delta)
     }
 
     addPoint(user) {
@@ -69,17 +86,13 @@ class Tasks {
             if(this.all && this.all.includes(task)) {
                 this.all = this.all.filter((currentTask) => { return currentTask.idUser !== task.idUser })
                 this.newTask(getLoggedTable(task.idUser, this.users))
-                this.updateScore(false)
+                this.updateScore(-1)
             }
-        }, task.timer)
+        }, this.timer)
     }
 
-    updateScore(valide) {
-        if (!valide) {
-            this.score --
-        } else {
-            this.score ++
-        }
+    updateScore(delta) {
+        this.score = this.score + delta
 
         this.io.emit('dashboard:update-score', this.score)
 

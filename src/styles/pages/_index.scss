@@ -9,10 +9,10 @@
   overflow-x: hidden;
 
   &__img {
-    bottom: 220px;
+    bottom: 180px;
     position: absolute;
     width: 100vw;
-    min-height: calc(100vh - 220px);
+    min-height: calc(100vh - 180px);
 
     svg {
       height: 100%;
@@ -23,7 +23,7 @@
 
   p {
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     padding-bottom: 10px;
   }
 }

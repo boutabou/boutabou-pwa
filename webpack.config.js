@@ -10,17 +10,35 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'public')
     },
+<<<<<<< HEAD
     devServer: {
         historyApiFallback: true
+=======
+    cache: {
+        type: 'filesystem',
+        cacheDirectory: path.resolve(__dirname, '.temp_cache'),
+    },
+    optimization: {
+         splitChunks: {
+            cacheGroups: {
+                  vendor: {
+                      name: "node_vendors", // part of the bundle name and
+                      // can be used in chunks array of HtmlWebpackPlugin
+                      test: /[\\/]node_modules[\\/]/,
+                      chunks: "all",
+                  },
+            },
+        },
+>>>>>>> main
     },
     module: {
         rules: [{
-            test: /\.(js|jsx)$/,
+            test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
         },
         {
-            test: /\.(scss|css)$/,
+            test: /\.scss$/,
             exclude: /node_modules/,
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
         },

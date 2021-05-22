@@ -40,13 +40,13 @@ export default class Cursor extends Interaction {
         switch (orientation) {
             case "vertical":
                 stepsEl.forEach((step, index) => {
-                    step.style.height = "calc( 100% /" + stepsEl.length + ")";
+                    step.style.height = "calc( 100% /" + stepsEl.length + ")"
                 })
                 this.displayVerticalCursor(currentCursor, stepsEl, index)
                 break
             case "horizontal":
                 stepsEl.forEach((step, index) => {
-                    step.style.width = "calc( 100% /" + stepsEl.length + ")";
+                    step.style.width = "calc( 100% /" + stepsEl.length + ")"
                 })
                 this.displayHorizontalCursor(currentCursor, stepsEl, index)
                 break
@@ -54,11 +54,9 @@ export default class Cursor extends Interaction {
     }
 
     displayVerticalCursor(currentCursor, stepsEl, index) {
-
         const ctx = this
         let indexStep = 0
         let progressBar = document.querySelector(".js-progress-" + index)
-
 
         Draggable.create(currentCursor, {
             type: "y",
@@ -92,7 +90,6 @@ export default class Cursor extends Interaction {
     }
 
     displayHorizontalCursor(currentCursor, stepsEl, index) {
-
         const ctx = this
         let indexStep = 0
         let progressBar = document.querySelector(".js-progress-"+index)

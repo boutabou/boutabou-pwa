@@ -1,126 +1,213 @@
 {
   "bool" : [
     {
-      "title" : "Fuite"
+      "title" : "Fuite",
+      "sentences" : {
+        "on" : "Activer la fuite",
+        "off" : "Désactiver la fuite"
+      }
     },
     {
-      "title" : "Flux instinctif"
+      "title" : "Flux instinctif",
+      "sentences" : {
+        "on" : "Activer le flux instinctif",
+        "off" : "Désactiver le flux instinctif"
+      }
     },
     {
-      "title" : "Serviette de nuit"
+      "title" : "Serviette de nuit",
+      "sentences" : {
+        "on" : "Activer la servitette de nuit",
+        "off" : "Désactiver la servitette de nuit"
+      }
     },
     {
-      "title" : "Tampon coincé"
+      "title" : "Tampon coincé",
+      "sentences" : {
+        "on" : "Enclencher le tampon coincé",
+        "off" : "Désenclencher le tampon coincé"
+      }
     },
     {
-      "title" : "Chutes du Niagara"
+      "title" : "Chutes du Niagara",
+      "sentences" : {
+        "on" : "Activer les chutes du Niagara",
+        "off" : "Désactiver les chutes du Niagara"
+      }
     },
     {
-      "title" : "Cycle irrégulier"
+      "title" : "Cycle irrégulier",
+      "sentences" : {
+        "on" : "Enclencher le cycle irrégulier",
+        "off" : "Désenclencher le cycle irrégulier"
+      }
     },
     {
-      "title" : "Alerte éternuement"
+      "title" : "Alerte éternuement",
+      "sentences" : {
+        "on" : "Mettre l'alerte éternuement",
+        "off" : "Enlever l'alerte éternuement"
+      }
     },
     {
-      "title" : "Culotte de règle"
+      "title" : "Culotte de règle",
+      "sentences" : {
+        "on" : "Mettre la culotte de règle",
+        "off" : "Enlever la culotte de règle"
+      }
     },
     {
-      "title" : "Serviette désaxée"
+      "title" : "Serviette désaxée",
+      "sentences" : {
+        "on" : "Activer la serviette désaxée",
+        "off" : "Désactiver la serviette désaxée"
+      }
     },
     {
-      "title" : "SPM"
+      "title" : "SPM",
+      "sentences" : {
+        "on" : "Activer les SPM",
+        "off" : "Désactiver les SPM"
+      }
     },
     {
-      "title" : "Technique du PQ"
+      "title" : "Technique du PQ",
+      "sentences" : {
+        "on" : "Activer la technique du PQ",
+        "off" : "Désactiver la technique du PQ"
+      }
     },
     {
-      "title" : "Effet ventouse"
+      "title" : "Effet ventouse",
+      "sentences" : {
+        "on" : "Enclencher l'effet ventouse",
+        "off" : "Désactiver l'effet ventouse"
+      }
     }
   ],
   "simple-list" : [
     {
       "title" : "Serviette",
-      "param" : "Changer"
+      "param" : "Changer",
+      "sentences" : "Changer la serviette"
     },
     {
       "title" : "Cup",
-      "param" : "Vider"
+      "param" : "Vider",
+      "sentences" : "Vider la cup"
     },
     {
       "title" : "Fil du tampon",
-      "param" : "Tirer"
+      "param" : "Tirer",
+      "sentences" : "Tirer le fil du tampon"
     },
     {
       "title" : "Cup",
-      "param" : "Stériliser"
+      "param" : "Stériliser",
+      "sentences" : "Stériliser la cup"
     },
     {
       "title" : "Tampon",
-      "param" : "Appliquer"
+      "param" : "Appliquer",
+      "sentences" : "Appliquer le tampon"
     }
   ],
   "complex-list" : [
     {
       "title" : "Cup",
-      "param" : ["Petite", "Moyenne", "Grande"]
+      "param" : ["Petite", "Moyenne", "Grande"],
+      "sentences" : [
+        "Mettre la  taille de la cup sur petite",
+        "Mettre la taille de la cup sur moyenne",
+        "Mettre la taille de la cup sur grande"
+      ]
     },
     {
       "title" : "Tâche",
-      "param" : ["Petite", "Moyenne", "Grande"]
+      "param" : ["Petite", "Moyenne", "Grande"],
+      "sentences" : [
+        "Mettre la tâche sur petite",
+        "Mettre la tâche sur moyenne",
+        "Mettre la tâche sur grande"
+      ]
     },
     {
       "title" : "Tampon",
-      "param" : ["Sec", "Humide", "Détrempé"]
+      "param" : ["Sec", "Humide", "Détrempé"],
+      "sentences" : [
+        "Mettre le tampon sur sec",
+        "Mettre le tampon sur humide",
+        "Mettre le tampon sur détrempé"
+      ]
     },
     {
       "title" : "Règles",
-      "param" : ["Ruisseau", "Fleuve", "Raz de marée"]
+      "param" : ["Ruisseau", "Fleuve", "Raz de marée"],
+      "sentences" : [
+        "Mettre les régles en mode ruisseau",
+        "Mettre les régles en mode fleuve",
+        "Mettre les régles en mode Raz de marée"
+      ]
     },
     {
       "title" : "Règles",
-      "param" : ["Roses", "Rouges", "Marrons"]
+      "param" : ["Roses", "Rouges", "Marrons"],
+      "sentences" : [
+        "Passer les régles en roses",
+        "Passer les régles en rouges",
+        "Passer les régles en marrons"
+      ]
     }
   ],
   "simple-cursor" : [
     {
       "title" : "Fuite",
-      "param" : ["1", "2", "3"]
+      "param" : ["1", "2", "3"],
+      "sentences" : "Passer la fuite sur {param}"
     },
     {
       "title" : "Ballonnements",
-      "param" : ["1", "2", "3"]
+      "param" : ["1", "2", "3"],
+      "sentences" : "Mettre les ballonnements sur {param}"
     },
     {
       "title" : "Maux de tête",
-      "param" : ["1", "2", "3"]
+      "param" : ["1", "2", "3"],
+      "sentences" : "Régler sur {param} les maux de tête"
     },
     {
       "title" : "Enlimination endomètre",
-      "param" : ["1", "2", "3"]
+      "param" : ["1", "2", "3"],
+      "sentences" : "Passer l'enlimination de l'endomètre sur {param}"
     }
   ],
   "complex-cursor" : [
     {
       "title" : "Crampes",
-      "param" : ["0", "1", "2", "3"]
+      "param" : ["0", "1", "2", "3"],
+      "sentences" : "Mettre sur {param} les crampes"
     },
     {
       "title" : "Flux",
-      "param" : ["0", "1", "2", "3"]
+      "param" : ["0", "1", "2", "3"],
+      "sentences" : "Passer le flux sur {param}"
     },
     {
       "title" : "Remplissage cup",
-      "param" : ["0", "1", "2", "3"]
+      "param" : ["0", "1", "2", "3"],
+      "sentences" : "Remplisser la cup à {param}"
     }
   ],
   "rotate" : [
     {
       "title" : "Température de bouillote",
-      "param" : ["0", "20", "40", "50", "70", "90"]
+      "param" : ["0", "20", "40", "50", "70", "90"],
+      "sentences" : "Mettre la température de la buillote sur {param}"
     },
     {
       "title" : "Durée règle",
-      "param" : ["0", "2", "5", "7", "10", "14"]
+      "param" : ["0", "2", "5", "7", "10", "14"],
+      "sentences" : "Mettre la durée des règles sur {param}"
     }
   ]
 }
