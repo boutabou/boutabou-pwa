@@ -11,7 +11,6 @@ export default class Interaction {
         this.containerInteraction
         this.interactions = []
 
-
         this.bindMethods()
         this.createContainerInteraction()
         this.addClassContainer()
@@ -29,7 +28,6 @@ export default class Interaction {
         const divInteraction = document.createElement('div')
         divInteraction.dataset.name = this.title.replace(/\W/g,'_').toLowerCase()
         divInteraction.style.gridArea = this.position
-        //divInteraction.style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16)
 
         const titleInteraction = document.createElement('p')
         titleInteraction.innerHTML = this.title

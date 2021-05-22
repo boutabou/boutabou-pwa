@@ -15,7 +15,7 @@ export default class ResultTheme extends Block {
 
     bindMethods() {
         this.displayTheme = this.displayTheme.bind(this)
-    } 
+    }
 
     initEvents() {
         window.history.pushState({}, '')
@@ -27,7 +27,6 @@ export default class ResultTheme extends Block {
         this.$els.text.innerHTML = message.end
         this.$els.img.src = message.img
     }
-
 
     destroy() {
         this.socket.removeListener('result-theme:win')

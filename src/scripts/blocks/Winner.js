@@ -26,7 +26,6 @@ export default class Winner extends Block {
     }
 
     displayWinner(message, winner) {
-        console.log(winner)
         this.$els.title.innerHTML = message.title
         this.$els.avatar.setAttribute("src", winner.avatar )
         this.$els.winner.innerHTML = message.winner.replace('{winner}', winner.name)

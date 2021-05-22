@@ -8,7 +8,6 @@ export default class Rotate extends Interaction {
     bindMethods() {}
 
     displayInteraction(container) {
-
         const containerRotate = document.createElement("div")
         const cursor = document.createElement("div")
         const marker = document.createElement("div")
@@ -57,6 +56,4 @@ export default class Rotate extends Interaction {
             }
         })
     }
-
-    destroy() {}
 }

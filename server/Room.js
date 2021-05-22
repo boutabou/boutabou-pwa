@@ -90,6 +90,7 @@ class Room {
 
         if(this.games.length < lengthGames + 1) {
             this.statusWaitUser = false
+
             if (this.game) {
                 this.game.endGame()
             }
@@ -107,7 +108,7 @@ class Room {
         }
 
         this.socketChoosenTheme.on('load:defeat', () => {
-            this.io.emit("defeat:loose", lengthGames - 1)
+            this.io.emit('defeat:loose', lengthGames - 1)
         })
     }
 

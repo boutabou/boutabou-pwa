@@ -20,11 +20,11 @@ export default class SplitContent {
     }
 
     splitText () {
-        gsap.registerPlugin(SplitText) 
+        gsap.registerPlugin(SplitText)
 
         this.$els.texts.forEach((text, index) => {
-            this.$els.texts[index].setAttribute("id", "splitText-"+index)
-            new SplitText("#splitText-"+index, {type:"words,chars"})
-        });   
+            this.$els.texts[index].setAttribute("id", "splitText-" + index)
+            new SplitText("#splitText-" + index, { type: "words,chars" })
+        })
     }
 }

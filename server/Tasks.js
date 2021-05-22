@@ -55,7 +55,7 @@ class Tasks {
     }
 
     resultAction(userAction, socketId) {
-        let valide = false
+        let delta = -0.5
 
         // check if userAction is a task ask
         this.all.forEach((task, index) => {
@@ -64,14 +64,14 @@ class Tasks {
                 const userWin = getLoggedTable(task.idUser, this.users)
                 this.newTask(userWin)
                 this.addPoint(userWin)
-                valide = true
+                delta = 1
             }
         })
-        if(!valide) {
+        if(delta == -0.5) {
             const socket = getLoggedTable(socketId, this.sockets)
             socket.emit('dashboard:vibrate')
         }
-        this.updateScore(valide)
+        this.updateScore(delta)
     }
 
     addPoint(user) {
@@ -86,17 +86,13 @@ class Tasks {
             if(this.all && this.all.includes(task)) {
                 this.all = this.all.filter((currentTask) => { return currentTask.idUser !== task.idUser })
                 this.newTask(getLoggedTable(task.idUser, this.users))
-                this.updateScore(false)
+                this.updateScore(-1)
             }
         }, this.timer)
     }
 
-    updateScore(valide) {
-        if (!valide) {
-            this.score --
-        } else {
-            this.score ++
-        }
+    updateScore(delta) {
+        this.score = this.score + delta
 
         this.io.emit('dashboard:update-score', this.score)
 

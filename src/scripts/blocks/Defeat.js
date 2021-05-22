@@ -1,9 +1,7 @@
 import Block from './Block'
 const levels = require('../../../server/data/levels.json')
 
-
 export default class Defeat extends Block {
-
     initEls() {
         this.$els = {
           team: document.querySelector(".js-defeat__team"),
@@ -14,8 +12,6 @@ export default class Defeat extends Block {
     bindMethods() {
         this.displayDefeat = this.displayDefeat.bind(this)
     }
-
-    vars() {}
 
     initEvents() {
         window.history.pushState({}, '')

@@ -7,6 +7,7 @@ import Blobs from './scripts/blobs/Blobs'
 
 class App {
     constructor () {
+        this.os = navigator.userAgent && /iPad|iPhone|iPod/.test(navigator.userAgent)
 
         document.addEventListener('swup:contentReplaced', (event) => {
             this.init()
@@ -21,7 +22,6 @@ class App {
         document.addEventListener('swup:willReplaceContent', (event) => {
             if(!this.socket) {
                 this.socket = this.blocks.getSocket()
-                // this.socket.os = navigator.userAgent && /iPad|iPhone|iPod/.test(navigator.userAgent);
                 this.direction.updateSocket(this.socket)
                 this.direction.init()
             }
@@ -36,13 +36,13 @@ class App {
         new SplitContent()
         new PwaPopUp()
 
-        this.blocks = new BlockManager(this.socket, this.swup)
+        this.blocks = new BlockManager(this.socket, this.swup, this.os)
         this.direction = new Direction(this.socket, this.swup)
         new Blobs()
     }
 
     init() {
-        this.blocks = new BlockManager(this.socket, this.swup)
+        this.blocks = new BlockManager(this.socket, this.swup, this.os)
         new SplitContent()
         new Blobs()
     }

@@ -54,11 +54,9 @@ export default class Cursor extends Interaction {
     }
 
     displayVerticalCursor(currentCursor, stepsEl, index) {
-
         const ctx = this
         let indexStep = 0
         let progressBar = document.querySelector(".js-progress-" + index)
-
 
         Draggable.create(currentCursor, {
             type: "y",
@@ -92,7 +90,6 @@ export default class Cursor extends Interaction {
     }
 
     displayHorizontalCursor(currentCursor, stepsEl, index) {
-
         const ctx = this
         let indexStep = 0
         let progressBar = document.querySelector(".js-progress-"+index)

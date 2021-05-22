@@ -4,7 +4,6 @@ import Circle from './shapes/Circle'
 import Eight from './shapes/Eight'
 import OutGrowth from './shapes/OutGrowth'
 import Star from './shapes/Star'
-import {Path} from "paper";
 
 export default class Test {
   constructor() {
@@ -34,10 +33,10 @@ export default class Test {
   }
 
   initDraw() {
-    const shapes = [];
-    const textureRed = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-red.svg');
-    const textureBlue = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-blue.svg');
-    const textureWhite = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-white.svg');
+    const shapes = []
+    const textureRed = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-red.svg')
+    const textureBlue = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-blue.svg')
+    const textureWhite = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-white.svg')
 
     shapes.push(
         // Top
