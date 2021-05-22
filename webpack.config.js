@@ -10,6 +10,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'public')
     },
+    devServer: {
+        historyApiFallback: true
+    },
     module: {
         rules: [{
             test: /\.(js|jsx)$/,
@@ -29,6 +32,10 @@ module.exports = {
                     limit: 8192 // in bytes
                 }
             }]
+        },
+        {
+            test: /\.svg$/,
+            loader: 'svg-inline-loader'
         }
     ]
     },

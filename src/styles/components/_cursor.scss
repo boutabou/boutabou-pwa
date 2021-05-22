@@ -1,0 +1,115 @@
+.container-cursor {
+    width: 80%;
+    margin: auto;
+    position: relative;
+    margin: 0px auto auto auto;
+
+    &__vertical {
+        &-4{
+        height: 85%;
+        }
+
+        &-3 {
+            height: 80%;
+            transform: translate(-7px);
+        }
+    }
+
+    .progress-bar {
+        margin: auto;
+        background-color: $color-purple;
+        border-radius: 10px;
+
+        &.progress-horizontal {
+            width: 98%;
+            height: 8px;
+            transform: translate(0, 10px);
+        }
+
+        &.progress-vertical {
+            height: calc(100% - 25px);
+            transform: translateY(10px);
+            width: 8px;
+        }
+
+        &:hover {
+            background-color: $color-dark-blue;
+        }
+    }
+
+    .cursor {
+        height: 28px;
+        width: 28px;
+        border: 2px solid white;
+        position: absolute;
+        background: $color-purple;
+        border-radius: 50px;
+        z-index: 1;
+        left: 0;
+        font-weight: bold;
+        right: 0;
+        transition: transform ease-in-out .2s;
+
+        &-vertical {
+            left: calc(50% - 14px);
+        }
+
+        &:hover {
+            background-color: $color-dark-blue;
+        }
+    }
+
+    .steps {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+
+        div {
+            display: flex;
+            align-items: center;
+            color: $color-purple;
+        }
+
+        &-vertical {
+        height: calc(100% + 34px);
+        top: -19.5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+
+            div {
+                width: 44%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 16px;
+            }
+        }
+
+        &-horizontal {
+            flex-direction: row;
+            height: 80%;
+            transform: translateX(6px);
+            position: absolute;
+            z-index: 0;
+            top: 45px;
+            display: flex;
+            align-items: flex-end;
+        }
+    }
+}
+
+.complex-cursor {
+    .container-cursor .steps-horizontal {
+        width: calc(133% - 35px);
+    }
+}
+
+.simple-cursor {
+    .container-cursor .steps-horizontal {
+        width: calc(150% - 35px);
+    }
+}

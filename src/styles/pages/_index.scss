@@ -6,18 +6,42 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow-x: hidden;
 
-  img {
+  &__img {
     bottom: 220px;
-    min-height: calc(100vh - 220px);
-    object-fit: cover;
-    width: 100vw;
     position: absolute;
+    width: 100vw;
+    min-height: calc(100vh - 220px);
+
+    svg {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
   }
 
   p {
     text-align: center;
     font-size: 16px;
     padding-bottom: 10px;
+  }
+}
+
+@media (max-width: $breakpoints-medium) {
+  .welcome {
+    &__img {
+      width: 110vw;
+      margin-left: -5vw;
+    }
+  }
+}
+
+@media (max-width: $breakpoints-small) {
+  .welcome {
+    &__img {
+      width: 120vw;
+      margin-left: -10vw;
+    }
   }
 }

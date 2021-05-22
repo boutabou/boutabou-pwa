@@ -21,14 +21,14 @@
   max-width: $max-width; /* 1 */
   margin-left: auto; /* 2 */
   margin-right: auto; /* 2 */
-  padding-left: 30px; /* 3 */
-  padding-right: 30px; /* 3 */
+  padding-left: $container-padding; /* 3 */
+  padding-right: $container-padding; /* 3 */
   width: 100%; /* 1 */
 
   &--ultra {
     height: 100vh;
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: $container-padding-vertical;
+    padding-bottom: $container-padding-vertical;
     z-index: 1;
   }
 

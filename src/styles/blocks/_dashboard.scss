@@ -2,45 +2,121 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  position: relative;
 
-  .task {
-    height: calc(100vh - 350px);
+  .task-container {
+    width: 290px;
+    height: 73px;
+    border-radius: 10px;
+    position: relative;
+    margin: auto;
+    -webkit-box-shadow: 10px 10px 29px -9px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 10px 10px 29px -9px rgba(0, 0, 0, 0.57);
+    box-shadow: 10px 10px 29px -9px rgba(0, 0, 0, 0.57);
+    overflow: hidden;
+    border-radius: 25px;
+    background-color: #6500FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      position: absolute;
+      right: 0;
+      z-index: 3;
+      top: 0;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .task-content {
+      width: 80%;
+
+
+      .task {
+        text-align: center;
+        color: white;
+        font-size: 18px;
+      }
+    }
   }
 
   .grid-container {
+    overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: repeat(3, 1fr);
-    gap: 0px 0px;
+    gap: 12px;
     width: 100%;
-    height: 350px;
+    min-height: 350px;
     font-size: 14px;
+    padding: 0px 20px 20px 20px;
 
-    &__btn {
-      background-color: white;
-      width: 80%;
-      display: flex;
-      padding: 10px;
-      justify-content: center;
-      font-size: 16px;
-      margin-top: 4px;
-      cursor: pointer;
-      color: $color-dark-blue;
+    >div {
+      background-color: #fff;
+      border-radius: 15px;
+      -webkit-box-shadow: 0px 0px 15px -3px #000000;
+      box-shadow: 0px 0px 15px -3px #000000;
+      padding: 5px;
 
-      &:hover {
-        background-color: #d6d6d6;
+      p {
+        color: $color-purple;
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+    }
+
+    p {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &__background-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    z-index: -1;
+    display: flex;
+    max-height: 500px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+@media (max-width: $breakpoints-small) {
+
+  .dashboard {
+
+    .task-container {
+      width: 246px;
+      height: 63px;
+      font-size: 15px;
+
+      .task-content{
+        top: 0;
+        left: 0;
+        margin: 10px auto;
       }
     }
 
-    .bool, .list {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .grid-container{
+      min-height: 250px;
+      position: absolute;
+      bottom: 0;
 
-      p {
-        margin-top: 0;
+      > div {
+        p {
+          font-size: 13px;
+        }
       }
     }
   }
+
 }

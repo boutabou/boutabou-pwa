@@ -23,11 +23,42 @@
   div {
     background-color: $color-purple;
     font-weight: 800;
-    font-size: 14px;
+    font-size: 15px;
     color: $color-white;
-    padding: 12px 30px 10px 30px;
-    border-radius: 25px;
+    padding: 12px 40px 10px 40px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
+    width: fit-content;
+    margin: auto;
+  }
+
+  &:hover {
+    div {
+      background-color: #8e6eff;
+      color: white;
+    }
+  }
+
+  &--blue {
+    div {
+      background-color: $color-dark-blue;
+    }
+
+    &:hover {
+      div {
+        background-color: #26356a;
+        color: white;
+      }
+    }
+  }
+
+  &.inactive {
+    pointer-events: none;
+
+    div {
+      background-color: #43009b;
+      color: #827f91;
+    }
   }
 }

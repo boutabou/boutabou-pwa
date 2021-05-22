@@ -1,7 +1,11 @@
 <div class="block login js-login">
-    <form class="login__container" action="">
-        <label for="name">Pseudo</label>
-        <input class="js-username" type="text" id="name" name="name" required autofocus>
-        <%- include('../components/button', { buttonLink : '/views/pages/room.ejs', buttonText : "CONNECTION", buttonClass : "js-login-button" }); %>
+    <form class="login__container container container--ultra" action="">
+        <div>
+            <div class="avatar js-avatar"></div>
+            <input class="js-username" type="text" id="name" name="name" placeholder="Pseudo" required>
+        </div>
+        <div class="container-button">
+            <%- include('../components/button', { buttonLink : '/views/pages/room.ejs', buttonText : "LET'S GO", buttonClass : "js-login-button" }); %>
+        </div>
     </form>
 </div>

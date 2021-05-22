@@ -9,12 +9,31 @@ html {
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow: hidden;
+  margin: 0;
+}
+
+p, span, img, a, div, span, * {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   background-color: #040f33;
 }
 
 #swup {
   height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
 }
 
 /**

@@ -28,8 +28,7 @@ export default class List extends Interaction {
     }
 
     clickListBtn(e) {
-        const name = e.currentTarget.parentElement.dataset
-        this.socket.emit('interaction:activated', { 'element' : name, 'actionMake' : e.currentTarget.dataset.btnName })
+        this.socket.emit('interaction:activated', { 'element' : { name : this.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : e.currentTarget.dataset.btnName }, this.socket.id)
     }
 
     destroy() {
