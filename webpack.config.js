@@ -10,10 +10,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'public')
     },
-<<<<<<< HEAD
-    devServer: {
-        historyApiFallback: true
-=======
     cache: {
         type: 'filesystem',
         cacheDirectory: path.resolve(__dirname, '.temp_cache'),
@@ -29,7 +25,6 @@ module.exports = {
                   },
             },
         },
->>>>>>> main
     },
     module: {
         rules: [{
