@@ -8,6 +8,8 @@ export default class Winner extends Block {
             winner: document.querySelector('.js-theme-winner'),
             challenge: document.querySelector('.js-theme-challenge'),
             scanButton : document.querySelector('.js-scan-button'),
+            popup: document.querySelector('.js-popup'),
+            popupTitle: document.querySelector('.js-popup-title'),
         }
     }
 
@@ -19,7 +21,7 @@ export default class Winner extends Block {
     }
 
     initEvents() {
-        this.socket.on("winner:display-winner", this.displayWinner)
+        this.socket.on('winner:display-winner', this.displayWinner)
         this.socket.on('popup-wait-scan', this.waitScan)
         this.socket.on('remove-popup-wait-scan', this.endScan)
         this.$els.scanButton.addEventListener('click', this.clickScan)
@@ -33,7 +35,7 @@ export default class Winner extends Block {
     }
 
     clickScan() {
-        this.socket.emit('result-theme:scan-button-clicked', this.socket.id)
+        this.socket.emit('winner:scan-button-clicked', this.socket.id)
     }
 
     waitScan() {
@@ -47,7 +49,7 @@ export default class Winner extends Block {
     }
 
     destroy() {
-        this.socket.removeListener('winner:display-winner')
+        this.socket.off('winner:display-winner', this.displayWinner)
         this.socket.off('popup-wait-scan', this.waitScan)
         this.socket.off('remove-popup-wait-scan', this.endScan)
         this.$els.scanButton.removeEventListener('click', this.clickScan)

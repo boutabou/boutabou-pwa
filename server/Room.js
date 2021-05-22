@@ -50,6 +50,7 @@ class Room {
             if(this.statusOnScan) {
                 socket.on('load:room', () => { socket.emit('popup-wait-scan') })
             }
+
         } else {
             socket.on('load:room', () => { socket.emit('room:popup-wait-room') })
         }
@@ -71,6 +72,7 @@ class Room {
 
     initGame(socket) {
         socket.on('room:scan-button-clicked', this.themeOnChoice)
+        socket.on('winner:scan-button-clicked', this.themeOnChoice)
         socket.on('result-theme:scan-button-clicked', this.themeOnChoice)
     }
 
@@ -84,6 +86,7 @@ class Room {
         this.socketChoosenTheme.broadcast.emit('popup-wait-scan')
         this.socketChoosenTheme.on('disconnect', this.redirect)
         this.socketChoosenTheme.on('load:room', this.redirect)
+        this.socketChoosenTheme.on('load:winner', this.redirect)
         this.socketChoosenTheme.on('load:result-theme', this.redirect)
 
         this.theme = await getTheme(this.socketChoosenTheme)
@@ -107,8 +110,10 @@ class Room {
             setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 5200)
         }
 
-        this.socketChoosenTheme.on('load:defeat', () => {
-            this.io.emit('defeat:loose', lengthGames - 1)
+        this.sockets.forEach((socket) => {
+            socket.on('load:defeat', () => {
+                socket.emit('defeat:loose', lengthGames - 1)
+            })
         })
     }
 
@@ -117,9 +122,8 @@ class Room {
             this.socketChoosenTheme.broadcast.emit('remove-popup-wait-scan')
             this.socketChoosenTheme.off('disconnect', this.redirect)
             this.socketChoosenTheme.off('load:room', this.redirect)
-            this.socketChoosenTheme.off('load:result-theme', this.redirect)
-            this.socketChoosenTheme.off('load:defeat', this.redirect)
             this.socketChoosenTheme.off('load:winner', this.redirect)
+            this.socketChoosenTheme.off('load:result-theme', this.redirect)
             this.statusOnScan = false
         }
     }

@@ -15,11 +15,25 @@ export default class ResultTheme extends Block {
 
     bindMethods() {
         this.displayTheme = this.displayTheme.bind(this)
+        this.waitScan = this.waitScan.bind(this)
+        this.endScan = this.endScan.bind(this)
     }
 
     initEvents() {
         window.history.pushState({}, '')
         this.socket.on('result-theme:win', this.displayTheme)
+        this.socket.on('popup-wait-scan', this.waitScan)
+        this.socket.on('remove-popup-wait-scan', this.endScan)
+    }
+
+    waitScan() {
+        this.$els.popup.classList.add('active')
+        this.$els.popupTitle.innerHTML = "Un joueur est en train de choisir le prochain théme"
+    }
+
+    endScan() {
+        this.$els.popup.classList.remove('active')
+        this.$els.popupTitle.innerHTML = ""
     }
 
     displayTheme(message) {
@@ -30,5 +44,7 @@ export default class ResultTheme extends Block {
 
     destroy() {
         this.socket.removeListener('result-theme:win')
+        this.socket.off('popup-wait-scan', this.waitScan)
+        this.socket.off('remove-popup-wait-scan', this.endScan)
     }
 }
