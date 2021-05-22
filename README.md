@@ -12,7 +12,7 @@ Clone the repository and install dependencies
 $ npm install
 ```
 
-Run project locally on port 3003
+Run project [locally on port 3003](http://localhost:3003)
 
 ```sh
 $ npm run dev
@@ -70,7 +70,7 @@ $ npm run dev
 
 ## Working process
 
-The main branch contains the updated version of the app. 
+The main **branch** contains the updated version of the app.  
 The **preprod** branch is used to deploy our application on our [domain name](https://tohubohu.herokuapp.com/). 
 For each feature, we create a branch with the name of the feature we are going to develop.
 
