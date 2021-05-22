@@ -70,7 +70,9 @@ $ npm run dev
 
 ## Working process
 
-The main branch is our **main** branch which contains the updated version of the app. The **preprod** branch is used to deploy our application on our [domain name](https://tohubohu.herokuapp.com/). For each feature, we create a branch with the name of the feature we are going to develop.
+The main branch contains the updated version of the app. 
+The **preprod** branch is used to deploy our application on our [domain name](https://tohubohu.herokuapp.com/). 
+For each feature, we create a branch with the name of the feature we are going to develop.
 
 We use gitmoji to name our commits.
 
