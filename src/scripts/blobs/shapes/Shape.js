@@ -3,9 +3,9 @@ import * as paper from 'paper'
 import perlinNoise3d from 'perlin-noise-3d'
 
 export default class Shape {
-    constructor(centerX, centerY, width, height, rotate, color, texture) {
-        this.vars(centerX, centerY, width, height, rotate, color, texture)
-        this.drawShape(this.path, this.centerX, this.centerY, this.width, this.height)
+    constructor(coorX, coorY, width, height, rotate, color, texture) {
+        this.vars(coorX, coorY, width, height, rotate, color, texture)
+        this.drawShape(this.path, this.width, this.height)
         this.path.closed = true
         this.path.smooth()
         this.path.rotate(this.rotate)
@@ -13,30 +13,30 @@ export default class Shape {
         this.addNoise()
     }
 
-    vars(centerX, centerY, width, height, rotate, color, texture) {
+    vars(coorX, coorY, width, height, rotate, color, texture) {
         this.windowWidth = document.body.clientWidth
         this.windowHeight = document.body.clientHeight
-        this.centerX = centerX * this.windowWidth / 6
-        this.centerY = centerY * this.windowHeight / 10
+        this.coorX = coorX * this.windowWidth / 6
+        this.coorY = coorY * this.windowHeight / 10
         this.width = width * this.windowWidth / 6
         this.height = height * this.windowHeight / 10
         this.widthAsk = width
         this.heightAsk = height
         this.rotate = rotate
         this.color = color
-        // this.texture = texture
+        this.texture = texture
         this.path = new Path()
         this.finalPath
         this.turbulence = 1
         this.noise = new perlinNoise3d()
     }
 
-    drawShape(path, centerX, centerY, width, height) {}
+    drawShape(path, width, height) {}
 
     addNoise() {
         this.path.segments.forEach((segment, index) => {
-            segment.point.x = segment.point.x + (Math.random() - 0.5) * this.widthAsk
-            segment.point.y = segment.point.y + (Math.random() - 0.5) * this.heightAsk
+            segment.point.x = segment.point.x + this.coorX + (Math.random() - 0.5) * this.widthAsk
+            segment.point.y = segment.point.y + this.coorY + (Math.random() - 0.5) * this.heightAsk
         })
 
         this.finalPath = this.path.clone()
@@ -47,10 +47,13 @@ export default class Shape {
 
             paper.project.importSVG(this.texture, (item) => {
                 texture = item
-                texture.scale(0.5)
-                texture.position = new paper.Point(this.path.segments[0].point.x -50, this.path.segments[1].point.y -50)
-                var group = new Group([texture, this.finalPath])
-                this.finalPath.clipMask = true
+                texture.scale(Math.max(this.widthAsk, this.heightAsk) / 4)
+                // texture.position = new paper.Point(this.path.segments[0].point.x, this.path.segments[1].point.y)
+                texture.position = new paper.Point(0, 0)
+                this.group = new Group([texture, this.finalPath])
+                // this.finalPath.clipMask = true
+                this.group.translate(new paper.Point(this.coorX + 120, this.coorY + 50))
+                console.log(texture)
             })
         }
 
