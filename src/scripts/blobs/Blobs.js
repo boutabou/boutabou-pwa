@@ -30,14 +30,12 @@ export default class Test {
 
   initDraw() {
     const shapes = []
-    const textureRed = './../../../assets/images/blobs/texture-red-2.svg'
-    const textureBlue = './../../../assets/images/blobs/texture-blue.svg'
-    const textureWhite = './../../../assets/images/blobs/texture-white.svg'
+    const textureRed = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-red.svg');
+    const textureBlue = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-blue.svg');
+    const textureWhite = require('svg-inline-loader?classPrefix!./../../../assets/images/blobs/texture-white.svg');
+    console.log(textureRed)
 
     shapes.push(
-        new OutGrowth(3, 1,2, 2, -200, '#90b2ff', textureRed)
-        /*
-
         // Top
         new Circle(1, 0.8, 2, 2, 0, '#FE6A7A'),
         new Circle(1.2, 1, 1.2, 1.2, 0, '#5FE7EF'),
@@ -58,11 +56,7 @@ export default class Test {
         new OutGrowth(-1, 9,1.6, 1.4, 0, '#FFE202'),
         new Circle(1, 9,0.7, 0.7, 0, '#5FE7EF'),
         new Circle(2.6, 8.5,0.9, 0.9, 0, '#FCC5DD'),
-
-        */
     )
-
-    /*
 
     // Top
     new Star(4.6,2.6, 10, 0.7,0.35,0, '#FFE202')
@@ -75,8 +69,6 @@ export default class Test {
     new Star(3.5,8.9, 10, 0.3,0.15,0, '#FE6A7A')
     new Star(2,9, 10, 0.2,0.1,0, '#FFE202')
     new Star(1.8,7.9, 10, 0.5,0.25,0, '#5FE7EF')
-
-    */
 
     this.animation(shapes)
   }

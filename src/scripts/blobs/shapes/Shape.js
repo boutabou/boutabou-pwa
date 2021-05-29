@@ -48,12 +48,9 @@ export default class Shape {
             paper.project.importSVG(this.texture, (item) => {
                 texture = item
                 texture.scale(Math.max(this.widthAsk, this.heightAsk) / 4)
-                // texture.position = new paper.Point(this.path.segments[0].point.x, this.path.segments[1].point.y)
-                texture.position = new paper.Point(0, 0)
-                this.group = new Group([texture, this.finalPath])
+                texture.position = new paper.Point(this.coorX, this.coorY)
+                new Group([texture, this.finalPath])
                 // this.finalPath.clipMask = true
-                this.group.translate(new paper.Point(this.coorX + 120, this.coorY + 50))
-                console.log(texture)
             })
         }
 
