@@ -8,7 +8,7 @@ export default class ScanQrCode extends Block {
                 this.html5QrCode.clear()
             }
             this.config = { fps: 10, qrbox: 250 }
-            this.html5QrCode = new Html5Qrcode('qr-reader')
+            //this.html5QrCode = new Html5Qrcode('qr-reader')
         }
     }
 
@@ -28,11 +28,11 @@ export default class ScanQrCode extends Block {
     }
 
     initEvents() {
-        if(!this.os){
-            this.startScan()
-        } else {
+        /*if(!this.os){
+            //this.startScan()
+        } else {*/
             this.displayReplacementContent()
-        }
+        //}
 
         this.$els.idButton.addEventListener('click', this.getId)
         this.$els.id.addEventListener('keypress', this.checkKeyPressed)
