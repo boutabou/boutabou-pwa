@@ -15,9 +15,12 @@ export default class Dashboard extends Block {
             grid: document.querySelector('.js-grid-container'),
             task: document.querySelector('.js-task'),
             score: document.querySelector('.js-score'),
+            scoreContainer: document.querySelector('.js-score-container'),
             scoreEnd: document.querySelector('.js-score-end'),
-            timer:  document.querySelector('.js-timer'),
-            name:  document.querySelector('.js-name')
+            timer: document.querySelector('.js-timer'),
+            timerStart: document.querySelector('.js-timer-start'),
+            name: document.querySelector('.js-name'),
+            instructions: document.querySelector('.js-instructions')
         }
         this.cptCursors= 0
         this.tl
@@ -38,6 +41,36 @@ export default class Dashboard extends Block {
         this.socket.on('dashboard:update-score', this.displayScore)
         this.socket.on('dashboard:kill-timer', this.killTimer)
         this.socket.on('dashboard:vibrate', this.vibrate)
+
+        this.timer()
+    }
+
+    timer() {
+        this.$els.timerStart.innerHTML = 3
+
+        setTimeout( () => {
+            this.$els.timerStart.innerHTML = 2
+        }, 1000)
+
+        setTimeout( () => {
+            this.$els.timerStart.innerHTML = 1
+        }, 2000)
+
+        setTimeout( () => {
+            this.$els.timerStart.innerHTML = 0
+        }, 3000)
+
+        setTimeout( () => {
+            this.startGame()
+        }, 4000)
+    }
+
+    startGame() {
+        this.$els.grid.classList.remove('grid-container--disable')
+        this.$els.scoreContainer.classList.remove('score--disable')
+        this.$els.timerStart.classList.add('timer-start--disable')
+        this.$els.instructions.classList.add('instructions--disable')
+        this.socket.emit('dashboard:start')
     }
 
     displayDashboard(currentUser, theme) {

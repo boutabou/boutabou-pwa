@@ -99,15 +99,19 @@ class Room {
             }
 
             this.io.emit('direction',  '/views/pages/theme.ejs')
-            setTimeout(() => { this.io.emit('theme:on-timer', 3) }, 2000)
 
             this.socketChoosenTheme.on('load:theme', () => { this.io.emit('theme:selected', this.theme) })
 
+            this.sockets.forEach((socket) => {
+                socket.on('theme:play',  () => {
+                    this.io.emit('direction',  '/views/pages/game.ejs')
+                })
+            })
+
+            console.log(this.games)
             this.timer = 10000 + 2000 * this.users.length - (( 1 - Math.exp(-this.games.length / 4)) * 6000)
             this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets, this.timer)
             this.games.push(this.game)
-
-            setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 5200)
         }
 
         this.sockets.forEach((socket) => {

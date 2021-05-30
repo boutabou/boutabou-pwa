@@ -36,7 +36,9 @@ class Game {
         const socket = getLoggedTable(id, this.sockets)
         const user = getLoggedTable(socket.id, this.users)
         socket.emit('dashboard:display', user, this.theme)
-        this.tasks.newTask(user)
+        socket.on('dashboard:start', () => {
+            this.tasks.newTask(user)
+        })
     }
 
     giveDataResultTheme(id) {

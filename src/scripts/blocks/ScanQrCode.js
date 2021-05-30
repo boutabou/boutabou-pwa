@@ -8,7 +8,9 @@ export default class ScanQrCode extends Block {
                 this.html5QrCode.clear()
             }
             this.config = { fps: 10, qrbox: 250 }
-            this.html5QrCode = new Html5Qrcode('qr-reader')
+            if(typeof Html5Qrcode !== 'undefined') {
+                this.html5QrCode = new Html5Qrcode('qr-reader')
+            }
         }
     }
 
@@ -55,17 +57,19 @@ export default class ScanQrCode extends Block {
     }
 
     startScan() {
-        this.html5QrCode.start(
-            { facingMode: "environment" },
-            this.config,
-            this.qrCodeSuccessCallback,
-            errorMessage => {
-                console.log('error from scan ', errorMessage)
-            })
-            .catch(err => {
-                console.log('error from scan start : ', err)
-            }
-        )
+        if(this.html5QrCode) {
+            this.html5QrCode.start(
+                { facingMode: "environment" },
+                this.config,
+                this.qrCodeSuccessCallback,
+                errorMessage => {
+                    console.log('error from scan ', errorMessage)
+                })
+                .catch(err => {
+                        console.log('error from scan start : ', err)
+                    }
+                )
+        }
     }
 
     displayReplacementContent() {

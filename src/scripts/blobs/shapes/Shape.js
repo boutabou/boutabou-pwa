@@ -1,4 +1,4 @@
-import { Group, Path } from 'paper'
+import { Group, Path, Raster, Point } from 'paper'
 import * as paper from 'paper'
 import perlinNoise3d from 'perlin-noise-3d'
 
@@ -43,15 +43,12 @@ export default class Shape {
         this.finalPath.fillColor = this.color
 
         if(this.texture) {
-            let texture
+            const raster = new Raster(this.texture)
+            raster.position = new Point(this.coorX + raster.width / 2 - 50, this.coorY + raster.height / 2 - 50);
+            raster.scale(Math.max((this.width + 100) / raster.width, (this.height + 100) / raster.height))
 
-            paper.project.importSVG(this.texture, (item) => {
-                texture = item
-                texture.scale(Math.max(this.widthAsk, this.heightAsk) / 4)
-                texture.position = new paper.Point(this.coorX, this.coorY)
-                new Group([texture, this.finalPath])
-                // this.finalPath.clipMask = true
-            })
+            new Group([raster, this.finalPath])
+            this.finalPath.clipMask = true
         }
 
         this.path.visible = false

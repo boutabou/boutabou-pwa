@@ -1,12 +1,14 @@
 <div class="welcome">
     <div class="welcome__img">
-        <%- include('../../assets/images/cover.svg'); %>
+        <%- include('../../assets/images/logo.svg'); %>
     </div>
     <div class="container container--ultra container--end">
         <p>Poils, règles, sexualité, masturbation…
             Aucune de ces thématiques ne vous fait peur ?
             Alors laissez vous embarquer dans la cacophonie de Tohu Bohu.
         </p>
-        <%- include('../components/button', { buttonLink : '/views/pages/login.ejs', buttonText : "C'EST PARTI !", buttonClass : "" }); %>
+        <%- include('../components/button', { buttonLink : '/views/pages/login.ejs', buttonText : "C'EST PARTI !", buttonClass : "button--blue" }); %>
     </div>
+
+    <%- include('../partials/blobs', { pages : 'welcome' }); %>
 </div>

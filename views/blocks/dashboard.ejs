@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="js-name js-split-text split-text"></h1>
 
-        <div class="score">
+        <div class="score score--disable js-score-container">
             <span class="score__total">
                 <span class="score__cursor js-score">
                 </span>
@@ -16,9 +16,11 @@
             </div>
         </div>
 
-        <div class="task-container  active">
+        <p class="instructions js-instructions"><b>PRÉPAREZ-VOUS À JOUER !</b> Le meilleur joueur pourra donner un défi bien croustillant à la personne de son choix. Alors ouvre grand les oreilles. C’est parti !</p>
+
+        <div class="task-container active">
             <div class="task-content">
-                <div class="task js-task"></div>
+                <div class="task js-task">Vos missions vont apparaitre ici</div>
             </div>
 
             <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80">
@@ -28,9 +30,7 @@
         </div>
     </div>
 
+    <p class="timer-start js-timer-start">3</p>
 
-    <div class="grid-container js-grid-container"></div>
-    <div class="dashboard__background-container">
-        <%- include('../../assets/images/game/dashboard-background.svg'); %>
-    </div>
+    <div class="grid-container js-grid-container grid-container--disable"></div>
 </div>

@@ -5,17 +5,15 @@
 </head>
 
 <body>
-    <main id="swup" class="transition-fade">
+    <main id="swup">
         <%- include('../partials/popup'); %>
         <div class="room-page container container--ultra container--between">
             <div class="js-split-text split-text">Tout le monde est connecté ?</div>
             <%- include('../blocks/room'); %>
             <%- include('../components/button', { buttonLink : '/views/pages/scan.ejs', buttonText : "SCANNER", buttonClass : "js-scan-button button--blue" }); %>
-
-            <div class="room-page__img">
-                <%- include('../../assets/images/room/bg.svg'); %>
-            </div>
         </div>
+
+        <%- include('../partials/blobs', { pages : 'room' }); %>
     </main>
 
     <%- include('../partials/import-js'); %>
