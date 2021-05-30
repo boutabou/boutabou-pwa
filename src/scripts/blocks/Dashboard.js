@@ -23,9 +23,10 @@ export default class Dashboard extends Block {
         }
         this.cptCursors= 0
         this.tl
-        this.tlCounter = gsap.timeline({ onComplete: this.configTimeline, repeat:0, repeatRefresh: true, delay:0,  id:"morphing", paused:true, defaults: {duration: 0.2} }) 
+        this.tlCounter 
         this.score = 5 
         this.scoreHistoric = [5]
+        this.tlScoreActive = false
     }
 
     bindMethods() {
@@ -85,39 +86,58 @@ export default class Dashboard extends Block {
 
     configTimeline() {
     
-        this.tlCounter.progress(0)    
-        this.tlCounter.clear()
+        this.tlCounter.progress(0)  
+    
 
-        this.$els.scoreCursor.style.left =  this.score * 35 + "px"
+        console.log(this.tlCounter.progress())
+        this.$els.scoreCursor.style.transform = "translateY(-50%) rotate(0deg)"
+        this.$els.scoreCursor.style.left =  (this.score * 29.3) - 13 + "px"
 
+        this.tlScoreActive = false
+        console.log(this.tlScoreActive)
 
-        if(this.scoreHistoric[this.scoreHistoric.length-1] > this.scoreHistoric[this.scoreHistoric.length-2]){
-            console.log("gg")
-        } else {
-            console.log("loose")
-        }
+        this.tlCounter.kill()
     }
 
     displayScore(score) {
 
+        console.log(this.tlScoreActive)
         this.score = score
         this.scoreHistoric.push(score)
 
+
         MorphSVGPlugin.convertToPath("circle, polygon, ellipse")    
-        
         let oneStep = document.getElementById("one")
 
+        // if we loose a point
+        if(this.scoreHistoric[this.scoreHistoric.length - 1] < this.scoreHistoric[this.scoreHistoric.length-2]){
+            //reverse and deplace svg 
+            this.$els.scoreCursor.style.transform = "translateY(-50%) rotate(180deg)"
+            this.$els.scoreCursor.style.left = (this.score * 29.3) - 13  + "px" 
+        } 
+
+        this.tlCounter =  gsap.timeline({ onComplete: this.configTimeline,  repeat:0, repeatRefresh: true, delay:0,  id:"morphing", paused:true, defaults: {duration: 0.2} }) 
+
+
         this.tlCounter
-          .to(oneStep, {fill: "#00FF00", morphSVG:"#one", duration: 0.3})
-          //.to(one, {fill: "#0000FF", morphSVG:"#two", duration: 0.15})
-          //.to(one, {fill: "#0000FF", morphSVG:"#three", duration: 0.15})
-          //.to(one, {fill: "#0000FF", morphSVG:"#four", duration: 0.15}) 
-          .to(oneStep, {fill: "#0000FF", morphSVG:"#five", duration: 0.2}) 
-          //.to(one, {fill: "#0000FF", morphSVG:"#six", duration: 0.15}) 
-          .to(oneStep, {fill: "#0000FF", morphSVG:"#seven", duration: 0.2}) 
-          //.to(one, {fill: "#0000FF", morphSVG:"#eight", duration: 0.2}) 
-          .to(oneStep, {fill: "#0000FF", morphSVG:"#nine", duration: 0.1}) 
+        .to(oneStep, {fill: "#ff7384", morphSVG:"#one"})
+        .to(oneStep, {fill: "#ff7384", morphSVG:"#two"})
+        //.to(one, {fill: "#ff7384", morphSVG:"#three", duration: 0.15})
+        //.to(one, {fill: "#0000FF", morphSVG:"#four", duration: 0.15}) 
+        .to(oneStep, {fill: "#ff7384", morphSVG:"#five"}) 
+        //.to(one, {fill: "#0000FF", morphSVG:"#six", duration: 0.15}) 
+        .to(oneStep, {fill: "#5EE9F1", morphSVG:"#seven"}) 
+        //.to(one, {fill: "#0000FF", morphSVG:"#eight", duration: 0.2}) 
+        .to(oneStep, {fill: "#5EE9F1", morphSVG:"#nine"}) 
+
         this.tlCounter.play()
+
+
+        if(!this.tlScoreActive){
+            this.tlScoreActive = true
+        } else {
+            console.log("always true")
+        }    
     }
 
     vibrate() {

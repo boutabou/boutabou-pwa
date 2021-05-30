@@ -20,41 +20,42 @@
     }
 
     .score {
-      width: 100%;
+      width: 300px;
       height: 20px;
       position: relative;
+      display: flex;
 
-      
+      justify-content: space-between;
 
-      &__markers {
-        display: flex;
-        min-width: 300px;
-        max-width: 300px;
-        margin: auto;
-        justify-content: space-between;
-        position: relative;
+      &__cursor {
+        max-width: 57px;
+        min-width: 57px;
+        position: absolute;
+        left:136.5px;
+        top: 6px;
+        height: 34.77px;
+        transform: translateY(-50%);
 
-        .score__cursor {
-          max-width: 50px;
-          min-width: 50px;
-          position: absolute;
-          left:0;
-          top: 4px;
-          transform: translate(-50%,-50%);
-        
-  
+        svg {
+
+          max-width: 100%;
+          min-width: 100%;
           #two, #three, #four, #five, #six, #seven, #eight, #nine  {
             visibility: hidden;
           } 
         }
+      
 
-        span {
-          width: 10px;
-          height: 8px;
-          background-color: #FFFFFF;
-          border-radius: 50px;
-        }
+        
       }
+
+      span {
+        width: 6px;
+        height: 6px;
+        background-color: #FFFFFF;
+        border-radius: 50px;
+      }
+
 
       /*&__total {
         width: 100%;
