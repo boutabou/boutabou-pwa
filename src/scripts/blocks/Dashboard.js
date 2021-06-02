@@ -19,19 +19,20 @@ export default class Dashboard extends Block {
             scoreCursor: document.querySelector('.js-score-cursor'),
             scoreEnd: document.querySelector('.js-score-end'),
             timer:  document.querySelector('.js-timer'),
-            name:  document.querySelector('.js-name')
+            name:  document.querySelector('.js-name'),
+            level: document.querySelector('.js-level')
         }
         this.cptCursors= 0
         this.tl
-        this.tlCounter 
-        this.score = 5 
+        this.tlCounter
+        this.score = 5
         this.scoreHistoric = [5]
-        this.tlScoreActive = false
     }
 
     bindMethods() {
         this.displayDashboard = this.displayDashboard.bind(this)
         this.displayTask = this.displayTask.bind(this)
+        this.displayLevel = this.displayLevel.bind(this)
         this.displayScore = this.displayScore.bind(this)
         this.killTimer = this.killTimer.bind(this)
         this.vibrate = this.vibrate.bind(this)
@@ -45,8 +46,12 @@ export default class Dashboard extends Block {
         this.socket.on('dashboard:update-score', this.displayScore)
         this.socket.on('dashboard:kill-timer', this.killTimer)
         this.socket.on('dashboard:vibrate', this.vibrate)
+        this.socket.on('dashboard:display-level', this.displayLevel)
     }
 
+    displayLevel(level) {
+        this.$els.level.innerHTML = "Niveau " + level
+    }
 
     displayDashboard(currentUser, theme) {
         this.$els.name.innerHTML = theme.title
@@ -93,18 +98,14 @@ export default class Dashboard extends Block {
         this.$els.scoreCursor.style.transform = "translateY(-50%) rotate(0deg)"
         this.$els.scoreCursor.style.left =  (this.score * 29.3) - 13 + "px"
 
-        this.tlScoreActive = false
-        console.log(this.tlScoreActive)
 
         this.tlCounter.kill()
     }
 
     displayScore(score) {
 
-        console.log(this.tlScoreActive)
         this.score = score
         this.scoreHistoric.push(score)
-
 
         MorphSVGPlugin.convertToPath("circle, polygon, ellipse")    
         let oneStep = document.getElementById("one")
@@ -122,22 +123,11 @@ export default class Dashboard extends Block {
         this.tlCounter
         .to(oneStep, {fill: "#ff7384", morphSVG:"#one"})
         .to(oneStep, {fill: "#ff7384", morphSVG:"#two"})
-        //.to(one, {fill: "#ff7384", morphSVG:"#three", duration: 0.15})
-        //.to(one, {fill: "#0000FF", morphSVG:"#four", duration: 0.15}) 
         .to(oneStep, {fill: "#ff7384", morphSVG:"#five"}) 
-        //.to(one, {fill: "#0000FF", morphSVG:"#six", duration: 0.15}) 
         .to(oneStep, {fill: "#5EE9F1", morphSVG:"#seven"}) 
-        //.to(one, {fill: "#0000FF", morphSVG:"#eight", duration: 0.2}) 
         .to(oneStep, {fill: "#5EE9F1", morphSVG:"#nine"}) 
 
-        this.tlCounter.play()
-
-
-        if(!this.tlScoreActive){
-            this.tlScoreActive = true
-        } else {
-            console.log("always true")
-        }    
+        this.tlCounter.play()  
     }
 
     vibrate() {

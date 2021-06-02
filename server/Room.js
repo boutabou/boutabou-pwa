@@ -104,10 +104,12 @@ class Room {
             this.socketChoosenTheme.on('load:theme', () => { this.io.emit('theme:selected', this.theme) })
 
             this.timer = 10000 + 2000 * this.users.length - (( 1 - Math.exp(-this.games.length / 4)) * 6000)
-            this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets, this.timer)
+            this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets, this.timer, this.games.length) 
             this.games.push(this.game)
 
-            setTimeout(() => { this.io.emit('direction',  '/views/pages/game.ejs') }, 5200)
+            setTimeout(() => { 
+                this.io.emit('direction',  '/views/pages/game.ejs')
+            }, 5200)
         }
 
         this.sockets.forEach((socket) => {

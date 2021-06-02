@@ -2,13 +2,13 @@ const { getUsersWithDashboard, getLoggedTable } = require('./utils')
 const { Tasks } = require('./Tasks')
 
 class Game {
-    constructor(io, socket, users, theme, sockets, timer) {
-        this.vars(io, socket, users, theme, sockets, timer)
+    constructor(io, socket, users, theme, sockets, timer, games) {
+        this.vars(io, socket, users, theme, sockets, timer, games)
         this.bindMethods()
         this.startGame()
     }
 
-    vars(io, socket, users, theme, sockets, timer) {
+    vars(io, socket, users, theme, sockets, timer, games) {
         this.io = io
         this.socket = socket
         this.sockets = sockets
@@ -16,6 +16,7 @@ class Game {
         this.timer = timer
         this.users = getUsersWithDashboard(users, this.theme)
         this.tasks = new Tasks(this.users, this.sockets, this.io, this.theme, this.timer)
+        this.games = games
     }
 
     bindMethods() {
@@ -36,6 +37,7 @@ class Game {
         const socket = getLoggedTable(id, this.sockets)
         const user = getLoggedTable(socket.id, this.users)
         socket.emit('dashboard:display', user, this.theme)
+        socket.emit('dashboard:display-level', this.games)
         this.tasks.newTask(user)
     }
 
