@@ -83,10 +83,10 @@ export default class Dashboard extends Block {
     }
 
     resetTimer(timer) {
-        let shapes = "rect"
+        let shapes = this.$els.timer
 
         this.tl = gsap.timeline({repeat:0})
-        this.tl.from(shapes, { drawSVG:"0% 0%", duration: timer/1000})
+        this.tl.from(shapes, { drawSVG: "0% 0%", duration: timer/1000}) 
     }
 
     configTimeline() {
