@@ -57,8 +57,8 @@ export default class Blobs {
             shape.turbulence = shape.turbulence - 0.001
           }
           turbulence = -2 * shape.turbulence * shape.turbulence + 6 * shape.turbulence - 3
-          segment.point.x = shape.path.segments[index].point.x + (noise.get(index + supraIndex, 0, event.count * 0.003 + turbulence) - 0.5) * 30 * turbulence
-          segment.point.y = shape.path.segments[index].point.y + (noise.get(0, index + supraIndex, event.count * 0.003 + turbulence) - 0.5) * 30 * turbulence
+          segment.point.x = shape.path.segments[index].point.x + (noise.get(index + supraIndex, 0, event.count * 0.003 + turbulence) - 0.5) * 30 * turbulence * (Math.min(shape.widthAsk, shape.heightAsk) ** 0.5)
+          segment.point.y = shape.path.segments[index].point.y + (noise.get(0, index + supraIndex, event.count * 0.003 + turbulence) - 0.5) * 30 * turbulence * (Math.min(shape.widthAsk, shape.heightAsk) ** 0.5)
         })
       })
     }

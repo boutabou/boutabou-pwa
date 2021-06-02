@@ -1,6 +1,6 @@
 <div class="block theme js-theme">
-    <h1 class="js-theme-title js-split-text split-text"></h1>
+    <h1 class="js-split-text split-text split-text--title"><%= theme ? theme.title : '' %></h1>
 
-    <p class="js-theme-intro"></p>
-    <%- include('../components/button', { buttonLink : '#', buttonText : "JOUER", buttonClass : "js-play-button" }); %>
+    <p><%= theme ? theme.intro : '' %></p>
+    <%- include('../components/button', { buttonLink : '/views/pages/game.ejs', buttonText : "JOUER", buttonClass : "" }); %>
 </div>

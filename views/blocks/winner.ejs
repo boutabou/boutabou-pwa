@@ -1,5 +1,5 @@
 <div class="block winner js-winner container">
-    <h1 class="js-theme-title js-split-text split-text"></h1>
+    <h1 class="js-split-text split-text split-text--title"><%= theme ? theme.title : '' %></h1>
     <img class="js-winner-avatar winner__avatar" src="" alt="winner avatar">
     <p class="js-theme-winner winner__desc"></p>
     <div class="winner__challenge">
@@ -7,5 +7,5 @@
         <p class="js-theme-challenge winner__challenge-content"></p>
     </div>
 
-    <%- include('../components/button', { buttonLink : '/views/pages/scan.ejs', buttonText : "SCANNER", buttonClass : "js-scan-button winner__to-scan-button" }); %>
+    <%- include('../components/button', { buttonLink : '/views/pages/scan.ejs', buttonText : "SCANNER", buttonClass : "winner__to-scan-button" }); %>
 </div>

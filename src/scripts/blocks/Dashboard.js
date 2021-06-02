@@ -19,7 +19,6 @@ export default class Dashboard extends Block {
             scoreEnd: document.querySelector('.js-score-end'),
             timer: document.querySelector('.js-timer'),
             timerStart: document.querySelector('.js-timer-start'),
-            name: document.querySelector('.js-name'),
             instructions: document.querySelector('.js-instructions')
         }
         this.cptCursors= 0
@@ -32,6 +31,7 @@ export default class Dashboard extends Block {
         this.displayScore = this.displayScore.bind(this)
         this.killTimer = this.killTimer.bind(this)
         this.vibrate = this.vibrate.bind(this)
+        this.timer = this.timer.bind(this)
     }
 
     initEvents() {
@@ -41,8 +41,8 @@ export default class Dashboard extends Block {
         this.socket.on('dashboard:update-score', this.displayScore)
         this.socket.on('dashboard:kill-timer', this.killTimer)
         this.socket.on('dashboard:vibrate', this.vibrate)
+        this.socket.on('dashboard:on-timer', this.timer)
 
-        this.timer()
     }
 
     timer() {
@@ -70,12 +70,11 @@ export default class Dashboard extends Block {
         this.$els.scoreContainer.classList.remove('score--disable')
         this.$els.timerStart.classList.add('timer-start--disable')
         this.$els.instructions.classList.add('instructions--disable')
+        console.log('par la')
         this.socket.emit('dashboard:start')
     }
 
     displayDashboard(currentUser, theme) {
-        this.$els.name.innerHTML = theme.title
-
         currentUser.dashboard.forEach((interaction) => {
             switch (interaction.type) {
                 case 'bool':
@@ -131,7 +130,10 @@ export default class Dashboard extends Block {
         this.socket.removeListener('dashboard:update-score')
         this.socket.removeListener('dashboard:kill-timer')
         this.socket.removeListener('dashboard:vibrate')
+        this.socket.removeListener('dashboard:on-timer')
         this.$els.timer.style.strokeDashoffset = 0
-        this.tl.kill()
+        if(this.tl) {
+            this.tl.kill()
+        }
     }
 }

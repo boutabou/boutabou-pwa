@@ -8,9 +8,9 @@
     <main id="swup">
         <%- include('../partials/popup'); %>
         <div class="room-page container container--ultra container--between">
-            <div class="js-split-text split-text">Tout le monde est connecté ?</div>
+            <div class="js-split-text split-text split-text--title">Tout le monde est connecté ?</div>
             <%- include('../blocks/room'); %>
-            <%- include('../components/button', { buttonLink : '/views/pages/scan.ejs', buttonText : "SCANNER", buttonClass : "js-scan-button button--blue" }); %>
+            <%- include('../components/button', { buttonLink : '/views/pages/scan.ejs', buttonText : "SCANNER", buttonClass : "button--blue" }); %>
         </div>
 
         <%- include('../partials/blobs', { pages : 'room' }); %>

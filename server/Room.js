@@ -14,14 +14,15 @@ class Room {
         this.sockets = []
         this.games = []
         this.game = null
-        this.statusWaitUser = true
+        this.statusOnGame = false
         this.statusOnScan = false
+        this.theme = undefined
     }
 
     bindMethods() {
         this.disconnection = this.disconnection.bind(this)
         this.displayUser = this.displayUser.bind(this)
-        this.redirect = this.redirect.bind(this)
+        this.leaveScan = this.leaveScan.bind(this)
         this.themeOnChoice = this.themeOnChoice.bind(this)
     }
 
@@ -35,12 +36,7 @@ class Room {
     async initUser(socket) {
         const loggedUser = await getUser(socket)
 
-        if (this.users.length === 0 ) {
-            this.statusWaitUser = true
-            this.statusOnScan = false
-        }
-
-        if(this.statusWaitUser) {
+        if(!this.statusOnGame) {
             this.users.push(loggedUser)
             this.sockets.push(socket)
 
@@ -56,43 +52,29 @@ class Room {
         }
     }
 
+    initGame(socket) {
+        socket.on('load:scan', this.themeOnChoice)
+    }
+
     displayUser() {
         this.io.emit('room:display-users', this.users)
-    }
-
-    disconnection(loggedUser) {
-        this.users = this.users.filter((user) => { return user !== loggedUser})
-        this.sockets = this.sockets.filter((socket) => { return socket.id !== loggedUser.id })
-        this.io.emit('room:display-users', this.users)
-
-        if(this.users.length === 0) {
-            this.games = []
-        }
-    }
-
-    initGame(socket) {
-        socket.on('room:scan-button-clicked', this.themeOnChoice)
-        socket.on('winner:scan-button-clicked', this.themeOnChoice)
-        socket.on('result-theme:scan-button-clicked', this.themeOnChoice)
     }
 
     async themeOnChoice(id) {
         this.statusOnScan = true
         const lengthGames = this.games.length
-
         this.theme = undefined
         this.socketChoosenTheme = getLoggedTable(id, this.sockets)
 
         this.socketChoosenTheme.broadcast.emit('popup-wait-scan')
-        this.socketChoosenTheme.on('disconnect', this.redirect)
-        this.socketChoosenTheme.on('load:room', this.redirect)
-        this.socketChoosenTheme.on('load:winner', this.redirect)
-        this.socketChoosenTheme.on('load:result-theme', this.redirect)
+
+        this.preventLeaveScan(this.socketChoosenTheme)
 
         this.theme = await getTheme(this.socketChoosenTheme)
+        // console.log('theme Chose : ', this.theme.title)
 
         if(this.games.length < lengthGames + 1) {
-            this.statusWaitUser = false
+            this.statusOnGame = true
 
             if (this.game) {
                 this.game.endGame()
@@ -102,13 +84,17 @@ class Room {
 
             this.socketChoosenTheme.on('load:theme', () => { this.io.emit('theme:selected', this.theme) })
 
+            // console.log('ici')
             this.sockets.forEach((socket) => {
-                socket.on('theme:play',  () => {
-                    this.io.emit('direction',  '/views/pages/game.ejs')
+                // console.log('ici 2')
+                socket.on('load:dashboard',  () => {
+                    // console.log('ici 3')
+                    // console.log(socket.id)
+                    socket.broadcast.emit('direction',  '/views/pages/game.ejs')
+                   setTimeout(() => {  this.io.emit('dashboard:on-timer') }, 1000)
                 })
             })
 
-            console.log(this.games)
             this.timer = 10000 + 2000 * this.users.length - (( 1 - Math.exp(-this.games.length / 4)) * 6000)
             this.game = new Game(this.io, this.socketChoosenTheme, this.users, this.theme, this.sockets, this.timer)
             this.games.push(this.game)
@@ -121,15 +107,40 @@ class Room {
         })
     }
 
-    redirect() {
+    preventLeaveScan(socket) {
+        socket.on('disconnect', this.leaveScan)
+        socket.on('load:room', this.leaveScan)
+        socket.on('load:winner', this.leaveScan)
+        socket.on('load:result-theme', this.leaveScan)
+    }
+
+    leaveScan() {
         if(!this.theme) {
             this.socketChoosenTheme.broadcast.emit('remove-popup-wait-scan')
-            this.socketChoosenTheme.off('disconnect', this.redirect)
-            this.socketChoosenTheme.off('load:room', this.redirect)
-            this.socketChoosenTheme.off('load:winner', this.redirect)
-            this.socketChoosenTheme.off('load:result-theme', this.redirect)
+            this.socketChoosenTheme.off('disconnect', this.leaveScan)
+            this.socketChoosenTheme.off('load:room', this.leaveScan)
+            this.socketChoosenTheme.off('load:winner', this.leaveScan)
+            this.socketChoosenTheme.off('load:result-theme', this.leaveScan)
             this.statusOnScan = false
         }
+    }
+
+    disconnection(loggedUser) {
+        // remove user
+        this.users = this.users.filter((user) => { return user !== loggedUser})
+        this.sockets = this.sockets.filter((socket) => { return socket.id !== loggedUser.id })
+
+        // update room
+        this.displayUser()
+
+        // reset room
+        if(this.users.length === 0) {
+            this.vars(this.io)
+        }
+    }
+
+    getTheme() {
+        return this.theme
     }
 }
 

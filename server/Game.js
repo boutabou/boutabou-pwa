@@ -33,10 +33,13 @@ class Game {
     }
 
     initUser(id) {
+        // console.log('before : ', this.users[0].name, id, this.theme.title)
         const socket = getLoggedTable(id, this.sockets)
         const user = getLoggedTable(socket.id, this.users)
         socket.emit('dashboard:display', user, this.theme)
         socket.on('dashboard:start', () => {
+            // console.log(this.theme.title)
+            // console.log(this.users[0].name)
             this.tasks.newTask(user)
         })
     }
@@ -70,10 +73,11 @@ class Game {
             })
         }
 
-        this.tasks.endGame()
+        // console.log('endGame : ', this.theme.title)
+        /* this.tasks.endGame()
         this.socket = null
         this.sockets = null
-        this.users = null
+        this.users = null */
     }
 }
 
