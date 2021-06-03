@@ -21,26 +21,14 @@ export default class Dashboard extends Block {
             timer:  document.querySelector('.js-timer'),
             name:  document.querySelector('.js-name'),
             level: document.querySelector('.js-level'),
-            oneStep:  document.getElementById("one") 
+            oneStep:  document.getElementById("one")
         }
         this.cptCursors= 0
         this.tl
         this.score = 5
         this.scoreFront = 5
         this.scoreOnAnim = false
-        this.tlCounter  = gsap.timeline({ 
-            onComplete: this.configTimeline, 
-            defaults: {
-                duration: 0.2
-            } 
-        }) 
-
-        this.tlCounter
-        .to(this.$els.oneStep, {fill: "#ff7384", morphSVG:"#one"})
-        .to(this.$els.oneStep, {fill: "#ff7384", morphSVG:"#two"})
-        .to(this.$els.oneStep, {fill: "#ff7384", morphSVG:"#five"}) 
-        .to(this.$els.oneStep, {fill: "#5EE9F1", morphSVG:"#seven"}) 
-        .to(this.$els.oneStep, {fill: "#5EE9F1", morphSVG:"#nine"})    
+        this.colors = ['#ff7384', '#fe8396', '#fe94a8', '#fda4b9', '#fdb5cb', '#fcc5dd', '#dccce1', '#bcd3e5', '#9cdbe9', '#7ce2ed', '#5ce9f1']
     }
 
     bindMethods() {
@@ -100,25 +88,20 @@ export default class Dashboard extends Block {
         let shapes = this.$els.timer
 
         this.tl = gsap.timeline({repeat:0})
-        this.tl.from(shapes, { drawSVG: "0% 0%", duration: timer/1000}) 
+        this.tl.from(shapes, { drawSVG: "0% 0%", duration: timer/1000})
     }
 
     configTimeline() {
 
         if(this.scoreUpgrade) {
-            this.scoreFront ++ 
+            this.scoreFront ++
         } else {
-            this.scoreFront -- 
+            this.scoreFront --
         }
 
         if(this.score !== this.scoreFront) {
-            console.log("in oncomplete restart anim")
-            this.activeScoreTimeline()
+            this.animScore()
         }
-    
-        //this.tlCounter.progress(0)  
-        this.$els.scoreCursor.style.transform = "translateY(-50%) rotate(0deg)"
-        this.$els.scoreCursor.style.left =  (this.scoreFront * 29.3) - 13 + "px"
 
         this.scoreOnAnim = false
     }
@@ -127,28 +110,53 @@ export default class Dashboard extends Block {
 
         this.score = score
 
-        console.log("score", this.score)
-        console.log("scoreFront", this.scoreFront)
         if(!this.scoreOnAnim && this.score !== this.scoreFront) {
-            this.activeScoreTimeline()
+            this.animScore()
         }
 
     }
 
-    activeScoreTimeline() {
+    animScore() {
 
-            this.scoreOnAnim = true
-            this.scoreUpgrade = true
+        this.scoreOnAnim = true
+        this.scoreUpgrade = true
 
-            if (this.score < this.scoreFront) {
-                this.$els.scoreCursor.style.transform = "translateY(-50%) rotate(180deg)"
-                this.$els.scoreCursor.style.left = (this.scoreFront * 29.3) - 13  + "px" 
+        if (this.score < this.scoreFront) {
+            this.scoreUpgrade = false
+        }
 
-                this.scoreUpgrade = false
-            } 
+        MorphSVGPlugin.convertToPath("circle, polygon, ellipse")
 
-            MorphSVGPlugin.convertToPath("circle, polygon, ellipse")    
-            this.tlCounter.play()  
+        const ctx = this
+        const tlCounter  = gsap.timeline({
+            onComplete: ctx.configTimeline
+        })
+
+        let delta = -1
+        let rotate = 180
+        if (this.scoreUpgrade) {
+            delta = 1
+            rotate = 0
+        }
+
+        this.currentColor = this.colors[this.scoreFront]
+        this.nextColor = this.colors[this.scoreFront + delta]
+
+        tlCounter
+            .set(this.$els.oneStep, {
+                rotate,
+                transformOrigin:"50% 50%"
+            })
+            .to(this.$els.oneStep, {fill: this.currentColor, duration: 0.2, morphSVG:"#one"})
+            .to(this.$els.oneStep, {fill: this.currentColor, duration: 0.2, morphSVG:"#two"})
+            .to(this.$els.oneStep, {fill: this.currentColor, duration: 0.2, morphSVG:"#five"})
+            .to(this.$els.oneStep, {fill: this.nextColor, duration: 0.2, morphSVG:"#seven"})
+            .to(this.$els.oneStep, {fill: this.nextColor, duration: 0.2, morphSVG:"#nine"})
+            .to(this.$els.scoreCursor, {
+                x:  29.5 * (this.scoreFront + delta - 6),
+                duration: 1,
+                ease: 'power4.inOut'
+            }, '-=1')
     }
 
     vibrate() {
