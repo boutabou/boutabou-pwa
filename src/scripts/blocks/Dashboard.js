@@ -112,11 +112,9 @@ export default class Dashboard extends Block {
         }
 
         if(this.score !== this.scoreFront) {
-            console.log("in oncomplete restart anim")
             this.activeScoreTimeline()
         }
     
-        //this.tlCounter.progress(0)  
         this.$els.scoreCursor.style.transform = "translateY(-50%) rotate(0deg)"
         this.$els.scoreCursor.style.left =  (this.scoreFront * 29.3) - 13 + "px"
 
@@ -127,8 +125,6 @@ export default class Dashboard extends Block {
 
         this.score = score
 
-        console.log("score", this.score)
-        console.log("scoreFront", this.scoreFront)
         if(!this.scoreOnAnim && this.score !== this.scoreFront) {
             this.activeScoreTimeline()
         }
@@ -143,7 +139,6 @@ export default class Dashboard extends Block {
             if (this.score < this.scoreFront) {
                 this.$els.scoreCursor.style.transform = "translateY(-50%) rotate(180deg)"
                 this.$els.scoreCursor.style.left = (this.scoreFront * 29.3) - 13  + "px" 
-
                 this.scoreUpgrade = false
             } 
 
