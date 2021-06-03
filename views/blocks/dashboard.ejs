@@ -1,19 +1,26 @@
 <div class="dashboard js-dashboard js-game">
     <div class="container">
-        <h1 class="js-split-text split-text split-text--title"><%= theme ? theme.title : '' %></h1>
+        <span class="level js-level"></span>
+
+        <h1 class="js-split-text split-text"><%= theme ? theme.title : '' %></h1>
 
         <div class="score score--disable js-score-container">
-            <span class="score__total">
-                <span class="score__cursor js-score">
-                </span>
-            </span>
-            <div class="score__end">
-                <div class="end js-score-end">
-                    <div class="img">
-                        <%- include('../../assets/images/game/score.svg'); %>
-                    </div>
-                </div>
+
+            <div class="score__cursor js-score-cursor">
+                <%- include('../../assets/images/game/score-progress.svg'); %>
             </div>
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
         <p class="instructions js-instructions"><b>PRÉPAREZ-VOUS À JOUER !</b> Le meilleur joueur pourra donner un défi bien croustillant à la personne de son choix. Alors ouvre grand les oreilles. C’est parti !</p>
@@ -23,10 +30,7 @@
                 <div class="task js-task">Vos missions vont apparaitre ici</div>
             </div>
 
-            <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80">
-                <rect x="5" y="5" class="js-timer" width="310" height="70" rx="23.7"  fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
-            </svg>
-
+            <%- include('../../assets/images/game/timer.svg'); %>
         </div>
     </div>
 

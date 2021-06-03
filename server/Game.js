@@ -37,7 +37,10 @@ class Game {
         if(this.onGame) {
             const socket = getLoggedTable(id, this.room.sockets)
             socket.broadcast.emit('direction',  '/views/pages/game.ejs')
-            setTimeout(() => { this.room.io.emit('dashboard:on-timer') }, 1000)
+            setTimeout(() => {
+                this.room.io.emit('dashboard:on-timer')
+                this.room.io.emit('dashboard:display-level', this.level)
+            }, 1000)
             setTimeout(this.startGame, 5000)
         }
     }
