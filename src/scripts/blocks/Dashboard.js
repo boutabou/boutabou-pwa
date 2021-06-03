@@ -20,13 +20,27 @@ export default class Dashboard extends Block {
             scoreEnd: document.querySelector('.js-score-end'),
             timer:  document.querySelector('.js-timer'),
             name:  document.querySelector('.js-name'),
-            level: document.querySelector('.js-level')
+            level: document.querySelector('.js-level'),
+            oneStep:  document.getElementById("one") 
         }
         this.cptCursors= 0
         this.tl
-        this.tlCounter
         this.score = 5
-        this.scoreHistoric = [5]
+        this.scoreFront = 5
+        this.scoreOnAnim = false
+        this.tlCounter  = gsap.timeline({ 
+            onComplete: this.configTimeline, 
+            defaults: {
+                duration: 0.2
+            } 
+        }) 
+
+        this.tlCounter
+        .to(this.$els.oneStep, {fill: "#ff7384", morphSVG:"#one"})
+        .to(this.$els.oneStep, {fill: "#ff7384", morphSVG:"#two"})
+        .to(this.$els.oneStep, {fill: "#ff7384", morphSVG:"#five"}) 
+        .to(this.$els.oneStep, {fill: "#5EE9F1", morphSVG:"#seven"}) 
+        .to(this.$els.oneStep, {fill: "#5EE9F1", morphSVG:"#nine"})    
     }
 
     bindMethods() {
@@ -90,44 +104,51 @@ export default class Dashboard extends Block {
     }
 
     configTimeline() {
-    
-        this.tlCounter.progress(0)  
-    
 
-        console.log(this.tlCounter.progress())
+        if(this.scoreUpgrade) {
+            this.scoreFront ++ 
+        } else {
+            this.scoreFront -- 
+        }
+
+        if(this.score !== this.scoreFront) {
+            console.log("in oncomplete restart anim")
+            this.activeScoreTimeline()
+        }
+    
+        //this.tlCounter.progress(0)  
         this.$els.scoreCursor.style.transform = "translateY(-50%) rotate(0deg)"
-        this.$els.scoreCursor.style.left =  (this.score * 29.3) - 13 + "px"
+        this.$els.scoreCursor.style.left =  (this.scoreFront * 29.3) - 13 + "px"
 
-
-        this.tlCounter.kill()
+        this.scoreOnAnim = false
     }
 
     displayScore(score) {
 
         this.score = score
-        this.scoreHistoric.push(score)
 
-        MorphSVGPlugin.convertToPath("circle, polygon, ellipse")    
-        let oneStep = document.getElementById("one")
+        console.log("score", this.score)
+        console.log("scoreFront", this.scoreFront)
+        if(!this.scoreOnAnim && this.score !== this.scoreFront) {
+            this.activeScoreTimeline()
+        }
 
-        // if we loose a point
-        if(this.scoreHistoric[this.scoreHistoric.length - 1] < this.scoreHistoric[this.scoreHistoric.length-2]){
-            //reverse and deplace svg 
-            this.$els.scoreCursor.style.transform = "translateY(-50%) rotate(180deg)"
-            this.$els.scoreCursor.style.left = (this.score * 29.3) - 13  + "px" 
-        } 
+    }
 
-        this.tlCounter =  gsap.timeline({ onComplete: this.configTimeline,  repeat:0, repeatRefresh: true, delay:0,  id:"morphing", paused:true, defaults: {duration: 0.2} }) 
+    activeScoreTimeline() {
 
+            this.scoreOnAnim = true
+            this.scoreUpgrade = true
 
-        this.tlCounter
-        .to(oneStep, {fill: "#ff7384", morphSVG:"#one"})
-        .to(oneStep, {fill: "#ff7384", morphSVG:"#two"})
-        .to(oneStep, {fill: "#ff7384", morphSVG:"#five"}) 
-        .to(oneStep, {fill: "#5EE9F1", morphSVG:"#seven"}) 
-        .to(oneStep, {fill: "#5EE9F1", morphSVG:"#nine"}) 
+            if (this.score < this.scoreFront) {
+                this.$els.scoreCursor.style.transform = "translateY(-50%) rotate(180deg)"
+                this.$els.scoreCursor.style.left = (this.scoreFront * 29.3) - 13  + "px" 
 
-        this.tlCounter.play()  
+                this.scoreUpgrade = false
+            } 
+
+            MorphSVGPlugin.convertToPath("circle, polygon, ellipse")    
+            this.tlCounter.play()  
     }
 
     vibrate() {
