@@ -1,7 +1,9 @@
 <div class="block result-theme js-result-theme container">
-    <h1 class="js-theme-title js-split-text split-text"></h1>
-    <img src="#" class="js-theme-img" style="width: 100%; height: 200px; object-fit: cover"/>
-    <p class="js-theme-text"></p>
+    <h1 class="js-split-text split-text split-text--title"><%= theme ? theme.title : '' %></h1>
+    <div class="result-theme__content">
+        <p><b><%= theme ? theme.end : '' %></b></p>
+        <p class="result-theme__text">Découvrez le meilleur joueurs et le défi qu’il peut donner !</p>
+    </div>
 
     <%- include('../components/button', { buttonLink : '/views/pages/winner.ejs', buttonText : "SUIVANT", buttonClass : "js-to-winner-button" }); %>
 </div>

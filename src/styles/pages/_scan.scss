@@ -41,7 +41,7 @@
     &-container {
       background-color: $color-dark-blue;
       position: relative;
-      padding: 15px 20px;
+      padding: 10px 15px;
       display: flex;
       border-radius: 17px;
       transition: all ease-in-out .3s;
@@ -56,7 +56,7 @@
         .button div {
           background-color: $color-dark-blue;
           transition: all ease-in-out .3s;
-          display: inline-block; 
+          display: inline-block;
         }
 
         /*p {
@@ -103,8 +103,8 @@
         background-color: $color-purple;
         border-radius: 50px;
 
-        .button div {
-          padding: 12px 40px 10px;
+        &.button>div {
+          padding: 10px 16px 8px;
         }
       }
 

@@ -15,10 +15,16 @@
             &:nth-child(odd){
                 transform: rotate(8deg);
             }
-    
+
             &:nth-child(even){
                 transform: rotate(-8deg);
-            } 
+            }
+        }
+    }
+
+    &--title {
+        >div {
+            font-size: 1.5rem;
         }
     }
 }

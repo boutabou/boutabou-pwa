@@ -94,7 +94,7 @@ class Tasks {
     updateScore(delta) {
         this.score = this.score + delta
 
-        this.io.emit('dashboard:update-score', this.score)
+        this.io.emit('dashboard:update-score', Math.round(this.score))
 
         if(this.score >= 10) {
             setTimeout(() => { this.io.emit('direction',  '/views/pages/result-theme.ejs') }, 1000)

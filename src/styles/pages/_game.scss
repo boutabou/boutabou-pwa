@@ -4,12 +4,11 @@
   height: 100vh;
 
   .container {
-    height: calc(100vh - 350px);
+    height: 40vh;
     padding-top: $container-padding-vertical;
     padding-bottom: $container-padding-vertical;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     text-align: center;
     padding-bottom: 20px;
@@ -19,11 +18,65 @@
       font-size: 1.5rem;
     }
 
-    .score {
-      width: 100%;
-      height: 20px;
+    .instructions {
+      margin-top: 0;
+      font-size: 14px;
+      height: 100px;
 
-      &__total {
+      &--disable {
+        display: none;
+      }
+    }
+
+    .score {
+      width: 300px;
+      height: 20px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+
+      margin: 40px 0;
+
+      &--disable {
+        display: none;
+      }
+
+      &__cursor {
+        max-width: 57px;
+        min-width: 57px;
+        position: absolute;
+        left: 50%;
+        top: 6px;
+        height: 34.77px;
+        transform: translate(-50%, -50%);
+
+        svg {
+          max-width: 100%;
+          min-width: 100%;
+          max-height: 100%;
+          min-height: 100%;
+          #two, #three, #four, #five, #six, #seven, #eight, #nine  {
+            visibility: hidden;
+          }
+
+          path {
+            fill: $color-pink;
+          }
+        }
+
+
+
+      }
+
+      span {
+        width: 6px;
+        height: 6px;
+        background-color: #FFFFFF;
+        border-radius: 50px;
+      }
+
+
+      /*&__total {
         width: 100%;
         height: 100%;
         background-color: $color-white;
@@ -59,13 +112,28 @@
             transform: translate(50%,-56%);
           }
         }
-      }
+      }*/
+    }
+  }
+
+  .timer-start {
+    font-size: 200px;
+    font-weight: 900;
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50vh;
+
+    &--disable {
+      display: none;
     }
   }
 }
 
 @media (max-width: $breakpoints-small) {
-  .dashboard {  
+  .dashboard {
     .container {
       height: calc(100vh - 260px);
     }

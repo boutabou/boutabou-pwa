@@ -10,10 +10,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'public')
     },
-    cache: {
-        type: 'filesystem',
-        cacheDirectory: path.resolve(__dirname, '.temp_cache'),
-    },
     optimization: {
          splitChunks: {
             cacheGroups: {

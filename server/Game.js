@@ -2,76 +2,101 @@ const { getUsersWithDashboard, getLoggedTable } = require('./utils')
 const { Tasks } = require('./Tasks')
 
 class Game {
-    constructor(io, socket, users, theme, sockets, timer) {
-        this.vars(io, socket, users, theme, sockets, timer)
+    constructor(room, theme, level) {
+        this.vars(room, theme, level)
         this.bindMethods()
-        this.startGame()
+        this.initGame()
     }
 
-    vars(io, socket, users, theme, sockets, timer) {
-        this.io = io
-        this.socket = socket
-        this.sockets = sockets
+    vars(room, theme, level) {
+        this.room = room
         this.theme = theme
-        this.timer = timer
-        this.users = getUsersWithDashboard(users, this.theme)
-        this.tasks = new Tasks(this.users, this.sockets, this.io, this.theme, this.timer)
+        this.level = level
+        this.timer = this.getTimer()
+        this.onGame = true
+        this.players = getUsersWithDashboard(this.room.users, this.theme)
+        this.tasks = new Tasks(this.room.users, this.room.sockets, this.room.io, this.theme, this.timer)
     }
 
     bindMethods() {
-        this.initUser = this.initUser.bind(this)
+        this.startGame = this.startGame.bind(this)
+        this.clickStart = this.clickStart.bind(this)
         this.giveDataResultTheme = this.giveDataResultTheme.bind(this)
         this.giveWinnerOfTheme = this.giveWinnerOfTheme.bind(this)
     }
 
+    initGame() {
+        this.room.io.emit('direction',  '/views/pages/theme.ejs')
+
+        this.room.sockets.forEach((socket) => {
+            socket.on('theme:start', this.clickStart)
+        })
+    }
+
+    clickStart(id) {
+        if(this.onGame) {
+            const socket = getLoggedTable(id, this.room.sockets)
+            socket.broadcast.emit('direction',  '/views/pages/game.ejs')
+            setTimeout(() => {
+                this.room.io.emit('dashboard:on-timer')
+                this.room.io.emit('dashboard:display-level', this.level)
+            }, 1000)
+            setTimeout(this.startGame, 5000)
+        }
+    }
+
     startGame() {
-        this.sockets.forEach((socket) => {
-            socket.on('load:dashboard', this.initUser)
-            socket.on('load:result-theme', this.giveDataResultTheme)
+        this.initUsers()
+    }
+
+    initUsers() {
+        this.room.sockets.forEach((socket) => {
+            const user = getLoggedTable(socket.id, this.players)
+            socket.emit('dashboard:display', user, this.theme)
+            this.tasks.newTask(user)
             socket.on('load:winner', this.giveWinnerOfTheme )
         })
     }
 
-    initUser(id) {
-        const socket = getLoggedTable(id, this.sockets)
-        const user = getLoggedTable(socket.id, this.users)
-        socket.emit('dashboard:display', user, this.theme)
-        this.tasks.newTask(user)
-    }
-
     giveDataResultTheme(id) {
-        const socket = getLoggedTable(id, this.sockets)
+        const socket = getLoggedTable(id, this.room.sockets)
         socket.emit('result-theme:win', this.theme)
     }
 
     giveWinnerOfTheme(id) {
+        if(this.onGame) {
+            const socket = getLoggedTable(id, this.room.sockets)
+            const scoreMax =  Math.max.apply(Math, this.room.users.map((user) => { return user.score[this.theme.title] }))
+            this.room.users.forEach((user) => {
+                if(user.score[this.theme.title] === scoreMax) {
+                    this.winner = user
+                    return
+                }
+            })
 
-        const socket = getLoggedTable(id, this.sockets)
-        const scoreMax =  Math.max.apply(Math, this.users.map((user) => { return user.score[this.theme.title] }))
-        this.users.forEach((user) => {
-            if(user.score[this.theme.title] === scoreMax) {
-                this.winner = user
-                return
-            }
-        })
+            socket.emit('winner:display-winner', this.theme, this.winner)
+        }
+    }
 
-        socket.emit('winner:display-winner', this.theme, this.winner)
+    getTimer() {
+        return 10000 + 2000 * this.room.users.length - (( 1 - Math.exp(-this.level / 4)) * 6000)
     }
 
 
     endGame() {
-        if(this.sockets) {
-            this.sockets.forEach((socket) => {
-                socket.off('load:dashboard', this.initUser)
-                socket.off('load:result-theme', this.giveDataResultTheme)
+        this.onGame = false
+        if(this.room.sockets) {
+            this.room.sockets.forEach((socket) => {
+                socket.off('theme:start', this.clickStart)
                 socket.off('load:winner', this.giveWinnerOfTheme)
             })
         }
 
         this.tasks.endGame()
-        this.socket = null
-        this.sockets = null
-        this.users = null
+    }
+
+    getTheme() {
+        return this.theme
     }
 }
 

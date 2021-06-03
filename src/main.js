@@ -16,6 +16,11 @@ class App {
                 this.socket.off()
                 this.socket.disconnect()
                 this.socket = null
+
+            }
+
+            if(this.swup) {
+                this.swup.cache.empty();
             }
         })
 
@@ -24,6 +29,10 @@ class App {
                 this.socket = this.blocks.getSocket()
                 this.direction.updateSocket(this.socket)
                 this.direction.init()
+            }
+
+            if(this.swup) {
+                this.swup.cache.empty();
             }
         })
 
