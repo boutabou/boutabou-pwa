@@ -37,5 +37,5 @@ export default class Block {
 
     initEvents() {}
 
-    destroy() {}
+    destroy(event) {}
 }

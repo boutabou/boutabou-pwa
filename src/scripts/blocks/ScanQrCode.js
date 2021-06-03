@@ -4,7 +4,7 @@ export default class ScanQrCode extends Block {
     vars() {
         if(!this.os){
             this.qrCodeSuccessCallback = idTheme => {
-                this.socket.emit('theme-choice', idTheme)
+                this.socket.emit('scan:theme-choice', idTheme)
                 this.html5QrCode.clear()
             }
             this.config = { fps: 10, qrbox: 250 }
@@ -50,7 +50,7 @@ export default class ScanQrCode extends Block {
     getId() {
         if (this.$els.id.value && this.$els.id.value >= 0 && this.$els.id.value <= 2) {
             this.currentId = this.$els.id.value
-            this.socket.emit('theme-choice', this.currentId)
+            this.socket.emit('scan:theme-choice', this.currentId)
         } else {
             alert('Entrez un id correct')
         }
@@ -76,7 +76,7 @@ export default class ScanQrCode extends Block {
         this.$els.replacementContent.innerHTML = "Le scan de QRCode n'est pas compatible avec votre appareil."
     }
 
-    destroy() {
+    destroy(event) {
         if(this.html5QrCode) {
             this.html5QrCode.stop().then(ignore => {
                 console.log('scan stop')

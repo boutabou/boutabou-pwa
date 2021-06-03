@@ -24,7 +24,7 @@ export default class Defeat extends Block {
     }
 
     displayDefeat(level) {
-        this.$els.team.innerHTML = levels[level+1].team
-        this.$els.comment.innerHTML = levels[level+1].comment
+        this.$els.team.innerHTML = levels[level].team
+        this.$els.comment.innerHTML = levels[level].comment
     }
 }

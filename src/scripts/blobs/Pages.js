@@ -244,7 +244,6 @@ export default class Pages {
 
         // Bottom
         new Star(0.5,5.8, 10, 0.3,0.15,0, '#FFFDDF')
-        new Star(1.4,6.8, 4, 0.18,0.04,0, '#FFFDDF')
         new Star(5.6,5.6, 10, 0.2,0.1,0, '#FE6A7A')
         new Star(1,8.8, 10, 0.1,0.05,0, '#FFE202')
         new Star(0.5,9.5, 10, 0.3,0.15,0, '#5FE7EF')

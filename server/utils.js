@@ -1,6 +1,5 @@
 const { User } = require('./User')
 const { Interactions } = require('./Interactions')
-const theme = require('./data/themes.json')
 
 /**
  * @param socket Socket
@@ -22,23 +21,6 @@ function getUser(socket) {
     return promise
 }
 
-/**
- * @param socket Socket
- * return Promise(theme)
- */
-function getTheme(socket) {
-    const promise = new Promise((resolve, reject) => {
-        socket.on('theme-choice', message => {
-            if (theme[message]) {
-                resolve(theme[message])
-            } else {
-                reject(theme[message])
-            }
-        })
-    })
-
-    return promise
-}
 
 function getUsersWithDashboard(users, currentTheme) {
     const interactions = require('./' + currentTheme.pathInteractions)
@@ -148,7 +130,6 @@ function getRandom(tab) {
 
 module.exports = {
     getUser,
-    getTheme,
     getUsersWithDashboard,
     getInteractions,
     getLoggedTable,

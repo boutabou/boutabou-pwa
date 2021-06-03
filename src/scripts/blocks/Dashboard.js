@@ -70,7 +70,6 @@ export default class Dashboard extends Block {
         this.$els.scoreContainer.classList.remove('score--disable')
         this.$els.timerStart.classList.add('timer-start--disable')
         this.$els.instructions.classList.add('instructions--disable')
-        console.log('par la')
         this.socket.emit('dashboard:start')
     }
 
