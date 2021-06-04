@@ -10,8 +10,10 @@
   .level {
     position: absolute;
     top: 0;
+    font-size: 14px;
+    font-weight: 600;
     left: 20px;
-    padding: 5px 10px;
+    padding: 8px 15px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     background-color: $color-purple;

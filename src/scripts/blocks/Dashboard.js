@@ -7,9 +7,11 @@ import Rotate from './interactions/Rotate'
 import { gsap } from 'gsap'
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin'
+import { TextPlugin } from 'gsap/TextPlugin'
 
 gsap.registerPlugin(DrawSVGPlugin)
 gsap.registerPlugin(MorphSVGPlugin)
+gsap.registerPlugin(TextPlugin)
 
 export default class Dashboard extends Block {
     initEls() {
@@ -23,7 +25,8 @@ export default class Dashboard extends Block {
             oneStep:  document.getElementById('one'),
             timerStart: document.querySelector('.js-timer-start'),
             instructions: document.querySelector('.js-instructions'),
-            scoreContainer: document.querySelector('.js-score-container')
+            scoreContainer: document.querySelector('.js-score-container'),
+            scoreIndicator: document.querySelector('.js-score-indicator'),
         }
         this.cptCursors= 0
         this.tl
@@ -118,7 +121,9 @@ export default class Dashboard extends Block {
         let shapes = this.$els.timer
 
         this.tl = gsap.timeline({repeat:0})
-        this.tl.from(shapes, { drawSVG: "0% 0%", duration: timer/1000})
+        this.tl
+            .from(shapes, { drawSVG: "0% 0%", duration: timer/1000})
+
     }
 
     configTimeline() {
@@ -128,6 +133,11 @@ export default class Dashboard extends Block {
         } else {
             this.scoreFront --
         }
+
+        //reset score indicator
+        this.$els.scoreIndicator.style.opacity = 1
+        this.$els.scoreIndicator.style.top = "-50px"
+
 
         if(this.score !== this.scoreFront) {
             this.animScore()
@@ -146,13 +156,22 @@ export default class Dashboard extends Block {
 
     }
 
+
     animScore() {
 
         this.scoreOnAnim = true
         this.scoreUpgrade = true
+        let scoreIndicatorValue = "+1 pt"
+        
+
+        // anim score indicator 
+        this.$els.scoreIndicator.style.opacity = 0
+        this.$els.scoreIndicator.style.top = "-70px"
+
 
         if (this.score < this.scoreFront) {
             this.scoreUpgrade = false
+            scoreIndicatorValue= "-1 pt"
         }
 
         MorphSVGPlugin.convertToPath("circle, polygon, ellipse")
@@ -177,6 +196,11 @@ export default class Dashboard extends Block {
                 rotate,
                 transformOrigin:"50% 50%"
             })
+            .set(this.$els.scoreIndicator, {
+                x:  29.5 * (this.scoreFront - 1),
+                color: this.currentColor,
+                text: scoreIndicatorValue
+            })  
             .to(this.$els.oneStep, {fill: this.currentColor, duration: 0.2, morphSVG:"#one"})
             .to(this.$els.oneStep, {fill: this.currentColor, duration: 0.2, morphSVG:"#two"})
             .to(this.$els.oneStep, {fill: this.currentColor, duration: 0.2, morphSVG:"#five"})
@@ -187,6 +211,9 @@ export default class Dashboard extends Block {
                 duration: 1,
                 ease: 'power4.inOut'
             }, '-=1')
+            .set(this.$els.scoreIndicator, {
+                text: ""
+            })
     }
 
     vibrate() {

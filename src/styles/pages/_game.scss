@@ -41,6 +41,16 @@
         display: none;
       }
 
+      &__indicator {
+        position: absolute;
+        top: -50px;
+        opacity: 1;
+        transition: top ease-in-out 600ms, opacity ease-in-out 600ms;
+        font-weight: 700;
+        width: fit-content;
+        color: $color-cyan;
+      }
+
       &__cursor {
         max-width: 57px;
         min-width: 57px;
@@ -68,7 +78,7 @@
 
       }
 
-      span {
+      span:not(:first-child) {
         width: 6px;
         height: 6px;
         background-color: #FFFFFF;
