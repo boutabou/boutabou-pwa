@@ -12,6 +12,7 @@ export default class Bool extends Interaction {
     displayInteraction(container) {
         const btn = document.createElement('span')
         btn.classList.add('grid-container__btn')
+        btn.classList.add('js-sound-dashboard')
         btn.innerHTML = "ON"
         container.appendChild(btn)
         btn.addEventListener('click', this.toogleBool)

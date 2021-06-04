@@ -11,6 +11,7 @@ export default class Interaction {
         this.containerInteraction
         this.interactions = []
 
+        this.vars()
         this.bindMethods()
         this.createContainerInteraction()
         this.addClassContainer()
@@ -21,6 +22,8 @@ export default class Interaction {
             this.destroy()
         })
     }
+
+    vars() {}
 
     bindMethods() {}
 

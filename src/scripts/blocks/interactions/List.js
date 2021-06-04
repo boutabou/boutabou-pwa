@@ -18,6 +18,7 @@ export default class List extends Interaction {
             const param = document.createElement('span')
             param.dataset.btnName = parameter.replace(/\W/g,'_').toLowerCase()
             param.classList.add('grid-container__btn')
+            param.classList.add('js-sound-dashboard')
             param.innerHTML = parameter
             container.appendChild(param)
 

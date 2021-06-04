@@ -5,6 +5,9 @@ import Pages from './Pages'
 export default class Blobs {
     constructor() {
         this.initEls()
+        this.initSound()
+        this.bindMethods()
+        this.initEvents()
         this.initDraw()
     }
 
@@ -14,7 +17,8 @@ export default class Blobs {
         if(document.getElementById('blobs')) {
             this.$els = {
                 canvas: document.getElementById('blobs'),
-                pages: document.querySelector('.js-container-blobs')
+                pages: document.querySelector('.js-container-blobs'),
+                popup: document.querySelector('.js-popup')
             }
 
             this.$els.canvas.width = document.body.clientWidth
@@ -28,20 +32,49 @@ export default class Blobs {
 
         }
 
+        this.soundBlob = document.querySelector('.sound-blob')
+        this.shapes = []
         this.noise = new perlinNoise3d()
     }
 
+    initSound() {
+        if(!this.soundBlob) {
+            this.urlSoundBlob = './../../../assets/sounds/blob.mp3'
+            this.soundBlob = document.createElement('audio')
+            this.soundBlob.classList.add('sound-blob')
+            this.soundBlob.src = this.urlSoundBlob
+            this.soundBlob.setAttribute('preload', 'auto')
+            this.soundBlob.setAttribute('controls', 'none')
+            this.soundBlob.style.display = 'none'
+            document.body.appendChild(this.soundBlob)
+        }
+    }
+
+    bindMethods() {
+        this.addTurbulence = this.addTurbulence.bind(this)
+    }
+
+    initEvents() {
+        window.onclick = this.addTurbulence
+    }
+
     initDraw() {
+        let pageShapes = []
+        let popupShapes = []
         if (this.$els.pages) {
             paper.setup(this.$els.canvas)
             const page = new Pages(this.$els.pages.dataset.pages)
-            this.animation(page.getShapes())
+            pageShapes = page.getShapes()
+            this.shapes.push(pageShapes)
+            this.animation(pageShapes)
         }
 
         if (this.$els.canvasPopup) {
             paper.setup(this.$els.canvasPopup)
             const pagePopup = new Pages('popup')
-            this.animation(pagePopup.getShapes())
+            popupShapes = pagePopup.getShapes()
+            this.shapes.push(popupShapes)
+            this.animation(popupShapes)
         }
     }
 
@@ -62,21 +95,37 @@ export default class Blobs {
                 })
             })
         }
+    }
 
-        paper.view.onClick = function (e) {
-            shapes.forEach((shape) => {
-                if (shape.coorX < e.point.x + 30 && shape.coorX + shape.width > e.point.x - 30 && shape.coorY < e.point.y + 30 && shape.coorY + shape.height > e.point.y - 30 & shape.turbulence <= 1) {
-                    shape.turbulence = 2
-                }
-            })
-        }
+    addTurbulence(e) {
+        let cpt = 0
 
-        window.onclick = function(e) {
-            shapes.forEach((shape) => {
-                if (shape.coorX < e.clientX + 30 && shape.coorX + shape.width > e.clientX - 30 && shape.coorY < e.clientY + 30 && shape.coorY + shape.height > e.clientY - 30 & shape.turbulence <= 1) {
-                    shape.turbulence = 2
+        if(this.shapes !== [] && this.shapes && !e.delegateTarget && !e.target.classList.contains('js-sound-dashboard')) {
+            if(this.$els.popup && !this.$els.popup.classList.contains('active') || !this.$els.popup) {
+                if(this.shapes[0]) {
+                    this.shapes[0].forEach((shape) => {
+                        if (shape.coorX < e.clientX + 30 && shape.coorX + shape.width > e.clientX - 30 && shape.coorY < e.clientY + 30 && shape.coorY + shape.height > e.clientY - 30 & shape.turbulence <= 1) {
+                            shape.turbulence = 2
+                            if(cpt === 0) {
+                                this.soundBlob.play()
+                                cpt ++
+                            }
+                        }
+                    })
                 }
-            })
+            } else {
+                if(this.shapes[1]) {
+                    this.shapes[1].forEach((shape) => {
+                        if (shape.coorX < e.clientX + 30 && shape.coorX + shape.width > e.clientX - 30 && shape.coorY < e.clientY + 30 && shape.coorY + shape.height > e.clientY - 30 & shape.turbulence <= 1) {
+                            shape.turbulence = 2
+                            if(cpt === 0) {
+                                this.soundBlob.play()
+                                cpt ++
+                            }
+                        }
+                    })
+                }
+            }
         }
     }
 }

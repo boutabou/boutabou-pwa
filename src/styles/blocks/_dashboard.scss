@@ -29,10 +29,13 @@
     box-shadow: 10px 10px 29px -9px rgba(0, 0, 0, 0.57);
     overflow: hidden;
     border-radius: 25px;
-    background-color: #6500FF;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &--purple {
+      background-color: $color-purple;
+    }
 
     svg {
       position: absolute;
@@ -81,9 +84,10 @@
 
       p {
         color: $color-purple;
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 700;
         margin: 0;
+        line-height: 1.1;
       }
 
     }
