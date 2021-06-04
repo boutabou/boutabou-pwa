@@ -1,6 +1,10 @@
 import Interaction from './Interaction'
 
 export default class Cursor extends Interaction {
+    vars() {
+        this.audios = document.querySelectorAll('.sound-dashboard')
+    }
+
     addClassContainer() {
         this.containerInteraction.classList.add('cursor-' + this.index)
         this.containerInteraction.classList.add(this.type)
@@ -85,6 +89,9 @@ export default class Cursor extends Interaction {
             onDragEnd(e){
                 ctx.onDragEnd(e, indexStep)
                 progressBar.style.backgroundColor = "#6500FF"
+
+                const sound = ctx.audios[Math.floor(Math.random() * ctx.audios.length )]
+                sound.play()
             }
         })
     }
@@ -123,6 +130,9 @@ export default class Cursor extends Interaction {
             onDragEnd(e){
                 ctx.onDragEnd(e, indexStep)
                 progressBar.style.backgroundColor = "#6500FF"
+
+                const sound = ctx.audios[Math.floor(Math.random() * ctx.audios.length )]
+                sound.play()
             }
         })
     }

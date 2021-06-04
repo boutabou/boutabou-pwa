@@ -1,6 +1,10 @@
 import Interaction from './Interaction'
 
 export default class Rotate extends Interaction {
+    vars() {
+        this.audios = document.querySelectorAll('.sound-dashboard')
+    }
+
     addClassContainer() {
         this.containerInteraction.classList.add("rotate")
     }
@@ -46,10 +50,13 @@ export default class Rotate extends Interaction {
             onDragEnd() {
                 let index = indexStep % ctx.params.length
 
+                const sound = ctx.audios[Math.floor(Math.random() * ctx.audios.length )]
+                sound.play()
+
                 if (index<0) {
                     index = ctx.params.length + index
                 }
-                window.navigator.vibrate(200)
+
                 ctx.socket.emit('interaction:activated', { 'element' : { name : ctx.title.replace(/\W/g,'_').toLowerCase() }, 'actionMake' : ctx.params[index] }, ctx.socket.id )
                 return Math.round((360/ctx.params.length) * indexStep)
 

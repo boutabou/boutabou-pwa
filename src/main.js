@@ -4,6 +4,7 @@ import BlockManager from './scripts/blocks/BlockManager'
 import Direction from './scripts/utils/Direction'
 import SplitContent from './scripts/utils/SplitContent'
 import Blobs from './scripts/blobs/Blobs'
+import Sound from './scripts/utils/Sound'
 
 class App {
     constructor () {
@@ -16,7 +17,6 @@ class App {
                 this.socket.off()
                 this.socket.disconnect()
                 this.socket = null
-
             }
 
             if(this.swup) {
@@ -32,8 +32,10 @@ class App {
             }
 
             if(this.swup) {
-                this.swup.cache.empty();
+                this.swup.cache.empty()
             }
+
+            this.sound.destroy()
         })
 
         this.initApp()
@@ -44,16 +46,18 @@ class App {
         this.swup = new Swup()
         new SplitContent()
         new PwaPopUp()
+        new Blobs()
+        this.sound = new Sound(this.socket)
 
         this.blocks = new BlockManager(this.socket, this.swup, this.os)
         this.direction = new Direction(this.socket, this.swup)
-        new Blobs()
     }
 
     init() {
         this.blocks = new BlockManager(this.socket, this.swup, this.os)
         new SplitContent()
         new Blobs()
+        this.sound = new Sound(this.socket)
     }
 
     initServiceWorker () {

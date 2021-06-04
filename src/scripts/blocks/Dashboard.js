@@ -12,6 +12,17 @@ gsap.registerPlugin(DrawSVGPlugin)
 gsap.registerPlugin(MorphSVGPlugin)
 
 export default class Dashboard extends Block {
+    vars() {
+        this.urlSoundTimer = './../../../assets/sounds/timer.wav'
+
+        this.soundTimer = document.createElement('audio')
+        this.soundTimer.src = this.urlSoundTimer
+        this.soundTimer.setAttribute('preload', 'auto')
+        this.soundTimer.setAttribute('controls', 'none')
+        this.soundTimer.style.display = 'none'
+        document.body.appendChild(this.soundTimer)
+    }
+
     initEls() {
         this.$els = {
             grid: document.querySelector('.js-grid-container'),
@@ -23,7 +34,8 @@ export default class Dashboard extends Block {
             oneStep:  document.getElementById('one'),
             timerStart: document.querySelector('.js-timer-start'),
             instructions: document.querySelector('.js-instructions'),
-            scoreContainer: document.querySelector('.js-score-container')
+            scoreContainer: document.querySelector('.js-score-container'),
+            taskContainer: document.querySelector('.js-task-container')
         }
         this.cptCursors= 0
         this.tl
@@ -60,6 +72,7 @@ export default class Dashboard extends Block {
     }
 
     timer() {
+        this.soundTimer.play()
         this.$els.timerStart.innerHTML = 3
 
         setTimeout( () => {
@@ -116,9 +129,24 @@ export default class Dashboard extends Block {
 
     resetTimer(timer) {
         let shapes = this.$els.timer
+        let container = this.$els.taskContainer
 
         this.tl = gsap.timeline({repeat:0})
-        this.tl.from(shapes, { drawSVG: "0% 0%", duration: timer/1000})
+        this.tl
+            .to(container, {
+                backgroundColor : '#6500FF',
+                duration: 0.2,
+                ease: 'power.inOut'
+            })
+            .from(shapes, {
+                drawSVG: "0% 0%",
+                duration: timer/1000
+            }, '-=0.2')
+            .to(container, {
+                backgroundColor : '#FE6A7A',
+                duration: 3,
+                ease: 'power.inOut'
+            }, `-=${timer/1800}`)
     }
 
     configTimeline() {
