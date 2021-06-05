@@ -44,6 +44,7 @@ export default class Shape {
 
         if(this.texture) {
             const raster = new Raster(this.texture)
+
             raster.position = new Point(this.coorX + raster.width / 2 - 50, this.coorY + raster.height / 2 - 50);
             raster.scale(Math.max((this.width + 100) / raster.width, (this.height + 100) / raster.height))
 

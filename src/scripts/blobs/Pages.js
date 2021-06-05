@@ -3,6 +3,7 @@ import Eight from "./shapes/Eight";
 import OutGrowth from "./shapes/OutGrowth";
 import Star from "./shapes/Star";
 import Rect from "./shapes/Rect";
+import Img from "./shapes/Img";
 
 export default class Pages {
     constructor(page) {
@@ -31,7 +32,11 @@ export default class Pages {
                 break
             case "theme":
             case "result-theme":
-                this.drawTheme()
+                const path = document.querySelector('main').dataset.path
+
+                if(path && path !== '') {
+                    this.drawTheme(path)
+                }
                 break
             case "game":
                 this.drawGame()
@@ -120,6 +125,7 @@ export default class Pages {
         this.shapes.push(
             // Bottom
             new Circle(-1, 6,10, 10, 0, '#FCC5DD'),
+            new Eight(-1, 7,3, 2, -40, '#6500FF'),
             new Circle(1, 7.5,4, 3.5, 0, '#FE6A7A'),
             new OutGrowth(0, 7.5,2, 2, 30, '#FFE202'),
             new Eight(-2, 8,6, 3, 20, '#6500FF', this.texturePurple),
@@ -140,7 +146,7 @@ export default class Pages {
         new Rect(0,7.5,6,4)
     }
 
-    drawTheme() {
+    drawTheme(path) {
         this.shapes.push(
             // Top
             new Eight(4.8, 0.5,3.4, 2.5,-60,'#6500FF'),
@@ -175,6 +181,12 @@ export default class Pages {
         new Star(1,8.8, 10, 0.1,0.05,0, '#FFE202')
         new Star(0.5,9.5, 10, 0.3,0.15,0, '#5FE7EF')
         new Star(5,9, 4, 0.2,0.05,0, '#FFFDDF')
+
+        new Img(1,2.6, path + '1.png')
+        new Img(4.7,2.4, path + '2.png')
+        new Img(1.2,6.2, path + '3.png')
+        new Img(5,6.8, path + '4.png')
+        new Img(3,7, path + '5.png')
     }
 
     drawGame() {

@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <main id="swup" class="transition-fade">
+    <main id="swup" class="transition-fade" data-path="<%= theme ? theme.pathImgs : '' %>">
         <%- include('../blocks/theme'); %>
         <%- include('../partials/blobs', { pages : 'theme' }); %>
     </main>
