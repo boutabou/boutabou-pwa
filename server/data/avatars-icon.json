@@ -33,6 +33,36 @@
       "url" : "contraception/5.png",
       "bgColor" : "yellow",
       "img" : "../../assets/images/avatars/5.png"
+    },
+    {
+      "url" : "depilation/1.png",
+      "bgColor" : "blue",
+      "img" : "../../assets/images/avatars/6.png"
+    },
+    {
+      "url" : "depilation/2.png",
+      "bgColor" : "yellow",
+      "img" : "../../assets/images/avatars/7.png"
+    },
+    {
+      "url" : "depilation/4.png",
+      "bgColor" : "blue",
+      "img" : "../../assets/images/avatars/9.png"
+    },
+    {
+      "url" : "menstruation/1.png",
+      "bgColor" : "red",
+      "img" : "../../assets/images/avatars/11.png"
+    },
+    {
+      "url" : "menstruation/2.png",
+      "bgColor" : "white",
+      "img" : "../../assets/images/avatars/12.png"
+    },
+    {
+      "url" : "menstruation/4.png",
+      "bgColor" : "white",
+      "img" : "../../assets/images/avatars/14.png"
     }
   ]
 }

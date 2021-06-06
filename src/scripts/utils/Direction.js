@@ -17,13 +17,13 @@ export default class Direction {
         }
     }
 
-    direction(url) {
+    direction(url, id) {
         const block = url.replace('/views/pages/', '').replace('.ejs', '')
         const blockEls = document.querySelector(`.js-${block}`)
 
         if(!blockEls) {
             this.swup.loadPage({
-                url: url,
+                url: url + '?id=' + id,
                 method: 'GET'
             })
         }

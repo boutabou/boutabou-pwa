@@ -1,3 +1,5 @@
+const themeData = require('./data/themes.json')
+
 function initRouter(app, path, port, room) {
     app.set('view engine', 'ejs')
     app.set("trust proxy", 1)
@@ -18,32 +20,35 @@ function initRouter(app, path, port, room) {
         }
     })
 
+    let theme = undefined
+
     app.get('/', function(req, res) {
         res.render('pages/index')
         res.end()
     })
 
     app.get('/views/pages/theme.ejs', function(req, res) {
+        theme = themeData[req.query.id]
         res.render('pages/theme', {
-            theme: room.getTheme()
+            theme
         })
     })
 
     app.get('/views/pages/game.ejs', function(req, res) {
         res.render('pages/game', {
-            theme: room.getTheme()
+            theme
         })
     })
 
     app.get('/views/pages/result-theme.ejs', function(req, res) {
         res.render('pages/result-theme', {
-            theme: room.getTheme()
+            theme
         })
     })
 
     app.get('/views/pages/winner.ejs', function(req, res) {
         res.render('pages/winner', {
-            theme: room.getTheme()
+            theme
         })
     })
 

@@ -1,5 +1,6 @@
 [
   {
+    "id" : 0,
     "title" : "Les poils",
     "pathImgs" : "./../../../assets/images/themes/depilation/",
     "pathInteractions" : "data/interactions/depilation.json",
@@ -9,6 +10,7 @@
     "challenge": "Montres nous voir ça avec la bande de cire la plus proche."
   },
   {
+    "id" : 1,
     "title" : "Les régles",
     "pathImgs" : "./../../../assets/images/themes/menstruation/",
     "pathInteractions" : "data/interactions/menstruation.json",
@@ -18,6 +20,7 @@
     "challenge" : "Saura-tu nous montrer comment l'insérer ?"
   },
   {
+    "id" : 2,
     "title" : "La contraception",
     "pathImgs" : "./../../../assets/images/themes/contraception/",
     "pathInteractions" : "data/interactions/contraception.json",
