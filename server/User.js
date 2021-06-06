@@ -6,7 +6,7 @@ class User {
     vars(name, id, avatar) {
         this.name = name
         this.id = id
-        this.avatar = avatar.src
+        this.avatar = avatar
         this.score = {}
     }
 }

@@ -11,33 +11,18 @@ export default class Login extends Block {
 
         this.currentName = ''
         this.$els.loginButton.classList.add('inactive')
-        this.avatars = require('../../../server/data/avatars')
-        this.addAvatar()
     }
 
     bindMethods() {
         this.createProfile = this.createProfile.bind(this)
         this.checkKeyPressed = this.checkKeyPressed.bind(this)
         this.enableButtonLogin = this.enableButtonLogin.bind(this)
-        this.addAvatar = this.addAvatar.bind(this)
     }
 
     initEvents() {
         this.$els.loginButton.addEventListener('click', this.createProfile)
-        this.$els.avatar.addEventListener('click', this.addAvatar)
         this.$els.username.addEventListener('keypress', this.checkKeyPressed)
         this.$els.username.addEventListener('keydown', this.enableButtonLogin)
-    }
-
-    addAvatar() {
-        if(this.img) {
-            this.$els.avatar.removeChild(this.img)
-        }
-
-        this.avatar = this.avatars[Math.floor((Math.random() * this.avatars.length))]
-        this.img = document.createElement("img")
-        this.img.src = this.avatar.src
-        this.$els.avatar.appendChild(this.img)
     }
 
     checkKeyPressed(e){
@@ -63,7 +48,7 @@ export default class Login extends Block {
         if (this.$els.username.value) {
             this.socketNew = io()
             this.currentName = this.$els.username.value
-            this.socketNew.emit('room:user-login', this.currentName, this.avatar)
+            this.socketNew.emit('room:user-login', this.currentName, this.$els.avatar.dataset.avatarIndex)
         }
     }
 
@@ -73,7 +58,6 @@ export default class Login extends Block {
 
     destroy() {
         this.$els.loginButton.removeEventListener('click', this.createProfile)
-        this.$els.avatar.removeEventListener('click', this.addAvatar)
         this.$els.username.removeEventListener('keypress', this.checkKeyPressed)
     }
 }

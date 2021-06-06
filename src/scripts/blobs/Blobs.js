@@ -34,6 +34,7 @@ export default class Blobs {
 
     this.soundBlob = document.querySelector('.sound-blob')
     this.shapes = []
+    this.avatars = []
     this.noise = new perlinNoise3d()
   }
 
@@ -56,6 +57,7 @@ export default class Blobs {
 
   initEvents() {
     window.onclick = this.addTurbulence
+    window.onclick = this.addTurbulence
   }
 
   initDraw() {
@@ -66,7 +68,9 @@ export default class Blobs {
       const page = new Pages(this.$els.pages.dataset.pages)
       pageShapes = page.getShapes()
       this.shapes.push(pageShapes)
-      this.animation(pageShapes)
+      this.avatars = []
+      this.avatars = page.getAvatars()
+      this.animation(pageShapes, this.avatars)
     }
 
     if (this.$els.canvasPopup) {
@@ -74,18 +78,17 @@ export default class Blobs {
       const pagePopup = new Pages('popup')
       popupShapes = pagePopup.getShapes()
       this.shapes.push(popupShapes)
-      this.animation(popupShapes)
+      this.animation(popupShapes, [])
     }
   }
 
-  animation(shapes) {
+  animation(shapes, avatars) {
     const noise = this.noise
 
     paper.view.onFrame = (event) => {
       shapes.forEach((shape, supraIndex) => {
         shape.finalPath.segments.forEach((segment, index) => {
           let turbulence = 1
-
           if (shape.turbulence > 1) {
             shape.turbulence = shape.turbulence - 0.001
           }
@@ -93,6 +96,10 @@ export default class Blobs {
           segment.point.x = shape.path.segments[index].point.x + (noise.get(index + supraIndex, 0, event.count * 0.003 + turbulence) - 0.5) * 30 * turbulence * (Math.min(shape.widthAsk, shape.heightAsk) ** 0.5)
           segment.point.y = shape.path.segments[index].point.y + (noise.get(0, index + supraIndex, event.count * 0.003 + turbulence) - 0.5) * 30 * turbulence * (Math.min(shape.widthAsk, shape.heightAsk) ** 0.5)
         })
+      })
+
+      avatars.forEach((avatar) => {
+        avatar.animationFrame()
       })
     }
   }

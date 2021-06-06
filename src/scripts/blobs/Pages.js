@@ -1,9 +1,10 @@
-import Circle from "./shapes/Circle";
-import Eight from "./shapes/Eight";
-import OutGrowth from "./shapes/OutGrowth";
-import Star from "./shapes/Star";
-import Rect from "./shapes/Rect";
-import Img from "./shapes/Img";
+import Circle from './shapes/Circle'
+import Eight from './shapes/Eight'
+import OutGrowth from './shapes/OutGrowth'
+import Star from './shapes/Star'
+import Rect from './shapes/Rect'
+import Img from './shapes/Img'
+import Avatar from './shapes/Avatar'
 
 export default class Pages {
     constructor(page) {
@@ -13,6 +14,7 @@ export default class Pages {
 
     vars() {
         this.shapes = []
+        this.avatars = []
         this.textureRed = './../../../assets/images/blobs/texture-red.png'
         this.textureBlue = './../../../assets/images/blobs/texture-blue.png'
         this.textureWhite = './../../../assets/images/blobs/texture-white.png'
@@ -43,6 +45,9 @@ export default class Pages {
                 break
             case "winner":
                 this.drawWinner()
+                break
+            case "login":
+                this.drawLogin()
                 break
         }
     }
@@ -262,7 +267,16 @@ export default class Pages {
         new Star(5,9, 4, 0.2,0.05,0, '#FFFDDF')
     }
 
+    drawLogin() {
+        const avatar = new Avatar(3, 4,2, Math.floor((Math.random() * 5)))
+        this.avatars.push(avatar)
+    }
+
     getShapes() {
         return this.shapes
+    }
+
+    getAvatars() {
+        return this.avatars
     }
 }

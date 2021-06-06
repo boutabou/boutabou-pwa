@@ -1,22 +1,21 @@
 .login {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    > div {
-      height: 70vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .split-text--title {
+      width: 60%;
     }
 
-    .avatar {
-      width: 100px;
-      height: 100px;
-      margin: 20px;
-      transition: opacity 0.1s ease-out;
+    .container-pseudo {
+      margin-top: auto;
+      margin-bottom: 20vh;
     }
 
     input {

@@ -1,5 +1,4 @@
 import { Group, Path, Raster, Point } from 'paper'
-import * as paper from 'paper'
 import perlinNoise3d from 'perlin-noise-3d'
 
 export default class Shape {
@@ -42,10 +41,10 @@ export default class Shape {
         this.finalPath = this.path.clone()
         this.finalPath.fillColor = this.color
 
-        if(this.texture) {
+        if(this.texture && this.texture !== '') {
             const raster = new Raster(this.texture)
 
-            raster.position = new Point(this.coorX + raster.width / 2 - 50, this.coorY + raster.height / 2 - 50);
+            raster.position = new Point(this.coorX + raster.width / 2 - 50, this.coorY + raster.height / 2 - 50)
             raster.scale(Math.max((this.width + 100) / raster.width, (this.height + 100) / raster.height))
 
             new Group([raster, this.finalPath])

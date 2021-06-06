@@ -1,4 +1,4 @@
-import {Group, Path, Point, Raster} from 'paper'
+import { Point, Raster } from 'paper'
 
 export default class Img {
     constructor(centerX, centerY, path) {
@@ -11,7 +11,7 @@ export default class Img {
         this.windowHeight = document.body.clientHeight
         this.centerX = centerX * this.windowWidth / 6
         this.centerY = centerY * this.windowHeight / 10
-        this.width = 1 * this.windowWidth / 6
+        this.width = 1.8 * this.windowWidth / 6
         this.path = path
     }
 

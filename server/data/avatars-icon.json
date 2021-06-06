@@ -1,0 +1,38 @@
+{
+  "colors" : {
+    "red" : "#FE6A7A",
+    "blue" : "#5FE7EF",
+    "pink" : "#FCC5DD",
+    "yellow" : "#FFE202",
+    "purple" : "#6500FF",
+    "white": "#FFFDDF"
+  },
+  "avatarBaseUrl" : "./../../../../assets/images/themes/",
+  "avatarUrl" : [
+    {
+      "url" : "contraception/1.png",
+      "bgColor" : "red",
+      "img" : "../../assets/images/avatars/1.png"
+    },
+    {
+      "url" : "contraception/2.png",
+      "bgColor" : "blue",
+      "img" : "../../assets/images/avatars/2.png"
+    },
+    {
+      "url" : "contraception/3.png",
+      "bgColor" : "white",
+      "img" : "../../assets/images/avatars/3.png"
+    },
+    {
+      "url" : "contraception/4.png",
+      "bgColor" : "purple",
+      "img" : "../../assets/images/avatars/4.png"
+    },
+    {
+      "url" : "contraception/5.png",
+      "bgColor" : "yellow",
+      "img" : "../../assets/images/avatars/5.png"
+    }
+  ]
+}

@@ -1,8 +1,9 @@
 <div class="block login js-login">
     <form class="login__container container container--ultra" action="">
-        <div>
+        <div class="js-split-text split-text split-text--title">Choisi ton avatar</div>
+        <div class="container-pseudo">
             <div class="avatar js-avatar"></div>
-            <input class="js-username" type="text" id="name" name="name" placeholder="Pseudo" required>
+            <input class="js-username" type="text" id="name" name="name" autocomplete="off" placeholder="Pseudo" required>
         </div>
         <div class="container-button">
             <%- include('../components/button', { buttonLink : '/views/pages/room.ejs', buttonText : "LET'S GO", buttonClass : "js-login-button" }); %>
