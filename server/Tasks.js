@@ -97,7 +97,7 @@ class Tasks {
         this.io.emit('dashboard:update-score', Math.floor(this.score))
 
         if(this.score >= 10) {
-            setTimeout(() => { this.io.emit('direction',  '/views/pages/result-theme.ejs') }, 1000)
+            setTimeout(() => { this.io.emit('direction',  '/views/pages/result-theme.ejs', this.theme.id) }, 1000)
             this.endGame()
         }
 

@@ -20,35 +20,32 @@ function initRouter(app, path, port, room) {
         }
     })
 
-    let theme = undefined
-
     app.get('/', function(req, res) {
         res.render('pages/index')
         res.end()
     })
 
     app.get('/views/pages/theme.ejs', function(req, res) {
-        theme = themeData[req.query.id]
         res.render('pages/theme', {
-            theme
+            theme : themeData[req.query.id]
         })
     })
 
     app.get('/views/pages/game.ejs', function(req, res) {
         res.render('pages/game', {
-            theme
+            theme : themeData[req.query.id]
         })
     })
 
     app.get('/views/pages/result-theme.ejs', function(req, res) {
         res.render('pages/result-theme', {
-            theme
+            theme : themeData[req.query.id]
         })
     })
 
     app.get('/views/pages/winner.ejs', function(req, res) {
         res.render('pages/winner', {
-            theme
+            theme : themeData[req.query.id]
         })
     })
 

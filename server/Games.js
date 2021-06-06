@@ -32,7 +32,7 @@ class Games {
 
     themeChoice(socket) {
         // listen result theme choice
-        socket.on('scan:theme-choice', (idTheme) => {
+        socket.once('scan:theme-choice', (idTheme) => {
             this.games.forEach((game) => {
                 game.endGame()
             })
