@@ -51,7 +51,7 @@
     },
     {
       "url" : "menstruation/1.png",
-      "bgColor" : "red",
+      "bgColor" : "pink",
       "img" : "../../assets/images/avatars/11.png"
     },
     {
@@ -61,8 +61,13 @@
     },
     {
       "url" : "menstruation/4.png",
-      "bgColor" : "white",
+      "bgColor" : "red",
       "img" : "../../assets/images/avatars/14.png"
+    },
+    {
+      "url" : "menstruation/4.png",
+      "bgColor" : "pink",
+      "img" : "../../assets/images/avatars/15.png"
     }
   ]
 }

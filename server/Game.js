@@ -29,14 +29,14 @@ class Game {
         this.room.io.emit('direction',  '/views/pages/theme.ejs', this.theme.id)
 
         this.room.sockets.forEach((socket) => {
-            socket.on('theme:start', this.clickStart)
+            socket.once('theme:start', this.clickStart)
         })
     }
 
     clickStart(id) {
         if(this.onGame) {
             const socket = getLoggedTable(id, this.room.sockets)
-            socket.broadcast.emit('direction',  '/views/pages/game.ejs')
+            socket.broadcast.emit('direction',  '/views/pages/game.ejs', this.theme.id)
             setTimeout(() => {
                 this.room.io.emit('dashboard:on-timer')
                 this.room.io.emit('dashboard:display-level', this.level)
