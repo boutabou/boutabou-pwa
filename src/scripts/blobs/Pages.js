@@ -268,7 +268,7 @@ export default class Pages {
     }
 
     drawLogin() {
-        const avatar = new Avatar(3, 4,2, Math.floor((Math.random() * 5)))
+        const avatar = new Avatar(3, 4,2, Math.floor((Math.random() * 11)))
         this.avatars.push(avatar)
     }
 

@@ -26,7 +26,7 @@ class Game {
     }
 
     initGame() {
-        this.room.io.emit('direction',  '/views/pages/theme.ejs')
+        this.room.io.emit('direction',  '/views/pages/theme.ejs', this.theme.id)
 
         this.room.sockets.forEach((socket) => {
             socket.on('theme:start', this.clickStart)
