@@ -85,9 +85,10 @@ class Games {
 
     getTheme() {
         let theme
-        this.games.forEach((game) => {
-            if(game.onGame) {
-                theme = game.theme
+
+        this.games.forEach((game, index) => {
+            if(this.games[this.games.length - 1 - index].onGame) {
+                theme = this.games[this.games.length - 1 - index].theme
             }
         })
 

@@ -16,10 +16,9 @@ export default class Rect {
     }
 
     drawRect() {
-        var rectangle = new Rectangle(new Point(this.coorX, this.coorY), new Point(this.coorX + this.width, this.coorY + this.height));
-        var radius = new Size(20, 20);
-        var path = new Path.Rectangle(rectangle, radius);
-        // path.fillColor = '#5FE7EF';
+        var rectangle = new Rectangle(new Point(this.coorX, this.coorY), new Point(this.coorX + this.width, this.coorY + this.height))
+        var radius = new Size(20, 20)
+        var path = new Path.Rectangle(rectangle, radius)
         path.clipMask = true
     }
 }

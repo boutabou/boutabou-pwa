@@ -1,5 +1,6 @@
 const { User } = require('./User')
 const { Interactions } = require('./Interactions')
+const avatarData = require('./data/avatars-icon.json')
 
 /**
  * @param socket Socket
@@ -7,8 +8,8 @@ const { Interactions } = require('./Interactions')
  */
 function getUser(socket) {
     const promise  = new Promise((resolve, reject) => {
-        socket.on('room:user-login', (name, avatar) => {
-            const user = new User(name, socket.id, avatar)
+        socket.on('room:user-login', (name, avatarIndex) => {
+            const user = new User(name, socket.id, avatarData.avatarUrl[avatarIndex].img)
 
             if (user) {
                 resolve(user)
