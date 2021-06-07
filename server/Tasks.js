@@ -2,13 +2,13 @@ const { getInteractions, getLoggedTable, getRandom } = require('./utils')
 const { Task } = require('./Task')
 
 class Tasks {
-    constructor(users, sockets, io, theme, timer) {
-        this.vars(users, sockets, io, theme, timer)
+    constructor(users, sockets, io, theme, timer, game) {
+        this.vars(users, sockets, io, theme, timer, game)
         this.bindMathods()
         this.listenTasks()
     }
 
-    vars(users, sockets, io, theme, timer) {
+    vars(users, sockets, io, theme, timer, game) {
         this.all = []
         this.users = users
         this.sockets = sockets
@@ -17,6 +17,7 @@ class Tasks {
         this.score = 5
         this.theme = theme
         this.timer = timer
+        this.game = game
     }
 
     bindMathods() {
@@ -98,6 +99,7 @@ class Tasks {
 
         if(this.score >= 10) {
             setTimeout(() => { this.io.emit('direction',  '/views/pages/result-theme.ejs', this.theme.id) }, 1000)
+            this.game.getWinner()
             this.endGame()
         }
 

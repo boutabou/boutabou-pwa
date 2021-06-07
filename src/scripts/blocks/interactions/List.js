@@ -57,7 +57,7 @@ export default class List extends Interaction {
         })
 
         this.elements.forEach((element) => {
-            element.removeListener('mouseup', this.sound)
+            element.removeEventListener('mouseup', this.sound)
         })
     }
 }

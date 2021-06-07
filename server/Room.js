@@ -73,14 +73,6 @@ class Room {
             this.games.reset()
         }
     }
-
-    getTheme() {
-        if(this.users.length === 0) {
-            return undefined
-        }
-
-        return this.games.getTheme()
-    }
 }
 
 module.exports = {
