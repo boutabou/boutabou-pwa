@@ -22,9 +22,7 @@
     "xmlhttprequest": "^1.8.0"
   },
   "scripts": {
-    "start": "nodemon index.js",
-    "build": "webpack -w --mode=development",
-    "dev": "concurrently 'npm:build' 'npm:start'"
+    "start": "node index.js"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
