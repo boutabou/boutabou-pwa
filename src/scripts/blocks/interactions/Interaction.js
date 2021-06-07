@@ -17,6 +17,7 @@ export default class Interaction {
         this.addClassContainer()
         this.displayInteraction(this.containerInteraction)
         this.displayCursor(this.containerInteraction, this.orientation, this.params, this.index)
+        this.initEvents()
 
         document.addEventListener('swup:willReplaceContent', () => {
             this.destroy()
@@ -26,6 +27,8 @@ export default class Interaction {
     vars() {}
 
     bindMethods() {}
+
+    initEvents() {}
 
     createContainerInteraction() {
         const divInteraction = document.createElement('div')

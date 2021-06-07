@@ -15,7 +15,8 @@ class Game {
         this.timer = this.getTimer()
         this.onGame = true
         this.players = getUsersWithDashboard(this.room.users, this.theme)
-        this.tasks = new Tasks(this.room.users, this.room.sockets, this.room.io, this.theme, this.timer)
+        this.tasks = new Tasks(this.room.users, this.room.sockets, this.room.io, this.theme, this.timer, this)
+        this.winner = this.room.users[0]
     }
 
     bindMethods() {
@@ -40,8 +41,8 @@ class Game {
             setTimeout(() => {
                 this.room.io.emit('dashboard:on-timer')
                 this.room.io.emit('dashboard:display-level', this.level)
-            }, 1000)
-            setTimeout(this.startGame, 5000)
+            }, 1500)
+            setTimeout(this.startGame, 5500)
         }
     }
 
@@ -52,9 +53,9 @@ class Game {
     initUsers() {
         this.room.sockets.forEach((socket) => {
             const user = getLoggedTable(socket.id, this.players)
-            socket.emit('dashboard:display', user, this.theme)
+            socket.emit('dashboard:display', user)
             this.tasks.newTask(user)
-            socket.on('load:winner', this.giveWinnerOfTheme )
+            socket.on('load:winner', this.giveWinnerOfTheme)
         })
     }
 
@@ -63,9 +64,8 @@ class Game {
         socket.emit('result-theme:win', this.theme)
     }
 
-    giveWinnerOfTheme(id) {
+    getWinner() {
         if(this.onGame) {
-            const socket = getLoggedTable(id, this.room.sockets)
             const scoreMax =  Math.max.apply(Math, this.room.users.map((user) => { return user.score[this.theme.title] }))
             this.room.users.forEach((user) => {
                 if(user.score[this.theme.title] === scoreMax) {
@@ -74,8 +74,12 @@ class Game {
                 }
             })
 
-            socket.emit('winner:display-winner', this.theme, this.winner)
         }
+    }
+
+    giveWinnerOfTheme(id) {
+        const socket = getLoggedTable(id, this.room.sockets)
+        socket.emit('winner:display-winner', this.theme, this.winner)
     }
 
     getTimer() {
@@ -93,10 +97,6 @@ class Game {
         }
 
         this.tasks.endGame()
-    }
-
-    getTheme() {
-        return this.theme
     }
 }
 

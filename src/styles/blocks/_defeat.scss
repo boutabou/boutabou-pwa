@@ -1,0 +1,13 @@
+.defeat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  &__team {
+    font-weight: bold;
+  }
+}

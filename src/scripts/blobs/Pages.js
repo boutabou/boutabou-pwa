@@ -49,6 +49,9 @@ export default class Pages {
             case "login":
                 this.drawLogin()
                 break
+            case "defeat":
+                this.drawDefeat()
+                break
         }
     }
 
@@ -267,8 +270,45 @@ export default class Pages {
         new Star(5,9, 4, 0.2,0.05,0, '#FFFDDF')
     }
 
+    drawDefeat() {
+        this.shapes.push(
+            // Top
+            new Eight(4.8, 0.5,3.4, 2.5,-60,'#6500FF'),
+            new Eight(-2, 1.9,4, 2,-60,'#FE6A7A'),
+            new OutGrowth(-0.5, 2,1.5, 1.5,-10,'#5FE7EF', this.textureBlue),
+            new Circle(-0.2, 1,0.8, 0.8,0,'#6500FF'),
+            new Circle(1, 0.2,0.4, 0.4,0,'#FE6A7A'),
+            new Circle(5.6, 2,0.6, 0.6,0,'#FCC5DD'),
+
+            // Bottom
+            new OutGrowth(-0.8, 5.4,2, 2,-80,'#6500FF', this.texturePurple),
+            new Eight(-1, 6.8,4.5, 1.2,10,'#FCC5DD'),
+            new OutGrowth(-0.2, 6.4,1, 1,10,'#FFE202'),
+            new Circle(1.4, 6.8,0.4, 0.4,0,'#5FE7EF'),
+            new OutGrowth(4.8, 5.8,3.2, 2.5,100,'#5FE7EF'),
+            new Circle(5.8, 6.4,0.4, 0.4,0,'#FFE202'),
+            new Circle(5.4, 6.8,1, 1,0,'#FFFDDF'),
+            new Circle(5.6, 9,0.5, 0.5,0,'#FE6A7A'),
+        )
+
+        // Top
+        new Star(0.6,0.5, 10, 0.2,0.1,0, '#FFE202')
+        new Star(1.4,0.6, 4, 0.18,0.04,0, '#5FE7EF')
+        new Star(5,1, 10, 0.3,0.15,0, '#5FE7EF')
+        new Star(1.4,2.1, 10, 0.2,0.1,0, '#FFFDDF')
+        new Star(5.6,3, 10, 0.4,0.2,0, '#FFE202')
+
+        // Bottom
+        new Star(0.5,5.8, 10, 0.3,0.15,0, '#FFFDDF')
+        new Star(1.4,6.8, 4, 0.18,0.04,0, '#FFFDDF')
+        new Star(5.5,6, 10, 0.2,0.1,0, '#FE6A7A')
+        new Star(1,8.8, 10, 0.1,0.05,0, '#FFE202')
+        new Star(0.5,9.5, 10, 0.3,0.15,0, '#5FE7EF')
+        new Star(5,9, 4, 0.2,0.05,0, '#FFFDDF')
+    }
+
     drawLogin() {
-        const avatar = new Avatar(3, 4,2, Math.floor((Math.random() * 11)))
+        const avatar = new Avatar(3, 4,2, Math.floor((Math.random() * 15)))
         this.avatars.push(avatar)
     }
 

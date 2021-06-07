@@ -32,7 +32,7 @@ class Games {
 
     themeChoice(socket) {
         // listen result theme choice
-        socket.once('scan:theme-choice', (idTheme) => {
+        socket.on('scan:theme-choice', (idTheme) => {
             this.games.forEach((game) => {
                 game.endGame()
             })
@@ -81,18 +81,6 @@ class Games {
         eventsDissable.forEach((event) => {
             socket.off(event, this.removePopupScan)
         })
-    }
-
-    getTheme() {
-        let theme
-
-        this.games.forEach((game, index) => {
-            if(this.games[this.games.length - 1 - index].onGame) {
-                theme = this.games[this.games.length - 1 - index].theme
-            }
-        })
-
-        return theme
     }
 
     reset() {

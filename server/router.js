@@ -1,6 +1,6 @@
 const themeData = require('./data/themes.json')
 
-function initRouter(app, path, port, room) {
+function initRouter(app, path, port) {
     app.set('view engine', 'ejs')
     app.set("trust proxy", 1)
 
@@ -11,11 +11,11 @@ function initRouter(app, path, port, room) {
     * Redirect to https
     */
     app.use (function (req, res, next) {
-        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` || req.rawHeaders[1] == `${ip}:${port}` ) {
+        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` || req.rawHeaders[1] == `192.168.137.1:3003` ) {
             // request was via https, so do no special handling
             next()
-        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] !== `${ip}:${port}` ) {
-            // request was via http, so redirect to https
+        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] !== `192.168.137.1:3003` ) {
+            // request was via http, so redirect to https'(
             res.redirect('https://' + req.headers.host + req.url)
         }
     })

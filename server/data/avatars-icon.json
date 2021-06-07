@@ -45,9 +45,19 @@
       "img" : "../../assets/images/avatars/7.png"
     },
     {
+      "url" : "depilation/3.png",
+      "bgColor" : "yellow",
+      "img" : "../../assets/images/avatars/8.png"
+    },
+    {
       "url" : "depilation/4.png",
       "bgColor" : "blue",
       "img" : "../../assets/images/avatars/9.png"
+    },
+    {
+      "url" : "depilation/5.png",
+      "bgColor" : "white",
+      "img" : "../../assets/images/avatars/10.png"
     },
     {
       "url" : "menstruation/1.png",
@@ -60,12 +70,17 @@
       "img" : "../../assets/images/avatars/12.png"
     },
     {
+      "url" : "menstruation/3.png",
+      "bgColor" : "purple",
+      "img" : "../../assets/images/avatars/13.png"
+    },
+    {
       "url" : "menstruation/4.png",
       "bgColor" : "red",
       "img" : "../../assets/images/avatars/14.png"
     },
     {
-      "url" : "menstruation/4.png",
+      "url" : "menstruation/5.png",
       "bgColor" : "pink",
       "img" : "../../assets/images/avatars/15.png"
     }

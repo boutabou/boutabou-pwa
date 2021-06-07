@@ -12,17 +12,6 @@ gsap.registerPlugin(DrawSVGPlugin)
 gsap.registerPlugin(MorphSVGPlugin)
 
 export default class Dashboard extends Block {
-    vars() {
-        this.urlSoundTimer = './../../../assets/sounds/timer.wav'
-
-        this.soundTimer = document.createElement('audio')
-        this.soundTimer.src = this.urlSoundTimer
-        this.soundTimer.setAttribute('preload', 'auto')
-        this.soundTimer.setAttribute('controls', 'none')
-        this.soundTimer.style.display = 'none'
-        document.body.appendChild(this.soundTimer)
-    }
-
     initEls() {
         this.$els = {
             grid: document.querySelector('.js-grid-container'),
@@ -35,7 +24,8 @@ export default class Dashboard extends Block {
             timerStart: document.querySelector('.js-timer-start'),
             instructions: document.querySelector('.js-instructions'),
             scoreContainer: document.querySelector('.js-score-container'),
-            taskContainer: document.querySelector('.js-task-container')
+            taskContainer: document.querySelector('.js-task-container'),
+            soundTimer: document.querySelector('.sound-timer')
         }
         this.cptCursors= 0
         this.tl
@@ -43,6 +33,7 @@ export default class Dashboard extends Block {
         this.scoreFront = 5
         this.scoreOnAnim = false
         this.colors = ['#ff7384', '#fe8396', '#fe94a8', '#fda4b9', '#fdb5cb', '#fcc5dd', '#dccce1', '#bcd3e5', '#9cdbe9', '#7ce2ed', '#5ce9f1']
+        this.timerRun = false
     }
 
     bindMethods() {
@@ -58,13 +49,15 @@ export default class Dashboard extends Block {
 
     initEvents() {
         window.history.pushState({}, '')
-        this.socket.on('dashboard:display', this.displayDashboard)
+        this.socket.once('dashboard:display', this.displayDashboard)
         this.socket.on('dashboard:display-task', this.displayTask)
         this.socket.on('dashboard:update-score', this.displayScore)
         this.socket.on('dashboard:kill-timer', this.killTimer)
         this.socket.on('dashboard:vibrate', this.vibrate)
-        this.socket.on('dashboard:on-timer', this.timer)
-        this.socket.on('dashboard:display-level', this.displayLevel)
+        this.socket.once('dashboard:on-timer', this.timer)
+        this.socket.once('dashboard:display-level', this.displayLevel)
+
+        setTimeout(this.timer, 1500)
     }
 
     displayLevel(level) {
@@ -72,24 +65,28 @@ export default class Dashboard extends Block {
     }
 
     timer() {
-        this.soundTimer.play()
-        this.$els.timerStart.innerHTML = 3
+        if(!this.timerRun) {
+            this.timerRun = true
 
-        setTimeout( () => {
-            this.$els.timerStart.innerHTML = 2
-        }, 1000)
+            this.$els.soundTimer.play()
+            this.$els.timerStart.innerHTML = 3
 
-        setTimeout( () => {
-            this.$els.timerStart.innerHTML = 1
-        }, 2000)
+            setTimeout( () => {
+                this.$els.timerStart.innerHTML = 2
+            }, 1000)
 
-        setTimeout( () => {
-            this.$els.timerStart.innerHTML = 0
-        }, 3000)
+            setTimeout( () => {
+                this.$els.timerStart.innerHTML = 1
+            }, 2000)
 
-        setTimeout( () => {
-            this.startGame()
-        }, 4000)
+            setTimeout( () => {
+                this.$els.timerStart.innerHTML = 0
+            }, 3000)
+
+            setTimeout( () => {
+                this.startGame()
+            }, 4000)
+        }
     }
 
     startGame() {
@@ -100,7 +97,7 @@ export default class Dashboard extends Block {
         this.socket.emit('dashboard:start')
     }
 
-    displayDashboard(currentUser, theme) {
+    displayDashboard(currentUser) {
         currentUser.dashboard.forEach((interaction) => {
             switch (interaction.type) {
                 case 'bool':
