@@ -112,6 +112,10 @@ export default class Avatar {
     }
 
     animation(e) {
+        if(!this.sound) {
+            this.sound = document.querySelector('.sound-blob')
+        }
+
         if(!e.target.classList.contains('js-container-pseudo') && !e.target.classList.contains('js-username') && !e.target.classList.contains('js-split-text') && e.target.classList.length !== 0) {
             if (this.centerX - (this.width / 2) < e.clientX && this.centerX + (this.width / 2) > e.clientX && this.centerY - (this.width / 2) < e.clientY && this.centerY + (this.width / 2) > e.clientY) {
                 this.changeAvatar()

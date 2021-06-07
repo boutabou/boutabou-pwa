@@ -4,6 +4,7 @@ import BlockManager from './scripts/blocks/BlockManager'
 import Direction from './scripts/utils/Direction'
 import SplitContent from './scripts/utils/SplitContent'
 import Blobs from './scripts/blobs/Blobs'
+import SoundInit from './scripts/utils/SoundInit'
 import Sound from './scripts/utils/Sound'
 
 class App {
@@ -47,6 +48,7 @@ class App {
         new SplitContent()
         new PwaPopUp()
         new Blobs()
+        new SoundInit()
         this.sound = new Sound(this.socket)
 
         this.blocks = new BlockManager(this.socket, this.swup, this.os)

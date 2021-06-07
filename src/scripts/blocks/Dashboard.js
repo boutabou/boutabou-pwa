@@ -12,17 +12,6 @@ gsap.registerPlugin(DrawSVGPlugin)
 gsap.registerPlugin(MorphSVGPlugin)
 
 export default class Dashboard extends Block {
-    vars() {
-        this.urlSoundTimer = './../../../assets/sounds/timer.wav'
-
-        this.soundTimer = document.createElement('audio')
-        this.soundTimer.src = this.urlSoundTimer
-        this.soundTimer.setAttribute('preload', 'auto')
-        this.soundTimer.setAttribute('controls', 'none')
-        this.soundTimer.style.display = 'none'
-        document.body.appendChild(this.soundTimer)
-    }
-
     initEls() {
         this.$els = {
             grid: document.querySelector('.js-grid-container'),
@@ -35,7 +24,8 @@ export default class Dashboard extends Block {
             timerStart: document.querySelector('.js-timer-start'),
             instructions: document.querySelector('.js-instructions'),
             scoreContainer: document.querySelector('.js-score-container'),
-            taskContainer: document.querySelector('.js-task-container')
+            taskContainer: document.querySelector('.js-task-container'),
+            soundTimer: document.querySelector('.sound-timer')
         }
         this.cptCursors= 0
         this.tl
@@ -72,7 +62,7 @@ export default class Dashboard extends Block {
     }
 
     timer() {
-        this.soundTimer.play()
+        this.$els.soundTimer.play()
         this.$els.timerStart.innerHTML = 3
 
         setTimeout( () => {

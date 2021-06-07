@@ -1,12 +1,26 @@
 import Interaction from './Interaction'
 
 export default class Bool extends Interaction {
+    vars() {
+        this.audios = document.querySelectorAll('.sound-dashboard')
+    }
+
     addClassContainer() {
         this.containerInteraction.classList.add('bool')
     }
 
     bindMethods() {
         this.toogleBool = this.toogleBool.bind(this)
+        this.sound = this.sound.bind(this)
+    }
+
+    initEvents() {
+        this.element.addEventListener('mouseup', this.sound)
+    }
+
+    sound() {
+        const sound = this.audios[Math.floor(Math.random() * this.audios.length )]
+        sound.play()
     }
 
     displayInteraction(container) {
@@ -18,6 +32,7 @@ export default class Bool extends Interaction {
         btn.addEventListener('click', this.toogleBool)
 
         this.interactions.push(btn)
+        this.element = btn
     }
 
     toogleBool(e) {
@@ -35,5 +50,7 @@ export default class Bool extends Interaction {
         this.interactions.forEach((interaction) => {
             interaction.removeEventListener('click', this.toogleBool)
         })
+
+        this.element.removeEventListener('mouseup', this.sound)
     }
 }

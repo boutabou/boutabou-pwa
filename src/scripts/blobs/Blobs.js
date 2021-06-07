@@ -5,7 +5,6 @@ import Pages from './Pages'
 export default class Blobs {
   constructor() {
     this.initEls()
-    this.initSound()
     this.bindMethods()
     this.initEvents()
     this.initDraw()
@@ -18,7 +17,8 @@ export default class Blobs {
       this.$els = {
         canvas: document.getElementById('blobs'),
         pages: document.querySelector('.js-container-blobs'),
-        popup: document.querySelector('.js-popup')
+        popup: document.querySelector('.js-popup'),
+        sound: document.querySelector('.sound-blob')
       }
 
       this.$els.canvas.width = document.body.clientWidth
@@ -32,23 +32,9 @@ export default class Blobs {
 
     }
 
-    this.soundBlob = document.querySelector('.sound-blob')
     this.shapes = []
     this.avatars = []
     this.noise = new perlinNoise3d()
-  }
-
-  initSound() {
-    if(!this.soundBlob) {
-      this.urlSoundBlob = './../../../assets/sounds/blob.mp3'
-      this.soundBlob = document.createElement('audio')
-      this.soundBlob.classList.add('sound-blob')
-      this.soundBlob.src = this.urlSoundBlob
-      this.soundBlob.setAttribute('preload', 'auto')
-      this.soundBlob.setAttribute('controls', 'none')
-      this.soundBlob.style.display = 'none'
-      document.body.appendChild(this.soundBlob)
-    }
   }
 
   bindMethods() {
@@ -107,6 +93,10 @@ export default class Blobs {
   addTurbulence(e) {
     let cpt = 0
 
+    if(!this.$els.sound) {
+      this.$els.sound = document.querySelector('.sound-blob')
+    }
+
     if(this.shapes !== [] && this.shapes && !e.delegateTarget && !e.target.classList.contains('js-sound-dashboard')) {
       if(this.$els.popup && !this.$els.popup.classList.contains('active') || !this.$els.popup) {
         if(this.shapes[0]) {
@@ -114,7 +104,7 @@ export default class Blobs {
             if (shape.coorX < e.clientX + 30 && shape.coorX + shape.width > e.clientX - 30 && shape.coorY < e.clientY + 30 && shape.coorY + shape.height > e.clientY - 30 & shape.turbulence <= 1) {
               shape.turbulence = 2
               if(cpt === 0) {
-                this.soundBlob.play()
+                this.$els.sound.play()
                 cpt ++
               }
             }
@@ -126,7 +116,7 @@ export default class Blobs {
             if (shape.coorX < e.clientX + 30 && shape.coorX + shape.width > e.clientX - 30 && shape.coorY < e.clientY + 30 && shape.coorY + shape.height > e.clientY - 30 & shape.turbulence <= 1) {
               shape.turbulence = 2
               if(cpt === 0) {
-                this.soundBlob.play()
+                this.$els.sound.play()
                 cpt ++
               }
             }
