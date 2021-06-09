@@ -43,7 +43,6 @@ export default class Blobs {
 
   initEvents() {
     window.onclick = this.addTurbulence
-    window.onclick = this.addTurbulence
   }
 
   initDraw() {

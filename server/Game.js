@@ -24,6 +24,7 @@ class Game {
         this.clickStart = this.clickStart.bind(this)
         this.giveDataResultTheme = this.giveDataResultTheme.bind(this)
         this.giveWinnerOfTheme = this.giveWinnerOfTheme.bind(this)
+        this.skipGame = this.skipGame.bind(this)
     }
 
     initGame() {
@@ -31,6 +32,7 @@ class Game {
 
         this.room.sockets.forEach((socket) => {
             socket.once('theme:start', this.clickStart)
+            socket.once('dashboard:skip-game', this.skipGame)
         })
     }
 
@@ -86,6 +88,9 @@ class Game {
         return 10000 + 2000 * this.room.users.length - (( 1 - Math.exp(-this.level / 4)) * 6000)
     }
 
+    skipGame() {
+        this.tasks.skipGame()
+    }
 
     endGame() {
         this.onGame = false
@@ -93,6 +98,7 @@ class Game {
             this.room.sockets.forEach((socket) => {
                 socket.off('theme:start', this.clickStart)
                 socket.off('load:winner', this.giveWinnerOfTheme)
+                socket.off('dashboard:skip-game', this.skipGame)
             })
         }
 

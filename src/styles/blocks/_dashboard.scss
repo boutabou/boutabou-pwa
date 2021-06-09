@@ -7,6 +7,22 @@
   left: 0;
   right: 0;
 
+  &__skip {
+    position: absolute;
+    top: 6px;
+    right: 10vw;
+    padding: 6px 10px;
+    background-color: $color-red;
+    color: $color-white;
+    font-weight: bold;
+    font-size: 12px;
+    border-radius: 5px;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
   .level {
     position: absolute;
     top: 0;

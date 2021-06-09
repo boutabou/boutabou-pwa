@@ -109,6 +109,13 @@ class Tasks {
         }
     }
 
+    skipGame() {
+        this.score = 10
+        setTimeout(() => { this.io.emit('direction',  '/views/pages/result-theme.ejs', this.theme.id) }, 300)
+        this.game.getWinner()
+        this.endGame()
+    }
+
     endGame() {
         this.sockets.forEach((socket) => {
             socket.off('interaction:activated', this.resultAction)
