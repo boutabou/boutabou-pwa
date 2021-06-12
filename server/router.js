@@ -7,19 +7,6 @@ function initRouter(app, path, port) {
     const domain = process.env.DOMAIN_HOST || "localhost"
     const ip = process.env.IP || "127.0.0.1"
 
-    /*
-    * Redirect to https
-    */
-    app.use (function (req, res, next) {
-        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` || req.rawHeaders[1] == `192.168.1.82:3003` ) {
-            // request was via https, so do no special handling
-            next()
-        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] !== `192.168.1.82:3003` ) {
-            // request was via http, so redirect to https'(
-            res.redirect('https://' + req.headers.host + req.url)
-        }
-    })
-
     app.get('/', function(req, res) {
         res.render('pages/index')
         res.end()
