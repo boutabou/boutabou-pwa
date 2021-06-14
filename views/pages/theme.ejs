@@ -5,6 +5,7 @@
 </head>
 
 <body>
+    <%- include('../components/responsive.ejs'); %>
     <main id="swup" class="transition-fade" data-path="<%= theme ? theme.pathImgs : '' %>">
         <%- include('../blocks/theme'); %>
         <%- include('../partials/blobs', { pages : 'theme' }); %>
