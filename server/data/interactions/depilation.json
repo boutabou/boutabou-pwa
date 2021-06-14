@@ -212,11 +212,6 @@
   ],
   "simple-cursor" : [
     {
-      "title" : "Température de la cire",
-      "param" : ["0", "10", "20"],
-      "sentences" : "Passer la température de la cire à {param}"
-    },
-    {
       "title" : "Turbo epilateur",
       "param" : ["0", "1", "2"],
       "sentences" : "Passer le turbo épilateur à {param}"
@@ -254,6 +249,11 @@
       "title" : "Vitesse de pousse",
       "param" : ["0", "10", "20", "30", "40", "60"],
       "sentences" : "Mettre la vitesse de pousse sur {param}"
+    },
+    {
+      "title" : "Température de la cire",
+      "param" : ["0", "10", "20", "30", "40", "60"],
+      "sentences" : "Passer la température de la cire à {param}"
     }
   ]
 }

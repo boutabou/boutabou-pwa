@@ -7,8 +7,19 @@
   left: 0;
   right: 0;
 
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   &__skip {
     position: absolute;
+    display: none;
     top: 6px;
     right: 10vw;
     padding: 6px 10px;
