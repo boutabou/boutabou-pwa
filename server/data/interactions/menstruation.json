@@ -50,10 +50,10 @@
       }
     },
     {
-      "title" : "Culotte de règle",
+      "title" : "Culotte de règles",
       "sentences" : {
-        "on" : "Mettre la culotte de règle",
-        "off" : "Enlever la culotte de règle"
+        "on" : "Mettre la culotte de règles",
+        "off" : "Enlever la culotte de règles"
       }
     },
     {
@@ -205,7 +205,7 @@
       "sentences" : "Mettre la température de la buillote sur {param}"
     },
     {
-      "title" : "Durée règle",
+      "title" : "Durée règles",
       "param" : ["0", "2", "5", "7", "10", "14"],
       "sentences" : "Mettre la durée des règles sur {param}"
     }

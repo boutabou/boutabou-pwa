@@ -106,9 +106,11 @@ export default class Pages {
 
             // Bottom
             new Circle(1, 7.5,4, 3.5, 0, '#FE6A7A'),
+            new Eight(-2.2, 8.8,6, 3, 20, '#6500FF'),
             new Eight(-2, 8,6, 3, 20, '#6500FF', this.texturePurple),
             new Eight(3, 8,5, 3, 80, '#5FE7EF'),
             new OutGrowth(4.6, 5.2,2.2, 3.4, 0, '#FFFDDF'),
+            new Circle(-1.2, 5.5, 2, 2.8, 0, '#5FE7EF'),
             new Circle(-1, 5.4,2, 3, 0, '#5FE7EF', this.textureBlue),
             new OutGrowth(3, 8.2,1.6, 1.4, 45, '#FFE202'),
             new OutGrowth(-1, 9,1.6, 1.4, 0, '#FFE202'),
@@ -200,7 +202,8 @@ export default class Pages {
     drawGame() {
         this.shapes.push(
             // Middle
-            new Circle(-1, 3,7, 7, 0, '#FCC5DD'),
+            new Circle(3, 2, 7, 7, 0, '#FCC5DD'),
+            new Circle(-1, 2, 7, 7, 0, '#FCC5DD'),
             new OutGrowth(3.4, 5.4,1.2, 1, -45, '#5FE7EF'),
             new Circle(-1, 3,4, 5, 0, '#5FE7EF'),
             new Circle(-1, 6,4, 5, 0, '#FE6A7A'),
@@ -235,7 +238,7 @@ export default class Pages {
         new Star(1.6,7.6, 10, 0.5,0.25,0, '#5FE7EF')
 
         // Mask
-        new Rect(0,4,6,7)
+        new Rect(0,3.5,6,8)
     }
 
     drawWinner() {
@@ -308,7 +311,7 @@ export default class Pages {
     }
 
     drawLogin() {
-        const avatar = new Avatar(3, 4,2, Math.floor((Math.random() * 15)))
+        const avatar = new Avatar(3, 3.5, 2, Math.floor((Math.random() * 15)))
         this.avatars.push(avatar)
     }
 
