@@ -131,11 +131,6 @@
       "sentences" : "Apprivoiser les morpions"
     },
     {
-      "title" : "Zgeg",
-      "param" : "Dégarnir",
-      "sentences" : "Dégarnir le zgeg"
-    },
-    {
       "title" : "Jambes",
       "param" : "Dépiler",
       "sentences" : "Dépiler les jambes"
@@ -213,15 +208,6 @@
         "Activer la moustache piquante",
         "Activer la moustache inexistante"
       ]
-    },
-    {
-      "title" : "Anus",
-      "param" : ["velu", "touffu", "laineux"],
-      "sentences" : [
-        "Activer l'anus velu",
-        "Activer l'anus touffu",
-        "Activer l'anus laineux"
-      ]
     }
   ],
   "simple-cursor" : [
@@ -248,9 +234,9 @@
   ],
   "complex-cursor" : [
     {
-      "title" : "Eguisation des lames",
+      "title" : "Poils incarnés",
       "param" : ["0", "10", "20", "30"],
-      "sentences" : "Passer l'éguisation des lâmes à {param}"
+      "sentences" : "Passer le nombre de poils incarnés sur {param}"
     },
     {
       "title" : "Taille de la broussaille",

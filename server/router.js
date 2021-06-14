@@ -11,11 +11,11 @@ function initRouter(app, path, port) {
     * Redirect to https
     */
     app.use (function (req, res, next) {
-        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` || req.rawHeaders[1] == `192.168.1.82:3003` ) {
+        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` || req.rawHeaders[1] == `192.168.43.142:3003` ) {
             // request was via https, so do no special handling
             next()
-        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] !== `192.168.1.82:3003` ) {
-            // request was via http, so redirect to https'(
+        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] !== `192.168.43.142:3003` ) {
+            // request was via http, so redirect to https'( 
             res.redirect('https://' + req.headers.host + req.url)
         }
     })
