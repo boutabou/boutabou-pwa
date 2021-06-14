@@ -2,7 +2,7 @@
     <div id="qr-reader" style="min-width: 100vw; min-height: 80vh; position: relative;"></div>
 
     <div class="scan-page__info">
-        <p><span>Scannez</span> une carte thématique pour commencer la partie</p>
+        <p><span>Scannez</span> une carte thématique pour commencer la partie.</p>
     </div>
 
     <div class="js-ios-content scan-page__ios-info"></div>
@@ -10,7 +10,7 @@
     <div class="scan-page__id">
         <div class="scan-page__id-container">
             <p>Le scan ne fonctionne pas?</p>
-            <input class="js-id" type="text" id="name" name="name" placeholder="Saisir l'id de la carte" required>
+            <input class="js-id" type="text" id="name" name="name" autocomplete="off" placeholder="Saisir l'id de la carte" required>
             <%- include('../components/button', { buttonLink : '#', buttonText : "GO", buttonClass : "js-id-button" }); %>
         </div>
     </div>

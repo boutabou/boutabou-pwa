@@ -44,7 +44,16 @@ class App {
     }
 
     initApp () {
+        //document.querySelector('#swup').style.height = window.innerHeight + "px"
         this.swup = new Swup()
+
+        document.querySelector('#swup').style.height = window.innerHeight + "px"
+        console.log(document.querySelector('#swup')) 
+        console.log(window.innerHeight) 
+        window.onresize = () => {
+            document.querySelector('#swup').style.height = window.innerHeight + "px"
+        }
+
         new SplitContent()
         new PwaPopUp()
         new Blobs()
@@ -56,6 +65,10 @@ class App {
     }
 
     init() {
+        document.querySelector('#swup').style.height = window.innerHeight + "px"
+        window.onresize = () => {
+            document.querySelector('#swup').style.height = window.innerHeight + "px"
+        }
         this.blocks = new BlockManager(this.socket, this.swup, this.os)
         new SplitContent()
         new Blobs()

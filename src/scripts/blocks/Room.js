@@ -28,12 +28,12 @@ export default class Room extends Block {
         this.socket.disconnect()
         this.socket = null
         this.$els.popup.classList.add('active')
-        this.$els.popupTitle.innerHTML = "Désolée, une partie est déjà en cour"
+        this.$els.popupTitle.innerHTML = "Désolé, une partie est déjà en cours"
     }
 
     waitScan() {
         this.$els.popup.classList.add('active')
-        this.$els.popupTitle.innerHTML = "Un joueur est en train de choisir le théme"
+        this.$els.popupTitle.innerHTML = "Un joueur est en train de choisir le thème"
     }
 
     endScan() {

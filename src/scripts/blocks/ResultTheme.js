@@ -21,7 +21,7 @@ export default class ResultTheme extends Block {
 
     waitScan() {
         this.$els.popup.classList.add('active')
-        this.$els.popupTitle.innerHTML = "Un joueur est en train de choisir le prochain théme"
+        this.$els.popupTitle.innerHTML = "Un joueur est en train de choisir le prochain thème"
     }
 
     endScan() {
