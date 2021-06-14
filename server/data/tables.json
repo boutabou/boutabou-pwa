@@ -1,6 +1,105 @@
 [
     [
       {
+        "type" : "bool",
+        "position" : "1 / 1 / 2 / 2"
+      },
+      {
+        "type" : "complex-list",
+        "position" : "1 / 2 / 3 / 4"
+      },
+      {
+        "type" : "bool",
+        "position" : "2 / 1 / 3 / 2"
+      },
+      {
+        "type" : "complex-cursor",
+        "position" : "3 / 1 / 4 / 4",
+        "orientation" : "horizontal"
+      }
+    ],
+    [
+      {
+        "type" : "complex-list",
+        "position" : "1 / 1 / 3 / 3"
+      },
+      {
+        "type" : "bool",
+        "position" : "1 / 3 / 2 / 4"
+      },
+      {
+        "type" : "bool",
+        "position" : "2 / 3 / 3 / 4"
+      },
+      {
+        "type" : "complex-cursor",
+        "position" : "3 / 1 / 4 / 4",
+        "orientation" : "horizontal"
+      }
+    ],
+    [
+      {
+        "type" : "complex-cursor",
+        "position" : "1 / 1 / 2 / 4",
+        "orientation" : "horizontal"
+      },
+      {
+        "type" : "bool",
+        "position" : "2 / 1 / 3 / 2"
+      },
+      {
+        "type" : "rotate",
+        "position" : "2 / 2 / 4 / 4"
+      },
+      {
+        "type" : "bool",
+        "position" : "3 / 1 / 4 / 2"
+      }
+    ],
+    [
+      {
+        "type" : "complex-cursor",
+        "position" : "1 / 1 / 2 / 4",
+        "orientation" : "horizontal"
+      },
+      {
+        "type" : "bool",
+        "position" : "2 / 1 / 3 / 2"
+      },
+      {
+        "type" : "complex-list",
+        "position" : "2 / 2 / 4 / 4"
+      },
+      {
+        "type" : "bool",
+        "position" : "3 / 1 / 4 / 2"
+      }
+    ],
+    [
+      {
+        "type" : "simple-cursor",
+        "position" : "1 / 1 / 2 / 3",
+        "orientation" : "horizontal"
+      },
+      {
+        "type" : "bool",
+        "position" : "1 / 3 / 2 / 4"
+      },
+      {
+        "type" : "bool",
+        "position" : "2 / 1 / 3 / 2"
+      },
+      {
+        "type" : "complex-list",
+        "position" : "2 / 2 / 4 / 4"
+      },
+      {
+        "type" : "bool",
+        "position" : "3 / 1 / 4 / 2"
+      }
+    ],
+    [
+      {
         "type" : "complex-cursor",
         "position" : "1 / 1 / 2 / 4",
         "orientation" : "horizontal"
