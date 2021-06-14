@@ -25,7 +25,8 @@ export default class Dashboard extends Block {
             instructions: document.querySelector('.js-instructions'),
             scoreContainer: document.querySelector('.js-score-container'),
             taskContainer: document.querySelector('.js-task-container'),
-            soundTimer: document.querySelector('.sound-timer')
+            soundTimer: document.querySelector('.sound-timer'),
+            skip: document.querySelector('.js-skip'),
         }
         this.cptCursors= 0
         this.tl
@@ -45,6 +46,7 @@ export default class Dashboard extends Block {
         this.vibrate = this.vibrate.bind(this)
         this.timer = this.timer.bind(this)
         this.configTimeline = this.configTimeline.bind(this)
+        this.skipGame = this.skipGame.bind(this)
     }
 
     initEvents() {
@@ -56,8 +58,13 @@ export default class Dashboard extends Block {
         this.socket.on('dashboard:vibrate', this.vibrate)
         this.socket.once('dashboard:on-timer', this.timer)
         this.socket.once('dashboard:display-level', this.displayLevel)
+        this.$els.skip.addEventListener('click', this.skipGame)
 
         setTimeout(this.timer, 1500)
+    }
+
+    skipGame() {
+        this.socket.emit('dashboard:skip-game')
     }
 
     displayLevel(level) {
@@ -208,7 +215,7 @@ export default class Dashboard extends Block {
             .to(this.$els.oneStep, {fill: this.nextColor, duration: 0.2, morphSVG:"#seven"})
             .to(this.$els.oneStep, {fill: this.nextColor, duration: 0.2, morphSVG:"#nine"})
             .to(this.$els.scoreCursor, {
-                x:  29.5 * (this.scoreFront + delta - 6),
+                x:  29.5 * (this.scoreFront + delta - 5),
                 duration: 1,
                 ease: 'power4.inOut'
             }, '-=1')
@@ -232,6 +239,7 @@ export default class Dashboard extends Block {
         this.socket.removeListener('dashboard:kill-timer')
         this.socket.removeListener('dashboard:vibrate')
         this.socket.removeListener('dashboard:on-timer')
+        this.$els.skip.removeEventListener('click', this.skipGame)
         this.$els.timer.style.strokeDashoffset = 0
         if(this.tl) {
             this.tl.kill()

@@ -2,9 +2,13 @@ import Block from './Block'
 
 export default class ScanQrCode extends Block {
     vars() {
+        this.emit = false
         if(!this.os){
             this.qrCodeSuccessCallback = idTheme => {
-                this.socket.emit('scan:theme-choice', idTheme)
+                if(!this.emit) {
+                    this.emit = true
+                    this.socket.emit('scan:theme-choice', idTheme)
+                }
                 this.html5QrCode.clear()
             }
             this.config = { fps: 10, qrbox: 250 }
@@ -49,6 +53,7 @@ export default class ScanQrCode extends Block {
 
     getId() {
         if (this.$els.id.value && this.$els.id.value >= 0 && this.$els.id.value <= 2) {
+            console.log('event input envoyé')
             this.currentId = this.$els.id.value
             this.socket.emit('scan:theme-choice', this.currentId)
         } else {

@@ -33,6 +33,7 @@ class Games {
     themeChoice(socket) {
         // listen result theme choice
         socket.on('scan:theme-choice', (idTheme) => {
+            console.log('event serveur reçu')
             this.games.forEach((game) => {
                 game.endGame()
             })
