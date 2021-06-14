@@ -24,7 +24,7 @@
     "title" : "La contraception",
     "pathImgs" : "./../../../assets/images/themes/contraception/",
     "pathInteractions" : "data/interactions/contraception.json",
-    "intro" : "Defiez vos amis et vos connaissances face à la contraception. Attention, qui sera le plus calé ? Nous verrons bien qui est le plus aventurier...",
+    "intro" : "Défiez vos amis et vos connaissances face à la contraception. Attention, qui sera le plus calé ? Nous verrons bien qui est le plus aventurier...",
     "end" : "Pour vous, plus de honte devant la caissière avec vos préservatifs XXL.",
     "winner" : "<b>{winner}</b>, tu as magnifiquement joué, les bébés tu sais les éviter !",
     "challenge" : "Qui choisis-tu pour nous définir un slip chauffant?"

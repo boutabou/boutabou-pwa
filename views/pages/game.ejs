@@ -5,7 +5,8 @@
 </head>
 
 <body>
-<main id="swup" class="transition-fade">
+    <%- include('../components/responsive.ejs'); %>
+    <main id="swup" class="transition-fade">
     <%- include('../blocks/dashboard'); %>
     <%- include('../partials/blobs', { pages : 'game' }); %>
 </main>

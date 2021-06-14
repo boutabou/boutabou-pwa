@@ -5,12 +5,13 @@
 </head>
 
 <body>
-<main id="swup" class="transition-fade"  data-path="<%= theme ? theme.pathImgs : '' %>">
-    <%- include('../partials/popup'); %>
-    <%- include('../blocks/result-theme'); %>
-    <%- include('../partials/blobs', { pages : 'result-theme' }); %>
-</main>
+    <%- include('../components/responsive.ejs'); %>
+    <main id="swup" class="transition-fade"  data-path="<%= theme ? theme.pathImgs : '' %>">
+        <%- include('../partials/popup'); %>
+        <%- include('../blocks/result-theme'); %>
+        <%- include('../partials/blobs', { pages : 'result-theme' }); %>
+    </main>
 
-<%- include('../partials/import-js'); %>
+    <%- include('../partials/import-js'); %>
 </body>
 </html>

@@ -10,6 +10,7 @@ import Sound from './scripts/utils/Sound'
 class App {
     constructor () {
         this.os = navigator.userAgent && /iPad|iPhone|iPod/.test(navigator.userAgent)
+        this.responsive = document.querySelector('.responsive')
 
         document.addEventListener('swup:contentReplaced', (event) => {
             this.init()
@@ -44,14 +45,19 @@ class App {
     }
 
     initApp () {
-        //document.querySelector('#swup').style.height = window.innerHeight + "px"
         this.swup = new Swup()
 
-        document.querySelector('#swup').style.height = window.innerHeight + "px"
-        console.log(document.querySelector('#swup')) 
-        console.log(window.innerHeight) 
+        this.height = window.innerHeight + "px"
+
+        document.querySelector('#swup').style.height = this.height
         window.onresize = () => {
-            document.querySelector('#swup').style.height = window.innerHeight + "px"
+            document.querySelector('#swup').style.height = this.height
+
+            if(window.innerWidth > 500) {
+                this.responsive.classList.add('responsive--active')
+            } else {
+                this.responsive.classList.remove('responsive--active')
+            }
         }
 
         new SplitContent()
@@ -65,10 +71,18 @@ class App {
     }
 
     init() {
-        document.querySelector('#swup').style.height = window.innerHeight + "px"
+        document.querySelector('#swup').style.height = this.height
+
         window.onresize = () => {
-            document.querySelector('#swup').style.height = window.innerHeight + "px"
+            document.querySelector('#swup').style.height = this.height
+
+            if(window.innerWidth > 500) {
+                this.responsive.classList.add('responsive--active')
+            } else {
+                this.responsive.classList.remove('responsive--active')
+            }
         }
+        
         this.blocks = new BlockManager(this.socket, this.swup, this.os)
         new SplitContent()
         new Blobs()

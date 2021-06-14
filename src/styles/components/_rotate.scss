@@ -1,4 +1,9 @@
 .rotate {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
     p {
       margin-bottom: 40px;
     }
@@ -10,7 +15,7 @@
       height: 90px;
       margin: 10px auto;
       border-radius: 50%;
-      margin: 45px auto auto auto;
+      margin-bottom: 30px;
       position: relative;
 
       .ticks {

@@ -7,6 +7,7 @@ export default class Cursor extends Interaction {
 
     addClassContainer() {
         this.containerInteraction.classList.add('cursor-' + this.index)
+        this.containerInteraction.classList.add('grid-cursor-' + this.orientation)
         this.containerInteraction.classList.add(this.type)
     }
 
