@@ -161,11 +161,6 @@
   ],
   "simple-cursor" : [
     {
-      "title" : "Fuite",
-      "param" : ["1", "2", "3"],
-      "sentences" : "Passer la fuite sur {param}"
-    },
-    {
       "title" : "Ballonnements",
       "param" : ["1", "2", "3"],
       "sentences" : "Mettre les ballonnements sur {param}"
@@ -208,6 +203,11 @@
       "title" : "Durée règles",
       "param" : ["0", "2", "5", "7", "10", "14"],
       "sentences" : "Mettre la durée des règles sur {param}"
+    },
+    {
+      "title" : "Fuite",
+      "param" : ["0", "2", "3", "4", "5", "6"],
+      "sentences" : "Passer la fuite sur {param}"
     }
   ]
 }

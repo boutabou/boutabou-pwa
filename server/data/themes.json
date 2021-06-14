@@ -15,7 +15,7 @@
     "pathImgs" : "./../../../assets/images/themes/menstruation/",
     "pathInteractions" : "data/interactions/menstruation.json",
     "intro" : "Vous connaissez les chutes du Niagara? Vous allez les redécouvrir. Soyez prêts ça va saigner...",
-    "end" : "Incroyable ! Vous avez passé ce niveau avec brio !\nPlus de rougissement à la vue d’une tâche de sang",
+    "end" : "Incroyable ! \n Pour vous, plus de rougissement à la vue d’une tâche de sang",
     "winner" : "<b>{winner}</b> t'es le boss de la thématique, tu manies la cup avec une dextérité inégalée.",
     "challenge" : "Choisis un joueur qui nous montrera comment il insère sa cup."
   },

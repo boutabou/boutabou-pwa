@@ -51,7 +51,7 @@ class App {
 
         document.querySelector('#swup').style.height = this.height
         window.onresize = () => {
-            document.querySelector('#swup').style.height = this.height
+            document.querySelector('#swup').style.height = window.innerHeight + "px"
 
             if(window.innerWidth > 500) {
                 this.responsive.classList.add('responsive--active')
@@ -74,7 +74,8 @@ class App {
         document.querySelector('#swup').style.height = this.height
 
         window.onresize = () => {
-            document.querySelector('#swup').style.height = this.height
+            console.log(window.innerHeight)
+            document.querySelector('#swup').style.height = window.innerHeight + "px"
 
             if(window.innerWidth > 500) {
                 this.responsive.classList.add('responsive--active')
