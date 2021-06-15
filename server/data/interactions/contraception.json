@@ -66,22 +66,22 @@
     {
       "title" : "Placement cape cervicale",
       "sentences" : {
-        "on" : "Enclencher le placement d'un cape cervicale",
-        "off" : "Désenclencher le placement d'un cape cervicale"
+        "on" : "Placer la cape cervicale",
+        "off" : "Enlever la cape cervicale"
       }
     },
     {
       "title" : "Placement anneau vaginal",
       "sentences" : {
-        "on" : "Enclencher le placement d'un anneau vaginal",
-        "off" : "Désenclencher le placement d'un anneau vaginal"
+        "on" : "Enclencher le placement de l'anneau vaginal",
+        "off" : "Désenclencher le placement de l'anneau vaginal"
       }
     },
     {
       "title" : "Progestatifs injectables",
       "sentences" : {
-        "on" : "Activer le progestatifs injectables",
-        "off" : "Désactiver le progestatifs injectables"
+        "on" : "Activer les progestatifs injectables",
+        "off" : "Désactiver les progestatifs injectables"
       }
     }
   ],
@@ -124,7 +124,7 @@
     },
     {
       "title" : "Préservatif",
-      "param" : ["Nervure", "Perlé", "Aromatisé"],
+      "param" : ["Nervuré", "Perlé", "Aromatisé"],
       "sentences" : [
         "Préservatif en mode nervuré",
         "Préservatif en mode perlé",
@@ -150,12 +150,12 @@
       ]
     },
     {
-      "title" : "Effets secondaires",
+      "title" : "Effet secondaire",
       "param" : ["Prise de poids", "Emotivité", "Acné"],
       "sentences" : [
-        "Mettre l'effets secondaires sur prise de poids",
-        "Mettre l'effets secondaires sur emotivité",
-        "Mettre l'effets secondaires sur acné"
+        "Mettre l'effet secondaire sur prise de poids",
+        "Mettre l'effet secondaire sur emotivité",
+        "Mettre l'effet secondaire sur acné"
       ]
     }
   ],

@@ -1,4 +1,5 @@
 const themeData = require('./data/themes.json')
+const resultData = require('./data/levels.json')
 
 function initRouter(app, path, port) {
     app.set('view engine', 'ejs')
@@ -11,10 +12,10 @@ function initRouter(app, path, port) {
     * Redirect to https
     */
     app.use (function (req, res, next) {
-        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` || req.rawHeaders[1] == `192.168.1.55:3003` ) {
+        if (req.secure || req.rawHeaders[1] == `${domain}:${port}` || req.rawHeaders[1] == `192.168.1.112:3003` ) {
             // request was via https, so do no special handling
             next()
-        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] !== `192.168.1.55:3003`) {
+        } else if (!req.secure && req.rawHeaders[1] !== `${domain}:${port}` || req.rawHeaders[1] !== `192.168.1.112:3003`) {
             // request was via http, so redirect to https'( 
             res.redirect('https://' + req.headers.host + req.url)
         }
@@ -46,6 +47,12 @@ function initRouter(app, path, port) {
     app.get('/views/pages/winner.ejs', function(req, res) {
         res.render('pages/winner', {
             theme : themeData[req.query.id]
+        })
+    })
+
+    app.get('/views/pages/defeat.ejs', function(req, res) {
+        res.render('pages/defeat', {
+            result : resultData[req.query.id]
         })
     })
 

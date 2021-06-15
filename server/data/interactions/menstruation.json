@@ -17,8 +17,8 @@
     {
       "title" : "Serviette de nuit",
       "sentences" : {
-        "on" : "Activer la servitette de nuit",
-        "off" : "Désactiver la servitette de nuit"
+        "on" : "Activer la serviette de nuit",
+        "off" : "Désactiver la serviette de nuit"
       }
     },
     {
@@ -117,7 +117,7 @@
       "title" : "Cup",
       "param" : ["Petite", "Moyenne", "Grande"],
       "sentences" : [
-        "Mettre la  taille de la cup sur petite",
+        "Mettre la taille de la cup sur petite",
         "Mettre la taille de la cup sur moyenne",
         "Mettre la taille de la cup sur grande"
       ]
@@ -146,16 +146,16 @@
       "sentences" : [
         "Mettre les régles en mode ruisseau",
         "Mettre les régles en mode fleuve",
-        "Mettre les régles en mode Raz de marée"
+        "Mettre les régles en mode raz de marée"
       ]
     },
     {
       "title" : "Règles",
       "param" : ["Roses", "Rouges", "Marrons"],
       "sentences" : [
-        "Passer les régles en roses",
-        "Passer les régles en rouges",
-        "Passer les régles en marrons"
+        "Passer les régles en rose",
+        "Passer les régles en rouge",
+        "Passer les régles en marron"
       ]
     }
   ],
@@ -171,9 +171,14 @@
       "sentences" : "Régler sur {param} les maux de tête"
     },
     {
-      "title" : "Enlimination endomètre",
+      "title" : "Elimination endomètre",
       "param" : ["1", "2", "3"],
-      "sentences" : "Passer l'enlimination de l'endomètre sur {param}"
+      "sentences" : "Passer l'élimination de l'endomètre sur {param}"
+    },
+    {
+      "title" : "Taille du caillot",
+      "param" : ["1", "2", "3"],
+      "sentences" : "Mettre la taille du caillot sur {param}"
     }
   ],
   "complex-cursor" : [
@@ -190,14 +195,14 @@
     {
       "title" : "Remplissage cup",
       "param" : ["0", "1", "2", "3"],
-      "sentences" : "Remplisser la cup à {param}"
+      "sentences" : "Remplissez la cup sur {param}"
     }
   ],
   "rotate" : [
     {
       "title" : "Température de bouillote",
       "param" : ["0", "20", "40", "50", "70", "90"],
-      "sentences" : "Mettre la température de la buillote sur {param}"
+      "sentences" : "Mettre la température de la bouillote sur {param}"
     },
     {
       "title" : "Durée règles",

@@ -104,7 +104,7 @@ class Tasks {
         }
 
         if(this.score <= 0) {
-            setTimeout(() => { this.io.emit('direction',  '/views/pages/defeat.ejs') }, 1000)
+            setTimeout(() => { this.io.emit('direction',  '/views/pages/defeat.ejs', this.game.level - 1 ) }, 1000)
             this.endGame()
         }
     }

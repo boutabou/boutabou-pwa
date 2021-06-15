@@ -53,7 +53,6 @@ export default class ScanQrCode extends Block {
 
     getId() {
         if (this.$els.id.value && this.$els.id.value >= 0 && this.$els.id.value <= 2) {
-            console.log('event input envoyé')
             this.currentId = this.$els.id.value
             this.socket.emit('scan:theme-choice', this.currentId)
         } else {
