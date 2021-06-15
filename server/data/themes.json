@@ -11,7 +11,7 @@
   },
   {
     "id" : 1,
-    "title" : "Les régles",
+    "title" : "Les règles",
     "pathImgs" : "./../../../assets/images/themes/menstruation/",
     "pathInteractions" : "data/interactions/menstruation.json",
     "intro" : "Vous connaissez les chutes du Niagara? Vous allez les redécouvrir. Soyez prêts ça va saigner...",

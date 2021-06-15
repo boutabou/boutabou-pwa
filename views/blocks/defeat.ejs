@@ -1,9 +1,9 @@
 <div class="block defeat js-defeat container container--ultra">
     <h1 class="js-split-text split-text split-text--title">Bravo !</h1>
 
-    <div>
-        <p class="defeat__team js-defeat__team"></p>
-        <p class="js-defeat__comment"></p>
+    <div class="defeat__container">
+        <p class="defeat__team"><%= result ? result.team : '' %></p>
+        <p><%= result ? result.comment : '' %></p>
     </div>
 
     <%- include('../components/button', { buttonLink : './', buttonText : "REJOUER", buttonClass : "" }); %>

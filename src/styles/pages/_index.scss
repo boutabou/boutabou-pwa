@@ -11,10 +11,10 @@
   height: 100%;
   
   &__img {
-    top: 26vh;
+    top: 23vh;
     position: absolute;
     width: 45vw;
-    z-index: 1000;
+    z-index: 5;
 
     svg {
       height: 100%;
@@ -26,6 +26,6 @@
   p {
     text-align: center;
     font-size: 14px;
-    padding: 0 20px 12vh 20px;
+    padding: 0 20px 10vh 20px;
   }
 }

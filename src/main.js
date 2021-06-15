@@ -50,15 +50,31 @@ class App {
         this.height = window.innerHeight + "px"
 
         document.querySelector('#swup').style.height = this.height
-        window.onresize = () => {
-            document.querySelector('#swup').style.height = window.innerHeight + "px"
+
+        this.orientationLandscape = false
+
+        window.addEventListener('orientationchange', () => {
+            if(event.target.screen.orientation.angle !== 0) {
+              this.orientationLandscape = true 
+            } else {
+              this.orientationLandscape = false
+            }
+            console.log("update", this.orientationLandscape)
+        })
+
+        window.addEventListener('resize', () => {
+            if(!this.orientationLandscape) {
+                document.querySelector('#swup').style.height = window.innerHeight + "px"
+            }
 
             if(window.innerWidth > 500) {
                 this.responsive.classList.add('responsive--active')
             } else {
                 this.responsive.classList.remove('responsive--active')
             }
-        }
+        })
+
+       
 
         new SplitContent()
         new PwaPopUp()
@@ -73,17 +89,6 @@ class App {
     init() {
         document.querySelector('#swup').style.height = this.height
 
-        window.onresize = () => {
-            console.log(window.innerHeight)
-            document.querySelector('#swup').style.height = window.innerHeight + "px"
-
-            if(window.innerWidth > 500) {
-                this.responsive.classList.add('responsive--active')
-            } else {
-                this.responsive.classList.remove('responsive--active')
-            }
-        }
-        
         this.blocks = new BlockManager(this.socket, this.swup, this.os)
         new SplitContent()
         new Blobs()

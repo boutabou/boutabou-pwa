@@ -18,7 +18,7 @@
       "title" : "Turbo épilateur",
       "sentences" : {
         "on" : "Allumer le turbo épilateur",
-        "off" : "Eteindre le turbo épilateur"
+        "off" : "Éteindre le turbo épilateur"
       }
     },
     {
@@ -74,7 +74,7 @@
       "title" : "Brulo laser",
       "sentences" : {
         "on" : "Allumer le brulo laser",
-        "off" : "Eteindre le brulo laser"
+        "off" : "Éteindre le brulo laser"
       }
     },
     {
@@ -95,7 +95,7 @@
       "title" : "Tondeuse",
       "sentences" : {
         "on" : "Allumer la tondeuse",
-        "off" : "Eteindre la tondeuse"
+        "off" : "Éteindre la tondeuse"
       }
     }
   ],
@@ -212,7 +212,7 @@
   ],
   "simple-cursor" : [
     {
-      "title" : "Turbo epilateur",
+      "title" : "Turbo épilateur",
       "param" : ["0", "1", "2"],
       "sentences" : "Passer le turbo épilateur à {param}"
     },
