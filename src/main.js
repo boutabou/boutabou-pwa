@@ -59,7 +59,6 @@ class App {
             } else {
               this.orientationLandscape = false
             }
-            console.log("update", this.orientationLandscape)
         })
 
         window.addEventListener('resize', () => {

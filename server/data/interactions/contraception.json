@@ -31,15 +31,15 @@
     {
       "title" : "Pilule du lendemain",
       "sentences" : {
-        "on" : "Enclencher la pilule du lendemain",
+        "on" : "Prendre la pilule du lendemain",
         "off" : "Désenclencher la pilule du lendemain"
       }
     },
     {
       "title" : "Slip chauffant",
       "sentences" : {
-        "on" : "Enclencher le slip chauffant",
-        "off" : "Désenclencher le slip chauffant"
+        "on" : "Mettre le slip chauffant",
+        "off" : "Enlever le slip chauffant"
       }
     },
     {
@@ -73,8 +73,8 @@
     {
       "title" : "Placement anneau vaginal",
       "sentences" : {
-        "on" : "Enclencher le placement de l'anneau vaginal",
-        "off" : "Désenclencher le placement de l'anneau vaginal"
+        "on" : "Placer l'anneau vaginal",
+        "off" : "Retirer l'anneau vaginal"
       }
     },
     {

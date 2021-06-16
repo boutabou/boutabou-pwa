@@ -85,7 +85,7 @@ class Game {
     }
 
     getTimer() {
-        return 8000 + 2000 * this.room.users.length - (( 1 - Math.exp(-this.level / 4)) * 6000)
+        return 30000 + 2000 * this.room.users.length - (( 1 - Math.exp(-this.level / 4)) * 6000)
     }
 
     skipGame() {
