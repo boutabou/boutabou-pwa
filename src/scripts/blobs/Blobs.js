@@ -18,7 +18,8 @@ export default class Blobs {
         canvas: document.getElementById('blobs'),
         pages: document.querySelector('.js-container-blobs'),
         popup: document.querySelector('.js-popup'),
-        sound: document.querySelector('.sound-blob')
+        sound: document.querySelector('.sound-blob'),
+        avatarTextField: document.querySelector('.js-username')
       }
 
       this.$els.canvas.width = document.body.clientWidth
@@ -34,6 +35,7 @@ export default class Blobs {
 
     this.shapes = []
     this.avatars = []
+    this.avatarTextFieldFocus = false
     this.noise = new perlinNoise3d()
   }
 
@@ -44,9 +46,17 @@ export default class Blobs {
   initEvents() {
     window.onclick = this.addTurbulence
 
+    if(this.$els.avatarTextField) {
+      this.$els.avatarTextField.onfocus = (event) => {
+        this.avatarTextFieldFocus = true
+      }
+    }
+
     window.onresize = () => {
-      this.initEls()
-      this.initDraw()
+      if(!this.avatarTextFieldFocus) {
+        this.initEls()
+        this.initDraw()
+      }
     }
   }
 
